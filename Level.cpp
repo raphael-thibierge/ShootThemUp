@@ -141,6 +141,7 @@ void Level::collisionManager()
         _bulletList->remove(bullet);
         delete bullet;
     }
+    
     /*
     //collision with the border
     for (auto enemy : *_enemyList){
