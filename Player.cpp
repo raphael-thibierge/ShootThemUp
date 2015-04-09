@@ -61,7 +61,10 @@ void Player::initPlayer()
 void Player::score(string typeEnemy, unsigned int levelEnemy, unsigned int difficultyLevel)
 {
     if ( typeEnemy == "standart")
-            _score+= 5*levelEnemy*difficultyLevel;
+    {
+        _score+= 5*levelEnemy*difficultyLevel;
+    }
+
 
     //gestion de la monnaie ici
 
@@ -76,9 +79,39 @@ unsigned int Player::getLevel() const
     return _level;
 }
 
+unsigned int Player::getShild() const
+{
+    return _shild;
+}
+
+float Player::getMoney() const
+{
+    return _money;
+}
+
+string Player::getBulletType() const
+{
+    return _bulletType;
+}
+
+void Player::setLevel( unsigned int level)
+{
+    _level=level;
+}
+
+void Player::setShild( unsigned int shild)
+{
+    _shild=shild;
+}
+
 void Player::setBulletType(string bulletType)
 {
     _bulletType=bulletType;
+}
+
+void Player::setMoney( float money)
+{
+    _money=money;
 }
 
 // Other methods

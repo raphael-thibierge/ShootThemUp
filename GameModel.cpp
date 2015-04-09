@@ -12,6 +12,7 @@ GameModel::GameModel() {
     _height = 500;
     _width = 200;
     _player = new Player;
+    _shop = new Shop;
     _level = nullptr;
     newLevel();
 }
@@ -19,7 +20,7 @@ GameModel::GameModel() {
 GameModel::~GameModel() {
     cout << "\n=====================" << endl;
     cout << "DESTRUCTION DE GAMEMODEL" << endl;
-    
+
     destructLevel();
     delete _player;
 }
@@ -29,30 +30,30 @@ GameModel::~GameModel() {
 //
 
 void GameModel::nextStep(){
-    
-    
+
+
     // fonction moteur du jeu
     // fonction qui fait tourner le jeu
-    
+
     if (!_level->win()){
         if (!_level->loose()) {
         // le jeu continue
-        
+
         for (auto enemy : *_level->getEnemy()){
             enemy->move();
-            
+
         }
-        
+
         for (auto bullet : *_level->getBullet()){
             bullet->move();
         }
-        
+
         _level->collisionManager();
-                
-        
+
+
         }
     }
-    
+
     else {
         nextLevel();
     }
@@ -118,7 +119,7 @@ Player* GameModel::getPlayer()  const{
 }
 
 Level* GameModel::getLevel() const {
-    
+
     return _level;
 }
 

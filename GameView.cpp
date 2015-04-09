@@ -72,41 +72,6 @@ void GameView::showMenu () const
 
 void GameView::showShop () const
 {
-    bool quit = false;
-    while (!quit)
-    {
-        cout << "\n=====================" << endl;
-        cout << "SHOP" << endl;
-        cout << "=====================" << endl;
-        cout << "\t - (1) Bullet lvl 2" << endl;
-        cout << "\t - (2) Bullet lvl 3" << endl;
-        cout << "\t - (3) Bomb" << endl;
-        cout << "\t - (4) Ship lvl 2" << endl;
-        cout << "\n \t - (5) Back" << endl;
-        int answer;
-        cin >> answer;
-
-        switch (answer)
-        {
-        //probleme de segmentation
-//        case 1 :
-//            _model->getPlayer()->setBulletType("level2");
-//            break;
-//        case 2 :
-//            _model->getPlayer()->setBulletType("level3");
-//            break;
-//        case 3 :
-//            break;
-//        case 4 :
-//            break;
-        case 5:
-            quit=true;
-            break;
-        default :
-            cout << "rien"<<endl;
-
-        }
-    }
 }
 
 

@@ -6,6 +6,7 @@
 
 
 #include "Level.h"
+#include "Shop.h"
 
 class GameModel
 {
@@ -13,24 +14,25 @@ class GameModel
 private:
     int _width;
     int _height;
-    
+
     Player * _player;
     Level * _level;
-    
+    Shop * _shop;
+
 
 public :
 // Constructors/Destructors
 //
 
 	GameModel();
-    
+
 	~GameModel ();
 
-    
+
 // METHODS
-    
+
     void nextStep();
-    
+
     void loadGame ();
 
     void newGame ();
@@ -40,18 +42,18 @@ public :
     void play ();
 
     void nextLevel ();
-    
+
     void newLevel ();
-    
+
     void destructLevel();
-    
-    
-    
+
+
+
 // ACCESSOR METHODS
-    
+
     Player* getPlayer() const;
     Level* getLevel() const;
-    
+
 
 
 };
