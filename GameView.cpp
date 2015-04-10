@@ -1,232 +1,87 @@
 #include "GameView.h"
 
-//rien
 
 using namespace std;
 
-
-
-// Constructors/Destructors
-//
-
-GameView::GameView ()
-{
-    cout << "\n=====================" << endl;
-    cout << "CONSTRUCTOR GAMEVIEW" << endl;
+ViewController::ViewController() {
+    _allViews.emplace(make_pair("Game", &_game));
+    
 }
 
-GameView::~GameView ()
-{
-    cout << "\n=====================" << endl;
-    cout << "DESTRUCTOR GAMEVIEW" << endl;
+ViewController::~ViewController(){
+    _view = nullptr;
+    
 }
 
-//
-// Methods
-//
-
-
-// Accessor methods
-//
-
-
-// Other methods
-//
-
-
-void GameView::showMenu () const
-{
-    bool quit = false;
-    while (!quit)
-    {
-        cout << "\n=====================" << endl;
-        cout << "MENU" << endl;
-        cout << "=====================" << endl;
-        cout << "\t - (1) Play" << endl;
-        cout << "\t - (2) Shop" << endl;
-        cout << "\t - (3) Setting" << endl;
-        cout << "\t - (4) Quit" << endl;
-        int answer;
-        cin >> answer;
-
-        switch (answer)
-        {
-        case 1 :
-            showGame();
-            break;
-        case 2 :
-            showShop();
-            break;
-//        case 3 :
-//            break;
-        case 4:
-            quit=true;
-            break;
-        default :
-            cout << "raté"<<endl;
-
-        }
-    }
-}
-
-
-void GameView::showShop () const
-{
-    bool quit = false;
-    while (!quit)
-    {
-        cout << "\n=====================" << endl;
-        cout << "SHOP" << endl;
-        cout << "=====================" << endl;
-        cout << "\t - (1) Bullet lvl 2" << endl;
-        cout << "\t - (2) Bullet lvl 3" << endl;
-        cout << "\t - (3) Bomb" << endl;
-        cout << "\t - (4) Ship lvl 2" << endl;
-        cout << "\n \t - (5) Back" << endl;
-        int answer;
-        cin >> answer;
-
-        switch (answer)
-        {
-        //probleme de segmentation
-//        case 1 :
-//            _model->getPlayer()->setBulletType("level2");
-//            break;
-//        case 2 :
-//            _model->getPlayer()->setBulletType("level3");
-//            break;
-//        case 3 :
-//            break;
-//        case 4 :
-//            break;
-        case 5:
-            quit=true;
-            break;
-        default :
-            cout << "rien"<<endl;
-
-        }
-    }
-}
-
-
-/**
- */
-void GameView::showLanguage () const
-{
-    // plus tard
-}
-
-/**
- */
-void GameView::showStore () const
-{
-    // plus tard
-}
-
-/**
- */
-void GameView::showBestScore () const
-{
-    // plus tard
-    // gestion de fichiers
-}
-
-/**
- */
-void GameView::showScore () const
-{
-    // on verra plus ytard pour le moment on s'en fout
-}
-
-/**
- */
-void GameView::showGame () const
-{
-    // affichage de tous les éléments et d'un petit menu qui proôse de se déplacer et de tirer
-    bool quit = false ;
-    int tour =0;
-    while (!quit)
-    {
-        tour++;
-        cout << "\n=====================" << endl;
-        cout << "TOUR N°" << tour << endl;
-        cout << "=====================" << endl;
-
-        cout << _model->getPlayer()->toString() << endl;
-
-        for (auto enemy : *_model->getLevel()->getEnemy())
-        {
-            cout << enemy->toString() << endl;
-        }
-
-        cout << endl;
-
-        for (auto bullet : *_model->getLevel()->getBullet())
-        {
-            cout << bullet->toString() << endl;
-        }
-
-        cout << "\n Actions :" << endl;
-        cout << "\t - (1) Se deplacer" << endl;
-        cout << "\t - (2) Tirer" << endl;
-        cout << "\t - (3) Rien" << endl;
-        cout << "\t - (4) Abandonner" << endl;
-        int reponse ;
-        cin >> reponse ;
-
-        switch (reponse)
-        {
+bool ViewController::treatEvent(){
+    switch (_view->treatEvent()) {
         case 1:
-            cout << "Deplacement X : " ;
-            float dx;
-            cin >> dx;
-            cout << "Deplacement Y : " ;
-            float dy;
-            cin >> dy;
-
-            _model->getPlayer()->Position::move(dx, dy);
+            // cas ou tout c'est bien déroulé
             break;
-
-        case 2:
-            _model->getPlayer()->shoot("standart", "NORTH", _model->getLevel()->getBullet());
+            
+        case 0:
+            //quit();
             break;
-
-        case 3 :
+            
+        case -1:
+            _view = _allViews["MainMenu"];
             break;
-
-        case 4:
-            cout << "\nVous avez perdu" << endl;;
-            quit = true;
+            
+        case -2:
+            _view = _allViews["Game"];
             break;
-
-
+            
+        case -3:
+            _view = _allViews["Shop"];
+            break;
+            
+        case -4:
+            _view = _allViews["Settings"];
+            break;
+            
+        case -5:
+            _view = _allViews["BestScores"];
+            break;
+            
+        case -6:
+            _view = _allViews["Introduction"];
+            break;
+        case -7:
+            _view = _allViews["Quit"];
+            break;
+            
         default:
-            cout << "Entre 1 et 4_, ça passe au tour suivant" << endl;
             break;
-        }
-
-        _model->nextStep();
-        _model->nextStep();
     }
+    
+    
+    return !_quit;
+}
 
+void ViewController::showView(){
+    _view->showView();
+}
 
+void ViewController::changeView(string view){
+    _view = _allViews[view];
+}
+
+void ViewController::quit(){
+    cout << "QUIT" << endl;
+    _quit = true;
+}
+
+void ViewController::init(GameModel *modele){
+    _modele = modele;
+    
+    _game.setModele(_modele);
+    
+    _view = _allViews["Game"];
+    
 }
 
 
-/**
- */
-void GameView::showIntroduction () const
-{
-
-}
 
 
-//ACCESSEURS
-
-void GameView::setModel(GameModel * model)
-{
-    _model = model ;
-};
 
 

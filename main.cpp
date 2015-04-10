@@ -7,22 +7,22 @@
 //
 
 #include <iostream>
+#include "GameViewTerminal.h"
 #include "GameView.h"
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
     
-    GameModel * model = new GameModel;
-    GameView * vueTerminal = new GameView;
+    GameModel model;
     
-    vueTerminal->setModel(model);
+    ViewController controller;
+    controller.init(&model);
     
-    vueTerminal->showIntroduction();
-    vueTerminal->showGame();
-    delete model;
-    model = nullptr;
-    delete vueTerminal;
-    
+    while (controller.treatEvent()) {
+        model.nextStep();
+        controller.showView();
+    }
+
     return 0;
 }

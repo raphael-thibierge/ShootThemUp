@@ -1,69 +1,50 @@
 
 #ifndef GAMEVIEW_H
 #define GAMEVIEW_H
-
-#include <stdio.h>
-#include <string>
-#include <vector>
 #include "GameModel.h"
+#include "View.h"
+#include "viewGame.h"
+#include <map>
 
 
+class ViewController {
 
-
-class GameView
-{
-
-private :
-
-    GameModel * _model ;
-
-
+protected:
+    bool _quit;
+    GameModel* _modele;
+    std::map<std::string, View*> _allViews;
+    View* _view ;
+    
+    ViewGame _game;
+    
 public:
+    
+    ViewController();
+    
+    ~ViewController();
 
-// Constructors/Destructors
-//
-
-	GameView ();
-
-	virtual ~GameView ();
-
-// Methods
-//
-	/**
-	 */
-    void showMenu () const;
-
-
-    void showShop () const;
-	/**
-	 */
-    void showLanguage () const;
-
-	/**
-	 */
-    void showStore () const;
-
-	/**
-	 */
-    void showBestScore () const;
-
-	/**
-	 */
-    void showScore () const;
-
-	/**
-	 */
-    void showGame () const;
-
-	/**
-	 */
-    void showIntroduction () const;
-
-
-// ACCESSEURS
-    void setModel(GameModel * model);
-
-
+    bool treatEvent();
+    
+    void showView();
+    
+    void quit();
+    
+    void init(GameModel* modele);
+    
+private:
+    void changeView(std::string view);
+    
+    
+    
+    
+    
+    
+    
+    
+    
 };
+
+
+
 
 #endif // GAMEVIEW_H
