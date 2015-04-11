@@ -28,3 +28,8 @@ int ViewShop::treatEvent(){
     
     return 0;
 }
+
+
+void ViewShop::showView(){
+    cout << " Vue non disponible" << endl ;
+}

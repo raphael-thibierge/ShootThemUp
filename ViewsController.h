@@ -14,6 +14,7 @@
 #include "GameModel.h"
 #include "View.h"
 #include "ViewGame.h"
+#include "ViewShop.h"
 #include <map>
 
 
@@ -24,9 +25,11 @@ protected:
     GameModel* _modele;
     std::map<std::string, View*> _allViews;
     View* _view ;
+    
 
     ViewGame _game;
-
+    ViewShop _shop;
+    
 public:
 
     ViewsController();

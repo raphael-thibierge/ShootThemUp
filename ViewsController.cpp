@@ -13,7 +13,7 @@ using namespace std;
 
 ViewsController::ViewsController() {
     _allViews.emplace(make_pair("Game", &_game));
-    _allViews.emplace(make_pair("Shop", ))
+    _allViews.emplace(make_pair("Shop", &_shop));
     
 }
 
@@ -85,6 +85,6 @@ void ViewsController::init(GameModel *modele){
     
     _game.setModele(_modele);
     
-    _view = _allViews["Game"];
+    _view = _allViews["Shop"];
     
 }
