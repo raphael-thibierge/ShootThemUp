@@ -35,7 +35,7 @@ public :
 
     void nextStep();
 
-    void loadGame ();
+    bool loadGame ();
 
     void newGame ();
 

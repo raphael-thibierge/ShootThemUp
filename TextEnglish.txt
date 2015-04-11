@@ -1,0 +1,8 @@
+play Play
+shop Shop
+setting Setting
+quit Quit
+move Move
+shoot Shoot
+nothing Nothing
+escape Escape

@@ -61,9 +61,10 @@ void GameModel::nextStep(){
 
 /**
  */
-void GameModel::loadGame ()
+bool GameModel::loadGame ()
 {
     // chargement d'une partie depuis un fichier
+    return true;
 }
 
 /**
