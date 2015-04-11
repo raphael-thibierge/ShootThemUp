@@ -11,11 +11,11 @@ GameModel::GameModel() {
 
     _height = 500;
     _width = 200;
-    _player = new Player;
-    _shop = new Shop;
-    _setting = new Setting;
+    _player = nullptr;
+    //_shop = new Shop;
+    //_setting = new Setting;
     _level = nullptr;
-    newLevel();
+    //newLevel();
 }
 
 GameModel::~GameModel() {
@@ -35,28 +35,31 @@ void GameModel::nextStep(){
 
     // fonction moteur du jeu
     // fonction qui fait tourner le jeu
-
-    if (!_level->win()){
-        if (!_level->loose()) {
-        // le jeu continue
-
-        for (auto enemy : *_level->getEnemy()){
-            enemy->move();
-
+    
+    if (_player != nullptr){
+        
+        if (!_level->win()){
+            if (!_level->loose()) {
+                // le jeu continue
+                
+                for (auto enemy : *_level->getEnemy()){
+                    enemy->move();
+                    
+                }
+                
+                for (auto bullet : *_level->getBullet()){
+                    bullet->move();
+                }
+                
+                _level->collisionManager();
+                
+                
+            }
         }
-
-        for (auto bullet : *_level->getBullet()){
-            bullet->move();
+        
+        else {
+            nextLevel();
         }
-
-        _level->collisionManager();
-
-
-        }
-    }
-
-    else {
-        nextLevel();
     }
 }
 
@@ -72,9 +75,10 @@ bool GameModel::loadGame ()
  */
 void GameModel::newGame ()
 {
-    _player = new Player;
-    _shop = new Shop;
-    _setting = new Setting;
+    _player = new Player();
+    _shop = new Shop();
+    _setting = new Setting();
+    newLevel();
 }
 
 /**

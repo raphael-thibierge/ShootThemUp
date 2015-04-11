@@ -17,6 +17,7 @@
 #include "ViewShop.h"
 #include "ViewIntroduction.h"
 #include "ViewMainMenu.h"
+#include "ViewSettings.h"
 #include <map>
 
 

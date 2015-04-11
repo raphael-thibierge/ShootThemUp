@@ -20,8 +20,9 @@ int ViewGame::treatEvent(){
     cout << "Jeu" << endl;
     cout << "\t (1) Deplacement" << endl;
     cout << "\t (2) Tirer" << endl;
-    cout << "\t (3) Abandonner" << endl;
-    cout << "\t (4) Rien" << endl;
+    cout << "\t (3) Rien" << endl;
+    cout << "\t (4) Abandonner" << endl;
+    
 
     int reponse;
 
@@ -44,7 +45,7 @@ int ViewGame::treatEvent(){
             _modele->getPlayer()->shoot("standart", "NORTH", _modele->getLevel()->getBullet());
             break;
         
-        case 3 :
+        case 4 :
             returnValue = 0;
             break;
 
