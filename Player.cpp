@@ -101,6 +101,11 @@ string Player::getBulletType() const
     return _bulletType;
 }
 
+void Player::setNbLife(unsigned int nbLife)
+{
+    _nbLife=nbLife;
+}
+
 void Player::setLevel( unsigned int level)
 {
     _level=level;

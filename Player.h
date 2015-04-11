@@ -60,6 +60,8 @@ private :
 
     std::string getBulletType() const;
 
+    void setNbLife(unsigned int nbLife);
+
     void setLevel( unsigned int level);
 
     void setShild( unsigned int shild);

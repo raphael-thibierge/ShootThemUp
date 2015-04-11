@@ -88,7 +88,6 @@ bool Shop::upgradeShip(string type, Player * player)
         {
             player->setLevel(2);
             player->setMoney(player->getMoney()-200);
-            return true;
             _store["ship2"]=false;
             _store["ship3"]=true;
             return true;
@@ -101,7 +100,6 @@ bool Shop::upgradeShip(string type, Player * player)
         {
             player->setLevel(3);
             player->setMoney(player->getMoney()-500);
-            return true;
             _store["ship3"]=false;
             _store["ship4"]=true;
             return true;
@@ -113,7 +111,6 @@ bool Shop::upgradeShip(string type, Player * player)
         {
             player->setLevel(4);
             player->setMoney(player->getMoney()-1000);
-            return true;
             _store["ship4"]=false;
             return true;
         }
@@ -133,7 +130,6 @@ bool Shop::upgradeShild(string type, Player * player)
         {
             player->setShild(100);
             player->setMoney(player->getMoney()-200);
-            return true;
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;
@@ -146,7 +142,6 @@ bool Shop::upgradeShild(string type, Player * player)
         {
             player->setShild(200);
             player->setMoney(player->getMoney()-500);
-            return true;
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;
@@ -159,7 +154,6 @@ bool Shop::upgradeShild(string type, Player * player)
         {
             player->setShild(300);
             player->setMoney(player->getMoney()-700);
-            return true;
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;

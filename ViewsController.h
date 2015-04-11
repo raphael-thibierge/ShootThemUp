@@ -18,39 +18,39 @@
 
 
 class ViewsController {
-    
+
 protected:
     bool _quit;
     GameModel* _modele;
     std::map<std::string, View*> _allViews;
     View* _view ;
-    
+
     ViewGame _game;
-    
+
 public:
-    
+
     ViewsController();
-    
+
     ~ViewsController();
-    
+
     bool treatEvent();
-    
+
     void showView();
-    
+
     void quit();
-    
+
     void init(GameModel* modele);
-    
+
 private:
     void changeView(std::string view);
-    
 
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 };
 
 
