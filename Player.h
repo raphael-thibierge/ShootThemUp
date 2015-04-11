@@ -37,6 +37,8 @@ public:
 
     void score(std::string typeEnemy, unsigned int levelEnemy, unsigned int difficultyLevel);
 
+    void activatedShild();
+
     std::string toString() override;
 
 private :

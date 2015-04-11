@@ -1,7 +1,7 @@
 #ifndef SHOP_H
 #define SHOP_H
 #include <string>
-
+#include <map>
 #include "Player.h"
 
 class Shop
@@ -14,6 +14,7 @@ class Shop
         bool upgradeShild(std::string type, Player * player);
     protected:
     private:
+        std::map<std::string, bool> _store;
 };
 
 #endif // SHOP_H

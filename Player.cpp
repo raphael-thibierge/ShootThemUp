@@ -71,6 +71,13 @@ void Player::score(string typeEnemy, unsigned int levelEnemy, unsigned int diffi
 }
 
 
+void Player::activatedShild()
+{
+    _lifeLevel+=_shild;
+    _shild=0;
+}
+
+
 // Accessor methods
 //
 
