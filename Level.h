@@ -10,7 +10,7 @@ class Level
 {
 
 private:
-    
+
     unsigned int _level;
 	unsigned int _difficulty;
 	unsigned int _nbEnnemy;
@@ -19,17 +19,17 @@ private:
     std::list<Bullet*> * _bulletList;
 
 public:
-	
+
     Level (Player * player);
-    
+
 	virtual ~Level ();
 
-    
+
 // Methodes
 //
-    
+
     void generate();
-    
+
 	/**
 	 */
     bool win ();
@@ -37,19 +37,23 @@ public:
 	/**
 	 */
     bool loose ();
-    
-    
+
+
     void collisionManager();
-    
-    
+
+
 // ACCESSORS
-    
+
     std::list<Enemy*> * getEnemy() const;
-    
+
     std::list<Bullet*> * getBullet() const;
-    
-    
-    
+
+    Player * getPlayer()const;
+
+    void setDifficulty(unsigned int difficulty);
+
+
+
 
 };
 

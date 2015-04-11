@@ -6,6 +6,7 @@
 
 
 #include "Level.h"
+#include "Setting.h"
 #include "Shop.h"
 
 class GameModel
@@ -18,6 +19,7 @@ private:
     Player * _player;
     Level * _level;
     Shop * _shop;
+    Setting * _setting;
 
 
 public :
