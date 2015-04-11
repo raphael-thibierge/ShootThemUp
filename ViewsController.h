@@ -15,6 +15,7 @@
 #include "View.h"
 #include "ViewGame.h"
 #include "ViewShop.h"
+#include "ViewIntroduction.h"
 #include <map>
 
 
@@ -26,9 +27,8 @@ protected:
     std::map<std::string, View*> _allViews;
     View* _view ;
     
-
+    // pour que la vue du jeu soit stoqué dans la pile
     ViewGame _game;
-    ViewShop _shop;
     
 public:
 
