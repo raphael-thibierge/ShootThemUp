@@ -3,6 +3,7 @@
 
 #include "Ship.h"
 #include "Bomb.h"
+#include "Enemy.h"
 #include <string>
 
 const int NB_LIFE_INITIAL = 3 ;
@@ -35,7 +36,7 @@ public:
 
     void nextLevel();
 
-    void score(std::string typeEnemy, unsigned int levelEnemy, unsigned int difficultyLevel);
+    void score(Enemy * enemy, unsigned int difficulty);
 
     void activatedShild();
 

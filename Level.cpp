@@ -118,7 +118,7 @@ void Level::collisionManager()
     for (auto enemy : *_enemyList){
         for (auto bullet : *_bulletList){
             if (enemy->collision(bullet)){
-                _player->score(enemy->getType(), enemy->getLevel() , _difficulty);
+                _player->score(enemy , _difficulty);
                 enemiesDestroyed.push_back(enemy);
                 bulletsDestroyed.push_back(bullet);
             }

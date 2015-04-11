@@ -58,11 +58,11 @@ void Player::initPlayer()
     setPosition(20, 100); // valeur provisoire
 }
 
-void Player::score(string typeEnemy, unsigned int levelEnemy, unsigned int difficultyLevel)
+void Player::score(Enemy * enemy, unsigned int difficultyLevel)
 {
-    if ( typeEnemy == "standart")
+    if ( enemy->getType() == "standart")
     {
-        _score+= 5*levelEnemy*difficultyLevel;
+        _score+= 5*enemy->getLevel()*difficultyLevel;
     }
 
 
