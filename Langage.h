@@ -12,6 +12,9 @@ class Langage
         virtual ~Langage();
         void changed(std::string langage);
         void loaded(std::string text);
+
+        std::string getText(std::string text);
+
     protected:
     private:
         std::map<std::string, std::string> _listText;

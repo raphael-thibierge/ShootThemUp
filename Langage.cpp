@@ -6,14 +6,7 @@ using namespace std;
 
 Langage::Langage()
 {
-    _listText["play"]="Play";
-    _listText["shop"]="Shop";
-    _listText["setting"]="Setting";
-    _listText["quit"]="Quit";
-    _listText["move"]="Move";
-    _listText["shoot"]="Shoot";
-    _listText["nothing"]="Nothing";
-    _listText["escape"]="Escape";
+    loaded("TextEnglish.txt");
 }
 
 Langage::~Langage()
@@ -54,3 +47,17 @@ void Langage::loaded(string text)
     else  // sinon
         cerr << "Impossible d'ouvrir le fichier !" << endl;
 }
+
+string Langage::getText(string text)
+{
+    for (auto t : _listText)
+    {
+        if(text==t.first)
+        {
+            return t.second;
+        }
+    }
+    return "Text not find.";
+}
+
+
