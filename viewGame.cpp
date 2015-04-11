@@ -1,12 +1,12 @@
 //
-//  viewGame.cpp
+//  ViewGame.cpp
 //  ShmupTerminal
 //
-//  Created by Raphael Thibierge on 09/04/2015.
+//  Created by Raphael Thibierge on 11/04/2015.
 //  Copyright (c) 2015 Raphael Thibierge. All rights reserved.
 //
 
-#include "viewGame.h"
+#include "ViewGame.h"
 using namespace std;
 
 ViewGame::ViewGame(){}
@@ -21,7 +21,7 @@ int ViewGame::treatEvent(){
     cout << "\t (2) Tirer" << endl;
     cout << "\t (3) Abandonner" << endl;
     cout << "\t (4) Rien" << endl;
-
+    
     int reponse;
     
     do {
@@ -38,7 +38,7 @@ int ViewGame::treatEvent(){
             cin >> dy;
             _modele->getPlayer()->Position::move(dx, dy);
             break;
-        
+            
         case 2:
             _modele->getPlayer()->shoot("standart", "NORTH", _modele->getLevel()->getBullet());
         case 3 :

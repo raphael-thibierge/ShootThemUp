@@ -13,6 +13,7 @@
 #include "GameModel.h"
 class View{
     
+    
 protected:
 
     GameModel* _modele;

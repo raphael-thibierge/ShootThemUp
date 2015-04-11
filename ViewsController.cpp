@@ -1,19 +1,27 @@
-#include "GameView.h"
+//
+//  ViewsController.cpp
+//  ShmupTerminal
+//
+//  Created by Raphael Thibierge on 11/04/2015.
+//  Copyright (c) 2015 Raphael Thibierge. All rights reserved.
+//
+
+#include "ViewsController.h"
 
 
 using namespace std;
 
-ViewController::ViewController() {
+ViewsController::ViewsController() {
     _allViews.emplace(make_pair("Game", &_game));
     
 }
 
-ViewController::~ViewController(){
+ViewsController::~ViewsController(){
     _view = nullptr;
     
 }
 
-bool ViewController::treatEvent(){
+bool ViewsController::treatEvent(){
     switch (_view->treatEvent()) {
         case 1:
             // cas ou tout c'est bien déroulé
@@ -58,20 +66,20 @@ bool ViewController::treatEvent(){
     return !_quit;
 }
 
-void ViewController::showView(){
+void ViewsController::showView(){
     _view->showView();
 }
 
-void ViewController::changeView(string view){
+void ViewsController::changeView(string view){
     _view = _allViews[view];
 }
 
-void ViewController::quit(){
+void ViewsController::quit(){
     cout << "QUIT" << endl;
     _quit = true;
 }
 
-void ViewController::init(GameModel *modele){
+void ViewsController::init(GameModel *modele){
     _modele = modele;
     
     _game.setModele(_modele);
@@ -79,9 +87,3 @@ void ViewController::init(GameModel *modele){
     _view = _allViews["Game"];
     
 }
-
-
-
-
-
-

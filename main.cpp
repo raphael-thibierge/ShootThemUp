@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include "GameViewTerminal.h"
-#include "GameView.h"
+#include "ViewsController.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
     
     GameModel model;
     
-    ViewController controller;
+    ViewsController controller;
     controller.init(&model);
     
     while (controller.treatEvent()) {
