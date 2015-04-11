@@ -17,6 +17,7 @@ int ViewGame::treatEvent(){
     int returnValue = 1;
     
     cout << "--------------" << endl;
+    cout << "Jeu" << endl;
     cout << "\t (1) Deplacement" << endl;
     cout << "\t (2) Tirer" << endl;
     cout << "\t (3) Abandonner" << endl;

@@ -13,6 +13,7 @@ using namespace std;
 
 ViewsController::ViewsController() {
     _allViews.emplace(make_pair("Game", &_game));
+    _allViews.emplace(make_pair("Shop", ))
     
 }
 
