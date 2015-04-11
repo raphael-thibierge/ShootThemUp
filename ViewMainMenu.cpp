@@ -25,12 +25,26 @@ int ViewMainMenu::treatEvent() {
     cout << "\t (3) Quitter" << endl ;
     int answer;
     do {
-        
+        cout << "Choix" << endl;
         cin >> answer;
         
-    } while (
+    } while ( answer > 3 && answer < 0 );
     
-    int
+    switch (answer) {
+        case 1:
+            // à améliorer
+            break;
+            
+        case 2:
+            _modele->loadGame();
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    return 0;
 }
 
 void ViewMainMenu::showView() {
