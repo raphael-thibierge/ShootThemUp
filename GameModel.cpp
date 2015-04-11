@@ -13,6 +13,7 @@ GameModel::GameModel() {
     _width = 200;
     _player = new Player;
     _shop = new Shop;
+    _setting = new Setting;
     _level = nullptr;
     newLevel();
 }
@@ -71,7 +72,9 @@ bool GameModel::loadGame ()
  */
 void GameModel::newGame ()
 {
-    // création d'une nouvelle partie
+    _player = new Player;
+    _shop = new Shop;
+    _setting = new Setting;
 }
 
 /**
