@@ -98,11 +98,6 @@ void Level::collisionManager()
             bulletsDestroyed.push_back(bullet);
 
 
-    // collision between an enemy and the player
-    for (auto enemy : *_enemyList)
-        if (_player->collision(enemy))
-            enemiesDestroyed.push_back(enemy);
-
 
     // with an enemy
     for (auto enemy : *_enemyList)
@@ -131,8 +126,9 @@ void Level::collisionManager()
     }
 
 
-
+    
     for (auto enemy : enemiesDestroyed){
+        cout << enemy->toString() << endl;
         _enemyList->remove(enemy);
         delete enemy;
     }
