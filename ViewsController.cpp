@@ -12,8 +12,9 @@
 using namespace std;
 
 ViewsController::ViewsController() {
+    _allViews.emplace(make_pair("Introduction", new ViewIntroduction()));
     _allViews.emplace(make_pair("Game", &_game));
-    _allViews.emplace(make_pair("Shop", &_shop));
+    _allViews.emplace(make_pair("Shop", new ViewShop()));
     
 }
 
@@ -29,6 +30,9 @@ bool ViewsController::treatEvent(){
             break;
             
         case 0:
+            if (dynamic_cast<ViewIntroduction*>(_view) != nullptr){
+                _view = _allViews["Shop"];
+            }
             //quit();
             break;
             
@@ -85,6 +89,6 @@ void ViewsController::init(GameModel *modele){
     
     _game.setModele(_modele);
     
-    _view = _allViews["Shop"];
+    _view = _allViews["Introduction"];
     
 }
