@@ -42,8 +42,11 @@ int ViewGame::treatEvent(){
 
         case 2:
             _modele->getPlayer()->shoot("standart", "NORTH", _modele->getLevel()->getBullet());
+            break;
+        
         case 3 :
             returnValue = 0;
+            break;
 
         default:
             break;

@@ -16,6 +16,7 @@
 #include "ViewGame.h"
 #include "ViewShop.h"
 #include "ViewIntroduction.h"
+#include "ViewMainMenu.h"
 #include <map>
 
 

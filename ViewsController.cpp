@@ -13,8 +13,10 @@ using namespace std;
 
 ViewsController::ViewsController() {
     _allViews.emplace(make_pair("Introduction", new ViewIntroduction()));
+    _allViews.emplace(make_pair("MainMenu", new ViewMainMenu));
     _allViews.emplace(make_pair("Game", &_game));
     _allViews.emplace(make_pair("Shop", new ViewShop()));
+    _quit = false;
     
 }
 
@@ -31,11 +33,18 @@ bool ViewsController::treatEvent(){
             
         case 0:
             if (dynamic_cast<ViewIntroduction*>(_view) != nullptr){
-                _view = _allViews["Shop"];
+                _view = _allViews["MainMenu"];
             }
-            //quit();
-            break;
+            else if (dynamic_cast<ViewMainMenu*>(_view) != nullptr){
+                quit();
+            }
+            else if (dynamic_cast<ViewGame*>(_view) != nullptr){
+                _view = _allViews["MainMenu"];
+            }
             
+            
+            break;
+    
         case -1:
             _view = _allViews["MainMenu"];
             break;
@@ -67,7 +76,6 @@ bool ViewsController::treatEvent(){
             break;
     }
     
-    
     return !_quit;
 }
 
@@ -86,7 +94,7 @@ void ViewsController::quit(){
 
 void ViewsController::init(GameModel *modele){
     _modele = modele;
-    
+    _quit = false;
     _game.setModele(_modele);
     
     _view = _allViews["Introduction"];

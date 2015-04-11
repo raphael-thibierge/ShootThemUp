@@ -18,6 +18,7 @@ ViewMainMenu::ViewMainMenu(){}
 ViewMainMenu::~ViewMainMenu(){}
 
 int ViewMainMenu::treatEvent() {
+    int returnValue = 1;
     cout << "------------------" << endl;
     cout << "Menu" << endl ;
     cout << "\t (1) Nouvelle Partie" << endl ;
@@ -32,11 +33,19 @@ int ViewMainMenu::treatEvent() {
     
     switch (answer) {
         case 1:
-            // à améliorer
+            returnValue = -2;
             break;
             
         case 2:
-            _modele->loadGame();
+            if (!_modele->loadGame()){
+                cout << "Impossible de charger la partie" << endl;
+            }
+            else
+                returnValue = -2;
+            break;
+        
+        case 3:
+            returnValue = 0;
             break;
             
         default:
@@ -44,7 +53,7 @@ int ViewMainMenu::treatEvent() {
     }
     
     
-    return 0;
+    return returnValue;
 }
 
 void ViewMainMenu::showView() {
