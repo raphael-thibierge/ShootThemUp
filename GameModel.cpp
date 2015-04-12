@@ -14,6 +14,7 @@ GameModel::GameModel() {
     _player = new Player;
     _shop = new Shop;
     _setting = new Setting;
+    _langage = new Langage;
     _level = nullptr;
     newLevel();
 }

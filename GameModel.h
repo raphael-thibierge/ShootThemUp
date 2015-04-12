@@ -8,6 +8,7 @@
 #include "Level.h"
 #include "Setting.h"
 #include "Shop.h"
+#include "Langage.h"
 
 class GameModel
 {
@@ -20,7 +21,7 @@ private:
     Level * _level;
     Shop * _shop;
     Setting * _setting;
-
+    Langage * _langage;
 
 public :
 // Constructors/Destructors
