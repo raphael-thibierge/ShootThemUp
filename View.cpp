@@ -17,7 +17,6 @@ View::~View(){
 void View::showView(){}
 
 
-void View::setView(GameModel *modele){
+void View::setModele(GameModel *modele){
     _modele = modele;
-    _language = _modele->getSettings()->getLanguage();
 }

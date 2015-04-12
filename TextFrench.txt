@@ -1,8 +1,0 @@
-play Jouer
-shop Boutique
-setting Option
-quit Quitter
-move Déplacer
-shoot Tirer
-nothing Rien
-escape Abandonner
