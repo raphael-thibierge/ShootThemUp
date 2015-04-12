@@ -125,7 +125,6 @@ void Level::collisionManager()
         }
     }
 
-
     
     for (auto enemy : enemiesDestroyed){
         cout << enemy->toString() << endl;
