@@ -11,8 +11,20 @@ GameModel::GameModel() {
 
     _height = 500;
     _width = 200;
+<<<<<<< HEAD
+    _player = new Player;
+    _shop = new Shop;
+    _setting = new Setting;
+    _langage = new Langage;
+=======
     _player = nullptr;
+<<<<<<< HEAD
     _settings = new Settings;
+=======
+    //_shop = new Shop;
+    //_setting = new Setting;
+>>>>>>> b03a1d7e216d9040f9d3c585b3773084191f09b0
+>>>>>>> 53b6521293fccb7775c0b160d4d2d48a9dd6342b
     _level = nullptr;
     //newLevel();
 }
