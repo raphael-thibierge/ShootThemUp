@@ -11,7 +11,6 @@ GameModel::GameModel() {
 
     _height = 500;
     _width = 200;
-    _player = new Player;
     _settings = new Settings;
     _player = nullptr;
 

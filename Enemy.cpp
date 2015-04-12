@@ -13,7 +13,6 @@ Enemy::Enemy (string type, float x, float y, unsigned int lifeLevel) : Ship::Shi
     initEnemy();
 
     _lifeLevel = lifeLevel;
-    cout << toString() << endl ;
 
 }
 

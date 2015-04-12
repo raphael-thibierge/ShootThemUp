@@ -50,6 +50,9 @@ int ViewGame::treatEvent(){
 
 
 void ViewGame::showView(){
+    cout << "\n--------------" << endl;
+    cout << "Jeu" << endl;
+    cout << endl;
     cout << _modele->getPlayer()->toString() << endl;
     cout << endl;
 
@@ -63,8 +66,7 @@ void ViewGame::showView(){
             cout << bullet->toString() << endl;
     cout << endl;
     
-    cout << "--------------" << endl;
-    cout << "Jeu" << endl;
+
     cout << "\t (1) Deplacement" << endl;
     cout << "\t (2) Tirer" << endl;
     cout << "\t (3) Rien" << endl;
