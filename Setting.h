@@ -6,6 +6,7 @@
 
 class Settings
 {
+<<<<<<< HEAD
 private:
     unsigned int _difficulty;
     unsigned int _nbLife;
@@ -25,6 +26,16 @@ public:
     void changeNbLife(unsigned int nbLife);
     
     void changeLanguage(std::string language);
+=======
+    public:
+        Setting();
+        virtual ~Setting();
+        void changeDifficulty(Level *level, unsigned int difficulty);
+        void changeNbLife(Level *level, unsigned int nbLife);
+        void changeLangage(std::string langage);
+    protected:
+    private:
+>>>>>>> 53b6521293fccb7775c0b160d4d2d48a9dd6342b
 
 // ACCESSOR METHODS
     
