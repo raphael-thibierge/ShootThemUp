@@ -20,13 +20,8 @@ private:
     Player * _player;
     Level * _level;
     Shop * _shop;
-<<<<<<< HEAD
-    Settings * _settings;
 
-=======
-    Setting * _setting;
-    Langage * _langage;
->>>>>>> 53b6521293fccb7775c0b160d4d2d48a9dd6342b
+    Settings * _settings;
 
 public :
 // CONSTRUCTOR / DESTRUCTOR

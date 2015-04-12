@@ -27,15 +27,6 @@ public:
     
     void changeLanguage(std::string language);
 
-    public:
-        Setting();
-        virtual ~Setting();
-        void changeDifficulty(Level *level, unsigned int difficulty);
-        void changeNbLife(Level *level, unsigned int nbLife);
-        void changeLangage(std::string langage);
-    protected:
-    private:
-
 // ACCESSOR METHODS
     
     unsigned int * getDifficulty() ;

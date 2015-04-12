@@ -42,13 +42,7 @@ unsigned int * Settings::getNbLife() {
     return &_nbLife;
 }
 
-<<<<<<< HEAD
+
 Language * Settings::getLanguage() const{
     return _language;
 }
-=======
-void Setting::changeLangage(string langage)
-{
-    changeLangage(langage);
-}
->>>>>>> 53b6521293fccb7775c0b160d4d2d48a9dd6342b
