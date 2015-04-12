@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// Constructors/Destructors
+// CONSTRUCTOR AND DESTRUCTOR
 //
 
 GameModel::GameModel() {
@@ -12,8 +12,7 @@ GameModel::GameModel() {
     _height = 500;
     _width = 200;
     _player = nullptr;
-    //_shop = new Shop;
-    //_setting = new Setting;
+    _settings = new Settings;
     _level = nullptr;
     //newLevel();
 }
@@ -36,7 +35,7 @@ void GameModel::nextStep(){
     // fonction moteur du jeu
     // fonction qui fait tourner le jeu
     
-    if (_player != nullptr){
+    if (_player != nullptr && _level != nullptr){
         
         if (!_level->win()){
             if (!_level->loose()) {
@@ -75,10 +74,9 @@ bool GameModel::loadGame ()
  */
 void GameModel::newGame ()
 {
+
     _player = new Player();
-    _shop = new Shop();
-    _setting = new Setting();
-    newLevel();
+    _shop = new Shop(_player);
 }
 
 /**
@@ -93,7 +91,7 @@ void GameModel::saveGame ()
  */
 void GameModel::play ()
 {
-
+    newLevel();
 }
 
 /**
@@ -102,7 +100,7 @@ void GameModel::nextLevel ()
 {
     delete _level;
     _player->nextLevel();
-    _level = new Level(_player);
+    _level = new Level(_player, _settings->getDifficulty());
 }
 
 
@@ -110,7 +108,7 @@ void GameModel::newLevel ()
 {
     if (_level != nullptr)
         destructLevel();
-    _level = new Level(_player);
+    _level = new Level(_player, _settings->getDifficulty());
 }
 
 void GameModel::destructLevel()
@@ -119,7 +117,7 @@ void GameModel::destructLevel()
 }
 
 
-// Accessor methods
+// ACCESSOR METHODS
 //
 
 Player* GameModel::getPlayer()  const{
@@ -127,8 +125,15 @@ Player* GameModel::getPlayer()  const{
 }
 
 Level* GameModel::getLevel() const {
-
     return _level;
+}
+
+Shop* GameModel::getShop() const{
+    return _shop;
+}
+
+Settings* GameModel::getSettings() const{
+    return _settings;
 }
 
 

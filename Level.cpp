@@ -5,12 +5,11 @@
 
 using namespace std;
 
-Level::Level (Player * player) : _player(player)
+Level::Level (Player * player, unsigned int * difficultyPointer) : _player(player), _difficulty(difficultyPointer)
 {
     cout << "\n=====================" << endl;
     cout << "CONSTRUCTOR LEVEL" << endl;
 
-    _difficulty = 1;
     _nbEnnemy = 1;
     _enemyList = new list<Enemy*> ;
     _bulletList = new list<Bullet*>;
@@ -34,7 +33,9 @@ Level::~Level ()
         delete bullet;
     _bulletList->erase(_bulletList->begin(), _bulletList->end());
     delete _bulletList;
+    
     _player = nullptr;
+    _difficulty = nullptr;
 }
 
 //
@@ -118,7 +119,7 @@ void Level::collisionManager()
     for (auto enemy : *_enemyList){
         for (auto bullet : *_bulletList){
             if (enemy->collision(bullet)){
-                _player->score(enemy , _difficulty);
+                _player->score(enemy , *_difficulty);
                 enemiesDestroyed.push_back(enemy);
                 bulletsDestroyed.push_back(bullet);
             }
@@ -173,9 +174,11 @@ Player * Level::getPlayer()const
     return _player;
 }
 
+
+// ne vas surement pas servir
 void Level::setDifficulty(unsigned int difficulty)
 {
-     _difficulty=difficulty;
+     *_difficulty=difficulty;
 }
 
 

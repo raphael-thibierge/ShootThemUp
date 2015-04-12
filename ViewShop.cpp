@@ -16,16 +16,8 @@ ViewShop::~ViewShop(){}
 
 int ViewShop::treatEvent(){
     int returnValue = 0;
-    
-    cout << "\n---------------------- \n Shop \n"  << endl ;
-    
-    cout << "\t (1) Amélioration du Tir Principal" << endl;
-    cout << "\t (2) Amélioration du Ship" << endl;
-    cout << "\t (3) Quitter" << endl;
-    cout << "Choix";
-    
-    
     int answer;
+    
     do {
         cout << "Choix" << endl;
         cin >> answer;
@@ -56,5 +48,10 @@ int ViewShop::treatEvent(){
 
 
 void ViewShop::showView(){
-    cout << " Vue non disponible" << endl ;
+    cout << "\n---------------------- \n Shop \n"  << endl ;
+    
+    cout << "\t (1) Amélioration du Tir Principal" << endl;
+    cout << "\t (2) Amélioration du Ship" << endl;
+    cout << "\t (3) Quitter" << endl;
+
 }

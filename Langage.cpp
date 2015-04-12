@@ -4,32 +4,32 @@
 
 using namespace std;
 
-Langage::Langage()
+Language::Language()
 {
-    loaded("TextEnglish.txt");
+    loadFromFile("TextEnglish.txt");
 }
 
-Langage::~Langage()
+Language::~Language()
 {
     //dtor
 }
 
-void Langage::changed(string langage)
+void Language::change(string langage)
 {
     if (langage=="french")
     {
         string text = "TextFrench.txt";
-        loaded(text);
+        loadFromFile(text);
     }
     if(langage=="english")
     {
         string text = "TextEnglish.txt";
-        loaded(text);
+        loadFromFile(text);
     }
 }
 
 
-void Langage::loaded(string text)
+void Language::loadFromFile(string text)
 {
     ifstream file(text, ios::in);
     if(file)  // si l'ouverture a réussi
@@ -48,7 +48,7 @@ void Langage::loaded(string text)
         cerr << "Impossible d'ouvrir le fichier !" << endl;
 }
 
-string Langage::getText(string text)
+string Language::getText(string text)
 {
     for (auto t : _listText)
     {

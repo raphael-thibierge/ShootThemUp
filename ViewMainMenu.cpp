@@ -19,15 +19,11 @@ ViewMainMenu::~ViewMainMenu(){}
 
 int ViewMainMenu::treatEvent() {
     int returnValue = 1;
+    int answer;
     
     if (_modele->getPlayer() == nullptr){
         
-        cout << "------------------" << endl;
-        cout << "Menu" << endl ;
-        cout << "\t (1) Nouvelle Partie" << endl ;
-        cout << "\t (2) Charger une partie" << endl;
-        cout << "\t (3) Quitter" << endl ;
-        int answer;
+  
         do {
             cout << "Choix" << endl;
             cin >> answer;
@@ -59,14 +55,6 @@ int ViewMainMenu::treatEvent() {
     else {
         
         
-        cout << "------------------" << endl;
-        cout << "Menu" << endl ;
-        cout << "\t (1) Joueur" << endl ;
-        cout << "\t (2) Accéder à la boutique" << endl;
-        cout << "\t (3) Réglages" << endl ;
-        cout << "\t (4) Quitter" << endl;
-        
-        int answer;
         do {
             cout << "Choix" << endl;
             cin >> answer;
@@ -75,6 +63,7 @@ int ViewMainMenu::treatEvent() {
         
         switch (answer) {
             case 1:
+                _modele->play();
                 returnValue = -2;
                 break;
                 
@@ -101,5 +90,23 @@ int ViewMainMenu::treatEvent() {
 }
 
 void ViewMainMenu::showView() {
+    if (_modele->getPlayer() == nullptr){
+        
+        cout << "\n------------------" << endl;
+        cout << "Menu" << endl ;
+        cout << "\t (1) Nouvelle Partie" << endl ;
+        cout << "\t (2) Charger une partie" << endl;
+        cout << "\t (3) Quitter" << endl ;
+    }
     
+    else {
+        
+        cout << "\n------------------" << endl;
+        cout << "Menu" << endl ;
+        cout << "\t (1) Jouer" << endl ;
+        cout << "\t (2) Accéder à la boutique" << endl;
+        cout << "\t (3) Réglages" << endl ;
+        cout << "\t (4) Quitter" << endl;
+    
+    }
 }

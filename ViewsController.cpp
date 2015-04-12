@@ -93,9 +93,9 @@ void ViewsController::init(GameModel *modele){
     _modele = modele;
     _quit = false;
     for (auto view : _allViews) {
-        view.second->setModele(_modele);
+        view.second->setView(_modele);
     }
     
     _view = _allViews["Introduction"];
-    
+
 }

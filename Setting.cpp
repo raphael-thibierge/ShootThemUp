@@ -1,22 +1,46 @@
 #include "Setting.h"
 
-Setting::Setting()
-{
-    //ctor
+using namespace std;
+
+Settings::Settings(){
+    cout << "\n=====================" << endl;
+    cout << "CONSTRUCTOR SETTINGS" << endl;
+    
+    _difficulty = DIFFICULTY;
+    _nbLife = NB_LIFE_PLAYER;
 }
 
-Setting::~Setting()
-{
-    //dtor
+Settings::~Settings(){
+    cout << "\n=====================" << endl;
+    cout << "DESTRUCTOR SETTINGS" << endl;
 }
 
 
-void Setting::changeDifficulty(Level *level, unsigned int difficulty)
-{
-    level->setDifficulty(difficulty);
+void Settings::changeDifficulty(unsigned int difficulty){
+    _difficulty = difficulty;
+    //level->setDifficulty(difficulty);
 }
 
-void Setting::changeNbLife(Level *level, unsigned int nbLife)
-{
-    level->getPlayer()->setNbLife(nbLife);
+void Settings::changeNbLife(unsigned int nbLife){
+    _nbLife = nbLife;
+    //level->getPlayer()->setNbLife(nbLife);
+}
+
+void Settings::changeLanguage(string language){
+    _language->change(language);
+}
+
+
+// ACCESSOR METHODS
+
+unsigned int * Settings::getDifficulty() {
+    return &_difficulty;
+}
+
+unsigned int * Settings::getNbLife() {
+    return &_nbLife;
+}
+
+Language * Settings::getLanguage() const{
+    return _language;
 }

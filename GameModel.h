@@ -19,11 +19,11 @@ private:
     Player * _player;
     Level * _level;
     Shop * _shop;
-    Setting * _setting;
+    Settings * _settings;
 
 
 public :
-// Constructors/Destructors
+// CONSTRUCTOR / DESTRUCTOR
 //
 
 	GameModel();
@@ -35,9 +35,9 @@ public :
 
     void nextStep();
 
-    bool loadGame ();
-
     void newGame ();
+    
+    bool loadGame();
 
     void saveGame ();
 
@@ -55,6 +55,8 @@ public :
 
     Player* getPlayer() const;
     Level* getLevel() const;
+    Shop* getShop() const;
+    Settings* getSettings() const;
 
 
 

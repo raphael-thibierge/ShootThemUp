@@ -1,8 +1,11 @@
 #include "Shop.h"
 using namespace std;
 
-Shop::Shop()
-{
+Shop::Shop(Player* player) : _player(player){
+    
+    cout << "\n=====================" << endl;
+    cout << "CONSTRUCTOR SHOP" << endl;
+    
     _store["level2"]=true;
     _store["level3"]=false;
     _store["level4"]=false;
@@ -17,22 +20,24 @@ Shop::Shop()
 
 Shop::~Shop()
 {
-    //dtor
+    cout << "\n=====================" << endl;
+    cout << "DESTRUCTOR SHOP" << endl;
+    _player = nullptr;
 }
 
 
-bool Shop::upgradeBullet(string type, Player * player)
+bool Shop::upgradeBullet(string type)
 {
     //lvl5->500
     //lvl4->350
     //lvl3->200
     //lvl2->100
-    if(player->getMoney()>=100)
+    if(_player->getMoney()>=100)
     {
-        if(type == "level2" && player->getBulletType()== "standart")
+        if(type == "level2" && _player->getBulletType()== "standart")
         {
-            player->setBulletType("level2");
-            player->setMoney(player->getMoney()-100);
+            _player->setBulletType("level2");
+            _player->setMoney(_player->getMoney()-100);
             _store["level2"]=false;
             _store["level3"]=true;
             return true;
@@ -40,36 +45,37 @@ bool Shop::upgradeBullet(string type, Player * player)
 
     }
 
-    if(player->getMoney()>=200)
+    if(_player->getMoney()>=200)
     {
-        if(type == "level3" && player->getBulletType()== "level2")
+        if(type == "level3" && _player->getBulletType()== "level2")
         {
-            player->setBulletType("level3");
-            player->setMoney(player->getMoney()-100);
+            _player->setBulletType("level3");
+            _player->setMoney(_player->getMoney()-100);
             _store["level3"]=false;
             _store["level4"]=true;
             return true;
         }
 
     }
-    if(player->getMoney()>=350)
+    if(_player->getMoney()>=350)
     {
-        if(type == "level4" && player->getBulletType()== "level3")
+        if(type == "level4" && _player
+           ->getBulletType()== "level3")
         {
-            player->setBulletType("level4");
-            player->setMoney(player->getMoney()-100);
+            _player->setBulletType("level4");
+            _player->setMoney(_player->getMoney()-100);
             _store["level4"]=false;
             _store["level5"]=true;
             return true;
         }
 
     }
-    if(player->getMoney()>=500)
+    if(_player->getMoney()>=500)
     {
-        if(type == "level5" && player->getBulletType()== "level4")
+        if(type == "level5" && _player->getBulletType()== "level4")
         {
-            player->setBulletType("level5");
-            player->setMoney(player->getMoney()-100);
+            _player->setBulletType("level5");
+            _player->setMoney(_player->getMoney()-100);
             _store["level5"]=false;
             return true;
         }
@@ -79,38 +85,38 @@ bool Shop::upgradeBullet(string type, Player * player)
 }
 
 
-bool Shop::upgradeShip(string type, Player * player)
+bool Shop::upgradeShip(string type)
 {
 
-    if(player->getMoney()>=200)
+    if(_player->getMoney()>=200)
     {
-        if(type == "ship2" && player->getLevel()== 1)
+        if(type == "ship2" && _player->getLevel()== 1)
         {
-            player->setLevel(2);
-            player->setMoney(player->getMoney()-200);
+            _player->setLevel(2);
+            _player->setMoney(_player->getMoney()-200);
             _store["ship2"]=false;
             _store["ship3"]=true;
             return true;
         }
     }
 
-    if(player->getMoney()>=500)
+    if(_player->getMoney()>=500)
     {
-        if(type == "ship3" && player->getLevel()== 2)
+        if(type == "ship3" && _player->getLevel()== 2)
         {
-            player->setLevel(3);
-            player->setMoney(player->getMoney()-500);
+            _player->setLevel(3);
+            _player->setMoney(_player->getMoney()-500);
             _store["ship3"]=false;
             _store["ship4"]=true;
             return true;
         }
     }
-    if(player->getMoney()>=1000)
+    if(_player->getMoney()>=1000)
     {
-        if(type == "ship4" && player->getLevel()== 3)
+        if(type == "ship4" && _player->getLevel()== 3)
         {
-            player->setLevel(4);
-            player->setMoney(player->getMoney()-1000);
+            _player->setLevel(4);
+            _player->setMoney(_player->getMoney()-1000);
             _store["ship4"]=false;
             return true;
         }
@@ -121,39 +127,39 @@ bool Shop::upgradeShip(string type, Player * player)
 }
 
 
-bool Shop::upgradeShild(string type, Player * player)
+bool Shop::upgradeShild(string type)
 {
 
-    if(player->getMoney()>=200)
+    if(_player->getMoney()>=200)
     {
-        if(type == "shild1" && player->getShild()!=0)
+        if(type == "shild1" && _player->getShild()!=0)
         {
-            player->setShild(100);
-            player->setMoney(player->getMoney()-200);
+            _player->setShild(100);
+            _player->setMoney(_player->getMoney()-200);
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;
             return true;
         }
     }
-    if(player->getMoney()>=500)
+    if(_player->getMoney()>=500)
     {
-        if(type == "shild2" && player->getShild()!=0)
+        if(type == "shild2" && _player->getShild()!=0)
         {
-            player->setShild(200);
-            player->setMoney(player->getMoney()-500);
+            _player->setShild(200);
+            _player->setMoney(_player->getMoney()-500);
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;
             return true;
         }
     }
-    if(player->getMoney()>=700)
+    if(_player->getMoney()>=700)
     {
-        if(type == "shild3" && player->getShild()!=0)
+        if(type == "shild3" && _player->getShild()!=0)
         {
-            player->setShild(300);
-            player->setMoney(player->getMoney()-700);
+            _player->setShild(300);
+            _player->setMoney(_player->getMoney()-700);
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;

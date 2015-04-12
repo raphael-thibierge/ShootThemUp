@@ -6,15 +6,24 @@
 
 class Shop
 {
-    public:
-        Shop();
-        virtual ~Shop();
-        bool upgradeBullet(std::string type, Player * player);
-        bool upgradeShip(std::string type, Player * player);
-        bool upgradeShild(std::string type, Player * player);
-    protected:
-    private:
-        std::map<std::string, bool> _store;
+private:
+    std::map<std::string, bool> _store;
+    Player* _player;
+    
+public:
+// CONSTRUCTOR ABD DESTRUCTOR
+    
+    Shop(Player* player);
+    
+    virtual ~Shop();
+    
+// METHODS
+    bool upgradeBullet(std::string type);
+    
+    bool upgradeShip(std::string type);
+    
+    bool upgradeShild(std::string type);
+
 };
 
 #endif // SHOP_H

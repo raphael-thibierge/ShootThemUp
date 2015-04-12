@@ -5,19 +5,29 @@
 #include <iostream>
 #include <fstream>
 
-class Langage
+class Language
 {
-    public:
-        Langage();
-        virtual ~Langage();
-        void changed(std::string langage);
-        void loaded(std::string text);
+private:
+    std::map<std::string, std::string> _listText;
+    
+public:
+// CONSTRUCTOR AND DESTRUCTOR
+    Language();
+    
+    virtual ~Language();
 
-        std::string getText(std::string text);
+// METHODS
+    
+    void change(std::string language);
+    
+    void loadFromFile(std::string text);
 
-    protected:
-    private:
-        std::map<std::string, std::string> _listText;
+//ACCESSOR METHODS
+
+    std::string getText(std::string text);
+
+
+
 
 };
 

@@ -16,14 +16,6 @@ ViewGame::~ViewGame(){}
 int ViewGame::treatEvent(){
     int returnValue = 1;
 
-    cout << "--------------" << endl;
-    cout << "Jeu" << endl;
-    cout << "\t (1) Deplacement" << endl;
-    cout << "\t (2) Tirer" << endl;
-    cout << "\t (3) Rien" << endl;
-    cout << "\t (4) Abandonner" << endl;
-    
-
     int reponse;
 
     do {
@@ -70,5 +62,12 @@ void ViewGame::showView(){
         for (auto bullet : *_modele->getLevel()->getBullet())
             cout << bullet->toString() << endl;
     cout << endl;
+    
+    cout << "--------------" << endl;
+    cout << "Jeu" << endl;
+    cout << "\t (1) Deplacement" << endl;
+    cout << "\t (2) Tirer" << endl;
+    cout << "\t (3) Rien" << endl;
+    cout << "\t (4) Abandonner" << endl;
 
 }
