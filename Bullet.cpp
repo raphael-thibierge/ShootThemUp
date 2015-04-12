@@ -27,6 +27,16 @@ Bullet::Bullet (string type , string direction, float X, float Y,string shooter 
             _damage = 100;
             _speed = 10;
         }
+         if(_type == "level4")
+        {
+            _damage = 150;
+            _speed = 10;
+        }
+         if(_type == "level5")
+        {
+            _damage = 200;
+            _speed = 10;
+        }
 
     }
 

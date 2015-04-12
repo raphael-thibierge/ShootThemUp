@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// Constructors/Destructors
+// CONSTRUCTOR AND DESTRUCTOR
 //
 
 GameModel::GameModel() {
@@ -11,15 +11,17 @@ GameModel::GameModel() {
 
     _height = 500;
     _width = 200;
-    _player = new Player;
+    _settings = new Settings;
+    _player = nullptr;
+
     _level = nullptr;
-    newLevel();
+
 }
 
 GameModel::~GameModel() {
     cout << "\n=====================" << endl;
     cout << "DESTRUCTION DE GAMEMODEL" << endl;
-    
+
     destructLevel();
     delete _player;
 }
@@ -29,47 +31,53 @@ GameModel::~GameModel() {
 //
 
 void GameModel::nextStep(){
-    
-    
+
+
     // fonction moteur du jeu
     // fonction qui fait tourner le jeu
     
-    if (!_level->win()){
-        if (!_level->loose()) {
-        // le jeu continue
+    if (_player != nullptr && _level != nullptr){
         
-        for (auto enemy : *_level->getEnemy()){
-            enemy->move();
-            
-        }
-        
-        for (auto bullet : *_level->getBullet()){
-            bullet->move();
-        }
-        
-        _level->collisionManager();
+        if (!_level->win()){
+            if (!_level->loose()) {
+                // le jeu continue
                 
-        
+                for (auto enemy : *_level->getEnemy()){
+                    enemy->move();
+                    
+                }
+                
+                for (auto bullet : *_level->getBullet()){
+                    bullet->move();
+                }
+                
+                _level->collisionManager();
+                
+                
+            }
         }
-    }
-    
-    else {
-        nextLevel();
+        
+        else {
+            nextLevel();
+        }
     }
 }
 
 /**
  */
-void GameModel::loadGame ()
+bool GameModel::loadGame ()
 {
     // chargement d'une partie depuis un fichier
+    return true;
 }
 
 /**
  */
 void GameModel::newGame ()
 {
-    // création d'une nouvelle partie
+
+    _player = new Player();
+    _shop = new Shop(_player);
 }
 
 /**
@@ -84,7 +92,7 @@ void GameModel::saveGame ()
  */
 void GameModel::play ()
 {
-
+    newLevel();
 }
 
 /**
@@ -93,7 +101,7 @@ void GameModel::nextLevel ()
 {
     delete _level;
     _player->nextLevel();
-    _level = new Level(_player);
+    _level = new Level(_player, _settings->getDifficulty());
 }
 
 
@@ -101,7 +109,7 @@ void GameModel::newLevel ()
 {
     if (_level != nullptr)
         destructLevel();
-    _level = new Level(_player);
+    _level = new Level(_player, _settings->getDifficulty());
 }
 
 void GameModel::destructLevel()
@@ -110,7 +118,7 @@ void GameModel::destructLevel()
 }
 
 
-// Accessor methods
+// ACCESSOR METHODS
 //
 
 Player* GameModel::getPlayer()  const{
@@ -118,8 +126,15 @@ Player* GameModel::getPlayer()  const{
 }
 
 Level* GameModel::getLevel() const {
-    
     return _level;
+}
+
+Shop* GameModel::getShop() const{
+    return _shop;
+}
+
+Settings* GameModel::getSettings() const{
+    return _settings;
 }
 
 
