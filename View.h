@@ -17,6 +17,7 @@ class View{
 protected:
 
     GameModel* _modele;
+    Language* _language;
 
 public :
 
@@ -28,7 +29,7 @@ public :
     
     virtual void showView();
 
-    void setModele(GameModel* modele);
+    void setView(GameModel* modele);
 };
 
 
