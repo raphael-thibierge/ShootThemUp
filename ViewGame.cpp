@@ -73,3 +73,10 @@ void ViewGame::showView(){
     cout << "\t (4) Abandonner" << endl;
 
 }
+
+void ViewGame::showTransition(){
+    
+    
+    
+    
+}

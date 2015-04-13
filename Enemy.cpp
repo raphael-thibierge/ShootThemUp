@@ -11,9 +11,18 @@ Enemy::Enemy (string type, float x, float y, unsigned int lifeLevel) : Ship::Shi
 
     setPosition(x, y);
     initEnemy();
-
+    
     _lifeLevel = lifeLevel;
 
+}
+
+
+Enemy::Enemy (std::string type, unsigned int level, float x, float y, unsigned int lifeLevel, float speed, unsigned int nbLife) : Ship(type), _level(level){
+    
+    setPosition(x, y);
+    _lifeLevel = lifeLevel;
+    _speed = speed;
+    _direction =  "SOUTH";
 }
 
 Enemy::~Enemy () {
@@ -30,13 +39,16 @@ void Enemy::move()
 
 void Enemy::shoot (string bulletType, string direction, list<Bullet*> * bulletList)
 {
-    bulletList->push_back(new Bullet("standart", direction, _X, _Y, "enemy"));
+    if (_type != "kamikaze")
+        bulletList->push_back(new Bullet("standart", direction, _X, _Y, "enemy"));
 }
 
 string Enemy::toString(){
     return "ENEMY : " + Ship::toString();
 }
 
+
+// A SUPPRIMER BIENTOT =========
 void Enemy::initEnemy(){
     if (_type == "standart")
     {
@@ -48,15 +60,28 @@ void Enemy::initEnemy(){
     }
     _nbLife = 1 ;
 }
+// ==============================
 
-// Accessor methods
+// ACCESSOR METHODS
 //
-
 
 unsigned int Enemy::getLevel() const{
     return _level;
 }
 
-// Other methods
+// STATIC METHODS
 //
+
+Enemy* Enemy::Standart(unsigned int level){
+     return new Enemy("standart", level, randomPositionX(), 0, 100, 5, 1 );
+}
+
+Enemy* Enemy::Kamikaze(unsigned int level){
+    return new Enemy("kamikaze", level, randomPositionX(), 0, 100, 10,1) ;
+}
+
+int Enemy::randomPositionX(){
+    // a écrire
+    return 20;
+}
 

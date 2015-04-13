@@ -42,6 +42,8 @@ void GameModel::nextStep(){
             if (!_level->loose()) {
                 // le jeu continue
                 
+                _level->collisionManager();
+                
                 for (auto enemy : *_level->getEnemy()){
                     enemy->move();
                     
@@ -51,7 +53,7 @@ void GameModel::nextStep(){
                     bullet->move();
                 }
                 
-                _level->collisionManager();
+                
                 
                 
             }

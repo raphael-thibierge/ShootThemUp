@@ -37,9 +37,6 @@ class Bullet : virtual public Position
 
 // ACCESSORS METHODS
 
-    float getX() const;
-
-    float getY() const;
 
     unsigned int getDamage() const;
 

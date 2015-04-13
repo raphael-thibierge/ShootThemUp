@@ -8,10 +8,16 @@ using namespace std ;
 Position::Position () {
     _X = 0;
     _Y = 0;
+    _width = 0;
+    _height = 0;
 }
 
 Position::Position (float x, float y){
     setPosition(x,y);
+}
+
+Position::Position(float x, float y, float width, float heigh) : _X(x), _Y(y), _width(width), _height(heigh){
+    
 }
 
 Position::~Position () { }
@@ -52,9 +58,24 @@ string Position::toString(){
 
 
 
-// Accessor methods
+// ACCESSOR METHODS
 //  
 
+float Position::getX() const {
+    return _X;
+}
+
+float Position::getY() const {
+    return _Y;
+}
+
+float Position::getWidht() const {
+    return _width;
+}
+
+float Position::getHeight() const {
+    return _height;
+}
 
 // Other methods
 //  

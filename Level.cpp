@@ -81,26 +81,18 @@ bool Level::loose ()
 
 void Level::collisionManager()
 {
-    // collision between a ship and a bullet
 
     list<Enemy*> enemiesDestroyed ;
     list<Bullet*> bulletsDestroyed ;
 
 
-    // collision between the player and the bullet
+    // collision between the player and the bullets
     for (auto bullet : *_bulletList)
         if (_player->collision(bullet))
             bulletsDestroyed.push_back(bullet);
+    
 
-    // with player
-    for (auto bullet : *_bulletList)
-        if (_player->collision(bullet))
-            // score et vie à gérer
-            bulletsDestroyed.push_back(bullet);
-
-
-
-    // with an enemy
+    // collision between the player and the enemies
     for (auto enemy : *_enemyList)
     {
         if (_player->collision(enemy))
@@ -111,6 +103,7 @@ void Level::collisionManager()
         }
     }
 
+    
     // collision between 2 enemy
 
 
