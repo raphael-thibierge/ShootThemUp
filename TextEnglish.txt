@@ -6,3 +6,4 @@ move Move
 shoot Shoot
 nothing Nothing
 escape Escape
+newGame

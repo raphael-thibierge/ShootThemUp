@@ -45,7 +45,7 @@ void Language::loadFromFile(string text)
         file.close();  // on ferme le fichier
     }
     else  // sinon
-        cerr << "Impossible d'ouvrir le fichier !" << endl;
+        cerr << "Can't open this file !" << endl;
 }
 
 string Language::getText(string text)

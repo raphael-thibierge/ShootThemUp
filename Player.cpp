@@ -96,6 +96,11 @@ float Player::getMoney() const
     return _money;
 }
 
+unsigned int Player::getScore() const
+{
+    return _score;
+}
+
 string Player::getBulletType() const
 {
     return _bulletType;

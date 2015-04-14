@@ -59,6 +59,8 @@ private :
 
     float getMoney() const;
 
+    unsigned int getScore() const;
+
     std::string getBulletType() const;
 
     void setNbLife(unsigned int nbLife);

@@ -33,7 +33,7 @@ Level::~Level ()
         delete bullet;
     _bulletList->erase(_bulletList->begin(), _bulletList->end());
     delete _bulletList;
-    
+
     _player = nullptr;
     _difficulty = nullptr;
 }
@@ -63,6 +63,8 @@ bool Level::win ()
     if (_enemyList->begin() == _enemyList->end())
     {
         cout << "\nVICTOIRE DE LA MANCHE" << endl;
+        float money=_player->getScore()/20;
+        _player->setMoney(_player->getMoney()+money);
         return true;
     }
 
@@ -126,7 +128,7 @@ void Level::collisionManager()
         }
     }
 
-    
+
     for (auto enemy : enemiesDestroyed){
         cout << enemy->toString() << endl;
         _enemyList->remove(enemy);
