@@ -43,12 +43,10 @@ public:
     bool collision(Bullet *bullet);
 
     bool collision (Ship *ship);
+    
 
 //  ACCESSOR METHODS
-
-    float getX() const;
-
-    float getY() const;
+//
 
     unsigned  int getLifeLevel() const;
 

@@ -76,17 +76,6 @@ string Bullet::toString()
 // Accessor methods
 //
 
-float Bullet::getX() const
-{
-    return  _X;
-}
-
-float Bullet::getY() const
-{
-    return _Y;
-}
-
-
 unsigned int Bullet::getDamage() const
 {
     return _damage;

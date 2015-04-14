@@ -6,7 +6,7 @@ const int NB_LIFE_PLAYER = 3;
 const int LIFE_ENEMIES = 100;
 const int STARTING_DAMAGE = 50;
 
-
+const float OFFSET_COLLISION = 5;
 
 const unsigned int DIFFICULTY = 2;
 const unsigned int NB_ENNEMY_LEVEL = 1;

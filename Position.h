@@ -21,6 +21,8 @@ class Position
 protected:
     float _X;
     float _Y;
+    float _width;
+    float _height;
 
 public:
 
@@ -30,6 +32,8 @@ public:
 	Position ();
 
     Position (float x, float y);
+    
+    Position(float x, float y, float width, float heigh);
 
 	virtual ~Position () =0;
 
@@ -43,6 +47,15 @@ public:
     void move(std::string direction, float speed);
 
     std::string toString();
+    
+//ACCESSOR METHODS
+    float getX() const;
+    
+    float getY() const;
+    
+    float getWidht() const;
+    
+    float getHeight() const;
 
 };
 
