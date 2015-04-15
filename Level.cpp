@@ -92,7 +92,7 @@ void Level::collisionManager()
     for (auto bullet : *_bulletList)
         if (_player->collision(bullet))
             bulletsDestroyed.push_back(bullet);
-    
+
 
     // collision between the player and the enemies
     for (auto enemy : *_enemyList)
@@ -105,7 +105,7 @@ void Level::collisionManager()
         }
     }
 
-    
+
     // collision between 2 enemy
 
 
@@ -121,6 +121,22 @@ void Level::collisionManager()
         }
     }
 
+    //collision with the border
+    for (auto enemy : *_enemyList){
+        if(enemy->getY() > SCREEN_HEIGHT){
+            enemiesDestroyed.push_back(enemy);
+        }
+    }
+
+    for (auto bullet : *_bulletList){
+        if(bullet->getY() < 0){
+            bulletsDestroyed.push_back(bullet);
+        }
+        if(bullet->getY() > SCREEN_HEIGHT){
+            bulletsDestroyed.push_back(bullet);
+        }
+    }
+
 
     for (auto enemy : enemiesDestroyed){
         cout << enemy->toString() << endl;
@@ -133,22 +149,6 @@ void Level::collisionManager()
         delete bullet;
     }
 
-    /*
-    //collision with the border
-    for (auto enemy : *_enemyList){
-        if(enemy->getY() > 100){
-            delete enemy;
-            _enemyList->remove(enemy);
-        }
-    }
-
-    for (auto bullet : *_bulletList){
-        if(bullet->getY() < 0){
-            delete bullet;
-            _bulletList->remove(bullet);
-        }
-    }
-     */
 
 }
 

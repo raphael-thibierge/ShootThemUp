@@ -35,30 +35,39 @@ void GameModel::nextStep(){
 
     // fonction moteur du jeu
     // fonction qui fait tourner le jeu
-    
+
     if (_player != nullptr && _level != nullptr){
-        
+
         if (!_level->win()){
             if (!_level->loose()) {
                 // le jeu continue
-                
+                int random=rand()%(-3);
+                cout<<random;
+                if(random==2)
+                {
+                    for (auto enemy : *_level->getEnemy())
+                    {
+                        enemy->shoot("standart", "SOUTH", this->getLevel()->getBullet());
+                    }
+                }
+
                 _level->collisionManager();
-                
+
                 for (auto enemy : *_level->getEnemy()){
                     enemy->move();
-                    
+
                 }
-                
+
                 for (auto bullet : *_level->getBullet()){
                     bullet->move();
                 }
-                
-                
-                
-                
+
+
+
+
             }
         }
-        
+
         else {
             nextLevel();
         }

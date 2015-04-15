@@ -40,6 +40,12 @@ Bullet::Bullet (string type , string direction, float X, float Y,string shooter 
 
     }
 
+    if(_shooter=="enemy")
+    {
+        _damage=50;
+        _speed=10;
+    }
+
 
 }
 
