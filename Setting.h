@@ -10,7 +10,7 @@ class Settings
 private:
     unsigned int _difficulty;
     unsigned int _nbLife;
-    Language * _language;
+    Language _language;
     
     
 public:
@@ -33,7 +33,7 @@ public:
     
     unsigned int * getNbLife() ;
     
-    Language * getLanguage() const;
+    Language * getLanguage();
     
     
 };

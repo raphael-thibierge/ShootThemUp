@@ -9,6 +9,7 @@ Settings::Settings(){
     
     _difficulty = DIFFICULTY;
     _nbLife = NB_LIFE_PLAYER;
+    //_language = new Language;
 }
 
 Settings::~Settings(){
@@ -28,7 +29,7 @@ void Settings::changeNbLife(unsigned int nbLife){
 }
 
 void Settings::changeLanguage(string language){
-    _language->change(language);
+    _language.change(language);
 }
 
 
@@ -43,6 +44,6 @@ unsigned int * Settings::getNbLife() {
 }
 
 
-Language * Settings::getLanguage() const{
-    return _language;
+Language * Settings::getLanguage() {
+    return &_language;
 }

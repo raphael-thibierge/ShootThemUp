@@ -1,9 +1,23 @@
+choice Choice
+newGame New_Game
+loadGame Load_a_game
+quit Quit
 play Play
 shop Shop
-setting Setting
-quit Quit
+goShop Go_to_shop
+settings Settings
+menu Menu
+game Game
 move Move
+moveX Move_X
+moveY Move_Y
 shoot Shoot
-nothing Nothing
+continue continue
 escape Escape
-newGame
+changeDifficulty Change_difficulty
+changeNBLifeInit Change_Initial_life_number
+changeLanguage Change_Languue
+upgradeMainShoot Upgrade_the_main_shoot
+upgradeShip Upgrade_ship
+difficulty Difficulty
+NBLifeInit Initial_Life_Number

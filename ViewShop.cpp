@@ -19,7 +19,7 @@ int ViewShop::treatEvent(){
     int answer;
     
     do {
-        cout << "Choix" << endl;
+        cout << _language->getText("choice") << endl;
         cin >> answer;
         
     } while ( answer > 3 && answer < 0 );
@@ -48,10 +48,10 @@ int ViewShop::treatEvent(){
 
 
 void ViewShop::showView(){
-    cout << "\n---------------------- \n Shop \n"  << endl ;
+    cout << "\n---------------------- \n " + _language->getText("shop") << endl  << endl ;
     
-    cout << "\t (1) Amélioration du Tir Principal" << endl;
-    cout << "\t (2) Amélioration du Ship" << endl;
-    cout << "\t (3) Quitter" << endl;
+    cout << "\t (1) " + _language->getText("upgradeMainShoot") << endl;
+    cout << "\t (2) " + _language->getText("upgradeShip") << endl;
+    cout << "\t (3) " + _language->getText("quit") << endl;
 
 }

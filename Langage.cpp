@@ -6,7 +6,7 @@ using namespace std;
 
 Language::Language()
 {
-    loadFromFile("TextEnglish.txt");
+    loadFromFile("TextFrench.txt");
 }
 
 Language::~Language()
@@ -14,17 +14,15 @@ Language::~Language()
     //dtor
 }
 
-void Language::change(string langage)
+void Language::change(string language)
 {
-    if (langage=="french")
+    if (language=="French")
     {
-        string text = "TextFrench.txt";
-        loadFromFile(text);
+        loadFromFile("TextFrench.txt");
     }
-    if(langage=="english")
+    if(language=="English")
     {
-        string text = "TextEnglish.txt";
-        loadFromFile(text);
+        loadFromFile("TextEnglish.txt");
     }
 }
 
@@ -34,6 +32,10 @@ void Language::loadFromFile(string text)
     ifstream file(text, ios::in);
     if(file)  // si l'ouverture a réussi
     {
+        if (!_listText.empty())
+            _listText.clear();
+        
+        
         string line;
         string id;
         string information;
