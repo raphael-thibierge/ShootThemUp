@@ -128,6 +128,7 @@ void GameModel::newLevel ()
 void GameModel::destructLevel()
 {
     delete _level;
+    _level = nullptr;
 }
 
 

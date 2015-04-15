@@ -72,6 +72,8 @@ private :
     void setBulletType( std::string bulletType);
 
     void setMoney( float money);
+    
+    void setScore(unsigned int score);
 
 
 

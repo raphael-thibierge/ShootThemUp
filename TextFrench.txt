@@ -1,4 +1,5 @@
-choice choix
+
+choice Choix:
 newGame Nouvelle_Partie
 loadGame Charger_une_partie
 quit Quitter

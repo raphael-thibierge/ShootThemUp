@@ -32,6 +32,10 @@ Level::~Level ()
 
     _player = nullptr;
     _difficulty = nullptr;
+    
+    cout << "End destructor" << endl;
+    cout << "\n=====================" << endl;
+    
 }
 
 //
@@ -43,10 +47,7 @@ void Level::generate()
     // creation of a enemy
     for (int i=0; i<NB_ENNEMY_LEVEL; i++)
     {
-        unsigned int lifeLevel = 25*DIFFICULTY;
-        float x = (i%5)*10;
-        float y = -i*10;
-        _enemyList.push_back(new Enemy("standart", x, y, lifeLevel));
+        _enemyList.push_back(Enemy::Standart(1));
 
     }
     // need to generate shuffle initial position for ennemy

@@ -1,4 +1,5 @@
-choice Choice
+
+choice Choice:
 newGame New_Game
 loadGame Load_a_game
 quit Quit

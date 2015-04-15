@@ -14,6 +14,8 @@ Position::Position () {
 
 Position::Position (float x, float y){
     setPosition(x,y);
+    _width = 0;
+    _height = 0;
 }
 
 Position::Position(float x, float y, float width, float heigh) : _X(x), _Y(y), _width(width), _height(heigh){
@@ -53,7 +55,11 @@ void Position::move(string direction, float speed){
 }
 
 string Position::toString(){
-    return "Position X=" + to_string(_X) + " Y=" + to_string(_Y);
+    string text = "Position X=" + to_string(_X);
+    text += " Y=" + to_string(_Y) ;
+    text += " Width=" + to_string(_width);
+    text += " Height" + to_string(_height);
+    return text;
 }
 
 

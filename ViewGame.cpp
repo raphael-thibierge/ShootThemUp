@@ -40,6 +40,7 @@ int ViewGame::treatEvent(){
         case 4 :
             returnValue = 0;
             _modele->destructLevel();
+            _modele->getPlayer()->setScore(0);
             break;
 
         default:

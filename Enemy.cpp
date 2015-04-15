@@ -73,15 +73,14 @@ unsigned int Enemy::getLevel() const{
 //
 
 Enemy* Enemy::Standart(unsigned int level){
-     return new Enemy("standart", level, randomPositionX(), 0, 100, 5, 1 );
+     return new Enemy("standard", level, randomPositionX(), 0, 25*DIFFICULTY, 5, 1 );
 }
 
 Enemy* Enemy::Kamikaze(unsigned int level){
-    return new Enemy("kamikaze", level, randomPositionX(), 0, 100, 10,1) ;
+    return new Enemy("kamikaze", level, randomPositionX(), 0, 25*DIFFICULTY, 10,1) ;
 }
 
 int Enemy::randomPositionX(){
-    // a écrire
-    return 20;
+    return rand()%(-SCREEN_WIDTH);
 }
 

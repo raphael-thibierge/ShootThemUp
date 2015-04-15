@@ -131,6 +131,12 @@ void Player::setMoney( float money)
     _money=money;
 }
 
+void Player::setScore(unsigned int score){
+    _score=score;
+}
+
 // Other methods
 //
+
+
 
