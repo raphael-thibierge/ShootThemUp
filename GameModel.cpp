@@ -41,13 +41,15 @@ void GameModel::nextStep(){
         if (!_level->win()){
             if (!_level->loose()) {
                 // le jeu continue
-                int random=rand()%(-3);
-                cout<<random;
-                if(random==2)
+                int random= rand()%(-2);
+                if(random==1)
                 {
                     for (auto enemy : *_level->getEnemy())
                     {
-                        enemy->shoot("standart", "SOUTH", this->getLevel()->getBullet());
+                        random = rand()%(-3);
+                        if(random==2)
+                        
+                            enemy->shoot("standart", "SOUTH", this->getLevel()->getBullet());
                     }
                 }
 
@@ -132,19 +134,19 @@ void GameModel::destructLevel()
 // ACCESSOR METHODS
 //
 
-Player* GameModel::getPlayer()  const{
+Player* GameModel::getPlayer(){
     return _player ;
 }
 
-Level* GameModel::getLevel() const {
+Level* GameModel::getLevel(){
     return _level;
 }
 
-Shop* GameModel::getShop() const{
+Shop* GameModel::getShop(){
     return _shop;
 }
 
-Settings* GameModel::getSettings() const{
+Settings* GameModel::getSettings(){
     return _settings;
 }
 

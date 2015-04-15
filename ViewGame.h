@@ -28,8 +28,6 @@ public:
     void showView() override;
     
     void showTransition();
-    
-    
 };
 
 

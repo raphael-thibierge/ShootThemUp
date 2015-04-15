@@ -17,11 +17,11 @@ private:
     int _width;
     int _height;
 
-    Player * _player;
-    Level * _level;
-    Shop * _shop;
+    Player* _player;
+    Level* _level;
+    Shop* _shop;
 
-    Settings * _settings;
+    Settings* _settings;
 
 public :
 // CONSTRUCTOR / DESTRUCTOR
@@ -54,10 +54,10 @@ public :
 
 // ACCESSOR METHODS
 
-    Player* getPlayer() const;
-    Level* getLevel() const;
-    Shop* getShop() const;
-    Settings* getSettings() const;
+    Player* getPlayer();
+    Level* getLevel();
+    Shop* getShop();
+    Settings* getSettings();
 
 
 
