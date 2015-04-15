@@ -13,7 +13,7 @@ move Move
 moveX Move_X
 moveY Move_Y
 shoot Shoot
-continue continue
+nothing continue
 escape Escape
 changeDifficulty Change_difficulty
 changeNBLifeInit Change_Initial_life_number

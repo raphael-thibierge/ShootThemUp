@@ -1,6 +1,7 @@
 #include "Langage.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -29,25 +30,47 @@ void Language::change(string language)
 
 void Language::loadFromFile(string text)
 {
+    vector<string> listID;
+    vector<string> listWord;
+    int cpt=0;
+    string line;
     ifstream file(text, ios::in);
     if(file)  // si l'ouverture a réussi
     {
-        if (!_listText.empty())
-            _listText.clear();
-        
-        
-        string line;
         string id;
-        string information;
+        string word;
         while(getline(file, line))
         {
-            file >> id >> information;
-            _listText[id]=information;
+            string word="";
+            string separator=" ";
+            int i=0,j;
+            j = line.find(separator);
+            while( j != string::npos )
+            {
+                if(cpt==0)
+                {
+                word=line.substr(i,j-i);
+                i=j+1;
+                j = line.find(separator,i);
+                listID.push_back(word);
+                }
+            }
+            word=line.substr(i);
+            listWord.push_back(word);
         }
         file.close();  // on ferme le fichier
     }
     else  // sinon
         cerr << "Can't open this file !" << endl;
+
+    int compt=0;
+    for(auto id : listID)
+    {
+        _listText[id]=listWord[compt];
+        compt++;
+    }
+    listID.clear();
+    listWord.clear();
 }
 
 string Language::getText(string text)
@@ -59,7 +82,7 @@ string Language::getText(string text)
             return t.second;
         }
     }
-    return "Text not find.";
+    return "Text not found.";
 }
 
 

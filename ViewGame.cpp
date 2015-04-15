@@ -21,7 +21,7 @@ int ViewGame::treatEvent(){
     do {
         cout << "Choix : ";
         cin >> reponse;
-    } while (reponse<0 || reponse>4);
+    } while (reponse<0 || reponse>5);
 
     switch (reponse) {
         case 1:
@@ -36,8 +36,11 @@ int ViewGame::treatEvent(){
         case 2:
             _modele->getPlayer()->shoot("standart", "NORTH", _modele->getLevel()->getBullet());
             break;
-        
-        case 4 :
+
+        case 3 :
+            break;
+
+        case 5 :
             returnValue = 0;
             _modele->destructLevel();
             _modele->getPlayer()->setScore(0);
@@ -67,18 +70,19 @@ void ViewGame::showView(){
         for (auto bullet : *_modele->getLevel()->getBullet())
             cout << bullet->toString() << endl;
     cout << endl;
-    
+
 
     cout << "\t (1) Deplacement" << endl;
     cout << "\t (2) Tirer" << endl;
-    cout << "\t (3) Rien" << endl;
-    cout << "\t (4) Abandonner" << endl;
+    cout << "\t (3) Utiliser bombe" << endl;
+    cout << "\t (4) Rien" << endl;
+    cout << "\t (5) Abandonner" << endl;
 
 }
 
 void ViewGame::showTransition(){
-    
-    
-    
-    
+
+
+
+
 }
