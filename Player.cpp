@@ -51,7 +51,7 @@ void Player::initPlayer()
     _bulletType = "standart";
     _lifeLevel = 300;
     _score = 0;
-    _money = 0;
+    _money = 110;
     _speed = 10;
     _level = 1;
     _nbLife = 3;
