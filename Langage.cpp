@@ -39,6 +39,7 @@ void Language::loadFromFile(string text)
         string line;
         string id;
         string information;
+        
         while(getline(file, line))
         {
             file >> id >> information;
