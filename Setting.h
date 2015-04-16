@@ -21,11 +21,11 @@ public:
     virtual ~Settings();
 
 // METHODS
-    void changeDifficulty(unsigned int difficulty);
+    bool changeDifficulty(unsigned int difficulty);
     
-    void changeNbLife(unsigned int nbLife);
+    bool changeNbLife(unsigned int nbLife);
     
-    void changeLanguage(std::string language);
+    bool changeLanguage(std::string language);
 
 // ACCESSOR METHODS
     

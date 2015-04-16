@@ -18,7 +18,7 @@ public:
 
 // METHODS
     
-    void change(std::string language);
+    bool change(std::string language);
     
     void loadFromFile(std::string text);
 

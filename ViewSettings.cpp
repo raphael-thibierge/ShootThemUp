@@ -35,15 +35,61 @@ int ViewSettings::treatEvent(){
     // A CHANGER AVEC MESSAGE QUI DEMANDE PARAMETRE SOUHAITE
     switch (answer) {
         case 1:
-            _modele->getSettings()->changeDifficulty(3);
+            cout << _language->getText("valueLower") << " 4" << endl;
+            do {
+                cout << _language->getText("newValue") << endl;
+                cin >> answer;
+            } while (answer <= 0 || answer > 3);
+            if (_modele->getSettings()->changeDifficulty(answer))
+                cout << _language->getText("successfullChange") << endl;
+            else
+                cout << _language->getText("fail");
             break;
             
         case 2:
-            _modele->getSettings()->changeNbLife(4);
+            do {
+                cout << _language->getText("newValue") << " : " << endl;
+                cin >> answer;
+            } while (answer <= 0);
+            
+            if (_modele->getSettings()->changeNbLife(answer))
+                cout << _language->getText("successfullChange") << endl;
+            else
+                cout << _language->getText("fail");
+            
             break;
             
         case 3:
-            _modele->getSettings()->changeLanguage("English");
+            cout << _language->getText("availableLanguages") << endl;
+            cout << "\t (1) " << _language->getText("english") << endl;
+            cout << "\t (2) " << _language->getText("french") << endl;
+            
+            int answer;
+            do {
+                cout << _language->getText("choice") << endl;
+                cin >> answer;
+            } while (answer < 0 || answer >2);
+            
+            switch (answer) {
+                case 1:
+                    if (_modele->getSettings()->changeLanguage("English"))
+                        cout << _language->getText("successfullChange");
+                    else
+                        cout << _language->getText("fail") << endl;
+                    break;
+                    
+                case 2:
+                    if (_modele->getSettings()->changeLanguage("French"))
+                        cout << _language->getText("successfullChange") << endl;
+                    else
+                        cout << _language->getText("fail") << endl;
+                    break;
+
+                    
+                default:
+                    cout << _language->getText("fail") << endl;
+                    break;
+            }
             break;
             
         case 4:
@@ -64,12 +110,13 @@ void ViewSettings::showView(){
     
     cout << _language->getText("difficulty") << " : " << *_modele->getSettings()->getDifficulty() << endl;
     cout << _language->getText("NBLifeInit") << " : " << *_modele->getSettings()->getNbLife() << endl;
+    cout << _language->getText("language") << " : " << _language->getText("languageValue") <<endl ;
     cout << endl;
     cout << "Menu" << endl ;
     cout << "\t (1) " + _language->getText("changeDifficulty") << endl ;
     cout << "\t (2) " + _language->getText("changeNBLifeInit") << endl;
     cout << "\t (3) " + _language->getText("changeLanguage") << endl ;
-    cout << "\t (4) Quitter" << endl;
+    cout << "\t (4) " + _language->getText("quit") << endl;
     
     
     

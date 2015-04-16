@@ -18,20 +18,25 @@ Settings::~Settings(){
 }
 
 
-void Settings::changeDifficulty(unsigned int difficulty){
-    _difficulty = difficulty;
-    //level->setDifficulty(difficulty);
+bool Settings::changeDifficulty(unsigned int difficulty){
+    if (difficulty > 0 && difficulty < 4){
+        _difficulty = difficulty;
+        return true;
+    }
+    return false;
 }
 
-void Settings::changeNbLife(unsigned int nbLife){
-    _nbLife = nbLife;
-    //level->getPlayer()->setNbLife(nbLife);
+bool Settings::changeNbLife(unsigned int nbLife){
+    if (nbLife > 0){
+        _nbLife = nbLife;
+        return true;
+    }
+    return false;
 }
 
-void Settings::changeLanguage(string language){
-    _language.change(language);
+bool Settings::changeLanguage(string language){
+    return _language.change(language);
 }
-
 
 // ACCESSOR METHODS
 

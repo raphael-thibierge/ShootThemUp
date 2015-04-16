@@ -45,8 +45,11 @@ int ViewMainMenu::treatEvent() {
                 break;
                 
             case 3:
-                returnValue = 0;
+                returnValue = -4;
                 break;
+            
+            case 4:
+                returnValue = 0;
                 
             default:
                 break;
@@ -74,9 +77,9 @@ int ViewMainMenu::treatEvent() {
             case 3:
                 returnValue = -4;
                 break;
-            
             case 4:
                 returnValue = 0;
+                break;
             
             default:
                 break;
@@ -96,7 +99,8 @@ void ViewMainMenu::showView() {
         cout << _language->getText("menu") << endl ;
         cout << "\t (1) " + _language->getText("newGame") << endl ;
         cout << "\t (2) " + _language->getText("loadGame") << endl;
-        cout << "\t (3) " + _language->getText("quit") << endl ;
+        cout << "\t (3) " + _language->getText("settings") << endl ;
+        cout << "\t (4) " + _language->getText("quit") << endl;
     }
     
     else {

@@ -1,4 +1,6 @@
 
+language Langue
+languageValue Français
 choice Choix:
 newGame Nouvelle_Partie
 loadGame Charger_une_partie
@@ -31,3 +33,10 @@ purchaseRight Achat_effectué
 purchaseWrong Vous_avez_besoin_d'argent.Achat_raté
 difficulty Difficulte
 NBLifeInit Nombre_de_vie_initiales
+availableLanguages Langues_disponibles
+english Anglais
+french Français
+successfullChange Modification_réussie
+fail Echec!
+newValue Nouvelle_valeur
+valueLower La_valeur_doit_être_inféieur_à

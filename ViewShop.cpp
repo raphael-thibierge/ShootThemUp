@@ -18,7 +18,6 @@ int ViewShop::treatEvent()
 {
     int returnValue = 0;
     int answer;
-
     do
     {
         cout << _language->getText("choice") << endl;

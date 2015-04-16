@@ -14,16 +14,20 @@ Language::~Language()
     //dtor
 }
 
-void Language::change(string language)
+bool Language::change(string language)
 {
-    if (language=="French")
-    {
+    bool returnValue = false;
+    
+    if (language=="French"){
         loadFromFile("TextFrench.txt");
+        returnValue = true;
     }
-    if(language=="English")
-    {
+    if(language=="English"){
         loadFromFile("TextEnglish.txt");
+        returnValue = true;
     }
+    
+    return returnValue;
 }
 
 
