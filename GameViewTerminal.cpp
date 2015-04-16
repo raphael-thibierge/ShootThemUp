@@ -197,7 +197,7 @@ void GameViewTerminal::showGame () const
                 float dy;
                 cin >> dy;
                 
-                _model->getPlayer()->Position::move(dx, dy);
+                _model->getPlayer()->RectanglePosition::move(dx, dy);
                 break;
                 
             case 2:

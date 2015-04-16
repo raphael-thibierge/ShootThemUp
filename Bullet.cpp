@@ -5,7 +5,7 @@ using namespace std ;
 // Constructors/Destructors
 //
 
-Bullet::Bullet (string type , string direction, float X, float Y, string shooter ) : Position::Position(X,Y), _type(type) ,_direction(direction), _shooter(shooter)
+Bullet::Bullet (string type , string direction, float X, float Y, string shooter ) : RectanglePosition::RectanglePosition(X,Y), _type(type) ,_direction(direction), _shooter(shooter)
 {
     cout << "\n=====================" << endl;
     cout << "CONSTRUCTOR BULLET" << endl;
@@ -27,7 +27,7 @@ Bullet::~Bullet ()
 
 void Bullet::move ()
 {
-    Position::move(_direction, _speed);
+    RectanglePosition::move(_direction, _speed);
 }
 
 
@@ -80,7 +80,7 @@ string Bullet::toString()
 {
     string text = "BULLET : " + _type;
     text += " Shooter=" + _shooter + " ";
-    text += Position::toString();
+    text += RectanglePosition::toString();
     text += " speed=";
     text += to_string(_speed);
     text += " direction=" + _direction ;

@@ -36,7 +36,7 @@ Enemy::~Enemy () {
 //
 void Enemy::move()
 {
-    Position::move(_direction, _speed);
+    RectanglePosition::move(_direction, _speed);
 }
 
 void Enemy::shoot (string bulletType, string direction, list<Bullet*> * bulletList)

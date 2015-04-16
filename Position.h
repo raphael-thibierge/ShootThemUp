@@ -11,7 +11,7 @@
 
 
 
-class Position
+class RectanglePosition
 {
 
 protected:
@@ -25,13 +25,13 @@ public:
 	// Constructors/Destructors
 	//
 
-	Position ();
+	RectanglePosition ();
 
-    Position (float x, float y);
+    RectanglePosition (float x, float y);
     
-    Position(float x, float y, float width, float heigh);
+    RectanglePosition(float x, float y, float width, float heigh);
 
-	virtual ~Position () =0;
+	virtual ~RectanglePosition () =0;
 
 
 // Methods

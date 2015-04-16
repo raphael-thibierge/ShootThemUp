@@ -5,56 +5,56 @@ using namespace std ;
 // Constructors/Destructors
 //  
 
-Position::Position () {
+RectanglePosition::RectanglePosition () {
     _X = 0;
     _Y = 0;
     _width = 0;
     _height = 0;
 }
 
-Position::Position (float x, float y){
+RectanglePosition::RectanglePosition (float x, float y){
     setPosition(x,y);
     _width = 0;
     _height = 0;
 }
 
-Position::Position(float x, float y, float width, float heigh) : _X(x), _Y(y), _width(width), _height(heigh){
+RectanglePosition::RectanglePosition(float x, float y, float width, float heigh) : _X(x), _Y(y), _width(width), _height(heigh){
     
 }
 
-Position::~Position () { }
+RectanglePosition::~RectanglePosition () { }
 
 
 //  
 // Methods
 //
 
-void Position::setPosition (float x, float y)
+void RectanglePosition::setPosition (float x, float y)
 {
     _X = x ;
     _Y = y ;
 }
 
-void Position::move(float dx, float dy){
+void RectanglePosition::move(float dx, float dy){
     _X += dx;
     _Y += dy;
 }
 
 
 
-void Position::move(string direction, float speed){
+void RectanglePosition::move(string direction, float speed){
     // switch doesn't work with string
     if (direction == "NORTH")
-        Position::move(0, -speed);
+        move(0, -speed);
     else if (direction == "SOUTH")
-        Position::move(0, speed);
+        move(0, speed);
     else if (direction == "WEST")
-        Position::move(-speed, 0);
+        move(-speed, 0);
     else if (direction == "EST")
-        Position::move(speed, 0);
+        move(speed, 0);
 }
 
-string Position::toString(){
+string RectanglePosition::toString(){
     string text = "Position X=" + to_string(_X);
     text += " Y=" + to_string(_Y) ;
     text += " Width=" + to_string(_width);
@@ -67,19 +67,19 @@ string Position::toString(){
 // ACCESSOR METHODS
 //  
 
-float Position::getX() const {
+float RectanglePosition::getX() const {
     return _X;
 }
 
-float Position::getY() const {
+float RectanglePosition::getY() const {
     return _Y;
 }
 
-float Position::getWidht() const {
+float RectanglePosition::getWidht() const {
     return _width;
 }
 
-float Position::getHeight() const {
+float RectanglePosition::getHeight() const {
     return _height;
 }
 

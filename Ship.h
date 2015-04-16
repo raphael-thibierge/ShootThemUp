@@ -10,7 +10,7 @@ class Shiel;
 
 
 
-class Ship : virtual public Position
+class Ship : virtual public RectanglePosition
 {
 
 protected:

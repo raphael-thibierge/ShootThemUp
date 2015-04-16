@@ -6,7 +6,7 @@
 #include <vector>
 
 
-class Bullet : virtual public Position
+class Bullet : virtual public RectanglePosition
 {
 
     private :

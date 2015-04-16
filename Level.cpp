@@ -21,7 +21,7 @@ Level::~Level ()
 {
     cout << "\n=====================" << endl;
     cout << "DESTRUCTOR LEVEL" << endl;
-
+    
     for(auto enemy : _enemyList)
         delete enemy;
     _enemyList.erase(_enemyList.begin(), _enemyList.end());
@@ -50,8 +50,6 @@ void Level::generate()
         _enemyList.push_back(Enemy::Standart(1));
 
     }
-    // need to generate shuffle initial position for ennemy
-
 }
 
 bool Level::win ()
@@ -133,19 +131,22 @@ void Level::collisionManager()
             bulletsDestroyed.push_back(bullet);
         }
     }
-
-
+    // remove duplicate enemies and bullet
+    enemiesDestroyed.unique();
+    bulletsDestroyed.unique();
+    
+    // destruction of enemies
     for (auto enemy : enemiesDestroyed){
         cout << enemy->toString() << endl;
         _enemyList.remove(enemy);
         delete enemy;
     }
-
+    
+    // destruction of bullets
     for (auto bullet : bulletsDestroyed){
         _bulletList.remove(bullet);
         delete bullet;
     }
-
 
 }
 

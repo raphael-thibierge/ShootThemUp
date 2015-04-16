@@ -23,11 +23,11 @@ void Ship::shoot (std::string bullet, std::string direction, std::list<Bullet*> 
 
 void Ship::move (string direction)
 {
-    Position::move(direction, _speed);
+    RectanglePosition::move(direction, _speed);
 }
 
 string Ship::toString(){
-    return " type="+_type+" = "+Position::toString() + " speed=" + to_string(_speed) + " life=" + to_string(_lifeLevel);
+    return " type="+_type+" = "+RectanglePosition::toString() + " speed=" + to_string(_speed) + " life=" + to_string(_lifeLevel);
 }
 
 
@@ -43,7 +43,7 @@ bool Ship::collision(Bullet *bullet){
         || collisionPoint(bullet->getX(), bullet->getY()+bullet->getHeight())
         || collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY())
         || collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY()+bullet->getHeight()))
-        bool a = true;
+        return true;
     return false;
 }
 

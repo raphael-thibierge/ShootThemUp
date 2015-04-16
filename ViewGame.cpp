@@ -30,7 +30,7 @@ int ViewGame::treatEvent(){
             cin >> dx ;
             cout << "Deplacement Y ;";
             cin >> dy;
-            _modele->getPlayer()->Position::move(dx, dy);
+            _modele->getPlayer()->RectanglePosition::move(dx, dy);
             break;
 
         case 2:
