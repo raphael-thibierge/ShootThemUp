@@ -26,7 +26,7 @@ Player::~Player ()
 
 void Player::shoot (string bulletType, string direction, list<Bullet*> * bulletList)
 {
-    bulletList->push_back(new Bullet(_bulletType, direction, _X, _Y,  "player"));
+    bulletList->push_back(new Bullet(_bulletType, direction, _X+_height/2, _Y-5,  "player"));
 }
 
 void Player::nextLevel()
@@ -55,7 +55,9 @@ void Player::initPlayer()
     _speed = 10;
     _level = 1;
     _nbLife = 3;
-    setPosition(20, 100); // valeur provisoire
+    _width = 10;
+    _height = 10;
+    setPosition(25, 100); // valeur provisoire
 }
 
 void Player::score(Enemy * enemy, unsigned int difficultyLevel)

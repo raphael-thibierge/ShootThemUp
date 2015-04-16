@@ -23,7 +23,7 @@ public:
     
     Enemy (std::string type, float x, float y, unsigned int lifeLevel);
 
-    Enemy (std::string type, unsigned int level, float x, float y, unsigned int lifeLevel, float speed, unsigned int nbLife);
+    Enemy (std::string type, unsigned int level, float x, float y, float width, float height, unsigned int lifeLevel, float speed, unsigned int nbLife);
     
 	virtual ~Enemy ();
 

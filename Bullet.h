@@ -21,27 +21,23 @@ class Bullet : virtual public Position
 
 // Constructeurs destructeurs
 
-	Bullet (std::string type ,std::string direction,float X, float Y, std::string shooter);
+	Bullet (std::string type ,std::string direction, float whith, float height, std::string shooter);
 
 	virtual ~Bullet ();
 
-
-
-
+    
 // Methodes
 
     void move ();
 
+    void initBullet();
+    
     std::string toString();
-
-
+    
+    
 // ACCESSORS METHODS
 
-
     unsigned int getDamage() const;
-
-
-
 
 };
 

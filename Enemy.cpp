@@ -17,12 +17,14 @@ Enemy::Enemy (string type, float x, float y, unsigned int lifeLevel) : Ship::Shi
 }
 
 
-Enemy::Enemy (std::string type, unsigned int level, float x, float y, unsigned int lifeLevel, float speed, unsigned int nbLife) : Ship(type), _level(level){
+Enemy::Enemy (std::string type, unsigned int level, float x, float y, float width, float height, unsigned int lifeLevel, float speed, unsigned int nbLife) : Ship(type), _level(level){
     
     setPosition(x, y);
     _lifeLevel = lifeLevel;
     _speed = speed;
     _direction =  "SOUTH";
+    _width = width;
+    _height = height;
 }
 
 Enemy::~Enemy () {
@@ -73,11 +75,11 @@ unsigned int Enemy::getLevel() const{
 //
 
 Enemy* Enemy::Standart(unsigned int level){
-     return new Enemy("standard", level, randomPositionX(), 0, 25*DIFFICULTY, 5, 1 );
+     return new Enemy("standard", level, randomPositionX(), 0, 10, 10, 25*DIFFICULTY, 5, 1 );
 }
 
 Enemy* Enemy::Kamikaze(unsigned int level){
-    return new Enemy("kamikaze", level, randomPositionX(), 0, 25*DIFFICULTY, 10,1) ;
+    return new Enemy("kamikaze", level, randomPositionX(), 0, 10,10, 25*DIFFICULTY, 10,1) ;
 }
 
 int Enemy::randomPositionX(){

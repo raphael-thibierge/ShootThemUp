@@ -44,6 +44,8 @@ public:
 
     bool collision (Ship *ship);
     
+    bool collisionPoint(float x, float y);
+    
 
 //  ACCESSOR METHODS
 //

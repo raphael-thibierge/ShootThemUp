@@ -52,6 +52,10 @@ void GameModel::nextStep(){
                             enemy->shoot("standart", "SOUTH", this->getLevel()->getBullet());
                     }
                 }
+                
+                for (auto bullet : *_level->getBullet()){
+                    bullet->move();
+                }
 
                 _level->collisionManager();
 
@@ -60,9 +64,7 @@ void GameModel::nextStep(){
 
                 }
 
-                for (auto bullet : *_level->getBullet()){
-                    bullet->move();
-                }
+                
 
 
 

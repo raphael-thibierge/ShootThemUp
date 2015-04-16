@@ -30,18 +30,30 @@ string Ship::toString(){
     return " type="+_type+" = "+Position::toString() + " speed=" + to_string(_speed) + " life=" + to_string(_lifeLevel);
 }
 
+
+bool Ship::collisionPoint(float x, float y){
+    if ( x >= _X && x <= _X+_width && y >= _Y && y <= _Y+_height)
+        return true;
+    return false;
+}
+
+
 bool Ship::collision(Bullet *bullet){
-    // A REFAIRE JE M'EN OCCUPE
-    bool returnValue = false;
-    
-    return returnValue;
+    if (collisionPoint(bullet->getX(), bullet->getY())
+        || collisionPoint(bullet->getX(), bullet->getY()+bullet->getHeight())
+        || collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY())
+        || collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY()+bullet->getHeight()))
+        bool a = true;
+    return false;
 }
 
 bool Ship::collision(Ship *ship){
-    // PAREIL
-    bool returnValue = false;
-    
-    return returnValue;
+    if (collisionPoint(ship->getX(), ship->getY())
+        || collisionPoint(ship->getX(), ship->getY()+ship->getHeight())
+        || collisionPoint(ship->getX()+ship->getWidht(), ship->getY())
+        || collisionPoint(ship->getX()+ship->getWidht(), ship->getY()+ship->getHeight()))
+        return true;
+    return false;
 }
 
 
