@@ -12,8 +12,8 @@ settings Parametres
 menu Menu
 game Jeu
 move Deplacement
-moveX Deplacement_X
-moveY Deplacement_Y
+moveX Deplacement_X:
+moveY Deplacement_Y:
 shoot Tirer
 nothing Rien
 escape Abandonner
@@ -40,3 +40,4 @@ successfullChange Modification_réussie
 fail Echec!
 newValue Nouvelle_valeur
 valueLower La_valeur_doit_être_inféieur_à
+bomb Utiliser_une_bombe

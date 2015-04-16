@@ -12,7 +12,7 @@ class Level
 private:
 
     unsigned int _level;
-	unsigned int* _difficulty;
+	unsigned int * _difficulty;
 	unsigned int _nbEnnemy;
     Player * _player;
     std::list<Enemy*> _enemyList ;

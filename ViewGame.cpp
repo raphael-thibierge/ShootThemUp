@@ -26,9 +26,9 @@ int ViewGame::treatEvent(){
     switch (reponse) {
         case 1:
             int dx, dy;
-            cout << "Deplacement X ;" ;
+            cout << _language->getText("moveX") ;
             cin >> dx ;
-            cout << "Deplacement Y ;";
+            cout << _language->getText("moveY");
             cin >> dy;
             _modele->getPlayer()->RectanglePosition::move(dx, dy);
             break;
@@ -72,11 +72,11 @@ void ViewGame::showView(){
     cout << endl;
 
 
-    cout << "\t (1) Deplacement" << endl;
-    cout << "\t (2) Tirer" << endl;
-    cout << "\t (3) Utiliser bombe" << endl;
-    cout << "\t (4) Rien" << endl;
-    cout << "\t (5) Abandonner" << endl;
+    cout << "\t (1)" + _language->getText("move") << endl;
+    cout << "\t (2)" + _language->getText("shoot") << endl;
+    cout << "\t (3)" + _language->getText("bomb") << endl;
+    cout << "\t (4)" + _language->getText("nothing") << endl;
+    cout << "\t (5)" + _language->getText("escape") << endl;
 
 }
 

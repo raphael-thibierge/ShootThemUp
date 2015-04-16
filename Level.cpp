@@ -21,7 +21,7 @@ Level::~Level ()
 {
     cout << "\n=====================" << endl;
     cout << "DESTRUCTOR LEVEL" << endl;
-    
+
     for(auto enemy : _enemyList)
         delete enemy;
     _enemyList.erase(_enemyList.begin(), _enemyList.end());
@@ -32,10 +32,10 @@ Level::~Level ()
 
     _player = nullptr;
     _difficulty = nullptr;
-    
+
     cout << "End destructor" << endl;
     cout << "\n=====================" << endl;
-    
+
 }
 
 //
@@ -86,7 +86,15 @@ void Level::collisionManager()
     // collision between the player and the bullets
     for (auto bullet : _bulletList)
         if (_player->collision(bullet))
+        {
+            _player->setLifeLevel(_player->getLifeLevel()-bullet->getDamage());
+            if(_player->getLifeLevel()==0)
+            {
+                _player->setNbLife(_player->getNbLife()-1);
+            }
             bulletsDestroyed.push_back(bullet);
+        }
+
 
 
     // collision between the player and the enemies
@@ -96,7 +104,10 @@ void Level::collisionManager()
         {
             //score et vie à gérer
             enemiesDestroyed.push_back(enemy);
+            _player->setLifeLevel(0);
+            _player->setNbLife(_player->getNbLife()-1);
             cout << "Joueur touché -par un enemi -> doit mourir" << endl;
+
         }
     }
 
@@ -106,9 +117,12 @@ void Level::collisionManager()
 
     // collision between an enemy and a bullet
 
-    for (auto enemy : _enemyList){
-        for (auto bullet : _bulletList){
-            if (enemy->collision(bullet)){
+    for (auto enemy : _enemyList)
+    {
+        for (auto bullet : _bulletList)
+        {
+            if (enemy->collision(bullet))
+            {
                 _player->score(enemy , *_difficulty);
                 enemiesDestroyed.push_back(enemy);
                 bulletsDestroyed.push_back(bullet);
@@ -117,33 +131,40 @@ void Level::collisionManager()
     }
 
     //collision with the border
-    for (auto enemy : _enemyList){
-        if(enemy->getY() > SCREEN_HEIGHT){
+    for (auto enemy : _enemyList)
+    {
+        if(enemy->getY() > SCREEN_HEIGHT)
+        {
             enemiesDestroyed.push_back(enemy);
         }
     }
 
-    for (auto bullet : _bulletList){
-        if(bullet->getY() < 0){
+    for (auto bullet : _bulletList)
+    {
+        if(bullet->getY() < 0)
+        {
             bulletsDestroyed.push_back(bullet);
         }
-        if(bullet->getY() > SCREEN_HEIGHT){
+        if(bullet->getY() > SCREEN_HEIGHT)
+        {
             bulletsDestroyed.push_back(bullet);
         }
     }
     // remove duplicate enemies and bullet
     enemiesDestroyed.unique();
     bulletsDestroyed.unique();
-    
+
     // destruction of enemies
-    for (auto enemy : enemiesDestroyed){
+    for (auto enemy : enemiesDestroyed)
+    {
         cout << enemy->toString() << endl;
         _enemyList.remove(enemy);
         delete enemy;
     }
-    
+
     // destruction of bullets
-    for (auto bullet : bulletsDestroyed){
+    for (auto bullet : bulletsDestroyed)
+    {
         _bulletList.remove(bullet);
         delete bullet;
     }
@@ -171,7 +192,7 @@ Player * Level::getPlayer()const
 // ne vas surement pas servir
 void Level::setDifficulty(unsigned int difficulty)
 {
-     *_difficulty=difficulty;
+    *_difficulty=difficulty;
 }
 
 

@@ -5,7 +5,8 @@ using namespace std;
 // CONSTRUCTOR AND DESTRUCTOR
 //
 
-GameModel::GameModel() {
+GameModel::GameModel()
+{
     cout << "\n=====================" << endl;
     cout << "CONSTRUCTOR GAMEMODEL" << endl;
 
@@ -18,7 +19,8 @@ GameModel::GameModel() {
 
 }
 
-GameModel::~GameModel() {
+GameModel::~GameModel()
+{
     cout << "\n=====================" << endl;
     cout << "DESTRUCTION DE GAMEMODEL" << endl;
 
@@ -30,16 +32,20 @@ GameModel::~GameModel() {
 // Methods
 //
 
-void GameModel::nextStep(){
+void GameModel::nextStep()
+{
 
 
     // fonction moteur du jeu
     // fonction qui fait tourner le jeu
 
-    if (_player != nullptr && _level != nullptr){
+    if (_player != nullptr && _level != nullptr)
+    {
 
-        if (!_level->win()){
-            if (!_level->loose()) {
+        if (!_level->loose())
+        {
+            if (!_level->win())
+            {
                 // le jeu continue
                 int random= rand()%(-2);
                 if(random==1)
@@ -48,31 +54,28 @@ void GameModel::nextStep(){
                     {
                         random = rand()%(-3);
                         if(random==2)
-                        
+
                             enemy->shoot("standart", "SOUTH", this->getLevel()->getBullet());
                     }
                 }
-                
-                for (auto bullet : *_level->getBullet()){
+
+                for (auto bullet : *_level->getBullet())
+                {
                     bullet->move();
                 }
 
                 _level->collisionManager();
 
-                for (auto enemy : *_level->getEnemy()){
+                for (auto enemy : *_level->getEnemy())
+                {
                     enemy->move();
 
                 }
-
-                
-
-
-
-
             }
         }
 
-        else {
+        else
+        {
             nextLevel();
         }
     }
@@ -137,19 +140,23 @@ void GameModel::destructLevel()
 // ACCESSOR METHODS
 //
 
-Player* GameModel::getPlayer(){
+Player* GameModel::getPlayer()
+{
     return _player ;
 }
 
-Level* GameModel::getLevel(){
+Level* GameModel::getLevel()
+{
     return _level;
 }
 
-Shop* GameModel::getShop(){
+Shop* GameModel::getShop()
+{
     return _shop;
 }
 
-Settings* GameModel::getSettings(){
+Settings* GameModel::getSettings()
+{
     return _settings;
 }
 

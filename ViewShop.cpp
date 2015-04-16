@@ -24,7 +24,7 @@ int ViewShop::treatEvent()
         cin >> answer;
 
     }
-    while ( answer > 3 && answer < 0 );
+    while ( (answer > 24 && answer < 21) || (answer > 15 && answer < 10)  );
 
     switch (answer)
     {

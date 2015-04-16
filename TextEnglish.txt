@@ -12,8 +12,8 @@ settings Settings
 menu Menu
 game Game
 move Move
-moveX Move_X
-moveY Move_Y
+moveX Move_X:
+moveY Move_Y:
 shoot Shoot
 nothing continue
 escape Escape
@@ -40,3 +40,4 @@ successfullChange Change_Successfuly
 fail Failure!
 newValue New_value
 valueLower Value_must_be_lower_than
+bomb Use_a_bombe
