@@ -30,7 +30,7 @@ upgradeShiplvl2 Ship_level_2
 upgradeShiplvl3 Ship_level_3
 upgradeShiplvl4 Ship_level_4
 purchaseRight Purchase_done.
-purchaseWrong You_need_money.Purchase_fail.
+purchaseWrong Purchase_fail.
 difficulty Difficulty
 NBLifeInit Initial_Life_Number
 availableLanguages Available_languages
@@ -41,3 +41,4 @@ fail Failure!
 newValue New_value
 valueLower Value_must_be_lower_than
 bomb Use_a_bombe
+money Money:
