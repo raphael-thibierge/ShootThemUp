@@ -31,26 +31,23 @@ string Ship::toString(){
 }
 
 bool Ship::collision(Bullet *bullet){
-    if (bullet->getX() == _X && bullet->getY() == _Y)
-        return true;
-    return false;
+    // A REFAIRE JE M'EN OCCUPE
+    bool returnValue = false;
+    
+    return returnValue;
 }
 
 bool Ship::collision(Ship *ship){
-    if (ship->getX() == _X && ship->getY() == _Y)
-        return true;
-    return false;
+    // PAREIL
+    bool returnValue = false;
+    
+    return returnValue;
 }
+
 
 // Accessor methods
 //
-float Ship::getX() const{
-    return  _X;
-}
 
-float Ship::getY() const{
-    return _Y;
-}
 
 unsigned int Ship::getLifeLevel() const{
     return _lifeLevel;

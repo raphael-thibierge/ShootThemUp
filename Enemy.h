@@ -11,18 +11,23 @@
 class Enemy : virtual public Ship
 {
 
-    private :
+private :
+
     unsigned int _level;
     std::string _direction;
 
+
+// CONSTRUCTORS/DESTRUCTORS
+//
 public:
-
-	// Constructors/Destructors
-	//
-
+    
     Enemy (std::string type, float x, float y, unsigned int lifeLevel);
 
+    Enemy (std::string type, unsigned int level, float x, float y, unsigned int lifeLevel, float speed, unsigned int nbLife);
+    
 	virtual ~Enemy ();
+
+// METHODS
 
     void move ();
 
@@ -33,12 +38,21 @@ public:
 
     std::string toString();
 
-    private :
+private:
 
     void initEnemy();
 
+// STATIC METHODS
 
+public:
+    
+    static Enemy* Standart(unsigned int level);
+    
+    static Enemy* Kamikaze(unsigned int level);
+    
+private:
+
+        static int randomPositionX();
 
 };
-
 #endif // ENEMY_H

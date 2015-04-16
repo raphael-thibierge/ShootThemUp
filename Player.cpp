@@ -51,7 +51,7 @@ void Player::initPlayer()
     _bulletType = "standart";
     _lifeLevel = 300;
     _score = 0;
-    _money = 0;
+    _money = 110;
     _speed = 10;
     _level = 1;
     _nbLife = 3;
@@ -96,6 +96,11 @@ float Player::getMoney() const
     return _money;
 }
 
+unsigned int Player::getScore() const
+{
+    return _score;
+}
+
 string Player::getBulletType() const
 {
     return _bulletType;
@@ -126,6 +131,12 @@ void Player::setMoney( float money)
     _money=money;
 }
 
+void Player::setScore(unsigned int score){
+    _score=score;
+}
+
 // Other methods
 //
+
+
 

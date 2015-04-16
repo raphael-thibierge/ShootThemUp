@@ -25,7 +25,7 @@ int ViewMainMenu::treatEvent() {
         
   
         do {
-            cout << "Choix" << endl;
+            cout << _language->getText("choice") << endl;
             cin >> answer;
             
         } while ( answer > 3 && answer < 0 );
@@ -56,7 +56,7 @@ int ViewMainMenu::treatEvent() {
         
         
         do {
-            cout << "Choix" << endl;
+            cout << _language->getText("choice") << endl;
             cin >> answer;
             
         } while ( answer > 4 && answer < 0 );
@@ -93,20 +93,20 @@ void ViewMainMenu::showView() {
     if (_modele->getPlayer() == nullptr){
         
         cout << "\n------------------" << endl;
-        cout << "Menu" << endl ;
-        cout << "\t (1) Nouvelle Partie" << endl ;
-        cout << "\t (2) Charger une partie" << endl;
-        cout << "\t (3) Quitter" << endl ;
+        cout << _language->getText("menu") << endl ;
+        cout << "\t (1) " + _language->getText("newGame") << endl ;
+        cout << "\t (2) " + _language->getText("loadGame") << endl;
+        cout << "\t (3) " + _language->getText("quit") << endl ;
     }
     
     else {
         
         cout << "\n------------------" << endl;
-        cout << "Menu" << endl ;
-        cout << "\t (1) Jouer" << endl ;
-        cout << "\t (2) Accéder à la boutique" << endl;
-        cout << "\t (3) Réglages" << endl ;
-        cout << "\t (4) Quitter" << endl;
+        cout << _language->getText("menu") << endl ;
+        cout << "\t (1) " + _language->getText("play") << endl ;
+        cout << "\t (2) " + _language->getText("goShop") << endl;
+        cout << "\t (3) " + _language->getText("settings") << endl ;
+        cout << "\t (4) " + _language->getText("quit") << endl;
     
     }
 }

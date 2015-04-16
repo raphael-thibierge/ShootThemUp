@@ -35,28 +35,41 @@ void GameModel::nextStep(){
 
     // fonction moteur du jeu
     // fonction qui fait tourner le jeu
-    
+
     if (_player != nullptr && _level != nullptr){
-        
+
         if (!_level->win()){
             if (!_level->loose()) {
                 // le jeu continue
-                
+                int random= rand()%(-2);
+                if(random==1)
+                {
+                    for (auto enemy : *_level->getEnemy())
+                    {
+                        random = rand()%(-3);
+                        if(random==2)
+                        
+                            enemy->shoot("standart", "SOUTH", this->getLevel()->getBullet());
+                    }
+                }
+
+                _level->collisionManager();
+
                 for (auto enemy : *_level->getEnemy()){
                     enemy->move();
-                    
+
                 }
-                
+
                 for (auto bullet : *_level->getBullet()){
                     bullet->move();
                 }
-                
-                _level->collisionManager();
-                
-                
+
+
+
+
             }
         }
-        
+
         else {
             nextLevel();
         }
@@ -115,25 +128,26 @@ void GameModel::newLevel ()
 void GameModel::destructLevel()
 {
     delete _level;
+    _level = nullptr;
 }
 
 
 // ACCESSOR METHODS
 //
 
-Player* GameModel::getPlayer()  const{
+Player* GameModel::getPlayer(){
     return _player ;
 }
 
-Level* GameModel::getLevel() const {
+Level* GameModel::getLevel(){
     return _level;
 }
 
-Shop* GameModel::getShop() const{
+Shop* GameModel::getShop(){
     return _shop;
 }
 
-Settings* GameModel::getSettings() const{
+Settings* GameModel::getSettings(){
     return _settings;
 }
 

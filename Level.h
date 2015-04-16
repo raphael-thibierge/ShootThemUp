@@ -15,8 +15,8 @@ private:
 	unsigned int* _difficulty;
 	unsigned int _nbEnnemy;
     Player * _player;
-    std::list<Enemy*> * _enemyList ;
-    std::list<Bullet*> * _bulletList;
+    std::list<Enemy*> _enemyList ;
+    std::list<Bullet*> _bulletList;
 
 public:
 
@@ -44,9 +44,9 @@ public:
 
 // ACCESSORS
 
-    std::list<Enemy*> * getEnemy() const;
+    std::list<Enemy*> * getEnemy();
 
-    std::list<Bullet*> * getBullet() const;
+    std::list<Bullet*> * getBullet();
 
     Player * getPlayer()const;
 

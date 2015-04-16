@@ -11,8 +11,6 @@ Level::Level (Player * player, unsigned int * difficultyPointer) : _player(playe
     cout << "CONSTRUCTOR LEVEL" << endl;
 
     _nbEnnemy = 1;
-    _enemyList = new list<Enemy*> ;
-    _bulletList = new list<Bullet*>;
     _level = _player->getLevel();
 
     generate();
@@ -24,18 +22,20 @@ Level::~Level ()
     cout << "\n=====================" << endl;
     cout << "DESTRUCTOR LEVEL" << endl;
 
-    for(auto enemy : *_enemyList)
+    for(auto enemy : _enemyList)
         delete enemy;
-    _enemyList->erase(_enemyList->begin(), _enemyList->end());
-    delete _enemyList;
+    _enemyList.erase(_enemyList.begin(), _enemyList.end());
 
-    for(auto bullet : *_bulletList)
+    for(auto bullet : _bulletList)
         delete bullet;
-    _bulletList->erase(_bulletList->begin(), _bulletList->end());
-    delete _bulletList;
-    
+    _bulletList.erase(_bulletList.begin(), _bulletList.end());
+
     _player = nullptr;
     _difficulty = nullptr;
+    
+    cout << "End destructor" << endl;
+    cout << "\n=====================" << endl;
+    
 }
 
 //
@@ -47,10 +47,7 @@ void Level::generate()
     // creation of a enemy
     for (int i=0; i<NB_ENNEMY_LEVEL; i++)
     {
-        unsigned int lifeLevel = 25*DIFFICULTY;
-        float x = (i%5)*10;
-        float y = -i*10;
-        _enemyList->push_back(new Enemy("standart", x, y, lifeLevel));
+        _enemyList.push_back(Enemy::Standart(1));
 
     }
     // need to generate shuffle initial position for ennemy
@@ -60,9 +57,11 @@ void Level::generate()
 bool Level::win ()
 {
 
-    if (_enemyList->begin() == _enemyList->end())
+    if (_enemyList.begin() == _enemyList.end())
     {
         cout << "\nVICTOIRE DE LA MANCHE" << endl;
+        float money=_player->getScore()/20;
+        _player->setMoney(_player->getMoney()+money);
         return true;
     }
 
@@ -81,27 +80,19 @@ bool Level::loose ()
 
 void Level::collisionManager()
 {
-    // collision between a ship and a bullet
 
     list<Enemy*> enemiesDestroyed ;
     list<Bullet*> bulletsDestroyed ;
 
 
-    // collision between the player and the bullet
-    for (auto bullet : *_bulletList)
+    // collision between the player and the bullets
+    for (auto bullet : _bulletList)
         if (_player->collision(bullet))
             bulletsDestroyed.push_back(bullet);
 
-    // with player
-    for (auto bullet : *_bulletList)
-        if (_player->collision(bullet))
-            // score et vie à gérer
-            bulletsDestroyed.push_back(bullet);
 
-
-
-    // with an enemy
-    for (auto enemy : *_enemyList)
+    // collision between the player and the enemies
+    for (auto enemy : _enemyList)
     {
         if (_player->collision(enemy))
         {
@@ -111,13 +102,14 @@ void Level::collisionManager()
         }
     }
 
+
     // collision between 2 enemy
 
 
     // collision between an enemy and a bullet
 
-    for (auto enemy : *_enemyList){
-        for (auto bullet : *_bulletList){
+    for (auto enemy : _enemyList){
+        for (auto bullet : _bulletList){
             if (enemy->collision(bullet)){
                 _player->score(enemy , *_difficulty);
                 enemiesDestroyed.push_back(enemy);
@@ -126,47 +118,47 @@ void Level::collisionManager()
         }
     }
 
-    
+    //collision with the border
+    for (auto enemy : _enemyList){
+        if(enemy->getY() > SCREEN_HEIGHT){
+            enemiesDestroyed.push_back(enemy);
+        }
+    }
+
+    for (auto bullet : _bulletList){
+        if(bullet->getY() < 0){
+            bulletsDestroyed.push_back(bullet);
+        }
+        if(bullet->getY() > SCREEN_HEIGHT){
+            bulletsDestroyed.push_back(bullet);
+        }
+    }
+
+
     for (auto enemy : enemiesDestroyed){
         cout << enemy->toString() << endl;
-        _enemyList->remove(enemy);
+        _enemyList.remove(enemy);
         delete enemy;
     }
 
     for (auto bullet : bulletsDestroyed){
-        _bulletList->remove(bullet);
+        _bulletList.remove(bullet);
         delete bullet;
     }
 
-    /*
-    //collision with the border
-    for (auto enemy : *_enemyList){
-        if(enemy->getY() > 100){
-            delete enemy;
-            _enemyList->remove(enemy);
-        }
-    }
-
-    for (auto bullet : *_bulletList){
-        if(bullet->getY() < 0){
-            delete bullet;
-            _bulletList->remove(bullet);
-        }
-    }
-     */
 
 }
 
 // Accessor methods
 //
-list<Enemy*> * Level::getEnemy() const
+list<Enemy*> * Level::getEnemy()
 {
-    return _enemyList;
+    return &_enemyList;
 }
 
-list<Bullet*> * Level::getBullet() const
+list<Bullet*> * Level::getBullet()
 {
-    return _bulletList;
+    return &_bulletList;
 }
 
 Player * Level::getPlayer()const
