@@ -50,11 +50,11 @@ void Player::initPlayer()
 
 void Player::score(Enemy * enemy, unsigned int difficultyLevel)
 {
-    if ( enemy->getType() == "standart")
-    {
+    if ( enemy->getType() == "standart"){
         _score+= 5*enemy->getLevel()*difficultyLevel;
     }
 //gestion de la monnaie ici
+// NOT DONE
 
 }
 

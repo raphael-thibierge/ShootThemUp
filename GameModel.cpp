@@ -41,22 +41,25 @@ void GameModel::nextStep()
 {
     if (_player != nullptr){
         
-        
+        // if there isn't any level and level upper than
         if(_level==nullptr && _player->getLevel()>0)
         {
+            // creation of the next level
             _level=new Level(_player, _settings->getDifficulty());
         }
         
         // fonction moteur du jeu
         // fonction qui fait tourner le jeu
         
+        // if there is a level we are in a game
         if ( _level != nullptr)
         {
             
-            // le jeu continue
+            // game constinue
             int random= rand()%(-2);
             if(random==1)
             {
+                // shuffle shoot of enemies
                 for (auto enemy : *_level->getEnemies())
                 {
                     random = rand()%(-3);
@@ -65,19 +68,20 @@ void GameModel::nextStep()
                 }
             }
             
+            // bullet's move
             for (auto bullet : *_level->getBullet())
             {
                 bullet->move();
             }
-            
+           
+            // checking for collision
             _level->collisionManager();
             
+            // then enemies'move
             for (auto enemy : *_level->getEnemies())
             {
                 enemy->move();
-                
             }
-            
             
             if (_level->loose())
             {
@@ -102,7 +106,6 @@ bool GameModel::loadGame ()
 
 void GameModel::newGame ()
 {
-
     _player = new Player();
     _player->resetPosition();
     _shop = new Shop(_player);
@@ -118,17 +121,19 @@ void GameModel::saveGame ()
 
 void GameModel::play ()
 {
+    // game start from the main menu
     newLevel();
     _player->setNbLife(*_settings->getNbLife());
 }
 
-
+/*
 void GameModel::nextLevel ()
 {
     delete _level;
     _player->nextLevel();
     _level = new Level(_player, _settings->getDifficulty());
 }
+*/
 
 
 void GameModel::newLevel ()

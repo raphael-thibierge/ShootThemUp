@@ -43,7 +43,7 @@ Level::~Level ()
 
 void Level::generate()
 {
-    // creation of a enemy
+    // creation of enemies
     for (int i=0; i<NB_ENNEMY_LEVEL; i++)
     {
         _enemyList.push_back(Enemy::Standard(1));
@@ -75,12 +75,12 @@ bool Level::loose ()
 
 void Level::collisionManager()
 {
-
+    // list to destruct enemies and bullets
     list<Enemy*> enemiesDestroyed ;
     list<Bullet*> bulletsDestroyed ;
 
 
-    // collision between the player and the bullets
+    // collision between player and bullets
     for (auto bullet : _bulletList)
         if (_player->collision(bullet))
         {
@@ -94,24 +94,21 @@ void Level::collisionManager()
 
 
 
-    // collision between the player and the enemies
+    // collision between player and enemies
     for (auto enemy : _enemyList)
     {
         if (_player->collision(enemy))
         {
-            //score et vie à gérer
             enemiesDestroyed.push_back(enemy);
             _player->looseLife();
-
         }
     }
 
 
     // collision between 2 enemy
+    // NOT DONE
 
-
-    // collision between an enemy and a bullet
-
+    // collision between enemies and bullets
     for (auto enemy : _enemyList)
     {
         for (auto bullet : _bulletList)
@@ -136,16 +133,15 @@ void Level::collisionManager()
 
     for (auto bullet : _bulletList)
     {
-        if(bullet->getY() < 0)
-        {
+        if(bullet->getY() < 0){
             bulletsDestroyed.push_back(bullet);
         }
-        if(bullet->getY() > SCREEN_HEIGHT)
-        {
+        if(bullet->getY() > SCREEN_HEIGHT){
             bulletsDestroyed.push_back(bullet);
         }
     }
-    // remove duplicate enemies and bullet
+    
+    // remove duplicate enemies and bullets
     enemiesDestroyed.unique();
     bulletsDestroyed.unique();
 

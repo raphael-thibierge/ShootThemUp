@@ -29,78 +29,64 @@ int ViewShop::treatEvent()
     switch (answer)
     {
     case 11:
-        if(_modele->getShop()->upgradeBullet("level2"))
-        {
+        if(_modele->getShop()->upgradeBullet("level2")){
             cout<<_language->getText("purchaseRight")<<endl;
         }
-        else
-        {
+        else{
             cout<<_language->getText("purchaseWrong")<<endl;
         }
         break;
 
     case 12:
-        if(_modele->getShop()->upgradeBullet("level3"))
-        {
+        if(_modele->getShop()->upgradeBullet("level3")){
             cout<<_language->getText("purchaseRight")<<endl;
         }
-        else
-        {
+        else{
             cout<<_language->getText("purchaseWrong")<<endl;
         }
         break;
 
     case 13:
-        if(_modele->getShop()->upgradeBullet("level4"))
-        {
+        if(_modele->getShop()->upgradeBullet("level4")){
             cout<<_language->getText("purchaseRight")<<endl;
         }
-        else
-        {
+        else{
             cout<<_language->getText("purchaseWrong")<<endl;
         }
         break;
 
     case 14:
-        if(_modele->getShop()->upgradeBullet("level5"))
-        {
+        if(_modele->getShop()->upgradeBullet("level5")){
             cout<<_language->getText("purchaseRight")<<endl;
         }
-        else
-        {
+        else{
             cout<<_language->getText("purchaseWrong")<<endl;
         }
         break;
 
     case 21:
-        if(_modele->getShop()->upgradeShip("ship2"))
-        {
+        if(_modele->getShop()->upgradeShip("ship2")){
             cout<<_language->getText("purchaseRight")<<endl;
         }
-        else
-        {
+        else{
             cout<<_language->getText("purchaseWrong")<<endl;
         }
         break;
 
     case 22:
-        if(_modele->getShop()->upgradeShip("ship3"))
-        {
+        if(_modele->getShop()->upgradeShip("ship3")){
             cout<<_language->getText("purchaseRight")<<endl;
         }
-        else
-        {
+        else{
             cout<<_language->getText("purchaseWrong")<<endl;
         }
         break;
 
     case 23:
-        if(_modele->getShop()->upgradeShip("ship4"))
-        {
+        if(_modele->getShop()->upgradeShip("ship4")){
             cout<<_language->getText("purchaseRight")<<endl;
         }
-        else
-        {
+        else{
             cout<<_language->getText("purchaseWrong")<<endl;
         }
         break;

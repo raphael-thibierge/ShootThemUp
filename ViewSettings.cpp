@@ -30,9 +30,7 @@ int ViewSettings::treatEvent(){
         
     } while ( answer > 4 && answer < 0 );
     
-    
-    // VALEURS PRENSENTES SONT DES CONSTANTES
-    // A CHANGER AVEC MESSAGE QUI DEMANDE PARAMETRE SOUHAITE
+    // treatement
     switch (answer) {
         case 1:
             cout << _language->getText("valueLower") << " 4" << endl;
@@ -40,6 +38,7 @@ int ViewSettings::treatEvent(){
                 cout << _language->getText("newValue") << endl;
                 cin >> answer;
             } while (answer <= 0 || answer > 3);
+            
             if (_modele->getSettings()->changeDifficulty(answer))
                 cout << _language->getText("successfullChange") << endl;
             else

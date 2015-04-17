@@ -4,6 +4,7 @@
 
 class Bomb
 {
+    // NOT AVALAIBLE
     public:
         Bomb();
         virtual ~Bomb();

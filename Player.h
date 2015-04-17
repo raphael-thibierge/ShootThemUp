@@ -57,6 +57,7 @@ private :
 public :
 
 // GETTERS
+//
     unsigned int getLevel() const;
 
     unsigned int getShild() const;
@@ -69,6 +70,7 @@ public :
     
     
 // SETTERS
+//
     void setNbLife(unsigned int nbLife);
 
     void setLevel( unsigned int level);

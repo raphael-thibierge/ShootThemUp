@@ -45,7 +45,7 @@ public :
 
     void play ();
 
-    void nextLevel ();
+    //void nextLevel ();
 
     void newLevel ();
 

@@ -9,7 +9,8 @@
 class Bullet : virtual public RectanglePosition
 {
 
-    private :
+
+private :
 
     std::string _type;
     unsigned int _damage;
@@ -17,7 +18,7 @@ class Bullet : virtual public RectanglePosition
     std::string _direction;
     float _speed;
 
-    public:
+public:
 
 // Constructeurs destructeurs
 
