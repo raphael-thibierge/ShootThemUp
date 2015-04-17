@@ -34,7 +34,12 @@ GameModel::~GameModel()
 
 void GameModel::nextStep()
 {
-
+//    if(_level==nullptr && _player->getLevel()>0)
+//    {
+       // cout<<"test"<<endl;
+//        _player->setLevel(_player->getLevel()+1);
+//        _level=new Level(_player, _settings->getDifficulty());
+//    }
 
     // fonction moteur du jeu
     // fonction qui fait tourner le jeu

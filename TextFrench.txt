@@ -30,7 +30,7 @@ upgradeShiplvl2 Vaisseau_niveau_2
 upgradeShiplvl3 Vaisseau_niveau_3
 upgradeShiplvl4 Vaisseau_niveau_4
 purchaseRight Achat_effectué
-purchaseWrong Vous_avez_besoin_d'argent.Achat_raté
+purchaseWrong Echec_de_l'achat
 difficulty Difficulte
 NBLifeInit Nombre_de_vie_initiales
 availableLanguages Langues_disponibles
@@ -41,3 +41,4 @@ fail Echec!
 newValue Nouvelle_valeur
 valueLower La_valeur_doit_être_inféieur_à
 bomb Utiliser_une_bombe
+money Argent:

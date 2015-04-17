@@ -42,6 +42,7 @@ string Player::toString()
     text += " monney=" + to_string(_money);
     text += " level=" + to_string(_level);
     text+= " score=" + to_string(_score) ;
+    text+= " Nb life= " + to_string(_nbLife);
     return text;
 }
 
@@ -51,9 +52,9 @@ void Player::initPlayer()
     _bulletType = "standart";
     _lifeLevel = 300;
     _score = 0;
-    _money = 110;
+    _money = 1000;
     _speed = 10;
-    _level = 1;
+    _level = 0;
     _nbLife = 3;
     _width = 10;
     _height = 10;
@@ -66,9 +67,7 @@ void Player::score(Enemy * enemy, unsigned int difficultyLevel)
     {
         _score+= 5*enemy->getLevel()*difficultyLevel;
     }
-
-
-    //gestion de la monnaie ici
+//gestion de la monnaie ici
 
 }
 
