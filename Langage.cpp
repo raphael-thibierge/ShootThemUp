@@ -4,6 +4,10 @@
 
 using namespace std;
 
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
+
 Language::Language()
 {
     loadFromFile("TextFrench.txt");
@@ -13,6 +17,10 @@ Language::~Language()
 {
     //dtor
 }
+
+//
+// METHODS
+//
 
 bool Language::change(string language)
 {
@@ -54,6 +62,10 @@ void Language::loadFromFile(string text)
     else  // sinon
         cerr << "Can't open this file !" << endl;
 }
+
+//
+//ACCESSOR METHODS
+//
 
 string Language::getText(string text)
 {

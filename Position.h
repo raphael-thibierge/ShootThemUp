@@ -20,21 +20,19 @@ protected:
     float _width;
     float _height;
 
+
+
+// CONSTRUCTOR AND DESTRUCTOR
+//
 public:
-
-	// Constructors/Destructors
-	//
-
 	RectanglePosition ();
-
-    RectanglePosition (float x, float y);
 
     RectanglePosition(float x, float y, float width, float heigh);
 
 	virtual ~RectanglePosition () =0;
 
 
-// Methods
+// METHODS
 //
     void setPosition (float x, float y);
 
@@ -47,6 +45,7 @@ public:
     std::string toString();
 
 //ACCESSOR METHODS
+//
     float getX() const;
 
     float getY() const;

@@ -2,20 +2,9 @@
 
 using namespace std;
 
-// Constructors/Destructors
 //
-
-Enemy::Enemy (string type, float x, float y, unsigned int lifeLevel) : Ship::Ship(type) {
-    cout << "\n=====================" << endl;
-    cout << "CONSTRUCTOR ENEMY" << endl;
-
-    setPosition(x, y);
-    initEnemy();
-
-    _lifeLevel = lifeLevel;
-
-}
-
+// CONSTRUCTOR AND DESTRUCTOR
+//
 
 Enemy::Enemy (std::string type, unsigned int level, float x, float y, float width, float height, unsigned int lifeLevel, float speed, unsigned int nbLife) : Ship(type), _level(level){
 
@@ -28,11 +17,12 @@ Enemy::Enemy (std::string type, unsigned int level, float x, float y, float widt
 }
 
 Enemy::~Enemy () {
-    cout << "\n=====================" << endl;
-    cout << "DESTRUCTOR ENEMY" << endl;}
+    //cout << "\n=====================" << endl;
+    //cout << "DESTRUCTOR ENEMY" << endl;
+}
 
 //
-// Methods
+// METHODS
 //
 void Enemy::move()
 {
@@ -49,21 +39,7 @@ string Enemy::toString(){
     return "ENEMY : " + Ship::toString();
 }
 
-
-// A SUPPRIMER BIENTOT =========
-void Enemy::initEnemy(){
-    if (_type == "standart")
-    {
-        _level = 1;
-        _lifeLevel = 50;
-        _speed = 5;
-        _direction = "SOUTH";
-        _nbLife = 1;
-    }
-    _nbLife = 1 ;
-}
-// ==============================
-
+//
 // ACCESSOR METHODS
 //
 
@@ -71,10 +47,11 @@ unsigned int Enemy::getLevel() const{
     return _level;
 }
 
+//
 // STATIC METHODS
 //
 
-Enemy* Enemy::Standart(unsigned int level){
+Enemy* Enemy::Standard(unsigned int level){
      return new Enemy("standard", level, randomPositionX(), 0, 10, 10, 25*DIFFICULTY, 5, 1 );
 }
 

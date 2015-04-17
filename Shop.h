@@ -12,12 +12,13 @@ private:
     
 public:
 // CONSTRUCTOR ABD DESTRUCTOR
-    
+//
     Shop(Player* player);
     
     virtual ~Shop();
     
 // METHODS
+//
     bool upgradeBullet(std::string type);
     
     bool upgradeShip(std::string type);

@@ -1,10 +1,14 @@
 #include "Shop.h"
 using namespace std;
 
+//
+// CONSTRUCTOR ABD DESTRUCTOR
+//
+
 Shop::Shop(Player* player) : _player(player){
     
-    cout << "\n=====================" << endl;
-    cout << "CONSTRUCTOR SHOP" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "CONSTRUCTOR SHOP" << endl;
     
     _store["level2"]=true;
     _store["level3"]=false;
@@ -20,11 +24,15 @@ Shop::Shop(Player* player) : _player(player){
 
 Shop::~Shop()
 {
-    cout << "\n=====================" << endl;
-    cout << "DESTRUCTOR SHOP" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "DESTRUCTOR SHOP" << endl;
     _player = nullptr;
 }
 
+
+//
+// METHODS
+//
 
 bool Shop::upgradeBullet(string type)
 {

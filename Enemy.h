@@ -21,7 +21,7 @@ private :
 //
 public:
     
-    Enemy (std::string type, float x, float y, unsigned int lifeLevel);
+   // Enemy (std::string type, float x, float y, unsigned int lifeLevel);
 
     Enemy (std::string type, unsigned int level, float x, float y, float width, float height, unsigned int lifeLevel, float speed, unsigned int nbLife);
     
@@ -38,15 +38,12 @@ public:
 
     std::string toString();
 
-private:
-
-    void initEnemy();
 
 // STATIC METHODS
 
 public:
     
-    static Enemy* Standart(unsigned int level);
+    static Enemy* Standard(unsigned int level);
     
     static Enemy* Kamikaze(unsigned int level);
     

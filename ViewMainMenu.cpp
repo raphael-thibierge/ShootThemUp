@@ -33,6 +33,7 @@ int ViewMainMenu::treatEvent() {
         switch (answer) {
             case 1:
                 _modele->newGame();
+                
                 returnValue = 1;
                 break;
                 
@@ -50,6 +51,7 @@ int ViewMainMenu::treatEvent() {
             
             case 4:
                 returnValue = 0;
+                showQuit();
                 
             default:
                 break;
@@ -79,6 +81,7 @@ int ViewMainMenu::treatEvent() {
                 break;
             case 4:
                 returnValue = 0;
+                showQuit();
                 break;
             
             default:
@@ -113,4 +116,22 @@ void ViewMainMenu::showView() {
         cout << "\t (4) " + _language->getText("quit") << endl;
     
     }
+    
+}
+
+void ViewMainMenu::showQuit(){
+
+    
+    cout << "    ________  __    __  ________        ________  __    __  _______" << endl;
+    cout << "   |        \\|  \\  |  \\|        \\      |        \\|  \\  |  \\|       \\" << endl;
+    cout << "    \\$$$$$$$$| $$  | $$| $$$$$$$$      | $$$$$$$$| $$\\ | $$| $$$$$$$\\" << endl;
+    cout << "      | $$   | $$__| $$| $$__          | $$__    | $$$\\| $$| $$  | $$" << endl;
+    cout << "      | $$   | $$    $$| $$  \\         | $$  \\   | $$$$\\ $$| $$  | $$" << endl;
+    cout << "      | $$   | $$$$$$$$| $$$$$         | $$$$$   | $$\\$$ $$| $$  | $$" << endl;
+    cout << "      | $$   | $$  | $$| $$_____       | $$_____ | $$ \\$$$$| $$__/ $$" << endl;
+    cout << "      | $$   | $$  | $$| $$     \\      | $$     \\| $$  \\$$$| $$    $$" << endl;
+    cout << "       \\$$    \\$$   \\$$ \\$$$$$$$$       \\$$$$$$$$ \\$$   \\$$ \\$$$$$$$" << endl;
+
+    
+    
 }

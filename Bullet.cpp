@@ -5,10 +5,10 @@ using namespace std ;
 // Constructors/Destructors
 //
 
-Bullet::Bullet (string type , string direction, float X, float Y, string shooter ) : RectanglePosition::RectanglePosition(X,Y), _type(type) ,_direction(direction), _shooter(shooter)
+Bullet::Bullet (string type , string direction, float X, float Y, string shooter ) : RectanglePosition::RectanglePosition(X,Y, 5, 5), _type(type) ,_direction(direction), _shooter(shooter)
 {
-    cout << "\n=====================" << endl;
-    cout << "CONSTRUCTOR BULLET" << endl;
+    // cout << "\n=====================" << endl;
+    //cout << "CONSTRUCTOR BULLET" << endl;
 
     initBullet();
 
@@ -16,8 +16,8 @@ Bullet::Bullet (string type , string direction, float X, float Y, string shooter
 
 Bullet::~Bullet ()
 {
-    cout << "\n=====================" << endl;
-    cout << "DESTRUCTOR BULLET" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "DESTRUCTOR BULLET" << endl;
 }
 
 //
@@ -34,8 +34,6 @@ void Bullet::move ()
 
 void Bullet::initBullet(){
 
-    _width = 5;
-    _height = 5;
     if (_direction == "NORTH")
         _Y -= _height;
     if (_direction == "SOUTH")

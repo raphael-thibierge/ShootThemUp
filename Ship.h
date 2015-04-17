@@ -24,13 +24,14 @@ protected:
 
 public:
 
+//
 // Constructors/Destructors
 //
 
     Ship (std::string type);
 
 	virtual ~Ship ();
-
+//
 // Methods
 //
 

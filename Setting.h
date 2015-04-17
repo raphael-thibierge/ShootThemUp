@@ -16,11 +16,13 @@ private:
 public:
 
 // CONSTRUCTOR AND DESTRUCTOR
+//
     Settings();
     
     virtual ~Settings();
 
 // METHODS
+//
     bool changeDifficulty(unsigned int difficulty);
     
     bool changeNbLife(unsigned int nbLife);
@@ -28,6 +30,7 @@ public:
     bool changeLanguage(std::string language);
 
 // ACCESSOR METHODS
+//
     
     unsigned int * getDifficulty() ;
     

@@ -1,14 +1,15 @@
 #include "Level.h"
 
-// Constructors/Destructors
+//
+// CONSTRUCTOR  AND DESTRUCTOR
 //
 
 using namespace std;
 
 Level::Level (Player * player, unsigned int * difficultyPointer) : _player(player), _difficulty(difficultyPointer)
 {
-    cout << "\n=====================" << endl;
-    cout << "CONSTRUCTOR LEVEL" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "CONSTRUCTOR LEVEL" << endl;
 
     _nbEnnemy = 1;
     _level = _player->getLevel();
@@ -19,8 +20,8 @@ Level::Level (Player * player, unsigned int * difficultyPointer) : _player(playe
 
 Level::~Level ()
 {
-    cout << "\n=====================" << endl;
-    cout << "DESTRUCTOR LEVEL" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "DESTRUCTOR LEVEL" << endl;
 
     for(auto enemy : _enemyList)
         delete enemy;
@@ -33,13 +34,11 @@ Level::~Level ()
     _player = nullptr;
     _difficulty = nullptr;
 
-    cout << "End destructor" << endl;
-    cout << "\n=====================" << endl;
-
 }
 
+
 //
-// Methods
+// METHODS
 //
 
 void Level::generate()
@@ -47,19 +46,18 @@ void Level::generate()
     // creation of a enemy
     for (int i=0; i<NB_ENNEMY_LEVEL; i++)
     {
-        _enemyList.push_back(Enemy::Standart(1));
+        _enemyList.push_back(Enemy::Standard(1));
 
     }
 }
 
 bool Level::win ()
 {
-
-    if (_enemyList.begin() == _enemyList.end())
-    {
-        cout << "\nVICTOIRE DE LA MANCHE" << endl;
+    if (_enemyList.size() == 0){
         float money=_player->getScore()/20;
         _player->setMoney(_player->getMoney()+money);
+        _player->nextLevel();
+        
         return true;
     }
 
@@ -68,9 +66,8 @@ bool Level::win ()
 
 bool Level::loose ()
 {
-    if (_player->getLifeLevel()<=0 and _player->getNbLife()==0 )
+    if (_player->getLifeLevel()==0 and _player->getNbLife()==0 )
     {
-        cout << "\nDEFAITE" << endl;
         return true;
     }
     return false;
@@ -104,9 +101,7 @@ void Level::collisionManager()
         {
             //score et vie à gérer
             enemiesDestroyed.push_back(enemy);
-            _player->setLifeLevel(0);
-            _player->setNbLife(_player->getNbLife()-1);
-            cout << "Joueur touché -par un enemi -> doit mourir" << endl;
+            _player->looseLife();
 
         }
     }
@@ -157,7 +152,6 @@ void Level::collisionManager()
     // destruction of enemies
     for (auto enemy : enemiesDestroyed)
     {
-        cout << enemy->toString() << endl;
         _enemyList.remove(enemy);
         delete enemy;
     }
@@ -171,9 +165,11 @@ void Level::collisionManager()
 
 }
 
-// Accessor methods
 //
-list<Enemy*> * Level::getEnemy()
+// ACCESSOR METHODS
+//
+
+list<Enemy*> * Level::getEnemies()
 {
     return &_enemyList;
 }
@@ -189,13 +185,4 @@ Player * Level::getPlayer()const
 }
 
 
-// ne vas surement pas servir
-void Level::setDifficulty(unsigned int difficulty)
-{
-    *_difficulty=difficulty;
-}
-
-
-// Other methods
-//
 

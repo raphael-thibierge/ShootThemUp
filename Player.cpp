@@ -8,16 +8,16 @@ using namespace std;
 
 Player::Player () : Ship::Ship("player")
 {
-    cout << "\n=====================" << endl;
-    cout << "CONSTRUCTOR PLAYER" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "CONSTRUCTOR PLAYER" << endl;
     initPlayer();
 }
 
 
 Player::~Player ()
 {
-    cout << "\n=====================" << endl;
-    cout << "DESTRUCTOR PLAYER" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "DESTRUCTOR PLAYER" << endl;
 }
 
 //
@@ -34,19 +34,6 @@ void Player::nextLevel()
     _level++;
 }
 
-string Player::toString()
-{
-    string text;
-    text = "PLAYER : " ;
-    text += Ship::toString();
-    text += " monney=" + to_string(_money);
-    text += " level=" + to_string(_level);
-    text+= " score=" + to_string(_score) ;
-    text+= " Nb life= " + to_string(_nbLife);
-    return text;
-}
-
-
 void Player::initPlayer()
 {
     _bulletType = "standart";
@@ -58,7 +45,7 @@ void Player::initPlayer()
     _nbLife = 3;
     _width = 10;
     _height = 10;
-    setPosition(25, 100); // valeur provisoire
+    resetPosition();
 }
 
 void Player::score(Enemy * enemy, unsigned int difficultyLevel)
@@ -72,11 +59,35 @@ void Player::score(Enemy * enemy, unsigned int difficultyLevel)
 }
 
 
-void Player::activatedShild()
+void Player::activateShild()
 {
     _lifeLevel+=_shild;
     _shild=0;
 }
+
+void Player::looseLife(){
+    _lifeLevel = 0;
+    if (_nbLife > 0) {
+        _nbLife--;
+    }
+}
+
+void Player::resetPosition(){
+    setPosition((SCREEN_WIDTH-_width)/2, SCREEN_HEIGHT-_height);
+}
+
+string Player::toString()
+{
+    string text;
+    text = "PLAYER : " ;
+    text += Ship::toString();
+    text += " monney=" + to_string(_money);
+    text += " level=" + to_string(_level);
+    text+= " score=" + to_string(_score) ;
+    text+= " Nb life= " + to_string(_nbLife);
+    return text;
+}
+
 
 
 // Accessor methods

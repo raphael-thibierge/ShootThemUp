@@ -85,7 +85,6 @@ void ViewsController::changeView(string view){
 }
 
 void ViewsController::quit(){
-    cout << "QUIT" << endl;
     _quit = true;
 }
 

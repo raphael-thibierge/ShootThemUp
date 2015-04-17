@@ -25,6 +25,8 @@ public:
     
     void showView() override;
     
+    void showQuit();
+    
 };
 
 

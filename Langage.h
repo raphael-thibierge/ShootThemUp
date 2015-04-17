@@ -10,20 +10,23 @@ class Language
 private:
     std::map<std::string, std::string> _listText;
     
-public:
+
 // CONSTRUCTOR AND DESTRUCTOR
+//
+public:
+    
     Language();
     
     virtual ~Language();
 
 // METHODS
-    
+//
     bool change(std::string language);
     
     void loadFromFile(std::string text);
 
 //ACCESSOR METHODS
-
+//
     std::string getText(std::string text);
 
 

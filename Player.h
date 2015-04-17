@@ -22,7 +22,7 @@ private:
 
 public:
 
-// Constructors/Destructors
+// CONSTRUCTOR AND DESTRUCTOR
 //
 
 	Player ();
@@ -30,7 +30,7 @@ public:
     virtual ~Player ();
 
 
-// Methods
+// METHODS
 //
     void shoot (std::string bulletType, std::string direction, std::list<Bullet*> * bulletList) override;
 
@@ -38,21 +38,25 @@ public:
 
     void score(Enemy * enemy, unsigned int difficulty);
 
-    void activatedShild();
+    void activateShild();
+    
+    void looseLife();
+    
+    void resetPosition();
 
     std::string toString() override;
+    
 
 private :
 
     void initPlayer();
 
+// ACCESSOT METHODS
+//
+    
+public :
 
-
-
-
-   // ACCESSOT METHODS
-    public :
-
+// GETTERS
     unsigned int getLevel() const;
 
     unsigned int getShild() const;
@@ -62,7 +66,9 @@ private :
     unsigned int getScore() const;
 
     std::string getBulletType() const;
-
+    
+    
+// SETTERS
     void setNbLife(unsigned int nbLife);
 
     void setLevel( unsigned int level);

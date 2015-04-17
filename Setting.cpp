@@ -3,9 +3,13 @@
 
 using namespace std;
 
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
+
 Settings::Settings(){
-    cout << "\n=====================" << endl;
-    cout << "CONSTRUCTOR SETTINGS" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "CONSTRUCTOR SETTINGS" << endl;
     
     _difficulty = DIFFICULTY;
     _nbLife = NB_LIFE_PLAYER;
@@ -13,10 +17,14 @@ Settings::Settings(){
 }
 
 Settings::~Settings(){
-    cout << "\n=====================" << endl;
-    cout << "DESTRUCTOR SETTINGS" << endl;
+    //cout << "\n=====================" << endl;
+    //cout << "DESTRUCTOR SETTINGS" << endl;
 }
 
+
+//
+// METHODS
+//
 
 bool Settings::changeDifficulty(unsigned int difficulty){
     if (difficulty > 0 && difficulty < 4){
@@ -38,7 +46,9 @@ bool Settings::changeLanguage(string language){
     return _language.change(language);
 }
 
+//
 // ACCESSOR METHODS
+//
 
 unsigned int * Settings::getDifficulty() {
     return &_difficulty;

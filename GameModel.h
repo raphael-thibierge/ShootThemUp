@@ -3,7 +3,7 @@
 #define GAMEMODEL_H
 
 #include <string>
-
+#include <time.h>
 
 #include "Level.h"
 #include "Setting.h"
@@ -24,7 +24,7 @@ private:
     Settings* _settings;
 
 public :
-// CONSTRUCTOR / DESTRUCTOR
+// CONSTRUCTOR AND DESTRUCTOR
 //
 
 	GameModel();
@@ -33,6 +33,7 @@ public :
 
 
 // METHODS
+//
 
     void nextStep();
 
@@ -53,7 +54,8 @@ public :
 
 
 // ACCESSOR METHODS
-
+//
+    
     Player* getPlayer();
     Level* getLevel();
     Shop* getShop();

@@ -25,34 +25,26 @@ public:
 	virtual ~Level ();
 
 
-// Methodes
+// METHODS
 //
 
     void generate();
 
-	/**
-	 */
     bool win ();
 
-	/**
-	 */
     bool loose ();
-
 
     void collisionManager();
 
 
-// ACCESSORS
-
-    std::list<Enemy*> * getEnemy();
+// ACCESSOR METHODS
+//
+    
+    std::list<Enemy*> * getEnemies();
 
     std::list<Bullet*> * getBullet();
 
     Player * getPlayer()const;
-
-    void setDifficulty(unsigned int difficulty);
-
-
 
 
 };
