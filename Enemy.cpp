@@ -11,14 +11,14 @@ Enemy::Enemy (string type, float x, float y, unsigned int lifeLevel) : Ship::Shi
 
     setPosition(x, y);
     initEnemy();
-    
+
     _lifeLevel = lifeLevel;
 
 }
 
 
 Enemy::Enemy (std::string type, unsigned int level, float x, float y, float width, float height, unsigned int lifeLevel, float speed, unsigned int nbLife) : Ship(type), _level(level){
-    
+
     setPosition(x, y);
     _lifeLevel = lifeLevel;
     _speed = speed;
@@ -42,7 +42,7 @@ void Enemy::move()
 void Enemy::shoot (string bulletType, string direction, list<Bullet*> * bulletList)
 {
     if (_type != "kamikaze")
-        bulletList->push_back(new Bullet("standart", direction, _X, _Y, "enemy"));
+        bulletList->push_back(new Bullet("standart", direction, _X+_width/2, _Y+_height, "enemy"));
 }
 
 string Enemy::toString(){

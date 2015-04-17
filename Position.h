@@ -28,7 +28,7 @@ public:
 	RectanglePosition ();
 
     RectanglePosition (float x, float y);
-    
+
     RectanglePosition(float x, float y, float width, float heigh);
 
 	virtual ~RectanglePosition () =0;
@@ -38,19 +38,21 @@ public:
 //
     void setPosition (float x, float y);
 
+    void setSize (float widht, float height);
+
     void move(float dx, float dy);
 
     void move(std::string direction, float speed);
 
     std::string toString();
-    
+
 //ACCESSOR METHODS
     float getX() const;
-    
+
     float getY() const;
-    
+
     float getWidht() const;
-    
+
     float getHeight() const;
 
 };

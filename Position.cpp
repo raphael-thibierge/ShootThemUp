@@ -3,7 +3,7 @@
 using namespace std ;
 
 // Constructors/Destructors
-//  
+//
 
 RectanglePosition::RectanglePosition () {
     _X = 0;
@@ -19,13 +19,13 @@ RectanglePosition::RectanglePosition (float x, float y){
 }
 
 RectanglePosition::RectanglePosition(float x, float y, float width, float heigh) : _X(x), _Y(y), _width(width), _height(heigh){
-    
+
 }
 
 RectanglePosition::~RectanglePosition () { }
 
 
-//  
+//
 // Methods
 //
 
@@ -33,6 +33,12 @@ void RectanglePosition::setPosition (float x, float y)
 {
     _X = x ;
     _Y = y ;
+}
+
+void RectanglePosition::setSize (float widht, float height)
+{
+    _width = widht;
+    _height = height;
 }
 
 void RectanglePosition::move(float dx, float dy){
@@ -65,7 +71,7 @@ string RectanglePosition::toString(){
 
 
 // ACCESSOR METHODS
-//  
+//
 
 float RectanglePosition::getX() const {
     return _X;
@@ -84,7 +90,7 @@ float RectanglePosition::getHeight() const {
 }
 
 // Other methods
-//  
+//
 
 
 

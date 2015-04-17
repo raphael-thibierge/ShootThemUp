@@ -9,7 +9,7 @@ Bullet::Bullet (string type , string direction, float X, float Y, string shooter
 {
     cout << "\n=====================" << endl;
     cout << "CONSTRUCTOR BULLET" << endl;
-    
+
     initBullet();
 
 }
@@ -33,10 +33,14 @@ void Bullet::move ()
 
 
 void Bullet::initBullet(){
-    
+
     _width = 5;
     _height = 5;
-    
+    if (_direction == "NORTH")
+        _Y -= _height;
+    if (_direction == "SOUTH")
+        _Y += _height;
+
     if(_shooter=="player")
     {
         if(_type == "standart")
@@ -64,15 +68,15 @@ void Bullet::initBullet(){
             _damage = 200;
             _speed = 10;
         }
-        
+
     }
-    
+
     if(_shooter=="enemy")
     {
         _damage=50;
         _speed=10;
     }
-    
+
 
 }
 

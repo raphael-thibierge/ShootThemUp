@@ -39,10 +39,10 @@ bool Ship::collisionPoint(float x, float y){
 
 
 bool Ship::collision(Bullet *bullet){
-    if (collisionPoint(bullet->getX(), bullet->getY())
-        || collisionPoint(bullet->getX(), bullet->getY()+bullet->getHeight())
-        || collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY())
-        || collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY()+bullet->getHeight()))
+    if (collisionPoint(bullet->getX(), bullet->getY()) ||
+        collisionPoint(bullet->getX(), bullet->getY()+bullet->getHeight()) ||
+        collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY()) ||
+        collisionPoint(bullet->getX() + bullet->getWidht(), bullet->getY() + bullet->getHeight()))
         return true;
     return false;
 }
