@@ -7,18 +7,17 @@
 //
 
 #include <iostream>
-#include "GameViewTerminal.h"
 #include "ViewsController.h"
 
 using namespace std;
 //
 int main(int argc, const char * argv[]) {
-    
+
     GameModel model;
-    
+
     ViewsController controller;
     controller.init(&model);
-    
+
     while (controller.treatEvent()) {
         model.nextStep();
         controller.showView();

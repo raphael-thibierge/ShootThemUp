@@ -1,4 +1,4 @@
-#include "Langage.h"
+#include "Language.h"
 #include <iostream>
 #include <fstream>
 
@@ -25,7 +25,7 @@ Language::~Language()
 bool Language::change(string language)
 {
     bool returnValue = false;
-    
+
     if (language=="French"){
         loadFromFile("TextFrench.txt");
         returnValue = true;
@@ -34,7 +34,7 @@ bool Language::change(string language)
         loadFromFile("TextEnglish.txt");
         returnValue = true;
     }
-    
+
     return returnValue;
 }
 
@@ -46,12 +46,12 @@ void Language::loadFromFile(string text)
     {
         if (!_listText.empty())
             _listText.clear();
-        
-        
+
+
         string line;
         string id;
         string information;
-        
+
         while(getline(file, line))
         {
             file >> id >> information;

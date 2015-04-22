@@ -41,14 +41,14 @@ BOOST_AUTO_TEST_CASE(PlayerAndEnemyShoot)
     Level level(&p, &difficulte);
 
     p.shoot("standart", "NORTH", level.getBullet());
-    level.getEnemy()->clear();
-    level.getEnemy()->push_back( Enemy::Standart(1) );
+    level.getEnemies()->clear();
+    level.getEnemies()->push_back( Enemy::Standard(1) );
 
-    for (auto e : *level.getEnemy())
+    for (auto e : *level.getEnemies())
         e->shoot("standart", "SOUTH", level.getBullet());
 
     BOOST_CHECK(level.getBullet()->size() == 2 );
-    BOOST_CHECK(level.getEnemy()->size() == 1 );
+    BOOST_CHECK(level.getEnemies()->size() == 1 );
 }
 
 
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(CollisionWithEnemy){
     Player p;
     p.RectanglePosition::setPosition(10,10);
     p.RectanglePosition::setSize(10,10);
-    Enemy* e = Enemy::Standart(1);
+    Enemy* e = Enemy::Standard(1);
     e->RectanglePosition::setPosition(5, 5);
     e->RectanglePosition::setSize(5,5);
 
@@ -132,30 +132,30 @@ BOOST_AUTO_TEST_CASE(CollisionManagement)
     Level level(&p, &difficulte);
 
     p.shoot("standart", "NORTH", level.getBullet());
-    level.getEnemy()->clear();
-    level.getEnemy()->push_back( Enemy::Standart(1) );
+    level.getEnemies()->clear();
+    level.getEnemies()->push_back( Enemy::Standard(1) );
 
-    for (auto e : *level.getEnemy())
+    for (auto e : *level.getEnemies())
         e->shoot("standart", "SOUTH", level.getBullet());
 
     p.RectanglePosition::move(0.0, -10.0);
 
     level.collisionManager();
     BOOST_CHECK(level.getBullet()->size() == 1 );
-    BOOST_CHECK(level.getEnemy()->size() == 1 );
+    BOOST_CHECK(level.getEnemies()->size() == 1 );
 
-    for (auto e : *level.getEnemy())
+    for (auto e : *level.getEnemies())
         e->RectanglePosition::move(0.0, 10.0);
         level.collisionManager();
     BOOST_CHECK(level.getBullet()->size() == 0 );
-    BOOST_CHECK(level.getEnemy()->size() == 0 );
+    BOOST_CHECK(level.getEnemies()->size() == 0 );
 
-    level.getEnemy()->push_back( Enemy::Standart(1) );
-    for (auto e : *level.getEnemy())
+    level.getEnemies()->push_back( Enemy::Standard(1) );
+    for (auto e : *level.getEnemies())
         e->RectanglePosition::setPosition(p.getX()+1, p.getY()+1);
         level.collisionManager();
     BOOST_CHECK(level.getBullet()->size() == 0 );
-    BOOST_CHECK(level.getEnemy()->size() == 0 );
+    BOOST_CHECK(level.getEnemies()->size() == 0 );
 
     BOOST_CHECK(p.Ship::getLifeLevel() == 0 );
     BOOST_CHECK(p.Ship::getNbLife() == NB_LIFE_PLAYER-1);

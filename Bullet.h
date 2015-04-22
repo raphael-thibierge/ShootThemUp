@@ -1,6 +1,6 @@
 #ifndef BULLET_H
 #define BULLET_H
-#include "Position.h"
+#include "RectanglePosition.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -26,16 +26,16 @@ public:
 
 	virtual ~Bullet ();
 
-    
+
 // Methodes
 
     void move ();
 
     void initBullet();
-    
+
     std::string toString();
-    
-    
+
+
 // ACCESSORS METHODS
 
     unsigned int getDamage() const;

@@ -8,7 +8,7 @@
 #include "Level.h"
 #include "Setting.h"
 #include "Shop.h"
-#include "Langage.h"
+#include "Language.h"
 
 class GameModel
 {
@@ -38,7 +38,7 @@ public :
     void nextStep();
 
     void newGame ();
-    
+
     bool loadGame();
 
     void saveGame ();
@@ -55,7 +55,7 @@ public :
 
 // ACCESSOR METHODS
 //
-    
+
     Player* getPlayer();
     Level* getLevel();
     Shop* getShop();
