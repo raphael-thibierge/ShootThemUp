@@ -17,6 +17,7 @@ private:
     Player * _player;
     std::list<Enemy*> _enemyList ;
     std::list<Bullet*> _bulletList;
+    int _enemiesCpt;
 
 public:
 
@@ -27,14 +28,25 @@ public:
 
 // METHODS
 //
+    // generation of enemies
+    void generateEnemy();
 
-    void generate();
-
+    // if player win
     bool win ();
-
+    
+    // if player loose
     bool loose ();
-
+    
+    // verify collision between all level's objects
     void collisionManager();
+    
+    void moveAllBullets();
+    
+    void moveAllEnemies();
+    
+    void randomEnemiesShoot();
+    
+    void runGame();
 
 
 // ACCESSOR METHODS

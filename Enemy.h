@@ -35,7 +35,6 @@ public:
 
     unsigned int getLevel() const;
 
-
     std::string toString();
 
 
@@ -46,6 +45,8 @@ public:
     static Enemy* Standard(unsigned int level);
     
     static Enemy* Kamikaze(unsigned int level);
+    
+    static Enemy* Helicopter(unsigned int level);
     
 private:
 

@@ -39,8 +39,13 @@ void Player::initPlayer()
     _bulletType = "standart";
     _lifeLevel = LIFE_LEVEL_INITIAL;
     _score = 0;
+<<<<<<< HEAD
     _money = 0;
     _speed = 10;
+=======
+    _money = 1000;
+    _speed = 0;
+>>>>>>> b7297f90a815be4931d3d399356e0371752dca42
     _level = 0;
     _nbLife = NB_LIFE_INITIAL;
     _width = WIDTH_PLAYER_DEFAULT;

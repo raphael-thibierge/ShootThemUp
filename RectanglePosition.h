@@ -34,9 +34,7 @@ public:
 
 // METHODS
 //
-    void setPosition (float x, float y);
 
-    void setSize (float widht, float height);
 
     void move(float dx, float dy);
 
@@ -46,6 +44,12 @@ public:
 
 //ACCESSOR METHODS
 //
+    void setPosition (float x, float y);
+    
+    void setSize (float widht, float height);
+    
+    
+    
     float getX() const;
 
     float getY() const;

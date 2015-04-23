@@ -108,7 +108,7 @@ void ViewSettings::showView(){
     cout << _language->getText("settings") << endl << endl ;
     
     cout << _language->getText("difficulty") << " : " << *_modele->getSettings()->getDifficulty() << endl;
-    cout << _language->getText("NBLifeInit") << " : " << *_modele->getSettings()->getNbLife() << endl;
+    cout << _language->getText("nbLifeInit") << " : " << *_modele->getSettings()->getNbLife() << endl;
     cout << _language->getText("language") << " : " << _language->getText("languageValue") <<endl ;
     cout << endl;
     cout << "Menu" << endl ;
