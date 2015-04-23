@@ -105,6 +105,8 @@ void ViewGame::showTransition(){
     cout << "| $$  \\$$$ \\$$     \\|  $$ \\$$\\   \\$$  $$      | $$     \\ $$     \\   \\$$$    \\$$     \\| $$"<<endl;
     cout << " \\$$   \\$$  \\$$$$$$$ \\$$   \\$$    \\$$$$        \\$$$$$$$$ \\$$$$$$$    \\$      \\$$$$$$$ \\$$"<<endl;
     
+    cout << endl << endl << _language->getText("score") << " : " << _modele->getPlayer()->getScore() << endl;
+    cout << _language->getText("money") << " : " << _modele->getPlayer()->getMoney() << endl;
 }
 
 void ViewGame::showLoose(){

@@ -59,6 +59,11 @@ Enemy* Enemy::Kamikaze(unsigned int level){
     return new Enemy("kamikaze", level, randomPositionX(), 0, 10,10, 25*DIFFICULTY, 10,1) ;
 }
 
+Enemy* Enemy::Helicopter(unsigned int level){
+    return new Enemy("helicoptere", level, randomPositionX(), 0, 10,10, 25*DIFFICULTY, 10,1) ;
+}
+
+
 int Enemy::randomPositionX(){
     return rand()%(-SCREEN_WIDTH);
 }

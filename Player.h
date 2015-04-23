@@ -32,6 +32,7 @@ public:
 
 // METHODS
 //
+    // shoot a 
     void shoot (std::string bulletType, std::string direction, std::list<Bullet*> * bulletList) override;
 
     void nextLevel();
@@ -42,7 +43,17 @@ public:
     
     void looseLife();
     
+    // affect damage to player
+    void affectDamage(unsigned int damage);
+    
     void resetPosition();
+    
+    void resetLifeLevel();
+    
+    void addMoney();
+    
+    
+    
 
     std::string toString() override;
     

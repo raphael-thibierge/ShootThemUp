@@ -39,70 +39,34 @@ GameModel::~GameModel()
 
 void GameModel::nextStep()
 {
+    // if a game is loaded
     if (_player != nullptr){
         
-        // if there isn't any level and level upper than
+        // if there isn't any level and level upper than 0
+        // --> there isn't any game loaded
         if(_level==nullptr && _player->getLevel()>0)
         {
             // creation of the next level
-            _level=new Level(_player, _settings->getDifficulty());
+            newLevel();
         }
         
-        // fonction moteur du jeu
-        // fonction qui fait tourner le jeu
-        
-        // if there is a level we are in a game
+        // if there is a level
+        // --> the player is playing
         if ( _level != nullptr)
         {
-            
             // game constinue
-            int random= rand()%(-2);
-            if(random==1)
-            {
-                // shuffle shoot of enemies
-                for (auto enemy : *_level->getEnemies())
-                {
-                    random = rand()%(-3);
-                    if(random==2)
-                        enemy->shoot("standart", "SOUTH", this->getLevel()->getBullet());
-                }
-            }
+            _level->runGame();
             
-            // bullet's move
-            for (auto bullet : *_level->getBullet())
-            {
-                bullet->move();
-            }
-           
-            // checking for collision
-            _level->collisionManager();
-            
-            // then enemies'move
-            for (auto enemy : *_level->getEnemies())
-            {
-                enemy->move();
-            }
-            
+            // if the player loose, it's the end of the current game
             if (_level->loose())
-            {
-                destructLevel();
-            }
-            else if (_level->win()){
-                destructLevel();
-                _player->resetPosition();
-            }
+                endCurrentGame();
             
+            // if the player win, he plays the next level
+            else if (_level->win())
+                destructLevel();
         }
     }
 }
-
-
-bool GameModel::loadGame ()
-{
-    // chargement d'une partie depuis un fichier
-    return true;
-}
-
 
 void GameModel::newGame ()
 {
@@ -110,6 +74,16 @@ void GameModel::newGame ()
     _player->resetPosition();
     _shop = new Shop(_player);
 }
+
+
+
+bool GameModel::loadGame ()
+{
+    // chargement d'une partie depuis un fichier
+    return false;
+}
+
+
 
 
 void GameModel::saveGame ()
@@ -126,14 +100,6 @@ void GameModel::play ()
     _player->setNbLife(*_settings->getNbLife());
 }
 
-/*
-void GameModel::nextLevel ()
-{
-    delete _level;
-    _player->nextLevel();
-    _level = new Level(_player, _settings->getDifficulty());
-}
-*/
 
 
 void GameModel::newLevel ()
@@ -141,12 +107,21 @@ void GameModel::newLevel ()
     if (_level != nullptr)
         destructLevel();
     _level = new Level(_player, _settings->getDifficulty());
+    _player->nextLevel();
+    _player->resetPosition();
 }
+
 
 void GameModel::destructLevel()
 {
-    delete _level;
-    _level = nullptr;
+    if (_level != nullptr){
+        delete _level;
+        _level = nullptr;
+    }
+}
+
+void GameModel::endCurrentGame(){
+    destructLevel();
 }
 
 

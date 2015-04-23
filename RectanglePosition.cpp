@@ -26,17 +26,7 @@ RectanglePosition::~RectanglePosition () { }
 // METHODS
 //
 
-void RectanglePosition::setPosition (float x, float y)
-{
-    _X = x ;
-    _Y = y ;
-}
 
-void RectanglePosition::setSize (float widht, float height)
-{
-    _width = widht;
-    _height = height;
-}
 
 void RectanglePosition::move(float dx, float dy){
     _X += dx;
@@ -69,6 +59,18 @@ string RectanglePosition::toString(){
 //
 // ACCESSOR METHODS
 //
+
+void RectanglePosition::setPosition (float x, float y)
+{
+    _X = x ;
+    _Y = y ;
+}
+
+void RectanglePosition::setSize (float widht, float height)
+{
+    _width = widht;
+    _height = height;
+}
 
 float RectanglePosition::getX() const {
     return _X;

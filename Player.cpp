@@ -37,25 +37,28 @@ void Player::nextLevel()
 void Player::initPlayer()
 {
     _bulletType = "standart";
-    _lifeLevel = 300;
+    _lifeLevel = LIFE_LEVEL_INITIAL;
     _score = 0;
     _money = 1000;
-    _speed = 10;
+    _speed = 0;
     _level = 0;
-    _nbLife = 3;
-    _width = 10;
-    _height = 10;
+    _nbLife = NB_LIFE_INITIAL;
+    _width = WIDTH_PLAYER_DEFAULT;
+    _height = HEIGHT_PLAYER_DEFAULT;
     resetPosition();
 }
 
 void Player::score(Enemy * enemy, unsigned int difficultyLevel)
 {
-    if ( enemy->getType() == "standart"){
+    if ( enemy->getType() == "standard"){
         _score+= 5*enemy->getLevel()*difficultyLevel;
     }
-//gestion de la monnaie ici
-// NOT DONE
-
+    else if (enemy->getType() == "kamikaze"){
+        _score+= 10*enemy->getLevel()*difficultyLevel;
+    }
+    else if (enemy->getType() == "helicoptere"){
+        _score+= 15*enemy->getLevel()*difficultyLevel;
+    }
 }
 
 
@@ -69,12 +72,35 @@ void Player::looseLife(){
     _lifeLevel = 0;
     if (_nbLife > 0) {
         _nbLife--;
+        resetLifeLevel();
     }
 }
+
+
+void Player::affectDamage(unsigned int damage){
+    if (damage < _lifeLevel)
+        _lifeLevel -= damage;
+    else {
+        _lifeLevel = 0;
+        looseLife();
+    }
+}
+
 
 void Player::resetPosition(){
     setPosition((SCREEN_WIDTH-_width)/2, SCREEN_HEIGHT-_height);
 }
+
+void Player::resetLifeLevel(){
+    _lifeLevel = LIFE_LEVEL_INITIAL;
+}
+
+void Player::addMoney(){
+    _money += float(_score)/10;
+}
+
+
+
 
 string Player::toString()
 {
@@ -117,6 +143,8 @@ string Player::getBulletType() const
 {
     return _bulletType;
 }
+
+
 
 void Player::setNbLife(unsigned int nbLife)
 {

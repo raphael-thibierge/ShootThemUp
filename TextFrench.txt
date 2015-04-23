@@ -12,8 +12,8 @@ settings Parametres
 menu Menu
 game Jeu
 move Deplacement
-moveX Deplacement_X:
-moveY Deplacement_Y:
+moveX Deplacement_X
+moveY Deplacement_Y
 shoot Tirer
 nothing Rien
 escape Abandonner
@@ -32,7 +32,7 @@ upgradeShiplvl4 Vaisseau_niveau_4
 purchaseRight Achat_effectué
 purchaseWrong Echec_de_l'achat
 difficulty Difficulte
-NBLifeInit Nombre_de_vie_initiales
+nbLifeInit Nombre_de_vie_initiales
 availableLanguages Langues_disponibles
 english Anglais
 french Français
@@ -41,4 +41,5 @@ fail Echec!
 newValue Nouvelle_valeur
 valueLower La_valeur_doit_être_inféieur_à
 bomb Utiliser_une_bombe
-money Argent:
+money Argent
+score Score
