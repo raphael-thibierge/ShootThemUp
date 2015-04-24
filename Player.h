@@ -32,31 +32,29 @@ public:
 
 // METHODS
 //
-    // shoot a 
+    // shoot a
     void shoot (std::string bulletType, std::string direction, std::list<Bullet*> * bulletList) override;
-
-    void nextLevel();
 
     void score(Enemy * enemy, unsigned int difficulty);
 
     void activateShild();
-    
+
     void looseLife();
-    
+
     // affect damage to player
     void affectDamage(unsigned int damage);
-    
+
     void resetPosition();
-    
+
     void resetLifeLevel();
-    
+
     void addMoney();
-    
-    
-    
+
+
+
 
     std::string toString() override;
-    
+
 
 private :
 
@@ -64,7 +62,7 @@ private :
 
 // ACCESSOT METHODS
 //
-    
+
 public :
 
 // GETTERS
@@ -78,8 +76,8 @@ public :
     unsigned int getScore() const;
 
     std::string getBulletType() const;
-    
-    
+
+
 // SETTERS
 //
     void setNbLife(unsigned int nbLife);
@@ -91,7 +89,7 @@ public :
     void setBulletType( std::string bulletType);
 
     void setMoney( float money);
-    
+
     void setScore(unsigned int score);
 
 

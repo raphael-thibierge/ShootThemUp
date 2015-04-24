@@ -19,6 +19,7 @@ private:
     int _height;
     //--
 
+    int _gameLevel;
     Player* _player;
     Level* _level;
     Shop* _shop;
@@ -36,16 +37,16 @@ public :
 
 // METHODS
 //
-    
+
     // heart of the programme
     void nextStep();
-    
+
     // create a new game, player start from 0
     void newGame ();
 
     // load a game from a file to resume an old game
     bool loadGame();
-    
+
     // save the current game
     void saveGame ();
 
@@ -54,10 +55,10 @@ public :
 
     // create a new level
     void newLevel ();
-    
+
     // destruct the current level
     void destructLevel();
-    
+
     // manage the end of the current game
     void endCurrentGame();
 

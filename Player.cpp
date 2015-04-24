@@ -29,19 +29,16 @@ void Player::shoot (string bulletType, string direction, list<Bullet*> * bulletL
     bulletList->push_back(new Bullet(_bulletType, direction, _X+_height/2, _Y-5,  "player"));
 }
 
-void Player::nextLevel()
-{
-    _level++;
-}
 
 void Player::initPlayer()
 {
     _bulletType = "standart";
     _lifeLevel = LIFE_LEVEL_INITIAL;
     _score = 0;
-    _money = 1000;
+    _money = 10000;
     _speed = 0;
-    _level = 0;
+    _level = 1;
+    _shild = 0;
     _nbLife = NB_LIFE_INITIAL;
     _width = WIDTH_PLAYER_DEFAULT;
     _height = HEIGHT_PLAYER_DEFAULT;
@@ -81,7 +78,6 @@ void Player::affectDamage(unsigned int damage){
     if (damage < _lifeLevel)
         _lifeLevel -= damage;
     else {
-        _lifeLevel = 0;
         looseLife();
     }
 }

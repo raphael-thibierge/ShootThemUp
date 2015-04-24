@@ -6,10 +6,10 @@ using namespace std;
 //
 
 Shop::Shop(Player* player) : _player(player){
-    
+
     //cout << "\n=====================" << endl;
     //cout << "CONSTRUCTOR SHOP" << endl;
-    
+
     _store["level2"]=true;
     _store["level3"]=false;
     _store["level4"]=false;
@@ -138,12 +138,24 @@ bool Shop::upgradeShip(string type)
 bool Shop::upgradeShild(string type)
 {
 
-    if(_player->getMoney()>=200)
+    if(_player->getMoney()>=100)
     {
-        if(type == "shild1" && _player->getShild()!=0)
+        if(type == "shild1" && _player->getShild()==0)
         {
             _player->setShild(100);
-            _player->setMoney(_player->getMoney()-200);
+            _player->setMoney(_player->getMoney()-100);
+            _store["shild1"]=false;
+            _store["shild2"]=false;
+            _store["shild3"]=false;
+            return true;
+        }
+    }
+    if(_player->getMoney()>=300)
+    {
+        if(type == "shild2" && _player->getShild()==0)
+        {
+            _player->setShild(200);
+            _player->setMoney(_player->getMoney()-300);
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;
@@ -152,22 +164,10 @@ bool Shop::upgradeShild(string type)
     }
     if(_player->getMoney()>=500)
     {
-        if(type == "shild2" && _player->getShild()!=0)
-        {
-            _player->setShild(200);
-            _player->setMoney(_player->getMoney()-500);
-            _store["shild1"]=false;
-            _store["shild2"]=false;
-            _store["shild3"]=false;
-            return true;
-        }
-    }
-    if(_player->getMoney()>=700)
-    {
-        if(type == "shild3" && _player->getShild()!=0)
+        if(type == "shild3" && _player->getShild()==0)
         {
             _player->setShild(300);
-            _player->setMoney(_player->getMoney()-700);
+            _player->setMoney(_player->getMoney()-500);
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;
@@ -178,6 +178,11 @@ bool Shop::upgradeShild(string type)
 }
 
 
-
+void Shop::shidlDisponible()
+{
+    _store["shild1"]=true;
+    _store["shild2"]=true;
+    _store["shild3"]=true;
+}
 
 
