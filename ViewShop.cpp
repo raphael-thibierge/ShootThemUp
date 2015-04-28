@@ -107,6 +107,7 @@ int ViewShop::treatEvent()
 void ViewShop::showView()
 {
     cout << "\n---------------------- \n " + _language->getText("shop") << endl;
+    cout << to_string(_modele->getPlayer()->getLevel()) << endl;
     cout << _language->getText("money") << " " + to_string(_modele->getPlayer()->getMoney()) + "$"<< endl <<endl;
 
     cout << "\t (1) " + _language->getText("upgradeMainShoot") << endl;
