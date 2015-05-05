@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-//A
+
 class Bullet : virtual public RectanglePosition
 {
 
