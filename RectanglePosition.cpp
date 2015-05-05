@@ -7,19 +7,17 @@ using namespace std ;
 //
 
 RectanglePosition::RectanglePosition () {
-    _X = 0;
-    _Y = 0;
-    _width = 0;
-    _height = 0;
+    _X, _Y,_width, _height = 0;
 }
 
 
 
-RectanglePosition::RectanglePosition(float x, float y, float width, float heigh) : _X(x), _Y(y), _width(width), _height(heigh){
+RectanglePosition::RectanglePosition(float x, float y, float width, float heigh) : _X(x), _Y(y), _width(width), _height(heigh)
+{
 
 }
 
-RectanglePosition::~RectanglePosition () { }
+RectanglePosition::~RectanglePosition () {}
 
 
 //
@@ -35,8 +33,10 @@ void RectanglePosition::move(float dx, float dy){
 
 
 
-void RectanglePosition::move(string direction, float speed){
+void RectanglePosition::move(string direction, float speed)
+{
     // switch doesn't work with string
+    // origin of map is the left top corner
     if (direction == "NORTH")
         move(0, -speed);
     else if (direction == "SOUTH")

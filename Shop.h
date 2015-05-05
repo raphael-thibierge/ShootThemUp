@@ -19,6 +19,9 @@ public:
 
 // METHODS
 //
+    
+    bool upgrade(std::string object);
+    
     bool upgradeBullet(std::string type);
 
     bool upgradeShip(std::string type);

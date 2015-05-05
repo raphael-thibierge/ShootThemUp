@@ -9,10 +9,17 @@
 #include "ViewGame.h"
 using namespace std;
 
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
 ViewGame::ViewGame() {}
 
 ViewGame::~ViewGame() {}
 
+
+//
+// METHODS
+//
 int ViewGame::treatEvent()
 {
     int returnValue = 1;
@@ -41,7 +48,7 @@ int ViewGame::treatEvent()
             break;
 
         case 2:
-            _modele->getPlayer()->shoot("standart", "NORTH", _modele->getLevel()->getBullet());
+            _modele->getPlayer()->shoot(_modele->getLevel()->getBullet());
             break;
 
         case 3 :

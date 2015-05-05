@@ -13,12 +13,16 @@
 
 class ViewShop : public virtual View
 {
-    
+
+// CONSTRUCTOR AND DESTRUCTOR
+//
 public:
     ViewShop();
     
     virtual ~ViewShop();
     
+// METHODS
+//
     int treatEvent() override;
     
     void showView() override;

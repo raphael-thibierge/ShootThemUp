@@ -24,9 +24,9 @@ Player::~Player ()
 // Methods
 //
 
-void Player::shoot (string bulletType, string direction, list<Bullet*> * bulletList)
+void Player::shoot (list<Bullet*> * bulletList)
 {
-    bulletList->push_back(new Bullet(_bulletType, direction, _X+_height/2, _Y-5,  "player"));
+    bulletList->push_back(new Bullet(_bulletType, _direction, _X+_height/2, _Y-5,  "player"));
 }
 
 
@@ -34,25 +34,33 @@ void Player::initPlayer()
 {
     _bulletType = "standart";
     _lifeLevel = LIFE_LEVEL_INITIAL;
-    _score = 0;
-    _money = 10000;
-    _speed = 0;
-    _level = 1;
-    _shild = 0;
     _nbLife = NB_LIFE_INITIAL;
     _width = WIDTH_PLAYER_DEFAULT;
     _height = HEIGHT_PLAYER_DEFAULT;
+    _direction = PLAYER_DIRECTION;
+    _score = 0;
+    _money = 0;
+    _speed = 0;
+    _shild = 0;
+    _level = 1;
+    
+    // standart position of player
     resetPosition();
 }
 
 void Player::score(Enemy * enemy, unsigned int difficultyLevel)
 {
+    // score for standart enemies
     if ( enemy->getType() == "standard"){
         _score+= 5*enemy->getLevel()*difficultyLevel;
     }
+    
+    //Score for kamikaze enemies
     else if (enemy->getType() == "kamikaze"){
         _score+= 10*enemy->getLevel()*difficultyLevel;
     }
+    
+    //Score for helicoptere enemies
     else if (enemy->getType() == "helicoptere"){
         _score+= 15*enemy->getLevel()*difficultyLevel;
     }

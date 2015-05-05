@@ -28,7 +28,8 @@ public:
 
 
 // Methodes
-
+    
+    // move the bullet (depend of its direction and speed)
     void move ();
 
     void initBullet();
@@ -39,6 +40,8 @@ public:
 // ACCESSORS METHODS
 
     unsigned int getDamage() const;
+    
+    std::string getShooter() const;
 
 };
 

@@ -26,15 +26,17 @@ Settings::~Settings(){
 // METHODS
 //
 
-bool Settings::changeDifficulty(unsigned int difficulty){
-    if (difficulty > 0 && difficulty < 4){
+bool Settings::changeDifficulty(unsigned int difficulty)
+{// return true if it has been changed
+    if (difficulty > 0 && difficulty <= MAX_DIFFICULTY){
         _difficulty = difficulty;
         return true;
     }
     return false;
 }
 
-bool Settings::changeNbLife(unsigned int nbLife){
+bool Settings::changeNbLife(unsigned int nbLife)
+{// return true if it has been changed
     if (nbLife > 0){
         _nbLife = nbLife;
         return true;
@@ -42,7 +44,8 @@ bool Settings::changeNbLife(unsigned int nbLife){
     return false;
 }
 
-bool Settings::changeLanguage(string language){
+bool Settings::changeLanguage(string language)
+{// return true if it has been changed
     return _language.change(language);
 }
 

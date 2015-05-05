@@ -113,17 +113,18 @@ void Level::collisionManager()
     list<Bullet*> bulletsDestroyed ;
 
 
-    // collision between player and bullets
+    // collision between player and all bullets
     for (auto bullet : _bulletList)
+    {
         if (_player->collision(bullet))
         {
             _player->affectDamage(bullet->getDamage());
             bulletsDestroyed.push_back(bullet);
         }
+    }
 
 
-
-    // collision between player and enemies
+    // collision between player and all enemies
     for (auto enemy : _enemyList)
     {
         if (_player->collision(enemy))
@@ -134,17 +135,20 @@ void Level::collisionManager()
     }
 
 
-    // collision between 2 enemy
+    // collision between 2 enemies
     // NOT DONE
+    
 
-    // collision between enemies and bullets
+    // collision between all enemies and all bullets
     for (auto enemy : _enemyList)
     {
         for (auto bullet : _bulletList)
         {
             if (enemy->collision(bullet))
             {
-                _player->score(enemy , *_difficulty);
+                // if player is the shooter
+                if (bullet->getShooter() == "player")
+                    _player->score(enemy , *_difficulty);
                 enemiesDestroyed.push_back(enemy);
                 bulletsDestroyed.push_back(bullet);
             }
@@ -152,14 +156,14 @@ void Level::collisionManager()
     }
 
     //collision with the border
+    // for all enemies
     for (auto enemy : _enemyList)
     {
-        if(enemy->getY() > SCREEN_HEIGHT)
-        {
+        if(enemy->getY() > SCREEN_HEIGHT){
             enemiesDestroyed.push_back(enemy);
         }
     }
-
+    // for all bullets
     for (auto bullet : _bulletList)
     {
         if(bullet->getY() < 0){
@@ -202,15 +206,18 @@ void Level::moveAllEnemies(){
 
 
 void Level::randomEnemiesShoot(){
+    
+    // for each step, there is 1/2 chance that enemies shoot
     int random= rand()%(-2);
     if(random==1)
     {
         // shuffle shoot for all enemies
         for (auto enemy : _enemyList)
         {
+            // each enemy has 1/3 chance to shoot
             random = rand()%(-3);
             if(random==2)
-                enemy->shoot("standart", "SOUTH", &_bulletList);
+                enemy->shoot(&_bulletList);
         }
     }
 

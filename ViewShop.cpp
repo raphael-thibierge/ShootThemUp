@@ -10,9 +10,17 @@
 
 using namespace std;
 
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
 ViewShop::ViewShop() {}
 
 ViewShop::~ViewShop() {}
+
+
+//
+// METHODS
+//
 
 int ViewShop::treatEvent()
 {
@@ -23,8 +31,8 @@ int ViewShop::treatEvent()
         cout << _language->getText("choice") << endl;
         cin >> answer;
 
-    }
-    while ( (answer > 10 && answer < 15) && (answer > 25 && answer < 20) && (answer > 34 && answer < 30) && (answer > 5 && answer < 3));
+    }   // CA NE PEUT PAS MAAAAARCHEEEER !!!!!! RENVOIT TOUJOURS FAUX !
+    while ( (answer > /* DISABLES CODE */ (10) && answer < 15) && (answer > 25 && answer < 20) && (answer > 34 && answer < 30) && (answer > 5 && answer < 3));
 
     switch (answer)
     {

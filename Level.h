@@ -10,7 +10,7 @@ class Level
 {
 
 private:
-
+    
     unsigned int _level;
 	unsigned int * _difficulty;
 	unsigned int _nbEnnemy;
@@ -40,6 +40,7 @@ public:
     // verify collision between all level's objects
     void collisionManager();
     
+    // methods with explicit names
     void moveAllBullets();
     
     void moveAllEnemies();

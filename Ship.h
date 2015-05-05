@@ -19,6 +19,7 @@ protected:
     unsigned int _nbLife;
     std::string _type;
     float _speed;
+    std::string _direction;
 
 
 
@@ -35,17 +36,23 @@ public:
 // Methods
 //
 
-    virtual void shoot (std::string bullet, std::string direction, std::list<Bullet*> * bulletlist);
-
+    virtual void shoot (std::list<Bullet*> * bulletlist);
+    
+    // move the ship in a direction (move depend of the speed)
     void move (std::string direction);
 
     virtual std::string toString();
-
+    
+    // test collision whith a point
+    bool collisionPoint(float x, float y);
+    
+    // test collision with a bullet
     bool collision(Bullet *bullet);
-
+    
+    // test collision with a ship
     bool collision (Ship *ship);
     
-    bool collisionPoint(float x, float y);
+
     
 
 //  ACCESSOR METHODS

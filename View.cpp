@@ -8,12 +8,19 @@
 
 #include "View.h"
 
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
 View::View(){}
 
 View::~View(){
     _modele = nullptr;
 }
 
+
+//
+// METHODS
+//
 void View::showView(){}
 
 

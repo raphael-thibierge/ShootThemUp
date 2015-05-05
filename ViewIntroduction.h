@@ -15,16 +15,20 @@
 class ViewIntroduction : public virtual View
 {
     
+// CONSTRUCTOR AND DESTRUCTOR
+//
 public:
     
     ViewIntroduction();
     
     virtual ~ViewIntroduction();
     
+    
+// METHODS
+//
     int treatEvent() override;
     
     void showView() override;
-    
     
 };
 

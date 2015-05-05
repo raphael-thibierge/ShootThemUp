@@ -15,8 +15,10 @@ class RectanglePosition
 {
 
 protected:
+    // position
     float _X;
     float _Y;
+    //size
     float _width;
     float _height;
 
@@ -34,10 +36,12 @@ public:
 
 // METHODS
 //
-
-
+public:
+    
+    // move with values
     void move(float dx, float dy);
-
+    
+    // move in a direction, depend of speed
     void move(std::string direction, float speed);
 
     std::string toString();
@@ -47,8 +51,6 @@ public:
     void setPosition (float x, float y);
     
     void setSize (float widht, float height);
-    
-    
     
     float getX() const;
 

@@ -5,12 +5,8 @@ using namespace std;
 // Constructors/Destructors
 //
 
-
-
 Ship::Ship (string type) :_type(type) {
 }
-
-
 
 Ship::~Ship () {
 }
@@ -19,7 +15,7 @@ Ship::~Ship () {
 // Methods
 //
 
-void Ship::shoot (std::string bullet, std::string direction, std::list<Bullet*> * bulletlist){}
+void Ship::shoot (list<Bullet*> * bulletlist){}
 
 void Ship::move (string direction)
 {
@@ -31,27 +27,36 @@ string Ship::toString(){
 }
 
 
-bool Ship::collisionPoint(float x, float y){
+bool Ship::collisionPoint(float x, float y)
+{// return true if the point is in the ship
+
     if ( x >= _X && x <= _X+_width && y >= _Y && y <= _Y+_height)
         return true;
     return false;
 }
 
 
-bool Ship::collision(Bullet *bullet){
-    if (collisionPoint(bullet->getX(), bullet->getY())
-        || collisionPoint(bullet->getX(), bullet->getY()+bullet->getHeight())
-        || collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY())
-        || collisionPoint(bullet->getX() + bullet->getWidht(), bullet->getY() + bullet->getHeight()))
+bool Ship::collision(Bullet *bullet)
+{// return true if there is a collision
+    
+    // test collisision with every bullet'corners
+    if (collisionPoint(bullet->getX(), bullet->getY()) // up left
+        || collisionPoint(bullet->getX(), bullet->getY()+bullet->getHeight()) // down left
+        || collisionPoint(bullet->getX()+bullet->getWidht(), bullet->getY()) // up right
+        || collisionPoint(bullet->getX() + bullet->getWidht(), bullet->getY() + bullet->getHeight())) // down left
         return true;
     return false;
 }
 
-bool Ship::collision(Ship *ship){
-    if (collisionPoint(ship->getX(), ship->getY())
-        || collisionPoint(ship->getX(), ship->getY()+ship->getHeight())
-        || collisionPoint(ship->getX()+ship->getWidht(), ship->getY())
-        || collisionPoint(ship->getX()+ship->getWidht(), ship->getY()+ship->getHeight()))
+
+bool Ship::collision(Ship *ship)
+{// return true if there is a collision
+    
+    // test collisision with every ship'corners
+    if (collisionPoint(ship->getX(), ship->getY()) // up left
+        || collisionPoint(ship->getX(), ship->getY()+ship->getHeight()) // down left
+        || collisionPoint(ship->getX()+ship->getWidht(), ship->getY()) // up right
+        || collisionPoint(ship->getX()+ship->getWidht(), ship->getY()+ship->getHeight())) // down right
         return true;
     return false;
 }

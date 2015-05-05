@@ -32,13 +32,14 @@ public:
 
 // METHODS
 //
-    // shoot a
-    void shoot (std::string bulletType, std::string direction, std::list<Bullet*> * bulletList) override;
+    // shoot a bullet
+    void shoot (std::list<Bullet*> * bulletList) override;
 
     void score(Enemy * enemy, unsigned int difficulty);
 
     void activateShild();
-
+    
+    // payer loose one life
     void looseLife();
 
     // affect damage to player
@@ -48,10 +49,8 @@ public:
 
     void resetLifeLevel();
 
+    // add money in function of the current score
     void addMoney();
-
-
-
 
     std::string toString() override;
 

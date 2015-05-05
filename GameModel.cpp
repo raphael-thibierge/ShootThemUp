@@ -12,14 +12,20 @@ GameModel::GameModel()
     //cout << "CONSTRUCTOR GAMEMODEL" << endl;
 
     srand (time(NULL));
-
-    _height = 500;
-    _width = 200;
+    
+    // unused
+   // _height = SCREEN_HEIGHT;
+   // _width = SCREEN_WIDTH;
+    
+    // always init
     _gameLevel = 0;
     _settings = new Settings;
+    
+    // not init, because player can choose to load an old game
     _player = nullptr;
     _level = nullptr;
 
+    
 }
 
 GameModel::~GameModel()
@@ -33,6 +39,7 @@ GameModel::~GameModel()
     delete _level;
     delete _settings;
 }
+
 
 //
 // Methods
@@ -71,8 +78,8 @@ void GameModel::nextStep()
 
 void GameModel::newGame ()
 {
+    // Player choose to play a new game
     _player = new Player();
-    _player->resetPosition();
     _shop = new Shop(_player);
 }
 
@@ -94,10 +101,19 @@ void GameModel::saveGame ()
 }
 
 
+void GameModel::saveBestScores()
+{
+    // open file
+    ifstream file("bestScores.txt", ios::in);
+    
+}
+
+
 void GameModel::play ()
 {
     // game start from the main menu
     newLevel();
+    // set the initilal life number before to begin the game
     _player->setNbLife(*_settings->getNbLife());
 }
 
@@ -105,16 +121,19 @@ void GameModel::play ()
 
 void GameModel::newLevel ()
 {
-    if (_level != nullptr)
-        destructLevel();
+    // destruction of level (even if there is no one)
+    destructLevel();
     _level = new Level(_player, _settings->getDifficulty());
+    // increment the level number
     _gameLevel++;
+    // player's initial position
     _player->resetPosition();
 }
 
 
 void GameModel::destructLevel()
 {
+    // return null level
     if (_level != nullptr){
         delete _level;
         _level = nullptr;

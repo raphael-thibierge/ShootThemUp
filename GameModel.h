@@ -15,11 +15,14 @@ class GameModel
 
 private:
     // screen resolution
-    int _width;
-    int _height;
+    //int _width;
+    //int _height;
     //--
-
+    
+    // levelnumber of the current level played
     int _gameLevel;
+    
+    
     Player* _player;
     Level* _level;
     Shop* _shop;
@@ -48,7 +51,10 @@ public :
     bool loadGame();
 
     // save the current game
-    void saveGame ();
+    void saveGame ();    
+    
+    // save the 5 best scores
+    void saveBestScores();
 
     // play the game
     void play ();
