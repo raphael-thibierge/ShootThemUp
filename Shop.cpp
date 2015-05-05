@@ -101,6 +101,7 @@ bool Shop::upgradeShip(string type)
         if(type == "ship2" && _player->getLevel()== 1)
         {
             _player->setLevel(2);
+            _player->setLifeLevel(500);
             _player->setMoney(_player->getMoney()-200);
             _store["ship2"]=false;
             _store["ship3"]=true;
@@ -113,6 +114,7 @@ bool Shop::upgradeShip(string type)
         if(type == "ship3" && _player->getLevel()== 2)
         {
             _player->setLevel(3);
+            _player->setLifeLevel(700);
             _player->setMoney(_player->getMoney()-500);
             _store["ship3"]=false;
             _store["ship4"]=true;
@@ -124,6 +126,8 @@ bool Shop::upgradeShip(string type)
         if(type == "ship4" && _player->getLevel()== 3)
         {
             _player->setLevel(4);
+
+            _player->setLifeLevel(900);
             _player->setMoney(_player->getMoney()-1000);
             _store["ship4"]=false;
             return true;
