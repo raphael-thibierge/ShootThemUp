@@ -58,7 +58,7 @@ bool Shop::upgradeBullet(string type)
         if(type == "level3" && _player->getBulletType()== "level2")
         {
             _player->setBulletType("level3");
-            _player->setMoney(_player->getMoney()-100);
+            _player->setMoney(_player->getMoney()-200);
             _store["level3"]=false;
             _store["level4"]=true;
             return true;
@@ -71,7 +71,7 @@ bool Shop::upgradeBullet(string type)
            ->getBulletType()== "level3")
         {
             _player->setBulletType("level4");
-            _player->setMoney(_player->getMoney()-100);
+            _player->setMoney(_player->getMoney()-350);
             _store["level4"]=false;
             _store["level5"]=true;
             return true;
@@ -83,7 +83,7 @@ bool Shop::upgradeBullet(string type)
         if(type == "level5" && _player->getBulletType()== "level4")
         {
             _player->setBulletType("level5");
-            _player->setMoney(_player->getMoney()-100);
+            _player->setMoney(_player->getMoney()-500);
             _store["level5"]=false;
             return true;
         }
