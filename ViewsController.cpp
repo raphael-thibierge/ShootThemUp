@@ -22,7 +22,7 @@ ViewsController::ViewsController() {
 }
 
 ViewsController::~ViewsController(){
-    _view = nullptr;
+    _view = nullptr;   
     
 }
 
