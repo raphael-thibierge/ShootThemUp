@@ -10,6 +10,7 @@ using namespace std;
 
 Language::Language()
 {
+    _language = "French" ;
     loadFromFile("TextFrench.txt");
 }
 
@@ -27,10 +28,12 @@ bool Language::change(string language)
     bool returnValue = false;
 
     if (language=="French"){
+        _language = language;
         loadFromFile("TextFrench.txt");
         returnValue = true;
     }
     if(language=="English"){
+        _language = language;
         loadFromFile("TextEnglish.txt");
         returnValue = true;
     }
@@ -49,13 +52,31 @@ void Language::loadFromFile(string text)
 
 
         string line;
-        string id;
-        string information;
+        
 
         while(getline(file, line))
         {
-            file >> id >> information;
-            _listText[id]=information;
+            
+            string key = "";
+            string information = "";
+            
+            bool keyFound = false;
+            for (auto c : line)
+            {
+
+                if (c == ' ' && !keyFound){
+                    keyFound = true;
+                }
+                else if (!keyFound){
+                    key += c;
+                }
+                else{
+                    information += c;
+                }
+            }
+            
+            _listText[key] = information;
+            
         }
         file.close();  // on ferme le fichier
     }
@@ -76,7 +97,12 @@ string Language::getText(string text)
             return t.second;
         }
     }
-    return "Text not find.";
+    return "Text not found.";
+}
+
+string Language::getLanguage()
+{
+    return _language;
 }
 
 

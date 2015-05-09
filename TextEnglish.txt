@@ -2,44 +2,45 @@
 language Language
 languageValue English
 choice Choice
-newGame New_Game
-loadGame Load_a_game
+newGame New Game
+loadGame Load a game
 quit Quit
 play Play
 shop Shop
-goShop Go_to_shop
+goShop Go to shop
 settings Settings
 menu Menu
 game Game
 move Move
-moveX Move_X
-moveY Move_Y
+moveX Move X
+moveY Move Y
 shoot Shoot
 nothing continue
 escape Escape
-changeDifficulty Change_difficulty
-changeNBLifeInit Change_Initial_life_number
-changeLanguage Change_Language
-upgradeMainShoot Upgrade_the_main_shoot
-upgradeMainShootlvl2 Shoot_level_2
-upgradeMainShootlvl3 Shoot_level_3
-upgradeMainShootlvl4 Shoot_level_4
-upgradeMainShootlvl5 Shoot_level_5
-upgradeShip Upgrade_ship
-upgradeShiplvl2 Ship_level_2
-upgradeShiplvl3 Ship_level_3
-upgradeShiplvl4 Ship_level_4
-purchaseRight Purchase_don!
-purchaseWrong Purchase_fail!
+changeDifficulty Change difficulty
+changeNBLifeInit Change Initial life number
+changeLanguage Change Language
+upgradeMainShoot Upgrade the main shoot
+upgradeMainShootlvl2 Shoot level 2
+upgradeMainShootlvl3 Shoot level 3
+upgradeMainShootlvl4 Shoot level 4
+upgradeMainShootlvl5 Shoot level 5
+upgradeShip Upgrade ship
+upgradeShiplvl2 Ship level 2
+upgradeShiplvl3 Ship level 3
+upgradeShiplvl4 Ship level 4
+purchaseRight Purchase don !
+purchaseWrong Purchase fail !
 difficulty Difficulty
-nbLifeInit Initial_Life_Number
-availableLanguages Available_languages
+nbLifeInit Initial Life Number
+availableLanguages Available languages
 english English
 french French
-successfullChange Change_Successfuly
+successfullChange Change Successfuly
 fail Failure!
-newValue New_value
-valueLower Value_must_be_lower_than
-bomb Use_a_bombe
+newValue New value
+valueLower Value must be lower than
+bomb Use a bombe
 money Money
 score Score
+bestScores Best Scores

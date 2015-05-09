@@ -12,11 +12,12 @@
 using namespace std;
 
 ViewsController::ViewsController() {
-    _allViews.emplace(make_pair("Introduction", new ViewIntroduction()));
+    _allViews.emplace(make_pair("Introduction", new ViewIntroduction));
     _allViews.emplace(make_pair("MainMenu", new ViewMainMenu));
     _allViews.emplace(make_pair("Game", &_game));
-    _allViews.emplace(make_pair("Shop", new ViewShop()));
-    _allViews.emplace((make_pair("Settings", new ViewSettings)));
+    _allViews.emplace(make_pair("Shop", new ViewShop));
+    _allViews.emplace(make_pair("Settings", new ViewSettings));
+    _allViews.emplace(make_pair("BestScores", new ViewBestScores));
     _quit = false;
     
 }
@@ -68,6 +69,9 @@ bool ViewsController::treatEvent(){
         case -7:
             _view = _allViews["Quit"];
             break;
+        case -8:
+            _view = _allViews["BestScores"];
+            break;
             
         default:
             break;
@@ -85,6 +89,8 @@ void ViewsController::changeView(string view){
 }
 
 void ViewsController::quit(){
+    if (_modele->getPlayer() != nullptr)
+        _modele->saveGame();
     _quit = true;
 }
 

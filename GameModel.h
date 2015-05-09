@@ -19,10 +19,11 @@ private:
     int _height;
     //--
 
+    std::vector<unsigned int> _bestScores;
+    
     Player* _player;
     Level* _level;
     Shop* _shop;
-
     Settings* _settings;
 
 public :
@@ -48,7 +49,16 @@ public :
     
     // save the current game
     void saveGame ();
+    
+    // load from file the best scores
+    void loadBestScore();
+    
+    // save the current best scores
+    void saveBestScores();
 
+    // check if score is a best score, and save it if it is one
+    bool tryAddBestScore(const unsigned int score);
+    
     // play the game
     void play ();
 
@@ -70,6 +80,7 @@ public :
     Level* getLevel();
     Shop* getShop();
     Settings* getSettings();
+    std::vector<unsigned int>* getBestScores();
 
 
 

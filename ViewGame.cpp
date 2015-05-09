@@ -41,6 +41,7 @@ int ViewGame::treatEvent(){
                 break;
                 
             case 3 :
+                _modele->getLevel()->playerUseBomb();
                 break;
                 
             case 5 :

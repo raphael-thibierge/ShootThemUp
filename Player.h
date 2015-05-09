@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include "Ship.h"
-#include "Bomb.h"
 #include "Enemy.h"
 #include <string>
 
@@ -18,7 +17,7 @@ private:
     float _money;
     unsigned int _level;
     unsigned int _shild;
-    //std::list<Bomb*> * _bombList;
+    unsigned int _bombNumber;
 
 public:
 
@@ -32,11 +31,15 @@ public:
 
 // METHODS
 //
-    // shoot a 
+    // shoot bullet
     void shoot (std::string bulletType, std::string direction, std::list<Bullet*> * bulletList) override;
+    
+    // player use a bomb if he has one
+    void useBomb(std::list<Enemy*> &enemyList, const int difficulty);
 
     void nextLevel();
 
+    // update player's score, depend of enemy and difficulty
     void score(Enemy * enemy, unsigned int difficulty);
 
     void activateShild();
@@ -79,6 +82,8 @@ public :
 
     std::string getBulletType() const;
     
+    unsigned int getBombNumber() const;
+    
     
 // SETTERS
 //
@@ -94,7 +99,7 @@ public :
     
     void setScore(unsigned int score);
 
-
+    void setBombNumber(unsigned int value);
 
 };
 

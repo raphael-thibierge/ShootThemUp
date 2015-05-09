@@ -24,16 +24,6 @@ Player::~Player ()
 // Methods
 //
 
-void Player::shoot (string bulletType, string direction, list<Bullet*> * bulletList)
-{
-    bulletList->push_back(new Bullet(_bulletType, direction, _X+_height/2, _Y-5,  "player"));
-}
-
-void Player::nextLevel()
-{
-    _level++;
-}
-
 void Player::initPlayer()
 {
     _bulletType = "standart";
@@ -45,11 +35,62 @@ void Player::initPlayer()
     _nbLife = NB_LIFE_INITIAL;
     _width = WIDTH_PLAYER_DEFAULT;
     _height = HEIGHT_PLAYER_DEFAULT;
+    
+    _bombNumber = 1 ; // provisoire, sinon 0
     resetPosition();
 }
 
-void Player::score(Enemy * enemy, unsigned int difficultyLevel)
+
+void Player::shoot (string bulletType, string direction, list<Bullet*> * bulletList)
 {
+    bulletList->push_back(new Bullet(_bulletType, direction, _X+_height/2, _Y-5,  "player"));
+}
+
+
+void Player::useBomb(list<Enemy*> &enemyList, const int difficulty)
+{ // destruct all enemies on the screen
+    
+    if (_bombNumber > 0){
+        _bombNumber-- ;
+        // list of enemies wich are destroyed by the bomb
+        list<Enemy*> enemiesKilled;
+        
+        // founding enemies
+        for (auto enemy : enemyList){
+            // if he is on screen
+            if (enemy->getX() >= 0 && enemy->getX() <= SCREEN_WIDTH &&
+                enemy->getY() >= 0 && enemy->getY() <= SCREEN_HEIGHT){
+                
+                //the enemy is put on the enemiesKilled list
+                enemiesKilled.push_back(enemy);
+                
+                // update score
+                score(enemy, difficulty);
+                
+            }
+        }
+        
+        // destruction of killed enemies
+        for (auto enemy : enemiesKilled){
+            // delete enemy from enemyList
+            enemyList.remove(enemy);
+            // destruct enemy
+            delete enemy;
+        }
+        
+        // clear
+        enemiesKilled.clear();
+    }
+}
+
+
+void Player::nextLevel()
+{
+    _level++;
+}
+
+void Player::score(Enemy * enemy, unsigned int difficultyLevel)
+{ // return player's score updated
     if ( enemy->getType() == "standard"){
         _score+= 5*enemy->getLevel()*difficultyLevel;
     }
@@ -144,6 +185,11 @@ string Player::getBulletType() const
     return _bulletType;
 }
 
+unsigned int Player::getBombNumber() const
+{
+    return _bombNumber;
+}
+
 
 
 void Player::setNbLife(unsigned int nbLife)
@@ -173,6 +219,11 @@ void Player::setMoney( float money)
 
 void Player::setScore(unsigned int score){
     _score=score;
+}
+
+void Player::setBombNumber(unsigned int value)
+{
+    _bombNumber = value;
 }
 
 // Other methods

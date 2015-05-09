@@ -47,7 +47,10 @@ public:
     void randomEnemiesShoot();
     
     void runGame();
-
+    
+    // activate player's bomb
+    void playerUseBomb();
+    
 
 // ACCESSOR METHODS
 //

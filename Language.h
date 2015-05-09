@@ -9,6 +9,7 @@ class Language
 {
 private:
     std::map<std::string, std::string> _listText;
+    std::string _language;
     
 
 // CONSTRUCTOR AND DESTRUCTOR
@@ -29,6 +30,7 @@ public:
 //
     std::string getText(std::string text);
 
+    std::string getLanguage();
 
 
 
