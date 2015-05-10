@@ -14,10 +14,7 @@ Language::Language()
     loadFromFile("TextFrench.txt");
 }
 
-Language::~Language()
-{
-    //dtor
-}
+Language::~Language() {}
 
 //
 // METHODS

@@ -244,6 +244,7 @@ void Level::runGame(){
 }
 
 void Level::playerUseBomb(){
+    // this method try to activate the player bomb
     _player->useBomb(_enemyList, *_difficulty);
 }
 
