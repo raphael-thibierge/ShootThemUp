@@ -11,6 +11,9 @@
 
 using namespace std;
 
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
 ViewsController::ViewsController() {
     _allViews.emplace(make_pair("Introduction", new ViewIntroduction));
     _allViews.emplace(make_pair("MainMenu", new ViewMainMenu));
@@ -25,24 +28,43 @@ ViewsController::ViewsController() {
 ViewsController::~ViewsController(){
     _view = nullptr;   
     
+    _view = nullptr;
+    for (auto view : _allViews) {
+        //the gameview is not in the queue
+        if (view.first != "Game")
+            delete view.second;
+        view.second=nullptr;
+    }
 }
 
+
+//
+// METHODS
+//
 bool ViewsController::treatEvent(){
+    //return true if the player doesn't quit the game
+    
+    // switch between the different views
+    
+    // return of the treatment in active view
     switch (_view->treatEvent()) {
-        case 1:
-            // cas ou tout c'est bien déroulé
+        
+        case 1:// every things is ok
             break;
             
-        case 0:
+        case 0: // quit active view
+            // if it's the main menu --> player want to quit
             if (dynamic_cast<ViewMainMenu*>(_view) != nullptr){
                 quit();
             }
             
-            else {
+            else { // active view become the main menu
                 _view = _allViews["MainMenu"];
             }
             break;
     
+            // change of view
+            //
         case -1:
             _view = _allViews["MainMenu"];
             break;
@@ -81,26 +103,31 @@ bool ViewsController::treatEvent(){
 }
 
 void ViewsController::showView(){
+    //show active view
     _view->showView();
 }
 
 void ViewsController::changeView(string view){
+    // change active view
     _view = _allViews[view];
 }
 
 void ViewsController::quit(){
     if (_modele->getPlayer() != nullptr)
         _modele->saveGame();
+    // qui the game
     _quit = true;
 }
 
 void ViewsController::init(GameModel *modele){
+    //initisilisation of the controller and views
     _modele = modele;
     _quit = false;
     for (auto view : _allViews) {
         view.second->setView(_modele);
     }
     
+    // at beginning of the program, it's the introduction view
     _view = _allViews["Introduction"];
 
 }

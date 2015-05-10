@@ -12,11 +12,17 @@
 
 using namespace std;
 
-
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
 ViewMainMenu::ViewMainMenu(){}
 
 ViewMainMenu::~ViewMainMenu(){}
 
+
+//
+// METHODS
+//
 int ViewMainMenu::treatEvent() {
     int returnValue = 1;
     int answer;
@@ -63,7 +69,6 @@ int ViewMainMenu::treatEvent() {
     }
     else {
         
-        
         do {
             cout << _language->getText("choice") << endl;
             cin >> answer;
@@ -96,8 +101,6 @@ int ViewMainMenu::treatEvent() {
             default:
                 break;
         }
-
-        
     }
     
     

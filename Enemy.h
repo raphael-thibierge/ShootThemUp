@@ -14,7 +14,6 @@ class Enemy : virtual public Ship
 private :
 
     unsigned int _level;
-    std::string _direction;
 
 
 // CONSTRUCTORS/DESTRUCTORS
@@ -31,7 +30,7 @@ public:
 
     void move ();
 
-    void shoot (std::string bulletType, std::string direction, std::list<Bullet*> * bulletList) override;
+    void shoot (std::list<Bullet*> * bulletList) override;
 
     unsigned int getLevel() const;
 

@@ -100,6 +100,11 @@ unsigned int Bullet::getDamage() const
     return _damage;
 }
 
+string Bullet::getShooter() const
+{
+    return _shooter;
+}
+
 // Other methods
 //
 

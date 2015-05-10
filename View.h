@@ -11,20 +11,25 @@
 
 #include <stdio.h>
 #include "GameModel.h"
-class View{
-    
-    
+
+class View
+{    
 protected:
 
     GameModel* _modele;
     Language* _language;
 
+    
+// CONSTRUCTOR AND DESTRUCTOR
+//
 public :
 
     View();
     
     virtual ~View();
     
+// METHODS
+//
     virtual int treatEvent() =0;
     
     virtual void showView();

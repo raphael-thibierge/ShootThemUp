@@ -6,10 +6,10 @@ using namespace std;
 //
 
 Shop::Shop(Player* player) : _player(player){
-    
+
     //cout << "\n=====================" << endl;
     //cout << "CONSTRUCTOR SHOP" << endl;
-    
+
     _store["level2"]=true;
     _store["level3"]=false;
     _store["level4"]=false;
@@ -58,7 +58,7 @@ bool Shop::upgradeBullet(string type)
         if(type == "level3" && _player->getBulletType()== "level2")
         {
             _player->setBulletType("level3");
-            _player->setMoney(_player->getMoney()-100);
+            _player->setMoney(_player->getMoney()-200);
             _store["level3"]=false;
             _store["level4"]=true;
             return true;
@@ -71,7 +71,7 @@ bool Shop::upgradeBullet(string type)
            ->getBulletType()== "level3")
         {
             _player->setBulletType("level4");
-            _player->setMoney(_player->getMoney()-100);
+            _player->setMoney(_player->getMoney()-350);
             _store["level4"]=false;
             _store["level5"]=true;
             return true;
@@ -83,7 +83,7 @@ bool Shop::upgradeBullet(string type)
         if(type == "level5" && _player->getBulletType()== "level4")
         {
             _player->setBulletType("level5");
-            _player->setMoney(_player->getMoney()-100);
+            _player->setMoney(_player->getMoney()-500);
             _store["level5"]=false;
             return true;
         }
@@ -101,6 +101,7 @@ bool Shop::upgradeShip(string type)
         if(type == "ship2" && _player->getLevel()== 1)
         {
             _player->setLevel(2);
+            _player->setLifeLevel(500);
             _player->setMoney(_player->getMoney()-200);
             _store["ship2"]=false;
             _store["ship3"]=true;
@@ -113,6 +114,7 @@ bool Shop::upgradeShip(string type)
         if(type == "ship3" && _player->getLevel()== 2)
         {
             _player->setLevel(3);
+            _player->setLifeLevel(700);
             _player->setMoney(_player->getMoney()-500);
             _store["ship3"]=false;
             _store["ship4"]=true;
@@ -124,6 +126,8 @@ bool Shop::upgradeShip(string type)
         if(type == "ship4" && _player->getLevel()== 3)
         {
             _player->setLevel(4);
+
+            _player->setLifeLevel(900);
             _player->setMoney(_player->getMoney()-1000);
             _store["ship4"]=false;
             return true;
@@ -138,12 +142,24 @@ bool Shop::upgradeShip(string type)
 bool Shop::upgradeShild(string type)
 {
 
-    if(_player->getMoney()>=200)
+    if(_player->getMoney()>=100)
     {
-        if(type == "shild1" && _player->getShild()!=0)
+        if(type == "shild1" && _player->getShild()==0)
         {
             _player->setShild(100);
-            _player->setMoney(_player->getMoney()-200);
+            _player->setMoney(_player->getMoney()-100);
+            _store["shild1"]=false;
+            _store["shild2"]=false;
+            _store["shild3"]=false;
+            return true;
+        }
+    }
+    if(_player->getMoney()>=300)
+    {
+        if(type == "shild2" && _player->getShild()==0)
+        {
+            _player->setShild(200);
+            _player->setMoney(_player->getMoney()-300);
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;
@@ -152,22 +168,10 @@ bool Shop::upgradeShild(string type)
     }
     if(_player->getMoney()>=500)
     {
-        if(type == "shild2" && _player->getShild()!=0)
-        {
-            _player->setShild(200);
-            _player->setMoney(_player->getMoney()-500);
-            _store["shild1"]=false;
-            _store["shild2"]=false;
-            _store["shild3"]=false;
-            return true;
-        }
-    }
-    if(_player->getMoney()>=700)
-    {
-        if(type == "shild3" && _player->getShild()!=0)
+        if(type == "shild3" && _player->getShild()==0)
         {
             _player->setShild(300);
-            _player->setMoney(_player->getMoney()-700);
+            _player->setMoney(_player->getMoney()-500);
             _store["shild1"]=false;
             _store["shild2"]=false;
             _store["shild3"]=false;
@@ -178,6 +182,11 @@ bool Shop::upgradeShild(string type)
 }
 
 
-
+void Shop::shidlDisponible()
+{
+    _store["shild1"]=true;
+    _store["shild2"]=true;
+    _store["shild3"]=true;
+}
 
 

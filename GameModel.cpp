@@ -10,14 +10,21 @@ GameModel::GameModel()
 {
     //cout << "\n=====================" << endl;
     //cout << "CONSTRUCTOR GAMEMODEL" << endl;
-    
+
     srand (time(NULL));
     
-    _height = 500;
-    _width = 200;
+    // unused
+   // _height = SCREEN_HEIGHT;
+   // _width = SCREEN_WIDTH;
+    
+    // always init
+    _gameLevel = 0;
     _settings = new Settings;
+    
+    // not init, because player can choose to load an old game
     _player = nullptr;
     _level = nullptr;
+
     
     // loading best scores
     loadBestScore();
@@ -41,6 +48,7 @@ GameModel::~GameModel()
     delete _settings;
 }
 
+
 //
 // Methods
 //
@@ -49,22 +57,22 @@ void GameModel::nextStep()
 {
     // if a game is loaded
     if (_player != nullptr){
-        
+
         // if there isn't any level and level upper than 0
         // --> there isn't any game loaded
-        if(_level==nullptr && _player->getLevel()>0)
+        if(_level==nullptr && _gameLevel>0)
         {
             // creation of the next level
             newLevel();
         }
-        
+
         // if there is a level
         // --> the player is playing
         if ( _level != nullptr)
         {
             // game constinue
             _level->runGame();
-            
+
             // if the player loose, it's the end of the current game
             if (_level->loose()){
                 endCurrentGame();
@@ -251,10 +259,13 @@ bool GameModel::tryAddBestScore(const unsigned int score){
     return best;
 }
 
+
+
 void GameModel::play ()
 {
     // game start from the main menu
     newLevel();
+    // set the initilal life number before to begin the game
     _player->setNbLife(*_settings->getNbLife());
 }
 
@@ -262,16 +273,19 @@ void GameModel::play ()
 
 void GameModel::newLevel ()
 {
-    if (_level != nullptr)
-        destructLevel();
+    // destruction of level (even if there is no one)
+    destructLevel();
     _level = new Level(_player, _settings->getDifficulty());
-    _player->nextLevel();
+    // increment the level number
+    _gameLevel++;
+    // player's initial position
     _player->resetPosition();
 }
 
 
 void GameModel::destructLevel()
 {
+    // return null level
     if (_level != nullptr){
         delete _level;
         _level = nullptr;

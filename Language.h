@@ -22,6 +22,7 @@ public:
 
 // METHODS
 //
+    // change lan
     bool change(std::string language);
     
     void loadFromFile(std::string text);

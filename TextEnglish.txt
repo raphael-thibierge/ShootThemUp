@@ -15,7 +15,8 @@ move Move
 moveX Move X
 moveY Move Y
 shoot Shoot
-nothing continue
+nothing Continue
+shild Shild
 escape Escape
 changeDifficulty Change difficulty
 changeNBLifeInit Change Initial life number

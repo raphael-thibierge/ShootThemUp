@@ -24,26 +24,37 @@
 class ViewsController {
 
 protected:
+    // end of the program
     bool _quit;
     GameModel* _modele;
+    // list of views
     std::map<std::string, View*> _allViews;
+    // active view
     View* _view ;
     
-    // pour que la vue du jeu soit stoqué dans la pile
+    // game view in the queue
     ViewGame _game;
     
+// CONSTRUCTOR AND DESTRUCTOR
+//
 public:
 
     ViewsController();
 
     ~ViewsController();
 
+// METHODS
+//
+    // methods to treat events in the active view
     bool treatEvent();
 
+    // show the current view
     void showView();
 
+    // quit the program
     void quit();
 
+    // init gamemodel for each views
     void init(GameModel* modele);
 
 private:

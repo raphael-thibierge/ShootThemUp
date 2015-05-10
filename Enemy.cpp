@@ -11,7 +11,7 @@ Enemy::Enemy (std::string type, unsigned int level, float x, float y, float widt
     setPosition(x, y);
     _lifeLevel = lifeLevel;
     _speed = speed;
-    _direction =  "SOUTH";
+    _direction =  ENEMIES_DIRECTION;
     _width = width;
     _height = height;
 }
@@ -29,10 +29,10 @@ void Enemy::move()
     RectanglePosition::move(_direction, _speed);
 }
 
-void Enemy::shoot (string bulletType, string direction, list<Bullet*> * bulletList)
+void Enemy::shoot (list<Bullet*> * bulletList)
 {
     if (_type != "kamikaze")
-        bulletList->push_back(new Bullet("standart", direction, _X+_width/2, _Y+_height, "enemy"));
+        bulletList->push_back(new Bullet("standart", _direction, _X+_width/2, _Y+_height, "enemy"));
 }
 
 string Enemy::toString(){

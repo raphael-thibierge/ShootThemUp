@@ -16,6 +16,7 @@ moveX Deplacement X
 moveY Deplacement Y
 shoot Tirer
 nothing Rien
+shild Bouclier
 escape Abandonner
 changeDifficulty Changer la difficulté
 changeNBLifeInit Changer le nombre de vie initiales

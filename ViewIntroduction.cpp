@@ -10,10 +10,17 @@
 
 using namespace std;
 
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
 ViewIntroduction::ViewIntroduction(){}
 
 ViewIntroduction::~ViewIntroduction(){}
 
+
+//
+// METHODS
+//
 int ViewIntroduction::treatEvent(){
 
     showView();

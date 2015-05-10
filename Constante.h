@@ -15,12 +15,16 @@ const int STARTING_DAMAGE = 50;
 const unsigned int DIFFICULTY = 2;
 const unsigned int NB_ENNEMY_LEVEL = 50;
 
-
-
 const int SCREEN_HEIGHT=100;
 const int SCREEN_WIDTH=50;
 
 const int BEST_SCORE_NB = 5;
 const std::string BEST_SCORE_FILE = "BestScoreFile.txt";
+
+// ======== DIRECTIONS ============
+const std::string PLAYER_DIRECTION = "NORTH";
+const std::string ENEMIES_DIRECTION = "SOUTH";
+
+const int MAX_DIFFICULTY = 3;
 
 #endif // CONSTANTE_H_INCLUDED

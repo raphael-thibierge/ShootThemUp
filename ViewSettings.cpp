@@ -14,10 +14,17 @@
 
 using namespace std;
 
+//
+// CONSTRUCTOR AND DESTRUCTOR
+//
 ViewSettings::ViewSettings(){}
 
 ViewSettings::~ViewSettings(){}
 
+
+//
+// METHODS
+//
 int ViewSettings::treatEvent(){
     int returnValue = 1;
     

@@ -31,35 +31,34 @@ public:
 
 // METHODS
 //
-    // shoot bullet
-    void shoot (std::string bulletType, std::string direction, std::list<Bullet*> * bulletList) override;
     
     // player use a bomb if he has one
     void useBomb(std::list<Enemy*> &enemyList, const int difficulty);
 
     void nextLevel();
+    // shoot a bullet
+    void shoot (std::list<Bullet*> * bulletList) override;
 
     // update player's score, depend of enemy and difficulty
     void score(Enemy * enemy, unsigned int difficulty);
 
     void activateShild();
     
+    // payer loose one life
     void looseLife();
-    
+
     // affect damage to player
     void affectDamage(unsigned int damage);
-    
+
     void resetPosition();
-    
+
     void resetLifeLevel();
-    
+
+    // add money in function of the current score
     void addMoney();
-    
-    
-    
 
     std::string toString() override;
-    
+
 
 private :
 
@@ -67,7 +66,7 @@ private :
 
 // ACCESSOT METHODS
 //
-    
+
 public :
 
 // GETTERS
@@ -96,7 +95,7 @@ public :
     void setBulletType( std::string bulletType);
 
     void setMoney( float money);
-    
+
     void setScore(unsigned int score);
 
     void setBombNumber(unsigned int value);
