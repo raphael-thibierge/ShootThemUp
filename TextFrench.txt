@@ -30,6 +30,10 @@ upgradeShip Amelioreation du vaisseau
 upgradeShiplvl2 Vaisseau niveau 2
 upgradeShiplvl3 Vaisseau niveau 3
 upgradeShiplvl4 Vaisseau niveau 4
+upgradeShield Amélioration du bouclier
+upgradeShieldlvl1 Bouclier niveau 1
+upgradeShieldlvl2 Bouclier niveau 2
+upgradeShieldlvl3 Bouclier niveau 3
 purchaseRight Achat effectué !
 purchaseWrong Echec de l'achat !
 difficulty Difficulté
@@ -45,3 +49,8 @@ bomb Utiliser une bombe
 money Argent
 score Score
 bestScores Meilleurs Scores
+buyBomb Acheter une bombe
+buyLife Acheter une vie
+shootLevel Niveau du tir
+shipLevel Niveau du vaisseau
+shildLevel Niveau du bouclier

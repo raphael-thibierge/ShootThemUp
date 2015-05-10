@@ -56,10 +56,9 @@ int ViewGame::treatEvent()
             break;
 
         case 4 :
-            if(_modele->getPlayer()->getShild()!=0)
+            if(_modele->getPlayer()->getShield()!=0)
             {
                 _modele->getPlayer()->activateShild();
-                _modele->getShop()->shidlDisponible();
                 cout << _language->getText("activatedShild");
             }
             else

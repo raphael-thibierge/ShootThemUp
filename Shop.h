@@ -4,11 +4,13 @@
 #include <map>
 #include "Player.h"
 
+
 class Shop
 {
 private:
-    std::map<std::string, bool> _store;
-    Player* _player;
+    Player * _player;
+    std::vector<Bullet *> _bullets;
+    std::vector<Ship *> _ships;
 
 public:
 // CONSTRUCTOR ABD DESTRUCTOR
@@ -19,16 +21,22 @@ public:
 
 // METHODS
 //
+    // return if player can buy the product
+    bool available(const std::string product, const int level);
     
-    bool upgrade(std::string object);
+    // upgrade the bullet if it's possible
+    bool upgradeBullet(const int level);
     
-    bool upgradeBullet(std::string type);
-
-    bool upgradeShip(std::string type);
-
-    bool upgradeShild(std::string type);
-
-    void shidlDisponible();
+    // same for ship
+    bool upgradeShip(const int level);
+    
+    // same for shild
+    bool upgradeShield(const int level);
+    
+    bool buyBomb();
+    
+    bool buyLife();
+    
 
 };
 

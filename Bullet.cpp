@@ -5,31 +5,26 @@ using namespace std ;
 // Constructors/Destructors
 //
 
-Bullet::Bullet (string type , string direction, float X, float Y, string shooter ) : RectanglePosition::RectanglePosition(X,Y, 5, 5), _type(type) ,_direction(direction), _shooter(shooter)
+Bullet::Bullet (const unsigned int type , const string direction, const float X, const float Y, const string shooter ) : RectanglePosition::RectanglePosition(X,Y, 5, 5), _type(type) ,_direction(direction), _shooter(shooter)
 {
-    // cout << "\n=====================" << endl;
-    //cout << "CONSTRUCTOR BULLET" << endl;
-
     initBullet();
-
 }
 
-Bullet::~Bullet ()
+Bullet::Bullet(const unsigned int type) : _type(type)
 {
-    //cout << "\n=====================" << endl;
-    //cout << "DESTRUCTOR BULLET" << endl;
+    initBullet();
 }
+
+Bullet::~Bullet () {}
+
 
 //
 // Methods
 //
-
-
 void Bullet::move ()
 {
     RectanglePosition::move(_direction, _speed);
 }
-
 
 
 void Bullet::initBullet(){
@@ -38,56 +33,21 @@ void Bullet::initBullet(){
         _Y -= _height;
     if (_direction == "SOUTH")
         _Y += _height;
-
-    if(_shooter=="player")
-    {
-        if(_type == "standart")
-        {
-            _damage = 50;
-            _speed = 5;
-        }
-        if(_type == "level2")
-        {
-            _damage = 100;
-            _speed = 5;
-        }
-        if(_type == "level3")
-        {
-            _damage = 100;
-            _speed = 10;
-        }
-        if(_type == "level4")
-        {
-            _damage = 150;
-            _speed = 10;
-        }
-        if(_type == "level5")
-        {
-            _damage = 200;
-            _speed = 10;
-        }
-
-    }
-
-    if(_shooter=="enemy")
-    {
-        _damage=50;
-        _speed=10;
-    }
-
-
+   
+    _damage = BULLET_DAMAGE[_type];
+    _speed = BULLET_SPEED[_type];
 }
 
 string Bullet::toString()
 {
-    string text = "BULLET : " + _type;
+    string text = "BULLET : " ;
     text += " Shooter=" + _shooter + " ";
     text += RectanglePosition::toString();
     text += " speed=";
     text += to_string(_speed);
     text += " direction=" + _direction ;
     text += " damage=" + to_string(_damage);
-    text += " bullet type=" + _type;
+    text += " bullet type=" + to_string(_type);
     text += " shooter=" + _shooter;
     return text;
 }
@@ -105,6 +65,10 @@ string Bullet::getShooter() const
     return _shooter;
 }
 
+unsigned int Bullet::getType() const
+{
+    return _type;
+}
 // Other methods
 //
 

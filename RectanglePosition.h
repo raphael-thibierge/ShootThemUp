@@ -29,7 +29,7 @@ protected:
 public:
 	RectanglePosition ();
 
-    RectanglePosition(float x, float y, float width, float heigh);
+    RectanglePosition(const float x, const float y, const float width, const float heigh);
 
 	virtual ~RectanglePosition () =0;
 
@@ -39,18 +39,18 @@ public:
 public:
     
     // move with values
-    void move(float dx, float dy);
+    void move(const float dx, const float dy);
     
     // move in a direction, depend of speed
-    void move(std::string direction, float speed);
+    void move(const std::string direction, const float speed);
 
     std::string toString();
 
 //ACCESSOR METHODS
 //
-    void setPosition (float x, float y);
+    void setPosition (const float x, const float y);
     
-    void setSize (float widht, float height);
+    void setSize (const float widht, const float height);
     
     float getX() const;
 

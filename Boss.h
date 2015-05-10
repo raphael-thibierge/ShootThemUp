@@ -14,7 +14,6 @@
 
 class Boss : Enemy
 {
-    
 
 
 // CONCSTRUCTOR/DESTRUCTOR
@@ -30,6 +29,8 @@ public:
 public:
     
     void move();
+    
+    void shoot();
     
 };
 

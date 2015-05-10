@@ -13,10 +13,10 @@ private:
     
     unsigned int _level;
 	unsigned int * _difficulty;
-	unsigned int _nbEnnemy;
+	unsigned int _nbEnnemies;
     Player * _player;
-    std::list<Enemy*> _enemyList ;
-    std::list<Bullet*> _bulletList;
+    std::list<Enemy*> _enemiesList ;
+    std::list<Bullet*> _bulletsList;
     int _enemiesCpt;
 
 public:

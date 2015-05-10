@@ -12,7 +12,7 @@ class Bullet : virtual public RectanglePosition
 
 private :
 
-    std::string _type;
+    unsigned int _type;
     unsigned int _damage;
     std::string _shooter;
     std::string _direction;
@@ -22,8 +22,11 @@ public:
 
 // Constructeurs destructeurs
 
-	Bullet (std::string type ,std::string direction, float whith, float height, std::string shooter);
+	Bullet (const unsigned int type , const std::string direction, const float whith, const float height, const std::string shooter);
 
+    
+    Bullet(const unsigned int type);
+    
 	virtual ~Bullet ();
 
 
@@ -42,6 +45,8 @@ public:
     unsigned int getDamage() const;
     
     std::string getShooter() const;
+    
+    unsigned int getType() const;
 
 };
 

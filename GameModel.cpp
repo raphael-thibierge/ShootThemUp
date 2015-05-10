@@ -125,7 +125,8 @@ bool GameModel::loadGame ()
     
     //PLAYER
     //_bulletType
-    _player->setBulletType(line);
+    getline(gameFile, line);
+    _player->setBulletType(atoi(&line[0]));
     
     // _money
     getline(gameFile, line);
@@ -137,7 +138,7 @@ bool GameModel::loadGame ()
     
     // shield
     getline(gameFile, line);
-    _player->setShild(atoi(&line[0]));
+    _player->setShield(atoi(&line[0]));
     
     // _bombNumber
     getline(gameFile, line);
@@ -180,7 +181,7 @@ void GameModel::saveGame ()
     gameFile << _player->getLevel() << "\n";
     
     //_shild
-    gameFile << _player->getShild() << "\n";
+    gameFile << _player->getShield() << "\n";
     
     //_bombNumber
     gameFile << _player->getBombNumber() << "\n";

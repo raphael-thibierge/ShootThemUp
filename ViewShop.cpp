@@ -30,164 +30,115 @@ int ViewShop::treatEvent()
     {
         cout << _language->getText("choice") << endl;
         cin >> answer;
-
-    }   // CA NE PEUT PAS MAAAAARCHEEEER !!!!!! RENVOIT TOUJOURS FAUX !
-    while ( (answer > /* DISABLES CODE */ (10) && answer < 15) && (answer > 25 && answer < 20) && (answer > 34 && answer < 30) && (answer > 5 && answer < 3));
-
+        
+    }
+    while ( answer < 4 || (answer > 6 && answer < 11) || (answer > 14 && answer < 20) || (answer > 23 && answer < 30 ) || answer > 33);
+    
+    bool purchase = false ;
     switch (answer)
     {
-    case 11:
-        if(_modele->getShop()->upgradeBullet("level2"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 12:
-        if(_modele->getShop()->upgradeBullet("level3"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 13:
-        if(_modele->getShop()->upgradeBullet("level4"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 14:
-        if(_modele->getShop()->upgradeBullet("level5"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 21:
-        if(_modele->getShop()->upgradeShip("ship2"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 22:
-        if(_modele->getShop()->upgradeShip("ship3"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 23:
-        if(_modele->getShop()->upgradeShip("ship4"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 31:
-        if(_modele->getShop()->upgradeShild("shild1"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 32:
-        if(_modele->getShop()->upgradeShild("shild2"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 33:
-        if(_modele->getShop()->upgradeShild("shild3"))
-        {
-            cout<<_language->getText("purchaseRight")<<endl;
-        }
-        else
-        {
-            cout<<_language->getText("purchaseWrong")<<endl;
-        }
-        break;
-
-    case 4:
-        returnValue = 0;
-        break;
-
-
-    default:
-        break;
+        case 4:
+            purchase = _modele->getShop()->buyBomb();
+            break;
+            
+        case 5:
+            purchase = _modele->getShop()->buyLife();
+            break;
+            
+        case 6:
+            returnValue = 0;
+            break;
+        
+        case 11:
+            purchase = _modele->getShop()->upgradeBullet(1);
+            break;
+            
+        case 12:
+            purchase = _modele->getShop()->upgradeBullet(2);
+            break;
+            
+        case 13:
+            purchase = _modele->getShop()->upgradeBullet(3);
+            break;
+            
+        case 14:
+            purchase = _modele->getShop()->upgradeBullet(4);
+            break;
+            
+        case 21:
+            purchase = _modele->getShop()->upgradeShip(1);
+            break;
+            
+        case 22:
+            purchase = _modele->getShop()->upgradeShip(2);
+            break;
+            
+        case 23:
+            purchase = _modele->getShop()->upgradeShip(3);
+            break;
+            
+        case 31:
+            purchase = _modele->getShop()->upgradeShield(0);
+            break;
+            
+        case 32:
+            purchase = _modele->getShop()->upgradeShield(1);
+            break;
+            
+        case 33:
+            purchase = _modele->getShop()->upgradeShield(2);
+            break;
+            
+        default:
+            break;
     }
-
+    
+    if (purchase)
+        cout << _language->getText("purchaseRight") << endl;
+    
+    else if (returnValue != 0)
+        cout << _language->getText("purchaseWrong");
+    
+    
     return returnValue;
 }
 
 
 void ViewShop::showView()
 {
-    cout << "\n---------------------- \n " + _language->getText("shop") << endl;
-    cout << _language->getText("money") << " " + to_string(_modele->getPlayer()->getMoney()) + "$"<< endl;
-    cout << _language->getText("levelShoot") << " " + _modele->getPlayer()->getBulletType()<< endl;
-    cout << _language->getText("levelShip") << " " + to_string(_modele->getPlayer()->getLevel()) << endl;
-    cout << _language->getText("levelShild") << " ";
-    if(_modele->getPlayer()->getShild()!=0)
-    {
-        cout<< _language->getText("alreadyShild")<< endl<< endl;
+    cout << "\n---------------------- \n " << _language->getText("shop") << endl;
+    cout << _language->getText("money") << " " << _modele->getPlayer()->getMoney() << "$"<< endl;
+    cout << _language->getText("shootLevel") << " " << (_modele->getPlayer()->getBulletType() + 1 )<< endl;
+    cout << _language->getText("shipLevel") << " " << (_modele->getPlayer()->getType() + 1) << endl;
+    cout << _language->getText("shieldLevel") << " " << (_modele->getPlayer()->getShield()) << endl;
+    
+    /*
+    if(_modele->getPlayer()->getShield()!=0){
+        cout<< _language->getText("alreadyShield")<< endl<< endl;
     }
-    else
-    {
-        cout<< _language->getText("noShild")<< endl<< endl;
+    else{
+        cout<< _language->getText("noShield")<< endl<< endl;
     }
-
-    cout << "\t (1) " + _language->getText("upgradeMainShoot") << endl;
-    cout << "\t \t (11) " + _language->getText("upgradeMainShootlvl2") + "  100$"<< endl;
-    cout << "\t \t (12) " + _language->getText("upgradeMainShootlvl3") + "  200$" << endl;
-    cout << "\t \t (13) " + _language->getText("upgradeMainShootlvl4") + "  350$" << endl;
-    cout << "\t \t (14) " + _language->getText("upgradeMainShootlvl5") + "  500$"<< endl;
-    cout << "\t (2) " + _language->getText("upgradeShip") << endl;
-    cout << "\t \t (21) " + _language->getText("upgradeShiplvl2") + "  200$"<< endl;
-    cout << "\t \t (22) " + _language->getText("upgradeShiplvl3") + "  500$"<< endl;
-    cout << "\t \t (23) " + _language->getText("upgradeShiplvl4") + "  1000$"<< endl;
-    cout << "\t (3) " + _language->getText("upgradeShild") << endl;
-    cout << "\t \t (31) " + _language->getText("upgradeShildlvl1") + "  100$"<< endl;
-    cout << "\t \t (32) " + _language->getText("upgradeShildlvl2") + "  300$"<< endl;
-    cout << "\t \t (33) " + _language->getText("upgradeShildlvl3") + "  500$"<< endl;
-    cout << "\t (4) " + _language->getText("quit") << endl;
-
+     */
+    
+    cout << "\t (1) " << _language->getText("upgradeMainShoot") << endl;
+    cout << "\t \t (11) " << _language->getText("upgradeMainShootlvl2") << "  " << BULLET_PRICE[1] <<"$"<< endl;
+    cout << "\t \t (12) " << _language->getText("upgradeMainShootlvl3") << "  " << BULLET_PRICE[2] <<"$"<< endl;
+    
+    cout << "\t \t (13) " << _language->getText("upgradeMainShootlvl4") << "  " << BULLET_PRICE[3] <<"$"<< endl;
+    
+    cout << "\t \t (14) " << _language->getText("upgradeMainShootlvl5") << "  " << BULLET_PRICE[4] <<"$"<< endl;
+    
+    cout << "\t (2) " << _language->getText("upgradeShip") << endl;
+    cout << "\t \t (21) " << _language->getText("upgradeShiplvl2") << " : " << SHIP_PRICE[1] <<"$"<< endl;
+    
+    cout << "\t \t (22) " << _language->getText("upgradeShiplvl3") << " : " << SHIP_PRICE[2] <<"$"<< endl;
+    cout << "\t \t (23) " << _language->getText("upgradeShiplvl4") << " : " << SHIP_PRICE[3] <<"$"<< endl;
+    cout << "\t (3) " << _language->getText("upgradeShild") << endl;
+    cout << "\t \t (31) " << _language->getText("upgradeShieldlvl1") << " : " << SHIELD_PRICE[0] <<"$"<< endl;
+    cout << "\t \t (32) " << _language->getText("upgradeShieldlvl2") << " : " << SHIELD_PRICE[1] <<"$"<< endl;
+    cout << "\t \t (33) " << _language->getText("upgradeShieldlvl3") << " : " << SHIELD_PRICE[2] <<"$"<< endl;
+    cout << "\t (4) " << _language->getText("buyBomb") << " : " << BOMB_PRICE << "$" << endl;
+    cout << "\t (5) " << _language->getText("buyLife") << " : " << LIFE_PRICE << "$" << endl;
+    cout << "\t (6) " + _language->getText("quit") << endl;
 }

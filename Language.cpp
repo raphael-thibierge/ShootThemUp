@@ -20,7 +20,7 @@ Language::~Language() {}
 // METHODS
 //
 
-bool Language::change(string language)
+bool Language::change(const string language)
 {
     bool returnValue = false;
 
@@ -39,7 +39,7 @@ bool Language::change(string language)
 }
 
 
-void Language::loadFromFile(string text)
+void Language::loadFromFile(const string text)
 {
     ifstream file(text, ios::in);
     if(file)  // si l'ouverture a réussi
@@ -85,7 +85,7 @@ void Language::loadFromFile(string text)
 //ACCESSOR METHODS
 //
 
-string Language::getText(string text)
+string Language::getText(const string text)
 {
     for (auto t : _listText)
     {
