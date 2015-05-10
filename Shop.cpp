@@ -107,7 +107,7 @@ bool Shop::buyLife(){
     if (_player->getMoney() > LIFE_PRICE){
         // he pays and gets a life
         _player->pay(LIFE_PRICE);
-        _player->addLife();
+        _player->addLife(1);
         return true;
     }
     return false;

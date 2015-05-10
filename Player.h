@@ -61,7 +61,7 @@ public:
     void addBomb();
     
     // add one life
-    void addLife();
+    void addLife(const unsigned int number);
     
     void pay(const float value);
 

@@ -35,14 +35,14 @@ void Player::initPlayer()
 {
     _bulletType = 0;
     _lifeLevel = PLAYER_LIFE_LEVEL;
-    _nbLife = PLAYER_NB_LIFE;
+    _nbLife = 0;
     _width = PLAYER_WIDTH;
     _height = PLAYER_HEIGHT;
     
     _bombNumber = 1 ; // provisoire, sinon 0
     _direction = PLAYER_DIRECTION;
     _score = 0;
-    _money = 0;
+    _money = 1000;
     _speed = PLAYER_SPEED;
     _shild = 0;
     _level = 0;
@@ -152,8 +152,8 @@ void Player::addBomb(){
     _bombNumber++;
 }
 
-void Player::addLife(){
-    _nbLife++;
+void Player::addLife(const unsigned int number){
+    _nbLife += number;
 }
 
 void Player::pay(float value){

@@ -75,11 +75,9 @@ void GameModel::nextStep()
 
             // if the player loose, it's the end of the current game
             if (_level->loose()){
-                endCurrentGame();
                 tryAddBestScore(_player->getScore());
+                endCurrentGame();
             }
-            
-            
             
             // if the player win, he plays the next level
             else if (_level->win())
@@ -95,8 +93,6 @@ void GameModel::newGame ()
     _player->setScore(0);
     _shop = new Shop(_player);
 }
-
-
 
 bool GameModel::loadGame ()
 {
@@ -147,9 +143,6 @@ bool GameModel::loadGame ()
     gameFile.close();
     return true;
 }
-
-
-
 
 void GameModel::saveGame ()
 { // save settings and player's attributes
@@ -261,15 +254,13 @@ bool GameModel::tryAddBestScore(const unsigned int score){
 }
 
 
-
 void GameModel::play ()
 {
     // game start from the main menu
     newLevel();
     // set the initilal life number before to begin the game
-    _player->setNbLife(*_settings->getNbLife());
+    _player->addLife(*_settings->getNbLife());
 }
-
 
 
 void GameModel::newLevel ()
@@ -295,6 +286,8 @@ void GameModel::destructLevel()
 
 void GameModel::endCurrentGame(){
     destructLevel();
+    _player->setNbLife(0);
+    _player->setScore(0);    
 }
 
 
