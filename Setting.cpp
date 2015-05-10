@@ -8,18 +8,12 @@ using namespace std;
 //
 
 Settings::Settings(){
-    //cout << "\n=====================" << endl;
-    //cout << "CONSTRUCTOR SETTINGS" << endl;
-    
     _difficulty = DIFFICULTY;
     _nbLife = NB_LIFE_PLAYER;
     //_language = new Language;
 }
 
-Settings::~Settings(){
-    //cout << "\n=====================" << endl;
-    //cout << "DESTRUCTOR SETTINGS" << endl;
-}
+Settings::~Settings(){}
 
 
 //
@@ -65,3 +59,14 @@ unsigned int * Settings::getNbLife() {
 Language * Settings::getLanguage() {
     return &_language;
 }
+
+void Settings::setDifficulty(const unsigned int value)
+{
+    _difficulty = value;
+}
+
+void Settings::setNbLife(const unsigned int value)
+{
+    _nbLife = value ;
+}
+

@@ -33,8 +33,7 @@ int ViewGame::treatEvent()
         {
             cout << "Choix : ";
             cin >> reponse;
-        }
-        while (reponse<0 || reponse>7);
+        } while (reponse<0 || reponse>7);
 
         switch (reponse)
         {
@@ -52,6 +51,8 @@ int ViewGame::treatEvent()
             break;
 
         case 3 :
+            _modele->getLevel()->playerUseBomb();
+
             break;
 
         case 4 :

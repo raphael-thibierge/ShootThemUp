@@ -54,8 +54,12 @@ int ViewMainMenu::treatEvent() {
             case 3:
                 returnValue = -4;
                 break;
-            
+                
             case 4:
+                returnValue = -8;
+                break;
+                
+            case 5:
                 returnValue = 0;
                 showQuit();
                 
@@ -84,7 +88,12 @@ int ViewMainMenu::treatEvent() {
             case 3:
                 returnValue = -4;
                 break;
+                
             case 4:
+                returnValue = -8;
+                break;
+                
+            case 5:
                 returnValue = 0;
                 showQuit();
                 break;
@@ -106,7 +115,8 @@ void ViewMainMenu::showView() {
         cout << "\t (1) " + _language->getText("newGame") << endl ;
         cout << "\t (2) " + _language->getText("loadGame") << endl;
         cout << "\t (3) " + _language->getText("settings") << endl ;
-        cout << "\t (4) " + _language->getText("quit") << endl;
+        cout << "\t (4) " + _language->getText("bestScores") << endl ;
+        cout << "\t (5) " + _language->getText("quit") << endl;
     }
     
     else {
@@ -116,7 +126,8 @@ void ViewMainMenu::showView() {
         cout << "\t (1) " + _language->getText("play") << endl ;
         cout << "\t (2) " + _language->getText("goShop") << endl;
         cout << "\t (3) " + _language->getText("settings") << endl ;
-        cout << "\t (4) " + _language->getText("quit") << endl;
+        cout << "\t (4) " + _language->getText("bestScores") << endl ;
+        cout << "\t (5) " + _language->getText("quit") << endl;
     
     }
     

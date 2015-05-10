@@ -41,6 +41,10 @@ public:
 
     Language * getLanguage();
 
+    
+    void setDifficulty(const unsigned int value);
+    
+    void setNbLife(const unsigned int value);
 
 };
 

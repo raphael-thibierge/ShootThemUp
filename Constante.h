@@ -1,7 +1,6 @@
 #ifndef CONSTANTE_H_INCLUDED
 #define CONSTANTE_H_INCLUDED
-
-#include "string"
+#include "iostream"
 
 // ======== PLAYER ============
 const int LIFE_PLAYER = 300;
@@ -19,6 +18,8 @@ const unsigned int NB_ENNEMY_LEVEL = 50;
 const int SCREEN_HEIGHT=100;
 const int SCREEN_WIDTH=50;
 
+const int BEST_SCORE_NB = 5;
+const std::string BEST_SCORE_FILE = "BestScoreFile.txt";
 
 // ======== DIRECTIONS ============
 const std::string PLAYER_DIRECTION = "NORTH";

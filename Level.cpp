@@ -109,7 +109,7 @@ void Level::collisionManager()
 {
 
     // list to destruct enemies and bullets
-    list<Enemy*> enemiesDestroyed ;
+    list<Enemy*> enemiesKilled ;
     list<Bullet*> bulletsDestroyed ;
 
 
@@ -129,7 +129,7 @@ void Level::collisionManager()
     {
         if (_player->collision(enemy))
         {
-            enemiesDestroyed.push_back(enemy);
+            enemiesKilled.push_back(enemy);
             _player->looseLife();
         }
     }
@@ -146,10 +146,12 @@ void Level::collisionManager()
         {
             if (enemy->collision(bullet))
             {
+                _player->score(enemy , *_difficulty);
+                
                 // if player is the shooter
                 if (bullet->getShooter() == "player")
                     _player->score(enemy , *_difficulty);
-                enemiesDestroyed.push_back(enemy);
+                enemiesKilled.push_back(enemy);
                 bulletsDestroyed.push_back(bullet);
             }
         }
@@ -159,8 +161,9 @@ void Level::collisionManager()
     // for all enemies
     for (auto enemy : _enemyList)
     {
-        if(enemy->getY() > SCREEN_HEIGHT){
-            enemiesDestroyed.push_back(enemy);
+        if(enemy->getY() > SCREEN_HEIGHT)
+        {
+            enemiesKilled.push_back(enemy);
         }
     }
     // for all bullets
@@ -175,11 +178,11 @@ void Level::collisionManager()
     }
 
     // remove duplicate enemies and bullets
-    enemiesDestroyed.unique();
+    enemiesKilled.unique();
     bulletsDestroyed.unique();
 
     // destruction of enemies
-    for (auto enemy : enemiesDestroyed)
+    for (auto enemy : enemiesKilled)
     {
         _enemyList.remove(enemy);
         delete enemy;
@@ -191,7 +194,13 @@ void Level::collisionManager()
         _bulletList.remove(bullet);
         delete bullet;
     }
-
+    
+    // clear enemyKilled list
+    enemiesKilled.clear();
+    
+    // clear bulletDestroy list
+    bulletsDestroyed.clear();
+    
 }
 
 void Level::moveAllBullets(){
@@ -244,6 +253,15 @@ void Level::runGame(){
     collisionManager();
 
 }
+
+void Level::playerUseBomb(){
+    // this method try to activate the player bomb
+    _player->useBomb(_enemyList, *_difficulty);
+}
+
+
+
+
 
 //
 // ACCESSOR METHODS
