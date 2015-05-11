@@ -1,4 +1,3 @@
-
 #ifndef ENEMY_H
 #define ENEMY_H
 
@@ -19,9 +18,6 @@ private :
 // CONSTRUCTORS/DESTRUCTORS
 //
 public:
-    
-   // Enemy (std::string type, float x, float y, unsigned int lifeLevel);
-
     Enemy (const unsigned int type, const unsigned int level, const float x, const float y, const float width, const float height, const unsigned int lifeLevel, const float speed, const unsigned int nbLife);
     
 	virtual ~Enemy ();

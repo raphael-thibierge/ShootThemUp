@@ -284,6 +284,3 @@ Player * Level::getPlayer()const
 {
     return _player;
 }
-
-
-
