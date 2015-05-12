@@ -7,7 +7,7 @@
 #include "Ship.h"
 
 
-class Enemy : virtual public Ship
+class Enemy : public Ship
 {
 
 private :

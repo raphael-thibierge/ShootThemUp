@@ -35,6 +35,21 @@ const int ENEMY_SPEED[3] = { 5, 15, 10 };
 const int ENEMY_NB_LIFE = 1 ;
 
 
+
+// ======== BOSS ============
+//    Enemy (const unsigned int type, const unsigned int level, const float x, const float y, const float width, const float height, const unsigned int lifeLevel, const float speed, const unsigned int nbLife);
+
+
+const unsigned int BOSS_TYPE = 20;
+const unsigned int BOSS_LEVEL = 1;
+const float BOSS_INITIAL_X = SCREEN_WIDTH / 2;
+const float BOSS_INITIAL_Y = 50;
+const float BOSS_HEIGHT = 50;
+const float BOSS_WIDTH = 50;
+const unsigned int BOSS_LIFELEVEL = 300;
+const float BOSS_SPEED = 5;
+const unsigned int BOSS_NBLIFE = 1;
+-
 // ======== BULLETS ============
 
 const int BULLET_DAMAGE[5] = { 50, 100, 100, 150, 500 };
