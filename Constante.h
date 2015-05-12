@@ -49,7 +49,7 @@ const float BOSS_WIDTH = 50;
 const unsigned int BOSS_LIFELEVEL = 300;
 const float BOSS_SPEED = 5;
 const unsigned int BOSS_NBLIFE = 1;
--
+
 // ======== BULLETS ============
 
 const int BULLET_DAMAGE[5] = { 50, 100, 100, 150, 500 };
