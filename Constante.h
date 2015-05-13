@@ -58,7 +58,8 @@ const int BULLET_PRICE[5] = { 0, 100, 200, 350, 500 };
 
 
 // ======== SHIELDS ============
-const int SHIELD_PRICE[3] = { 100, 200, 300 };
+const int SHIELD_PRICE[3] = { 100, 300, 500 };
+const int SHIELD_LIFE[3] = { 100, 200, 300 };
 
 // ======== SHIPS ============
 const int SHIP_PRICE[4] = { 0, 200, 500, 1000 };

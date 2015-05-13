@@ -110,16 +110,16 @@ void ViewShop::showView()
     cout << _language->getText("money") << " " << _modele->getPlayer()->getMoney() << "$"<< endl;
     cout << _language->getText("shootLevel") << " " << (_modele->getPlayer()->getBulletType() + 1 )<< endl;
     cout << _language->getText("shipLevel") << " " << (_modele->getPlayer()->getType() + 1) << endl;
-    cout << _language->getText("shieldLevel") << " " << (_modele->getPlayer()->getShield()) << endl;
+    //cout << _language->getText("shieldLevel") << " " << (_modele->getPlayer()->getShield()) << endl;
 
-    /*
+
     if(_modele->getPlayer()->getShield()!=0){
         cout<< _language->getText("alreadyShield")<< endl<< endl;
     }
     else{
         cout<< _language->getText("noShield")<< endl<< endl;
     }
-     */
+
 
     cout << "\t (1) " << _language->getText("upgradeMainShoot") << endl;
     cout << "\t \t (11) " << _language->getText("upgradeMainShootlvl2") << "  " << BULLET_PRICE[1] <<"$"<< endl;
@@ -134,7 +134,7 @@ void ViewShop::showView()
 
     cout << "\t \t (22) " << _language->getText("upgradeShiplvl3") << " : " << SHIP_PRICE[2] <<"$"<< endl;
     cout << "\t \t (23) " << _language->getText("upgradeShiplvl4") << " : " << SHIP_PRICE[3] <<"$"<< endl;
-    cout << "\t (3) " << _language->getText("upgradeShild") << endl;
+    cout << "\t (3) " << _language->getText("upgradeShield") << endl;
     cout << "\t \t (31) " << _language->getText("upgradeShieldlvl1") << " : " << SHIELD_PRICE[0] <<"$"<< endl;
     cout << "\t \t (32) " << _language->getText("upgradeShieldlvl2") << " : " << SHIELD_PRICE[1] <<"$"<< endl;
     cout << "\t \t (33) " << _language->getText("upgradeShieldlvl3") << " : " << SHIELD_PRICE[2] <<"$"<< endl;
