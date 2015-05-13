@@ -78,15 +78,15 @@ int ViewShop::treatEvent()
             break;
 
         case 31:
-            purchase = _modele->getShop()->upgradeShield(0);
-            break;
-
-        case 32:
             purchase = _modele->getShop()->upgradeShield(1);
             break;
 
-        case 33:
+        case 32:
             purchase = _modele->getShop()->upgradeShield(2);
+            break;
+
+        case 33:
+            purchase = _modele->getShop()->upgradeShield(3);
             break;
 
         default:

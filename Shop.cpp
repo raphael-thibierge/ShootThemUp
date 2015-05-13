@@ -91,7 +91,7 @@ bool Shop::buyBomb(){
     //return true if player bought a bomb, else return false
 
     // if player has enough money
-    if (_player->getMoney() > BOMB_PRICE){
+    if (_player->getMoney() >= BOMB_PRICE){
         // he pays and gets a bomb
         _player->pay(BOMB_PRICE);
         _player->addBomb();
@@ -104,7 +104,7 @@ bool Shop::buyLife(){
     //return true if player bought a life, else return false
 
     //if player has enough money
-    if (_player->getMoney() > LIFE_PRICE){
+    if (_player->getMoney() >= LIFE_PRICE){
         // he pays and gets a life
         _player->pay(LIFE_PRICE);
         _player->addLife(1);

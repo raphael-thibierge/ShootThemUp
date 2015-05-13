@@ -38,15 +38,15 @@ void Player::initPlayer()
     _nbLife = 0;
     _width = PLAYER_WIDTH;
     _height = PLAYER_HEIGHT;
-    
-    _bombNumber = 1 ; // provisoire, sinon 0
+
+    _bombNumber = 0 ;
     _direction = PLAYER_DIRECTION;
     _score = 0;
-    _money = 1000;
+    _money = 0;
     _speed = PLAYER_SPEED;
-    _shild = 0;
+    _shild = SHIELD_LIFE[0];
     _level = 0;
-    
+
     // standart position of player
     resetPosition();
 }
@@ -54,26 +54,26 @@ void Player::initPlayer()
 
 void Player::useBomb(list<Enemy*> &enemyList, const int difficulty)
 { // destruct all enemies on the screen
-    
+
     if (_bombNumber > 0){
         _bombNumber-- ;
         // list of enemies wich are destroyed by the bomb
         list<Enemy*> enemiesKilled;
-        
+
         // founding enemies
         for (auto enemy : enemyList){
             // if he is on screen
             if (enemy->getX() >= 0 && enemy->getX() <= SCREEN_WIDTH &&
                 enemy->getY() >= 0 && enemy->getY() <= SCREEN_HEIGHT){
-                
+
                 //the enemy is put on the enemiesKilled list
                 enemiesKilled.push_back(enemy);
-                
+
                 // update score
                 score(enemy, difficulty);
             }
         }
-        
+
         // destruction of killed enemies
         for (auto enemy : enemiesKilled){
             // delete enemy from enemyList
@@ -81,7 +81,7 @@ void Player::useBomb(list<Enemy*> &enemyList, const int difficulty)
             // destruct enemy
             delete enemy;
         }
-        
+
         // clear
         enemiesKilled.clear();
     }
@@ -99,12 +99,12 @@ void Player::score(Enemy * enemy, const unsigned int difficultyLevel)
     if ( enemy->getType() == 0){
         _score+= 5*enemy->getLevel()*difficultyLevel;
     }
-    
+
     //Score for kamikaze enemies
     else if (enemy->getType() == 10){
         _score+= 10*enemy->getLevel()*difficultyLevel;
     }
-    
+
     //Score for helicoptere enemies
     else if (enemy->getType() == 11){
         _score+= 15*enemy->getLevel()*difficultyLevel;
