@@ -12,8 +12,8 @@ Level::Level (Player * player, unsigned int * difficultyPointer) : _player(playe
     //cout << "CONSTRUCTOR LEVEL" << endl;
 
     _nbEnnemies
-    
-    
+
+
     = LEVEL_NB_ENEMIES;
     _level = _player->getLevel();
     _enemiesCpt = 0;
@@ -140,7 +140,7 @@ void Level::collisionManager()
 
     // collision between 2 enemies
     // NOT DONE
-    
+
 
     // collision between all enemies and all bullets
     for (auto enemy : _enemiesList)
@@ -150,7 +150,7 @@ void Level::collisionManager()
             if (enemy->collision(bullet))
             {
                 _player->score(enemy , *_difficulty);
-                
+
                 // if player is the shooter
                 if (bullet->getShooter() == "player")
                     _player->score(enemy , *_difficulty);
@@ -197,13 +197,13 @@ void Level::collisionManager()
         _bulletsList.remove(bullet);
         delete bullet;
     }
-    
+
     // clear enemyKilled list
     enemiesKilled.clear();
-    
+
     // clear bulletDestroy list
     bulletsDestroyed.clear();
-    
+
 }
 
 void Level::moveAllBullets(){
@@ -218,7 +218,7 @@ void Level::moveAllEnemies(){
 
 
 void Level::randomEnemiesShoot(){
-    
+
     // for each step, there is 1/2 chance that enemies shoot
     int random= rand()%(-2);
     if(random==1)

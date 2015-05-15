@@ -9,7 +9,7 @@ class Level
 {
 
 private:
-    
+
     unsigned int _level;
 	unsigned int * _difficulty;
 	unsigned int _nbEnnemies;
@@ -32,29 +32,29 @@ public:
 
     // if player win
     bool win ();
-    
+
     // if player loose
     bool loose ();
-    
+
     // verify collision between all level's objects
     void collisionManager();
-    
+
     // methods with explicit names
     void moveAllBullets();
-    
+
     void moveAllEnemies();
-    
+
     void randomEnemiesShoot();
-    
+
     void runGame();
-    
+
     // activate player's bomb
     void playerUseBomb();
-    
+
 
 // ACCESSOR METHODS
 //
-    
+
     std::list<Enemy*> * getEnemies();
 
     std::list<Bullet*> * getBullet();
