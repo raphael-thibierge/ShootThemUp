@@ -10,18 +10,27 @@
 #include "ViewsController.h"
 
 using namespace std;
-//
+
 int main(int argc, const char * argv[]) {
 
     GameModel model;
 
-    ViewsController controller;
+    sf::RenderWindow window (sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Shoot Them Up");
+
+    ViewsController controller(&window);
     controller.init(&model);
 
-    while (controller.treatEvent()) {
-        model.nextStep();
-        controller.showView();
+    while (window.IsOpened())
+    {
+        while (controller.treatEvent()) {
+
+            model.nextStep();
+            controller.showView();
+
+
+        }
     }
 
     return 0;
 }
+

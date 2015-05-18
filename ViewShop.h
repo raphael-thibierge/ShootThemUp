@@ -18,16 +18,20 @@ class ViewShop : public virtual View
 //
 public:
     ViewShop();
-    
+
     virtual ~ViewShop();
-    
+
 // METHODS
 //
     int treatEvent() override;
-    
-    void showView() override;
-    
-    
+
+    int treatEventSFML() override;
+
+    void showViewTerminal() override;
+
+    void showViewSFML() override;
+
+    void initButtons() override;
 };
 
 

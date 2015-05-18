@@ -19,10 +19,25 @@ int ViewBestScores::treatEvent()
     return 0;
 }
 
-void ViewBestScores::showView(){
+int ViewBestScores::treatEventSFML()
+{
+    return 0;
+}
+
+
+void ViewBestScores::showViewTerminal(){
     int cpt = 1 ;
     for (auto value : *_modele->getBestScores()){
         cout << cpt << " --> " << value << endl;
         cpt++;
     }
+}
+
+void ViewBestScores::showViewSFML()
+{
+}
+
+
+void ViewBestScores::initButtons()
+{
 }

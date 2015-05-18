@@ -18,18 +18,23 @@ class ViewSettings : public virtual View{
 // CONSTRUCTOR AND DESTRUCTOR
 //
 public:
-    
+
     ViewSettings();
-    
+
     virtual ~ViewSettings();
-    
-    
+
+
 // METHODS
 //
     int treatEvent() override;
-    
-    void showView() override;
-    
+
+    int treatEventSFML() override;
+
+    void showViewTerminal() override;
+
+    void showViewSFML() override;
+
+    void initButtons() override;
 };
 
 #endif /* defined(__ShmupTerminal__ViewSettings__) */

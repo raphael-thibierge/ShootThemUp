@@ -20,22 +20,28 @@ class ViewGame : virtual public View
 // CONSTRUCTOR AND DESTRUCTOR
 //
 public:
-    
+
     ViewGame();
-    
+
     virtual ~ViewGame();
 
 // METHODS
 //
     int treatEvent() override;
-    
-    void showView() override;
-    
+
+    int treatEventSFML() override;
+
+    void showViewTerminal() override;
+
+    void showViewSFML() override;
+
     // transitions betweent 2 levels
     void showTransition();
-    
+
     // screen when player loose
     void showLoose();
+
+    void initButtons() override;
 };
 
 

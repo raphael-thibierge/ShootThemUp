@@ -14,22 +14,28 @@
 
 class ViewIntroduction : public virtual View
 {
-    
+
 // CONSTRUCTOR AND DESTRUCTOR
 //
 public:
-    
+
     ViewIntroduction();
-    
+
     virtual ~ViewIntroduction();
-    
-    
+
+
 // METHODS
 //
     int treatEvent() override;
-    
-    void showView() override;
-    
+
+    int treatEventSFML() override;
+
+    void showViewTerminal() override;
+
+    void showViewSFML() override;
+
+    void initButtons() override;
+
 };
 
 

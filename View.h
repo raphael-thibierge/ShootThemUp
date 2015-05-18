@@ -11,30 +11,55 @@
 
 #include <stdio.h>
 #include "GameModel.h"
+#include <SFML/Graphics.hpp>
+
 
 class View
-{    
+{
 protected:
 
     GameModel* _modele;
     Language* _language;
 
-    
+    std::map<std::string, sf::Sprite> _spritesList;
+    std::map<std::string, sf::Image> _imagesList;
+
+    // SFML Window
+    sf::RenderWindow * _window;
+
+
 // CONSTRUCTOR AND DESTRUCTOR
 //
 public :
 
     View();
-    
+
     virtual ~View();
-    
+
 // METHODS
 //
-    virtual int treatEvent() =0;
-    
-    virtual void showView();
+    // CONSOLE VERSION
 
-    void setView(GameModel* modele);
+    virtual int treatEvent() =0;
+
+    virtual void showViewTerminal() =0 ;
+
+
+    // SFML VERSION
+
+    virtual int treatEventSFML() =0;
+
+    virtual void showViewSFML() =0;
+
+    void displayButton(std::string text, float positionX, float positionY);
+
+    bool MouseOnButton(const int mouseX, const int mouseY, const int buttonX, const int buttonY, const int buttonWidth, const int buttonHeight);
+
+    void init(GameModel* modele, sf::RenderWindow * window);
+
+    virtual void initButtons() =0;
+
+
 };
 
 

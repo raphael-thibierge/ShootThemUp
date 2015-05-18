@@ -11,105 +11,265 @@
 
 
 using namespace std;
+using namespace sf;
 
 //
 // CONSTRUCTOR AND DESTRUCTOR
 //
-ViewMainMenu::ViewMainMenu(){}
+ViewMainMenu::ViewMainMenu()
+{
 
-ViewMainMenu::~ViewMainMenu(){}
+
+// background
+    _imagesList.emplace(make_pair("background", sf::Image()));
+    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD);
+
+
+    _spritesList.emplace(make_pair("background", sf::Sprite()));
+    _spritesList["backgroung"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetPosition(0,0);
+
+
+
+}
+
+ViewMainMenu::~ViewMainMenu() {}
 
 
 //
 // METHODS
 //
-int ViewMainMenu::treatEvent() {
+
+void ViewMainMenu::initButtons()
+{
+    //buttons's image
+    _imagesList.emplace(make_pair("buttons", sf::Image()));
+    _imagesList["buttons"].LoadFromFile(IMAGE_BUTTONS);
+
+    //new game button
+    _spritesList.emplace(make_pair("button", sf::Sprite()));
+    _spritesList.emplace(make_pair("button_active", sf::Sprite()));
+    _spritesList["button"].SetImage(_imagesList["buttons"]);
+    _spritesList["button_active"].SetImage(_imagesList["buttons"]);
+    _spritesList["button"].SetSubRect(sf::IntRect(BUTTON_SPRITE_X, BUTTON_SPRITE_Y, BUTTON_WIDTH + BUTTON_SPRITE_X , BUTTON_HEIGHT + BUTTON_SPRITE_Y));
+    _spritesList["button"].SetSubRect(sf::IntRect(BUTTON_SPRITE_ACTIVE_X, BUTTON_SPRITE_ACTIVE_Y, BUTTON_WIDTH + BUTTON_SPRITE_ACTIVE_X , BUTTON_HEIGHT + BUTTON_SPRITE_ACTIVE_Y));
+
+}
+
+
+void ViewMainMenu::showViewSFML()
+{
+    _window->Draw(_spritesList["backgroung"]);
+
+    if (_modele->getPlayer() == nullptr)
+    {
+        displayButton("newGame", BUTTON_NEWGAME_POSITION_X, BUTTON_NEWGAME_POSITION_Y);
+        displayButton("loadGame", BUTTON_LOADGAME_POSITION_X, BUTTON_LOADGAME_POSITION_Y);
+        displayButton("settings", BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
+        displayButton("bestScores", BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
+        displayButton("quit", BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y);
+    }
+    else
+    {
+        displayButton("play", BUTTON_PLAY_POSITION_X, BUTTON_PLAY_POSITION_Y);
+        displayButton("shop", BUTTON_SHOP_POSITION_X, BUTTON_SHOP_POSITION_Y);
+        displayButton("settings", BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
+        displayButton("bestScores", BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
+        displayButton("quit", BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y);
+    }
+
+}
+
+int ViewMainMenu::treatEventSFML()
+{
+    int returnValue = 1; // standart return of Event Treatment
+
+
+    Event event;
+    while (_window->GetEvent(event))
+    {
+        switch (event.Type)
+        {
+
+            case Event::MouseButtonPressed :
+                int mouseX = event.MouseButton.X;
+                int mouseY = event.MouseButton.Y;
+
+                if (_modele->getPlayer() == nullptr)
+                {// if a party isn't load
+
+                    if (MouseOnButton(mouseX, mouseY, BUTTON_NEWGAME_POSITION_X, BUTTON_NEWGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    {// button new game
+                        _modele->newGame();
+                        returnValue = 1;
+                    }
+
+                    if (MouseOnButton(mouseX, mouseY, BUTTON_LOADGAME_POSITION_X, BUTTON_LOADGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    {// button load game
+                        _modele->loadGame();
+                        returnValue = 1;
+                    }
+                }
+
+                else
+                {
+                    if (MouseOnButton(mouseX, mouseY, BUTTON_PLAY_POSITION_X, BUTTON_PLAY_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    {// button play
+                        _modele->play();
+                        returnValue = -2;
+                    }
+
+                    if (MouseOnButton(mouseX, mouseY, BUTTON_SHOP_POSITION_X, BUTTON_SHOP_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    {// button shop
+                        returnValue = -3;
+                    }
+                }
+
+                // COMMUN BUTTON
+
+                if (MouseOnButton(mouseX, mouseY, BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                { // button settings
+                    returnValue = -4;
+                }
+
+                if (MouseOnButton(mouseX, mouseY, BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                { // button best scores
+                    returnValue = -8;
+                }
+
+                if (MouseOnButton(mouseX, mouseY, BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                { // button best scores
+                    returnValue = 0;
+                }
+
+                break;
+
+        }
+    }
+
+
+
+    return returnValue;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+int ViewMainMenu::treatEvent()
+{
     int returnValue = 1;
     int answer;
-    
-    if (_modele->getPlayer() == nullptr){
-        
-  
-        do {
+
+    if (_modele->getPlayer() == nullptr)
+    {
+
+
+        do
+        {
             cout << _language->getText("choice") << endl;
             cin >> answer;
-            
-        } while ( answer > 3 && answer < 0 );
-        
-        switch (answer) {
-            case 1:
-                _modele->newGame();
-                
+
+        }
+        while ( answer > 3 && answer < 0 );
+
+        switch (answer)
+        {
+        case 1:
+            _modele->newGame();
+
+            returnValue = 1;
+            break;
+
+        case 2:
+            if (!_modele->loadGame())
+            {
+                cout << "Impossible de charger la partie" << endl;
+            }
+            else
                 returnValue = 1;
-                break;
-                
-            case 2:
-                if (!_modele->loadGame()){
-                    cout << "Impossible de charger la partie" << endl;
-                }
-                else
-                    returnValue = 1;
-                break;
-                
-            case 3:
-                returnValue = -4;
-                break;
-                
-            case 4:
-                returnValue = -8;
-                break;
-                
-            case 5:
-                returnValue = 0;
-                showQuit();
-                
-            default:
-                break;
+            break;
+
+        case 3:
+            returnValue = -4;
+            break;
+
+        case 4:
+            returnValue = -8;
+            break;
+
+        case 5:
+            returnValue = 0;
+            showQuit();
+
+        default:
+            break;
         }
     }
-    else {
-        
-        do {
+    else
+    {
+
+        do
+        {
             cout << _language->getText("choice") << endl;
             cin >> answer;
-            
-        } while ( answer > 4 && answer < 0 );
-        
-        switch (answer) {
-            case 1:
-                _modele->play();
-                returnValue = -2;
-                break;
-                
-            case 2:
-                returnValue = -3;
-                break;
-            
-            case 3:
-                returnValue = -4;
-                break;
-                
-            case 4:
-                returnValue = -8;
-                break;
-                
-            case 5:
-                returnValue = 0;
-                showQuit();
-                break;
-            
-            default:
-                break;
+
+        }
+        while ( answer > 4 && answer < 0 );
+
+        switch (answer)
+        {
+        case 1:
+            _modele->play();
+            returnValue = -2;
+            break;
+
+        case 2:
+            returnValue = -3;
+            break;
+
+        case 3:
+            returnValue = -4;
+            break;
+
+        case 4:
+            returnValue = -8;
+            break;
+
+        case 5:
+            returnValue = 0;
+            showQuit();
+            break;
+
+        default:
+            break;
         }
     }
-    
-    
+
+
     return returnValue;
 }
 
-void ViewMainMenu::showView() {
-    if (_modele->getPlayer() == nullptr){
-        
+
+
+
+void ViewMainMenu::showViewTerminal()
+{
+
+    showViewSFML();
+
+    if (_modele->getPlayer() == nullptr)
+    {
         cout << "\n------------------" << endl;
         cout << _language->getText("menu") << endl ;
         cout << "\t (1) " + _language->getText("newGame") << endl ;
@@ -118,9 +278,10 @@ void ViewMainMenu::showView() {
         cout << "\t (4) " + _language->getText("bestScores") << endl ;
         cout << "\t (5) " + _language->getText("quit") << endl;
     }
-    
-    else {
-        
+
+    else
+    {
+
         cout << "\n------------------" << endl;
         cout << _language->getText("menu") << endl ;
         cout << "\t (1) " + _language->getText("play") << endl ;
@@ -128,14 +289,15 @@ void ViewMainMenu::showView() {
         cout << "\t (3) " + _language->getText("settings") << endl ;
         cout << "\t (4) " + _language->getText("bestScores") << endl ;
         cout << "\t (5) " + _language->getText("quit") << endl;
-    
+
     }
-    
+
 }
 
-void ViewMainMenu::showQuit(){
+void ViewMainMenu::showQuit()
+{
 
-    
+
     cout << "    ________  __    __  ________        ________  __    __  _______" << endl;
     cout << "   |        \\|  \\  |  \\|        \\      |        \\|  \\  |  \\|       \\" << endl;
     cout << "    \\$$$$$$$$| $$  | $$| $$$$$$$$      | $$$$$$$$| $$\\ | $$| $$$$$$$\\" << endl;
@@ -146,6 +308,6 @@ void ViewMainMenu::showQuit(){
     cout << "      | $$   | $$  | $$| $$     \\      | $$     \\| $$  \\$$$| $$    $$" << endl;
     cout << "       \\$$    \\$$   \\$$ \\$$$$$$$$       \\$$$$$$$$ \\$$   \\$$ \\$$$$$$$" << endl;
 
-    
-    
+
+
 }

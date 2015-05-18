@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 
+
+
+
 #include "GameModel.h"
 #include "ViewGame.h"
 #include "ViewShop.h"
@@ -27,19 +30,23 @@ protected:
     // end of the program
     bool _quit;
     GameModel* _modele;
+
+    // SFML Window
+    sf::RenderWindow * _mainWindow;
+
     // list of views
     std::map<std::string, View*> _allViews;
     // active view
     View* _view ;
-    
+
     // game view in the queue
     ViewGame _game;
-    
+
 // CONSTRUCTOR AND DESTRUCTOR
 //
 public:
 
-    ViewsController();
+    ViewsController(sf::RenderWindow* window);
 
     ~ViewsController();
 
@@ -56,6 +63,7 @@ public:
 
     // init gamemodel for each views
     void init(GameModel* modele);
+
 
 private:
     void changeView(std::string view);

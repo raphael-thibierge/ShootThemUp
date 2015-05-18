@@ -14,24 +14,30 @@
 
 
 class ViewMainMenu : public virtual View {
- 
+
 // CONSTRUCTOR AND DESTRUCTOR
 //
 public:
-    
+
     ViewMainMenu();
-    
+
     virtual ~ViewMainMenu();
-    
+
 // METHODS
 //
     int treatEvent() override;
-    
-    void showView() override;
-    
+
+    int treatEventSFML() override;
+
+    void showViewTerminal() override;
+
+    void showViewSFML() override;
+
     // screen at end of the program
     void showQuit();
-    
+
+    void initButtons() override;
+
 };
 
 
