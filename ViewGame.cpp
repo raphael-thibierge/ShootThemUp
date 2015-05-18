@@ -18,40 +18,40 @@ ViewGame::ViewGame()
 {
 
     //background
-    _imagesList.emplace(make_pair("background", sf::Image()));
-    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD);
+    _imagesList.insert(make_pair("background", sf::Image()));
+    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_GAME);
 
     //player
-    _imagesList.emplace(make_pair("player", sf::Image()));
+    _imagesList.insert(make_pair("player", sf::Image()));
     _imagesList["player"].LoadFromFile(IMAGE_PLAYER_SHIP);
 
     //enemy
-    _imagesList.emplace(make_pair("enemy_1", sf::Image()));
+    _imagesList.insert(make_pair("enemy_1", sf::Image()));
     _imagesList["enemy_1"].LoadFromFile(IMAGE_ENEMY_0_SHIP);
 
     //bullet
-    _imagesList.emplace(make_pair("bullet_1", sf::Image()));
+    _imagesList.insert(make_pair("bullet_1", sf::Image()));
     _imagesList["bullet_1"].LoadFromFile(IMAGE_BULLET_0);
 
 
     // backgound
-    _spritesList.emplace(make_pair("background", sf::Sprite()));
+    _spritesList.insert(make_pair("background", sf::Sprite()));
     _spritesList["background"].SetImage(_imagesList["background"]);
     _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
     _spritesList["background"].SetPosition(0,0);
 
     // player
-    _spritesList.emplace(make_pair("player", sf::Sprite()));
+    _spritesList.insert(make_pair("player", sf::Sprite()));
     _spritesList["player"].SetImage(_imagesList["player"]);
     _spritesList["player"].SetSubRect(sf::IntRect(0,0, PLAYER_WIDTH, PLAYER_HEIGHT));
 
     // player
-    _spritesList.emplace(make_pair("enemy_1", sf::Sprite()));
+    _spritesList.insert(make_pair("enemy_1", sf::Sprite()));
     _spritesList["enemy_1"].SetImage(_imagesList["enemy_1"]);
     _spritesList["enemy_1"].SetSubRect(sf::IntRect(0,0, ENEMY_WIDTH[0], ENEMY_HEIGHT[0]));
 
     // bullet
-    _spritesList.emplace(make_pair("bullet_1", sf::Sprite()));
+    _spritesList.insert(make_pair("bullet_1", sf::Sprite()));
     _spritesList["bullet_1"].SetImage(_imagesList["bullet_1"]);
     _spritesList["bullet_1"].SetSubRect(sf::IntRect(0,0, BULLET_WIDTH[0], ENEMY_HEIGHT[0]));
 
@@ -204,8 +204,9 @@ int ViewGame::treatEventSFML()
 
 void ViewGame::showViewSFML()
 {
-
+    // BAACKGROUND
     _window->Draw(_spritesList["background"]);
+
 
     if(_modele->getLevel()==nullptr)
     {
@@ -217,12 +218,14 @@ void ViewGame::showViewSFML()
 
     else
     {
+        // PLAYER
         if ( _modele->getPlayer() != nullptr )
         {
             _spritesList["player"].SetPosition(_modele->getPlayer()->getX(), _modele->getPlayer()->getY());
             _window->Draw(_spritesList["player"]);
         }
 
+        //ENEMIES
         for (auto enemy : *_modele->getLevel()->getEnemies())
         {
             switch (enemy->getType())
@@ -234,6 +237,7 @@ void ViewGame::showViewSFML()
             }
         }
 
+        // BULLETS
         for (auto bullet : *_modele->getLevel()->getBullet())
         {
             switch (bullet->getType())
@@ -244,6 +248,24 @@ void ViewGame::showViewSFML()
                 break;
             }
         }
+
+        // LABEL
+        // score
+        string score = _language->getText("score") + " : " + to_string( _modele->getPlayer()->getScore() );
+        displayText(score, GAMEVIEW_LABEL_SCORE_X, GAMEVIEW_LABEL_SCORE_Y);
+
+        // life level & life number
+        string life = _language->getText("lifeLevel") + " : " + to_string( _modele->getPlayer()->getLifeLevel()) + " / "
+        +  _language->getText("nbLife") + " : " + to_string( _modele->getPlayer()->getNbLife()) ;
+        displayText(life, GAMEVIEW_LABEL_LIFE_X, GAMEVIEW_LABEL_LIFE_Y);
+
+        // bomb number
+        string bomb = _language->getText("nbBomb") + " : " + to_string( _modele->getPlayer()->getBombNumber()) ;
+        displayText(bomb, GAMEVIEW_LABEL_BOMB_X, GAMEVIEW_LABEL_BOMB_Y);
+
+
+
+
 
 
     }

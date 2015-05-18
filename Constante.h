@@ -7,7 +7,7 @@ const int PLAYER_LIFE_LEVEL = 300;
 const int PLAYER_NB_LIFE = 3;
 const int PLAYER_WIDTH = 201;
 const int PLAYER_HEIGHT = 179;
-const int PLAYER_SPEED = 5;
+const int PLAYER_SPEED = 8;
 
 // ======== LEVEL ============
 const unsigned int LEVEL_DIFFICULTY = 2;
@@ -19,7 +19,15 @@ const int SCREEN_WIDTH=800;
 
 // ======== BEST SCORES ============
 const int BEST_SCORE_NB = 5;
-const std::string BEST_SCORE_FILE = "BestScoreFile.txt";
+const std::string BEST_SCORE_FILE = "bestScoreFile.txt";
+
+const int LABEL_BESTSCORES_POSITION_X = 200;
+const int LABEL_BESTSCORES_POSITION_Y = 200;
+const int LABEL_BESTSCORES_SPACE = 50;
+const int LABEL_BESTSCORES_TITLE_POSITION_X = 100;
+const int LABEL_BESTSCORES_TITLE_POSITION_Y = 100;
+const int BUTTON_BESTSCORES_QUIT_POSITION_X = 200;
+const int BUTTON_BESTSCORES_QUIT_POSITION_Y = 800;
 
 // ======== DIRECTIONS ============
 const std::string PLAYER_DIRECTION = "NORTH";
@@ -31,11 +39,10 @@ const int MAX_DIFFICULTY = 3;
 const int ENEMY_WIDTH[3] = { 115, 10, 10 };
 const int ENEMY_HEIGHT[3] = { 142, 10, 10 };
 const int ENEMY_LIFE_LEVEL[3] = { 50, 50, 100 };
-const int ENEMY_SPEED[3] = { 1, 2, 3 };
+const int ENEMY_SPEED[3] = { 2, 2, 3 };
 const int ENEMY_NB_LIFE = 1 ;
 
 // ======== BOSS ============
-//    Enemy (const unsigned int type, const unsigned int level, const float x, const float y, const float width, const float height, const unsigned int lifeLevel, const float speed, const unsigned int nbLife);
 const unsigned int BOSS_TYPE = 20;
 const unsigned int BOSS_LEVEL = 1;
 const float BOSS_INITIAL_X = SCREEN_WIDTH / 2;
@@ -47,16 +54,18 @@ const float BOSS_SPEED = 5;
 const unsigned int BOSS_NBLIFE = 1;
 
 
+
 // ======== BULLETS ============
 const int BULLET_DAMAGE[5] = { 50, 100, 100, 150, 500 };
-const int BULLET_SPEED[5] = { 2, 2, 2, 2, 3};
+const int BULLET_SPEED[5] = { 4, 4, 4, 4, 6};
 const int BULLET_PRICE[5] = { 0, 100, 200, 350, 500 };
 const int BULLET_WIDTH[5] = { 56, 56, 56, 56, 56};
 const int BULLET_HEIGHT[5] = { 20, 20, 20, 20, 20};
 
 
 // ======== SHIELDS ============
-const int SHIELD_PRICE[3] = { 100, 200, 300 };
+const int SHIELD_PRICE[3] = { 100, 300, 500 };
+const int SHIELD_LIFE[3] = { 100, 200, 300 };
 
 // ======== SHIPS ============
 const int SHIP_PRICE[4] = { 0, 200, 500, 1000 };
@@ -68,7 +77,12 @@ const int BOMB_PRICE = 50;
 const int LIFE_PRICE = 100;
 
 // ======== IMAGES ============
-const std::string IMAGE_BACKGROUD = "./images/espace.jpg";
+const std::string IMAGE_BACKGROUD_MAIN_MENU = "./images/espace.jpg";
+const std::string IMAGE_BACKGROUD_GAME = "./images/espace.jpg";
+const std::string IMAGE_BACKGROUD_BESTSCORES = "./images/espace.jpg";
+const std::string IMAGE_BACKGROUD_SHOP = "./images/espace.jpg";
+const std::string IMAGE_BACKGROUD_SETTINGS = "./images/espace.jpg";
+
 const std::string IMAGE_BUTTONS = "./images/buttons.png";
 const std::string IMAGE_PLAYER_SHIP = "./images/ennemy_1.png";
 const std::string IMAGE_ENEMY_0_SHIP = "./images/ennemy_0.png";
@@ -106,6 +120,13 @@ const int BUTTON_PLAY_POSITION_Y = 100;
 const int BUTTON_SHOP_POSITION_X = 100;
 const int BUTTON_SHOP_POSITION_Y = 200;
 
+// ======== GAME VIEW ============
 
+const int GAMEVIEW_LABEL_SCORE_X = 10;
+const int GAMEVIEW_LABEL_SCORE_Y = 10;
+const int GAMEVIEW_LABEL_LIFE_X = 10;
+const int GAMEVIEW_LABEL_LIFE_Y = 40;
+const int GAMEVIEW_LABEL_BOMB_X = 10;
+const int GAMEVIEW_LABEL_BOMB_Y = 70;
 
 #endif // CONSTANTE_H_INCLUDED

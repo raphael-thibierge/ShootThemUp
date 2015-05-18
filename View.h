@@ -51,13 +51,15 @@ public :
 
     virtual void showViewSFML() =0;
 
-    void displayButton(std::string text, float positionX, float positionY);
+    void displayStandartButton(std::string text, float positionX, float positionY, bool active = false);
 
-    bool MouseOnButton(const int mouseX, const int mouseY, const int buttonX, const int buttonY, const int buttonWidth, const int buttonHeight);
+    void displayText(std::string text, float positionX, float positionY);
+
+    bool mouseOnButton(const int mouseX, const int mouseY, const int buttonX, const int buttonY, const int buttonWidth, const int buttonHeight);
 
     void init(GameModel* modele, sf::RenderWindow * window);
 
-    virtual void initButtons() =0;
+    virtual void initButtons();
 
 
 };

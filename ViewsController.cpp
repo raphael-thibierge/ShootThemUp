@@ -16,12 +16,12 @@ using namespace std;
 //
 ViewsController::ViewsController(sf::RenderWindow* window) : _mainWindow(window)
 {
-    _allViews.emplace(make_pair("Introduction", new ViewIntroduction));
-    _allViews.emplace(make_pair("MainMenu", new ViewMainMenu));
-    _allViews.emplace(make_pair("Game", &_game));
-    _allViews.emplace(make_pair("Shop", new ViewShop));
-    _allViews.emplace(make_pair("Settings", new ViewSettings));
-    _allViews.emplace(make_pair("BestScores", new ViewBestScores));
+    _allViews.insert(make_pair("Introduction", new ViewIntroduction));
+    _allViews.insert(make_pair("MainMenu", new ViewMainMenu));
+    _allViews.insert(make_pair("Game", &_game));
+    _allViews.insert(make_pair("Shop", new ViewShop));
+    _allViews.insert(make_pair("Settings", new ViewSettings));
+    _allViews.insert(make_pair("BestScores", new ViewBestScores));
     _quit = false;
 
 
@@ -107,7 +107,7 @@ bool ViewsController::treatEvent(){
 void ViewsController::showView(){
     //show active view
 
-    //_view->showViewTerminal();
+    _view->showViewTerminal();
     _mainWindow->Clear();
     _view->showViewSFML();
     _mainWindow->Display();

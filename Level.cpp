@@ -237,15 +237,15 @@ void Level::moveAllEnemies(){
 void Level::randomEnemiesShoot(){
 
     // for each step, there is 1/2 chance that enemies shoot
-    int random= rand()%(-2);
-    if(random==1)
+    int random= rand()%(10);
+    if (random==1)
     {
         // shuffle shoot for all enemies
         for (auto enemy : _enemiesList)
         {
             // each enemy has 1/3 chance to shoot
-            random = rand()%(-3);
-            if(random==2)
+            random = rand()%(10);
+            if (random == 1)
                 enemy->shoot(&_bulletsList);
         }
     }

@@ -38,7 +38,7 @@ bool Shop::available(const string product, const int level){
     }
     // same for shield
     else if (product == "shield"){
-        if (_player->getShield() == level-1)
+        if (_player->getShield() == 0)
             return true;
     }
     // same for ship
@@ -51,7 +51,7 @@ bool Shop::available(const string product, const int level){
 
 
 bool Shop::upgradeBullet(const int level){
-    
+
     // if the bullet's level is available and the player has enough money
     if ( available("bullet", level) && _player->getMoney() >= BULLET_PRICE[level]){
         // he buys it and he gets it
@@ -63,7 +63,7 @@ bool Shop::upgradeBullet(const int level){
 }
 
 bool Shop::upgradeShip(const int level){
-    
+
     // if the ship's level is available and the player has enough money
     if (available("ship", level) && _player->getMoney() >= SHIP_PRICE[level]){
         // he buys it and he gets it
@@ -75,13 +75,13 @@ bool Shop::upgradeShip(const int level){
 }
 
 bool Shop::upgradeShield(const int level){
-    
+
     // if the shield's level is available and the player has enough money
     if (available("shield", level) && _player->getMoney() >= SHIELD_PRICE[level]){
         // he buys it and he gets it
         _player->pay(SHIELD_PRICE[level]);
-        _player->setShield(level);
-        
+        _player->setShield(SHIELD_LIFE[level]);
+
         return true;
     }
     return false;
@@ -89,7 +89,7 @@ bool Shop::upgradeShield(const int level){
 
 bool Shop::buyBomb(){
     //return true if player bought a bomb, else return false
-    
+
     // if player has enough money
     if (_player->getMoney() > BOMB_PRICE){
         // he pays and gets a bomb
@@ -102,7 +102,7 @@ bool Shop::buyBomb(){
 
 bool Shop::buyLife(){
     //return true if player bought a life, else return false
-    
+
     //if player has enough money
     if (_player->getMoney() > LIFE_PRICE){
         // he pays and gets a life
