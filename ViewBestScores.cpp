@@ -27,21 +27,15 @@ int ViewBestScores::treatEventSFML()
 
     while (_window->GetEvent(event))
     {
-        switch (event.Type)
+        if (event.Type == sf::Event::MouseButtonPressed )
         {
-        case sf::Event::MouseButtonPressed :
             int mouseX = event.MouseButton.X ;
             int mouseY = event.MouseButton.Y ;
 
             if (mouseOnButton(mouseX, mouseY, BUTTON_BESTSCORES_QUIT_POSITION_X, BUTTON_BESTSCORES_QUIT_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 returnvalue = 0;
-
             }
-            break;
-
-
-
         }
     }
 

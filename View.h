@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "GameModel.h"
+#include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 
 

@@ -39,7 +39,7 @@ const int MAX_DIFFICULTY = 3;
 const int ENEMY_WIDTH[3] = { 115, 201, 278 };
 const int ENEMY_HEIGHT[3] = { 142, 179, 155 };
 const int ENEMY_LIFE_LEVEL[3] = { 50, 50, 100 };
-const int ENEMY_SPEED[3] = { 2, 2, 3 };
+const int ENEMY_SPEED[3] = { 2, 4, 3 };
 const int ENEMY_TYPE[3] = {10, 11, 12};
 const int ENEMY_NB_LIFE = 1 ;
 

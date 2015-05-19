@@ -176,6 +176,9 @@ int ViewGame::treatEventSFML()
 
                 break;
 
+                        default:
+                            break;
+
             }
 
         }
