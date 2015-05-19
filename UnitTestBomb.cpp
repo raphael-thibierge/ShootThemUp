@@ -38,7 +38,4 @@ BOOST_AUTO_TEST_CASE(TestBomb)
     l.playerUseBomb();
     BOOST_CHECK(l.getEnemies()->size()==0);
     BOOST_CHECK(p.getBombNumber()==0);
-
-
-
 }
