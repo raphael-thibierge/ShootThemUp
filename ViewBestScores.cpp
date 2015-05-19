@@ -38,6 +38,7 @@ int ViewBestScores::treatEventSFML()
                 returnvalue = 0;
 
             }
+            break;
 
 
 

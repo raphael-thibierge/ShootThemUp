@@ -131,7 +131,9 @@ int ViewMainMenu::treatEventSFML()
                     returnValue = 0;
                 }
 
-                break;
+            break;
+
+
 
         }
     }

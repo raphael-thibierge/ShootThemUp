@@ -31,10 +31,12 @@ void Bullet::move ()
 
 void Bullet::initBullet(){
 
-    _damage = BULLET_DAMAGE[_type];
-    _speed = BULLET_SPEED[_type];
-    _width = BULLET_WIDTH[_type];
-    _height = BULLET_HEIGHT[_type];
+
+    _damage = BULLET_DAMAGE[_type%10];
+    _speed = BULLET_SPEED[_type%10];
+    _width = BULLET_WIDTH[_type%10];
+    _height = BULLET_HEIGHT[_type%10];
+
 
     if (_direction == "NORTH")
         _Y -= _height;

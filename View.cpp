@@ -59,6 +59,7 @@ void View::displayText(std::string text, float positionX, float positionY)
     sf::String textDisplayed;
     textDisplayed.SetText(text);
     textDisplayed.SetPosition(positionX, positionY);
+    textDisplayed.SetColor(sf::Color::Red);
     _window->Draw(textDisplayed);
 
 }

@@ -20,7 +20,7 @@ private:
 
 public:
 
-    Level (Player * player, unsigned int * difficultyPointer);
+    Level (unsigned int level, Player * player, unsigned int * difficultyPointer);
 
 	virtual ~Level ();
 

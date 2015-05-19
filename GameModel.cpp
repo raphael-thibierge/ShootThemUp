@@ -151,7 +151,6 @@ void GameModel::saveGame ()
 
     fstream gameFile;
 
-
     // open or create gamefile
     gameFile.open("GameFile.txt", ios::out);
 
@@ -184,7 +183,7 @@ void GameModel::saveGame ()
 }
 
 void GameModel::loadBestScore()
-{
+{ // load the best score from bestScores file
     fstream scoreFile(BEST_SCORE_FILE, ios::in);
     // cpt used to know if best scores's number is less than const BEST_SCORE_NB
     int cpt = 0;
@@ -226,8 +225,8 @@ void GameModel::saveBestScores()
     scoreFile.close();
 }
 
-bool GameModel::tryAddBestScore(const unsigned int score){
-    // return true if the score is a best score
+bool GameModel::tryAddBestScore(const unsigned int score)
+{// return true if the score is a best score
 
     // to know if score is a best score
     bool best = false ;
@@ -269,7 +268,7 @@ void GameModel::newLevel ()
 {
     // destruction of level (even if there is no one)
     destructLevel();
-    _level = new Level(_player, _settings->getDifficulty());
+    _level = new Level(_gameLevel, _player, _settings->getDifficulty());
     // increment the level number
     _gameLevel++;
     // player's initial position

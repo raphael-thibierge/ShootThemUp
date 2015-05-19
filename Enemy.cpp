@@ -32,8 +32,8 @@ void Enemy::move()
 void Enemy::shoot (list<Bullet*> * bulletList)
 {
     // if enemy isn't a kamikaze
-    if (_type != 10)
-        bulletList->push_back(new Bullet(0, _direction, _X+_width/2, _Y+_height, "enemy"));
+    if (_type != ENEMY_TYPE[1])
+        bulletList->push_back(new Bullet(_type, _direction, _X+_width/2, _Y+_height, "enemy"));
 }
 
 string Enemy::toString(){
@@ -53,18 +53,13 @@ unsigned int Enemy::getLevel() const{
 //
 
 Enemy* Enemy::Standard(const unsigned int level){
-     return new Enemy(0, level, randomPositionX(), 0, ENEMY_WIDTH[0], ENEMY_HEIGHT[0], ENEMY_LIFE_LEVEL[0], ENEMY_SPEED[0], ENEMY_NB_LIFE );
+     return new Enemy(ENEMY_TYPE[0], level, 0, 0, ENEMY_WIDTH[0], ENEMY_HEIGHT[0], ENEMY_LIFE_LEVEL[0], ENEMY_SPEED[0], ENEMY_NB_LIFE );
 }
 
 Enemy* Enemy::Kamikaze(const unsigned int level){
-     return new Enemy(10, level, randomPositionX(), 0, ENEMY_WIDTH[1], ENEMY_HEIGHT[1], ENEMY_LIFE_LEVEL[1], ENEMY_SPEED[1], ENEMY_NB_LIFE );
+     return new Enemy(ENEMY_TYPE[1], level, 0, 0, ENEMY_WIDTH[1], ENEMY_HEIGHT[1], ENEMY_LIFE_LEVEL[1], ENEMY_SPEED[1], ENEMY_NB_LIFE );
 }
 
 Enemy* Enemy::Helicopter(const unsigned int level){
-     return new Enemy(11, level, randomPositionX(), 0, ENEMY_WIDTH[0], ENEMY_HEIGHT[2], ENEMY_LIFE_LEVEL[2], ENEMY_SPEED[2], ENEMY_NB_LIFE );;
-}
-
-
-int Enemy::randomPositionX(){
-    return rand()%(-SCREEN_WIDTH);
+     return new Enemy(ENEMY_TYPE[2], level, 0, 0, ENEMY_WIDTH[0], ENEMY_HEIGHT[2], ENEMY_LIFE_LEVEL[2], ENEMY_SPEED[2], ENEMY_NB_LIFE );;
 }

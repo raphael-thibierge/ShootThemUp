@@ -36,10 +36,11 @@ const std::string ENEMIES_DIRECTION = "SOUTH";
 const int MAX_DIFFICULTY = 3;
 
 // ======== ENEMIES ============
-const int ENEMY_WIDTH[3] = { 115, 10, 10 };
-const int ENEMY_HEIGHT[3] = { 142, 10, 10 };
+const int ENEMY_WIDTH[3] = { 115, 201, 278 };
+const int ENEMY_HEIGHT[3] = { 142, 179, 155 };
 const int ENEMY_LIFE_LEVEL[3] = { 50, 50, 100 };
 const int ENEMY_SPEED[3] = { 2, 2, 3 };
+const int ENEMY_TYPE[3] = {10, 11, 12};
 const int ENEMY_NB_LIFE = 1 ;
 
 // ======== BOSS ============
@@ -63,6 +64,7 @@ const int BULLET_WIDTH[5] = { 56, 56, 56, 56, 56};
 const int BULLET_HEIGHT[5] = { 20, 20, 20, 20, 20};
 
 
+
 // ======== SHIELDS ============
 const int SHIELD_PRICE[3] = { 100, 300, 500 };
 const int SHIELD_LIFE[3] = { 100, 200, 300 };
@@ -81,16 +83,14 @@ const std::string IMAGE_BACKGROUD_MAIN_MENU = "./images/espace.jpg";
 const std::string IMAGE_BACKGROUD_GAME = "./images/planet.png";
 const int IMAGE_BACKGROUD_GAME_SIZE_X = 780;
 const int IMAGE_BACKGROUD_GAME_SIZE_Y = 2340;
-const int IMAGE_BACKGROUND_SPEED = 5;
+const int IMAGE_BACKGROUND_SPEED = 1;
 const std::string IMAGE_BACKGROUD_BESTSCORES = "./images/espace.jpg";
 const std::string IMAGE_BACKGROUD_SHOP = "./images/espace.jpg";
 const std::string IMAGE_BACKGROUD_SETTINGS = "./images/espace.jpg";
 
 const std::string IMAGE_BUTTONS = "./images/buttons.png";
 const std::string IMAGE_PLAYER_SHIP = "./images/ennemy_1.png";
-const std::string IMAGE_ENEMY_0_SHIP = "./images/ennemy_0.png";
-const std::string IMAGE_ENEMY_1_SHIP = "./images/ennemy_1.png";
-const std::string IMAGE_ENEMY_2_SHIP = "./images/ennemy_2.png";
+const std::string IMAGE_ENEMY_SHIP[3] = {"./images/ennemy_0.png" , "./images/ennemy_1.png", "./images/ennemy_2.png" };
 const std::string IMAGE_BULLET_0 = "./images/shot.png";
 
 // ======== BUTTONS ============

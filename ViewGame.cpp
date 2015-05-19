@@ -29,7 +29,13 @@ ViewGame::ViewGame()
 
     //enemy
     _imagesList.insert(make_pair("enemy_1", sf::Image()));
-    _imagesList["enemy_1"].LoadFromFile(IMAGE_ENEMY_0_SHIP);
+    _imagesList["enemy_1"].LoadFromFile(IMAGE_ENEMY_SHIP[0]);
+
+    _imagesList.insert(make_pair("enemy_2", sf::Image()));
+    _imagesList["enemy_2"].LoadFromFile(IMAGE_ENEMY_SHIP[1]);
+
+    _imagesList.insert(make_pair("enemy_3", sf::Image()));
+    _imagesList["enemy_3"].LoadFromFile(IMAGE_ENEMY_SHIP[2]);
 
     //bullet
     _imagesList.insert(make_pair("bullet_1", sf::Image()));
@@ -47,10 +53,19 @@ ViewGame::ViewGame()
     _spritesList["player"].SetImage(_imagesList["player"]);
     _spritesList["player"].SetSubRect(sf::IntRect(0,0, PLAYER_WIDTH, PLAYER_HEIGHT));
 
-    // player
+    // enemy
     _spritesList.insert(make_pair("enemy_1", sf::Sprite()));
     _spritesList["enemy_1"].SetImage(_imagesList["enemy_1"]);
     _spritesList["enemy_1"].SetSubRect(sf::IntRect(0,0, ENEMY_WIDTH[0], ENEMY_HEIGHT[0]));
+
+    _spritesList.insert(make_pair("enemy_2", sf::Sprite()));
+    _spritesList["enemy_2"].SetImage(_imagesList["enemy_2"]);
+    _spritesList["enemy_2"].SetSubRect(sf::IntRect(0,0, ENEMY_WIDTH[1], ENEMY_HEIGHT[1]));
+
+    _spritesList.insert(make_pair("enemy_3", sf::Sprite()));
+    _spritesList["enemy_3"].SetImage(_imagesList["enemy_3"]);
+    _spritesList["enemy_3"].SetSubRect(sf::IntRect(0,0, ENEMY_WIDTH[2], ENEMY_HEIGHT[2]));
+
 
     // bullet
     _spritesList.insert(make_pair("bullet_1", sf::Sprite()));
@@ -138,7 +153,7 @@ int ViewGame::treatEventSFML()
     int returnValue = 1;
 
     // if player loose, quit the game
-    if (_modele->getPlayer()->getNbLife() == 0)
+    if (_modele->getPlayer()->getNbLife() == 0 && _modele->getPlayer()->getLifeLevel() == 0)
         returnValue = 0;
 
     else
@@ -154,8 +169,10 @@ int ViewGame::treatEventSFML()
                         case Key::B :
                             _modele->getLevel()->playerUseBomb();
                             break;
-                    }
 
+                        default :
+                            break;
+                    }
 
                 break;
 
@@ -187,7 +204,6 @@ int ViewGame::treatEventSFML()
         if (input.IsKeyDown(Key::Space)){
             _modele->getLevel()->playerShoot();
         }
-
     }
 
     return returnValue;
@@ -199,36 +215,47 @@ int ViewGame::treatEventSFML()
 
 void ViewGame::showViewSFML()
 {
-    // BAACKGROUND
-    displayScrollingBackground();
-
 
     if(_modele->getLevel()==nullptr)
     {
         if (_modele->getPlayer()->getNbLife() > 0)
-            showTransition();
+            showTransitionSFML();
         else
-            showLoose();
+            showLooseSFML();
     }
 
     else
     {
+        // BAACKGROUND
+        displayScrollingBackground();
+
         // PLAYER
-        if ( _modele->getPlayer() != nullptr )
-        {
-            _spritesList["player"].SetPosition(_modele->getPlayer()->getX(), _modele->getPlayer()->getY());
-            _window->Draw(_spritesList["player"]);
-        }
+        _spritesList["player"].SetPosition(_modele->getPlayer()->getX(), _modele->getPlayer()->getY());
+        _window->Draw(_spritesList["player"]);
+
 
         //ENEMIES
         for (auto enemy : *_modele->getLevel()->getEnemies())
         {
             switch (enemy->getType())
             {
-            case 0 :
-                _spritesList["enemy_1"].SetPosition(enemy->getX(), enemy->getY());
-                _window->Draw(_spritesList["enemy_1"]);
-                break;
+                case 10 :
+                    _spritesList["enemy_1"].SetPosition(enemy->getX(), enemy->getY());
+                    _window->Draw(_spritesList["enemy_1"]);
+                    break;
+
+                case 11 :
+                    _spritesList["enemy_2"].SetPosition(enemy->getX(), enemy->getY());
+                    _window->Draw(_spritesList["enemy_2"]);
+                    break;
+
+                case 12 :
+                    _spritesList["enemy_3"].SetPosition(enemy->getX(), enemy->getY());
+                    _window->Draw(_spritesList["enemy_3"]);
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -237,10 +264,49 @@ void ViewGame::showViewSFML()
         {
             switch (bullet->getType())
             {
-            case 0 :
-                _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                _window->Draw(_spritesList["bullet_1"]);
-                break;
+
+                case 0 :
+                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
+                    _window->Draw(_spritesList["bullet_1"]);
+                    break;
+
+                case 1 :
+                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
+                    _window->Draw(_spritesList["bullet_1"]);
+                    break;
+
+                case 2 :
+                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
+                    _window->Draw(_spritesList["bullet_1"]);
+                    break;
+
+                case 3 :
+                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
+                    _window->Draw(_spritesList["bullet_1"]);
+                    break;
+
+                case 4 :
+                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
+                    _window->Draw(_spritesList["bullet_1"]);
+                    break;
+
+                case 10 :
+                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
+                    _window->Draw(_spritesList["bullet_1"]);
+                    break;
+
+                case 11 :
+                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
+                    _window->Draw(_spritesList["bullet_1"]);
+                    break;
+
+                case 12 :
+                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
+                    _window->Draw(_spritesList["bullet_1"]);
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -273,9 +339,9 @@ void ViewGame::showViewTerminal()
     if(_modele->getLevel()==nullptr)
     {
         if (_modele->getPlayer()->getNbLife() > 0)
-            showTransition();
+            showTransitionConsole();
         else
-            showLoose();
+            showLooseConsole();
     }
     else
     {
@@ -299,13 +365,13 @@ void ViewGame::showViewTerminal()
         cout << "\t (1)" + _language->getText("move") << endl;
         cout << "\t (2)" + _language->getText("shoot") << endl;
         cout << "\t (3)" + _language->getText("bomb") << endl;
-        cout << "\t (4)" + _language->getText("shild") << endl;
+        cout << "\t (4)" + _language->getText("shield") << endl;
         cout << "\t (5)" + _language->getText("nothing") << endl;
         cout << "\t (6)" + _language->getText("escape") << endl;
     }
 }
 
-void ViewGame::showTransition()
+void ViewGame::showTransitionConsole()
 {
 
 
@@ -323,7 +389,14 @@ void ViewGame::showTransition()
     cout << _language->getText("money") << " : " << _modele->getPlayer()->getMoney() << endl;
 }
 
-void ViewGame::showLoose()
+
+void ViewGame::showTransitionSFML()
+{
+
+
+}
+
+void ViewGame::showLooseConsole()
 {
 
 
@@ -341,6 +414,12 @@ void ViewGame::showLoose()
 
 }
 
+void ViewGame::showLooseSFML()
+{
+
+
+}
+
 
 void ViewGame::initButtons()
 {
@@ -353,7 +432,7 @@ void ViewGame::displayScrollingBackground()
 
     if (_backgroundY > 0 && _backgroundY < SCREEN_HEIGHT)
     {
-        int positionY = _backgroundY - IMAGE_BACKGROUD_GAME_SIZE_Y;
+        int positionY = _backgroundY - IMAGE_BACKGROUD_GAME_SIZE_Y +2 ;
         _spritesList["background"].SetY(positionY);
         _window->Draw(_spritesList["background"]);
     }
@@ -365,7 +444,5 @@ void ViewGame::displayScrollingBackground()
 
     _spritesList["background"].SetY(_backgroundY);
     _window->Draw(_spritesList["background"]);
-
-
 
 }

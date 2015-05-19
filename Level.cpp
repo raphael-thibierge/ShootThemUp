@@ -6,13 +6,13 @@
 
 using namespace std;
 
-Level::Level (Player * player, unsigned int * difficultyPointer) : _player(player), _difficulty(difficultyPointer)
+Level::Level (unsigned int level, Player * player, unsigned int * difficultyPointer) : _player(player), _difficulty(difficultyPointer)
 {
     //cout << "\n=====================" << endl;
     //cout << "CONSTRUCTOR LEVEL" << endl;
 
     _nbEnnemies = LEVEL_NB_ENEMIES;
-    _level = _player->getLevel();
+    _level = level;
     _enemiesCpt = 0;
 
 }
@@ -54,35 +54,33 @@ void Level::generateEnemy()
         int random = rand()%(4);
         if(random == 1){
             // random choise of an enemy's type
-            int randomType = rand()%(-3);
+            int randomType = rand()%((_level%3)+1);
+            Enemy * enemy = nullptr;
             switch (randomType) {
                 case 0:
-                    _enemiesList.push_back(Enemy::Standard(level));
+                    enemy = Enemy::Standard(level);
                     break;
 
                 case 1 :
-                    if (_level%3 >= 1)
-                   _enemiesList.push_back(Enemy::Kamikaze(level));
-                    else
-                        _enemiesList.push_back(Enemy::Standard(level));
+                    enemy = Enemy::Kamikaze(level);
                     break;
 
                 case 2 :
-                    if (_level%3 == 2)
-                        _enemiesList.push_back(Enemy::Helicopter(level));
-                    else
-                        _enemiesList.push_back(Enemy::Standard(level));
+                    enemy = Enemy::Helicopter(level);
                     break;
 
                 default:
                     break;
             }
+
+            enemy->setPosition(rand()%(SCREEN_WIDTH), 0);
+            _enemiesList.push_back(enemy);
+            enemy = nullptr;
+
             _enemiesCpt++;
         }
     }
 }
-
-
 
 bool Level::win ()
 {// check if player win
