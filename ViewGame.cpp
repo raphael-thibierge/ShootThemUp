@@ -39,7 +39,7 @@ ViewGame::ViewGame()
     // backgound
     _spritesList.insert(make_pair("background", sf::Sprite()));
     _spritesList["background"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, IMAGE_BACKGROUD_GAME_SIZE_X, IMAGE_BACKGROUD_GAME_SIZE_Y));
     _spritesList["background"].SetPosition(0,0);
 
     // player
@@ -354,7 +354,7 @@ void ViewGame::displayScrollingBackground()
     if (_backgroundY > 0 && _backgroundY < SCREEN_HEIGHT)
     {
         int positionY = _backgroundY - IMAGE_BACKGROUD_GAME_SIZE_Y;
-        _spritesList["background"].SetY(_backgroundY;l);
+        _spritesList["background"].SetY(positionY);
         _window->Draw(_spritesList["background"]);
     }
 
@@ -363,8 +363,8 @@ void ViewGame::displayScrollingBackground()
         _backgroundY -= IMAGE_BACKGROUD_GAME_SIZE_Y;
     }
 
-   // _spritesList["background"].SetY(_backgroundY);
-   // _window->Draw(_spritesList["background"]);
+    _spritesList["background"].SetY(_backgroundY);
+    _window->Draw(_spritesList["background"]);
 
 
 

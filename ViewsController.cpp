@@ -107,7 +107,7 @@ bool ViewsController::treatEvent(){
 void ViewsController::showView(){
     //show active view
 
-    _view->showViewTerminal();
+    //_view->showViewTerminal();
     _mainWindow->Clear();
     _view->showViewSFML();
     _mainWindow->Display();

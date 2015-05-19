@@ -185,35 +185,35 @@ void Level::collisionManager()
     }
 
     // remove duplicate enemies and bullets
-    //enemiesKilled.unique();
-    //bulletsDestroyed.unique();
+    enemiesKilled.unique();
+    bulletsDestroyed.unique();
 
     // destruction of enemies
-    cout << "a " << endl ;
+    //cout << "a " << endl ;
     int cpt = 0;
 
     for (auto enemy : enemiesKilled)
     {
         _enemiesList.remove(enemy);
         cpt++;
-        cout << cpt << endl;
+      //  cout << cpt << endl;
         //delete enemy;
     }
-    cout << "b" << endl << endl;
+   // cout << "b" << endl << endl;
 
-    cout << "c " << endl;
+    //cout << "c " << endl;
     cpt = 0;
     // destruction of bullets
 
     for (auto bullet : bulletsDestroyed)
     {
         cpt++;
-        cout << cpt << endl;
+      //  cout << cpt << endl;
         _bulletsList.remove(bullet);
         //delete bullet;
     }
 
-    cout << "d" << endl << endl;
+    //cout << "d" << endl << endl;
 
     // clear enemyKilled list
     enemiesKilled.clear();
