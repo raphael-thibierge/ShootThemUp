@@ -16,6 +16,10 @@
 
 class ViewGame : virtual public View
 {
+private :
+    int _backgroundY;
+
+
 
 // CONSTRUCTOR AND DESTRUCTOR
 //
@@ -40,6 +44,9 @@ public:
 
     // screen when player loose
     void showLoose();
+
+    // display the background and loop it to have a infinite scolling
+    void displayScrollingBackground();
 
     void initButtons() override;
 };

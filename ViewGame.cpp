@@ -16,6 +16,8 @@ using namespace sf;
 //
 ViewGame::ViewGame()
 {
+    _backgroundY =0;
+
 
     //background
     _imagesList.insert(make_pair("background", sf::Image()));
@@ -131,13 +133,6 @@ int ViewGame::treatEvent()
 
 
 
-
-
-
-
-
-
-
 int ViewGame::treatEventSFML()
 {
     int returnValue = 1;
@@ -205,7 +200,7 @@ int ViewGame::treatEventSFML()
 void ViewGame::showViewSFML()
 {
     // BAACKGROUND
-    _window->Draw(_spritesList["background"]);
+    displayScrollingBackground();
 
 
     if(_modele->getLevel()==nullptr)
@@ -349,4 +344,28 @@ void ViewGame::showLoose()
 
 void ViewGame::initButtons()
 {
+}
+
+
+void ViewGame::displayScrollingBackground()
+{
+    _backgroundY += IMAGE_BACKGROUND_SPEED ;
+
+    if (_backgroundY > 0 && _backgroundY < SCREEN_HEIGHT)
+    {
+        int positionY = _backgroundY - IMAGE_BACKGROUD_GAME_SIZE_Y;
+        _spritesList["background"].SetY(_backgroundY;l);
+        _window->Draw(_spritesList["background"]);
+    }
+
+    else if (_backgroundY >= SCREEN_HEIGHT)
+    {
+        _backgroundY -= IMAGE_BACKGROUD_GAME_SIZE_Y;
+    }
+
+   // _spritesList["background"].SetY(_backgroundY);
+   // _window->Draw(_spritesList["background"]);
+
+
+
 }

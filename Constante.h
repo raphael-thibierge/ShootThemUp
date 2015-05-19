@@ -15,7 +15,7 @@ const unsigned int LEVEL_NB_ENEMIES = 20;
 
 // ======== SCREEN ============
 const int SCREEN_HEIGHT=1000;
-const int SCREEN_WIDTH=800;
+const int SCREEN_WIDTH=780;
 
 // ======== BEST SCORES ============
 const int BEST_SCORE_NB = 5;
@@ -78,7 +78,10 @@ const int LIFE_PRICE = 100;
 
 // ======== IMAGES ============
 const std::string IMAGE_BACKGROUD_MAIN_MENU = "./images/espace.jpg";
-const std::string IMAGE_BACKGROUD_GAME = "./images/espace.jpg";
+const std::string IMAGE_BACKGROUD_GAME = "./images/planet.png";
+const int IMAGE_BACKGROUD_GAME_SIZE_X = 780;
+const int IMAGE_BACKGROUD_GAME_SIZE_Y = 2340;
+const int IMAGE_BACKGROUND_SPEED = 5;
 const std::string IMAGE_BACKGROUD_BESTSCORES = "./images/espace.jpg";
 const std::string IMAGE_BACKGROUD_SHOP = "./images/espace.jpg";
 const std::string IMAGE_BACKGROUD_SETTINGS = "./images/espace.jpg";
