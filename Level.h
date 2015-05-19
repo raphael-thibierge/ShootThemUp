@@ -20,7 +20,7 @@ private:
 
 public:
 
-    Level (Player * player, unsigned int * difficultyPointer);
+    Level (unsigned int level, Player * player, unsigned int * difficultyPointer);
 
 	virtual ~Level ();
 
@@ -51,6 +51,8 @@ public:
     // activate player's bomb
     void playerUseBomb();
 
+    // player shoot a bullet
+    void playerShoot();
 
 // ACCESSOR METHODS
 //

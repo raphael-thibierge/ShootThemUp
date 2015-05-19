@@ -104,13 +104,18 @@ int ViewShop::treatEvent()
 }
 
 
-void ViewShop::showView()
+int ViewShop::treatEventSFML()
+{
+}
+
+void ViewShop::showViewTerminal()
 {
     cout << "\n---------------------- \n " << _language->getText("shop") << endl;
     cout << _language->getText("money") << " " << _modele->getPlayer()->getMoney() << "$"<< endl;
     cout << _language->getText("shootLevel") << " " << (_modele->getPlayer()->getBulletType() + 1 )<< endl;
     cout << _language->getText("shipLevel") << " " << (_modele->getPlayer()->getType() + 1) << endl;
-    //cout << _language->getText("shieldLevel") << " " << (_modele->getPlayer()->getShield()) << endl;
+
+    cout << _language->getText("shieldLevel") << " " << (_modele->getPlayer()->getShield()) << endl;
 
 
     if(_modele->getPlayer()->getShield()!=0){
@@ -141,4 +146,14 @@ void ViewShop::showView()
     cout << "\t (4) " << _language->getText("buyBomb") << " : " << BOMB_PRICE << "$" << endl;
     cout << "\t (5) " << _language->getText("buyLife") << " : " << LIFE_PRICE << "$" << endl;
     cout << "\t (6) " + _language->getText("quit") << endl;
+}
+
+
+void ViewShop::showViewSFML()
+{
+}
+
+
+void ViewShop::initButtons()
+{
 }

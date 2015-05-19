@@ -53,6 +53,8 @@ buyBomb Acheter une bombe
 buyLife Acheter une vie
 shootLevel Niveau du tir
 shipLevel Niveau du vaisseau
-shieldLevel Niveau du bouclier
-alreadyShield Bouclier déjà acheté
-noShield Vous n'avez pas de bouclier
+shildLevel Niveau du bouclier
+lifeLevel Niveau de vie
+nbLife Nombre de vies
+nbBomb Nombre de bombes
+

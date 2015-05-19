@@ -53,6 +53,7 @@ buyBomb Buy a bomb
 buyLife Buy a Life
 shootLevel Shoot level
 shipLevel Ship Level
-shieldLevel Shield Level
-alreadyShield Shield already buy
-noShield You dont't have shield
+shildLevel Shield Level
+lifeLevel Life level
+nbLife Life's number
+nbBomb Bomb's number

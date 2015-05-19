@@ -5,7 +5,7 @@ using namespace std ;
 // Constructors/Destructors
 //
 
-Bullet::Bullet (const unsigned int type , const string direction, const float X, const float Y, const string shooter ) : RectanglePosition::RectanglePosition(X,Y, 5, 5), _type(type) ,_direction(direction), _shooter(shooter)
+Bullet::Bullet (const unsigned int type , const string direction, const float X, const float Y, const string shooter ) : RectanglePosition::RectanglePosition(X,Y, 0, 0), _type(type) ,_direction(direction), _shooter(shooter)
 {
     initBullet();
 }
@@ -15,7 +15,9 @@ Bullet::Bullet(const unsigned int type) : _type(type)
     initBullet();
 }
 
-Bullet::~Bullet () {}
+Bullet::~Bullet () {
+    cout << __FUNCTION__ << endl ;
+}
 
 
 //
@@ -29,13 +31,17 @@ void Bullet::move ()
 
 void Bullet::initBullet(){
 
+
+    _damage = BULLET_DAMAGE[_type%10];
+    _speed = BULLET_SPEED[_type%10];
+    _width = BULLET_WIDTH[_type%10];
+    _height = BULLET_HEIGHT[_type%10];
+
+
     if (_direction == "NORTH")
         _Y -= _height;
     if (_direction == "SOUTH")
         _Y += _height;
-   
-    _damage = BULLET_DAMAGE[_type];
-    _speed = BULLET_SPEED[_type];
 }
 
 string Bullet::toString()

@@ -27,7 +27,7 @@ Player::~Player ()
 
 void Player::shoot (list<Bullet*> * bulletList)
 {
-    bulletList->push_back(new Bullet(_bulletType, _direction, _X+_height/2, _Y-5,  "player"));
+    bulletList->push_back(new Bullet(_bulletType, _direction, _X+_width/2, _Y,  "player"));
 }
 
 
@@ -38,8 +38,7 @@ void Player::initPlayer()
     _nbLife = 0;
     _width = PLAYER_WIDTH;
     _height = PLAYER_HEIGHT;
-
-    _bombNumber = 0 ;
+    _bombNumber = 10 ; // provisoire, sinon 0
     _direction = PLAYER_DIRECTION;
     _score = 0;
     _money = 0;
@@ -52,8 +51,9 @@ void Player::initPlayer()
 }
 
 
-void Player::useBomb(list<Enemy*> &enemyList, const int difficulty)
+void Player::useBomb(list<Enemy*> & enemyList, const int difficulty)
 { // destruct all enemies on the screen
+
 
     if (_bombNumber > 0){
         _bombNumber-- ;
@@ -61,6 +61,7 @@ void Player::useBomb(list<Enemy*> &enemyList, const int difficulty)
         list<Enemy*> enemiesKilled;
 
         // founding enemies
+        cout << "====================================" << endl;
         for (auto enemy : enemyList){
             // if he is on screen
             if (enemy->getX() >= 0 && enemy->getX() <= SCREEN_WIDTH &&

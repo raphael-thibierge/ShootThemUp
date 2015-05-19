@@ -31,7 +31,7 @@ public:
 
 // METHODS
 //
-    
+
     // player use a bomb if he has one
     void useBomb(std::list<Enemy*> &enemyList, const int difficulty);
 
@@ -43,7 +43,7 @@ public:
     void score(Enemy * enemy, const unsigned int difficulty);
 
     void activateShild();
-    
+
     // payer loose one life
     void looseLife();
 
@@ -56,13 +56,13 @@ public:
 
     // add money in function of the current score
     void addMoney();
-    
+
     // add one bomb to player's inventory
     void addBomb();
-    
+
     // add one life
     void addLife(const unsigned int number);
-    
+
     void pay(const float value);
 
     std::string toString() override;
@@ -88,10 +88,10 @@ public :
     unsigned int getScore() const;
 
     unsigned int getBulletType() const;
-    
+
     unsigned int getBombNumber() const;
-    
-    
+
+
 // SETTERS
 //
     void setNbLife(const unsigned int nbLife);

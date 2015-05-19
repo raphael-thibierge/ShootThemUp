@@ -23,12 +23,19 @@ ViewIntroduction::~ViewIntroduction(){}
 //
 int ViewIntroduction::treatEvent(){
 
-    showView();
+    showViewTerminal();
 
     return 0;
 }
 
-void ViewIntroduction::showView(){
+int ViewIntroduction::treatEventSFML()
+ {
+    showViewSFML();
+
+    return 0;
+ }
+
+void ViewIntroduction::showViewTerminal(){
 cout<<endl;
 cout<<" ______    __                             __ "<<endl;
 cout<<"/      \\  |  \\                           |  \\        "<<endl;
@@ -62,3 +69,13 @@ cout<<"                          | $$"           <<endl;
 cout<<"                           \\$$"   <<endl;
 
 }
+
+
+void ViewIntroduction::showViewSFML()
+{
+}
+
+void ViewIntroduction::initButtons()
+{
+}
+
