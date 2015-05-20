@@ -111,6 +111,67 @@ int ViewSettings::treatEvent(){
 
 int ViewSettings::treatEventSFML()
 {
+    int returnvalue = 1;
+
+    sf::Event event;
+
+     while (_window->GetEvent(event))
+    {
+
+        switch (event.Type)
+        {
+            case sf::Event::Closed :
+                returnvalue = 111;
+                break;
+
+            case sf::Event::MouseButtonPressed :
+            {
+                int mouseX = event.MouseButton.X ;
+                int mouseY = event.MouseButton.Y ;
+
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_FRENCH_X, SETTINGSVIEW_FRENCH_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+                    _modele->getSettings()->changeLanguage("French");
+                }
+
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_ENGLISH_X, SETTINGSVIEW_ENGLISH_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+                    _modele->getSettings()->changeLanguage("English");
+                }
+
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_QUIT_X, SETTINGSVIEW_QUIT_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+                    returnvalue = 0;
+                }
+
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_DIFFICULTY_1_X, SETTINGSVIEW_DIFFICULTY_1_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+
+                    returnvalue = 1;
+                    _modele->getSettings()->changeDifficulty(1);
+                }
+
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_DIFFICULTY_2_X, SETTINGSVIEW_DIFFICULTY_2_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+                    returnvalue = 1;
+                    _modele->getSettings()->changeDifficulty(2);
+                }
+
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_DIFFICULTY_3_X, SETTINGSVIEW_DIFFICULTY_3_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+                    returnvalue = 1;
+                    _modele->getSettings()->changeDifficulty(3);
+                }
+
+                break;
+            }
+
+        default :
+            break;
+        }
+    }
+
+    return returnvalue;
 }
 
 void ViewSettings::showViewTerminal(){
@@ -132,6 +193,22 @@ void ViewSettings::showViewTerminal(){
 
 void ViewSettings::showViewSFML()
 {
+    displayText(_language->getText("settings"), SETTINGSVIEW_TITLE_X, SETTINGSVIEW_TITLE_Y);
+
+    displayText(_language->getText("language"), SETTINGSVIEW_LANGUAGE_X, SETTINGSVIEW_LANGUAGE_Y);
+    displayText(_language->getText("nbLifeInit"), SETTINGSVIEW_NBLIFE_X, SETTINGSVIEW_NBLIFE_Y);
+    displayText(_language->getText("difficulty"), SETTINGSVIEW_DIFFICULTY_X, SETTINGSVIEW_DIFFICULTY_Y);
+
+    displayStandartButton(_language->getText("french"), SETTINGSVIEW_FRENCH_X, SETTINGSVIEW_FRENCH_Y);
+    displayStandartButton(_language->getText("english"), SETTINGSVIEW_ENGLISH_X, SETTINGSVIEW_ENGLISH_Y);
+
+    displayStandartButton("1", SETTINGSVIEW_DIFFICULTY_1_X, SETTINGSVIEW_DIFFICULTY_1_Y);
+    displayStandartButton("2", SETTINGSVIEW_DIFFICULTY_2_X, SETTINGSVIEW_DIFFICULTY_2_Y);
+    displayStandartButton("3", SETTINGSVIEW_DIFFICULTY_3_X, SETTINGSVIEW_DIFFICULTY_3_Y);
+
+    displayStandartButton(_language->getText("quit"), SETTINGSVIEW_QUIT_X, SETTINGSVIEW_QUIT_Y);
+
+
 }
 
 

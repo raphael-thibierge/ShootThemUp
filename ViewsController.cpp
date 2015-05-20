@@ -28,9 +28,10 @@ ViewsController::ViewsController(sf::RenderWindow* window) : _mainWindow(window)
 }
 
 ViewsController::~ViewsController(){
+    _modele = nullptr;
     _view = nullptr;
+    _mainWindow = nullptr;
 
-    _view = nullptr;
     for (auto view : _allViews) {
         //the gameview is not in the queue
         if (view.first != "Game")
@@ -97,6 +98,10 @@ bool ViewsController::treatEvent(){
             _view = _allViews["BestScores"];
             break;
 
+        case 111:
+            forceQuit();
+            break;
+
         default:
             break;
     }
@@ -108,9 +113,13 @@ void ViewsController::showView(){
     //show active view
 
     //_view->showViewTerminal();
-    _mainWindow->Clear();
-    _view->showViewSFML();
-    _mainWindow->Display();
+
+    if (_mainWindow != nullptr)
+    {
+        _mainWindow->Clear();
+        _view->showViewSFML();
+        _mainWindow->Display();
+    }
 }
 
 void ViewsController::changeView(string view){
@@ -123,6 +132,12 @@ void ViewsController::quit(){
         _modele->saveGame();
     // qui the game
     _quit = true;
+}
+
+void ViewsController::forceQuit()
+{
+    _quit = true;
+
 }
 
 void ViewsController::init(GameModel *modele){

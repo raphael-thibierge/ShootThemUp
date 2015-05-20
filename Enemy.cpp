@@ -32,8 +32,11 @@ void Enemy::move()
 void Enemy::shoot (list<Bullet*> * bulletList)
 {
     // if enemy isn't a kamikaze
-    if (_type != ENEMY_TYPE[1])
+    if (_time.GetElapsedTime() > TIME_ENEMY_FIRE_RATE && _type != ENEMY_TYPE[1])
+    {
         bulletList->push_back(new Bullet(_type, _direction, _X+_width/2, _Y+_height, "enemy"));
+        _time.Reset();
+    }
 }
 
 string Enemy::toString(){

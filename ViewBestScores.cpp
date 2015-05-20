@@ -27,8 +27,15 @@ int ViewBestScores::treatEventSFML()
 
     while (_window->GetEvent(event))
     {
-        if (event.Type == sf::Event::MouseButtonPressed )
+
+        switch (event.Type)
         {
+        case sf::Event::Closed :
+            returnvalue = 111;
+            break;
+
+        case sf::Event::MouseButtonPressed :
+
             int mouseX = event.MouseButton.X ;
             int mouseY = event.MouseButton.Y ;
 
@@ -36,6 +43,10 @@ int ViewBestScores::treatEventSFML()
             {
                 returnvalue = 0;
             }
+            break;
+
+       // default :
+         //   break;
         }
     }
 

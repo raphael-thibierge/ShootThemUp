@@ -61,6 +61,9 @@ public:
     // quit the program
     void quit();
 
+    // force quit
+    void forceQuit();
+
     // init gamemodel for each views
     void init(GameModel* modele);
 

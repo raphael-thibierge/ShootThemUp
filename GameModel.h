@@ -15,11 +15,12 @@ class GameModel
 private:
     // best scores
     std::vector<unsigned int> _bestScores;
-    
+
     // levelnumber of the current level played
     int _gameLevel;
-    
-    
+    sf::Clock _time ;
+
+
     Player* _player;
     Level* _level;
     Shop* _shop;
@@ -48,16 +49,16 @@ public :
 
     // save the current game
     void saveGame ();
-    
+
     // load from file the best scores
     void loadBestScore();
-    
+
     // save the current best scores
     void saveBestScores();
 
     // check if score is a best score, and save it if it is one
     bool tryAddBestScore(const unsigned int score);
-    
+
     // play the game
     void play ();
 

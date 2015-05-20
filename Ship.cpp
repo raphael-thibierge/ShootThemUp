@@ -6,6 +6,7 @@ using namespace std;
 //
 
 Ship::Ship (const unsigned int type) :_type(type) {
+    _time.Reset();
 }
 
 Ship::~Ship () {
@@ -38,7 +39,7 @@ bool Ship::collisionPoint(const float x, const float y)
 
 bool Ship::collision(Bullet *bullet)
 {// return true if there is a collision
-    
+
     // test collisision with every bullet'corners
     if (collisionPoint(bullet->getX(), bullet->getY()) // up left
         || collisionPoint(bullet->getX(), bullet->getY()+bullet->getHeight()) // down left
@@ -51,7 +52,7 @@ bool Ship::collision(Bullet *bullet)
 
 bool Ship::collision(Ship *ship)
 {// return true if there is a collision
-    
+
     // test collisision with every ship'corners
     if (collisionPoint(ship->getX(), ship->getY()) // up left
         || collisionPoint(ship->getX(), ship->getY()+ship->getHeight()) // down left

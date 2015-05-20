@@ -11,8 +11,7 @@
 
 #include <stdio.h>
 #include "GameModel.h"
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
+
 
 
 class View
@@ -22,11 +21,11 @@ protected:
     GameModel* _modele;
     Language* _language;
 
-    std::map<std::string, sf::Sprite> _spritesList;
-    std::map<std::string, sf::Image> _imagesList;
-
     // SFML Window
     sf::RenderWindow * _window;
+
+    std::map<std::string, sf::Sprite> _spritesList;
+    std::map<std::string, sf::Image> _imagesList;
 
 
 // CONSTRUCTOR AND DESTRUCTOR

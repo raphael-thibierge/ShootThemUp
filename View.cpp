@@ -18,6 +18,9 @@ View::View(){
 
 View::~View(){
     _modele = nullptr;
+    _language = nullptr;
+    _window = nullptr;
+
 }
 
 

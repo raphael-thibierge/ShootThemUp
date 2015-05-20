@@ -80,6 +80,10 @@ int ViewMainMenu::treatEventSFML()
         switch (event.Type)
         {
 
+            case sf::Event::Closed :
+                returnValue = 111;
+                break;
+
             case Event::MouseButtonPressed :
                 int mouseX = event.MouseButton.X;
                 int mouseY = event.MouseButton.Y;
@@ -134,6 +138,9 @@ int ViewMainMenu::treatEventSFML()
             break;
 
 
+
+//            default:
+//                break;
 
         }
     }

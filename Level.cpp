@@ -13,7 +13,7 @@ Level::Level (unsigned int level, Player * player, unsigned int * difficultyPoin
 
     _nbEnnemies = LEVEL_NB_ENEMIES;
     _level = level;
-
+    _time.Reset();
     _enemiesCpt = 0;
 
 }
@@ -24,11 +24,17 @@ Level::~Level ()
     //cout << "DESTRUCTOR LEVEL" << endl;
 
     for(auto enemy : _enemiesList)
-        delete enemy;
+        if (enemy != nullptr)
+            delete enemy;
+        else
+            cout << "enemy = nullptr" << endl;
     _enemiesList.clear();
 
     for(auto bullet : _bulletsList)
-        delete bullet;
+        if (bullet != nullptr)
+            delete bullet;
+        else
+            cout << "bullet = nullptr" << endl;
     _bulletsList.clear();
 
     _player = nullptr;
@@ -42,17 +48,16 @@ Level::~Level ()
 //
 
 void Level::generateEnemy()
-{
-    // creation of enemies
+{// creation of enemies
 
     //every 3 level, enemies are stronger
     int level = _level/3 + 1;
 
     // if we can create one more enemy
-    if (_enemiesCpt < _nbEnnemies){
-
+    if (_enemiesCpt < _nbEnnemies && _time.GetElapsedTime() > TIME_SPAWN_RATE ){
+        _time.Reset();
         // 1/2 chance to create an enemy
-        int random = rand()%(4);
+        int random = rand()%(2);
         if(random == 1){
             // random choise of an enemy's type
             int randomType = rand()%((_level%3)+1);
@@ -108,7 +113,6 @@ void Level::collisionManager()
     // list to destruct enemies and bullets
     list<Enemy*> enemiesKilled ;
     list<Bullet*> bulletsDestroyed ;
-
 
     // collision between player and all bullets
     for (auto bullet : _bulletsList)
@@ -198,7 +202,7 @@ void Level::collisionManager()
         _enemiesList.remove(enemy);
         cpt++;
       //  cout << cpt << endl;
-        //delete enemy;
+        delete enemy;
     }
    // cout << "b" << endl << endl;
 
@@ -211,7 +215,7 @@ void Level::collisionManager()
         cpt++;
       //  cout << cpt << endl;
         _bulletsList.remove(bullet);
-        //delete bullet;
+        delete bullet;
     }
 
 
@@ -239,19 +243,15 @@ void Level::moveAllEnemies(){
 void Level::randomEnemiesShoot(){
 
     // for each step, there is 1/2 chance that enemies shoot
-    int random= rand()%(10);
-    if (random==1)
-    {
+
         // shuffle shoot for all enemies
         for (auto enemy : _enemiesList)
         {
             // each enemy has 1/3 chance to shoot
-            random = rand()%(10);
+            int random = rand()%(10);
             if (random == 1)
                 enemy->shoot(&_bulletsList);
         }
-    }
-
 }
 
 void Level::runGame(){
@@ -283,7 +283,7 @@ void Level::playerUseBomb(){
 
 void Level::playerShoot(){
     //this method make the player shoot
-    _player->shoot(&_bulletsList);
+     _player->shoot(&_bulletsList);
 }
 
 

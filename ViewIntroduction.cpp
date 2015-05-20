@@ -32,7 +32,25 @@ int ViewIntroduction::treatEventSFML()
  {
     showViewSFML();
 
-    return 0;
+    int returnvalue = 0;
+
+    sf::Event event;
+
+     while (_window->GetEvent(event))
+    {
+
+        switch (event.Type)
+        {
+        case sf::Event::Closed :
+            returnvalue = 111;
+            break;
+
+        default :
+            break;
+        }
+    }
+
+    return returnvalue;
  }
 
 void ViewIntroduction::showViewTerminal(){

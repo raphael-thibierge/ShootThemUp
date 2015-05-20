@@ -1,6 +1,8 @@
 #ifndef CONSTANTE_H_INCLUDED
 #define CONSTANTE_H_INCLUDED
 #include "iostream"
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 
 // ======== PLAYER ============
 const int PLAYER_LIFE_LEVEL = 300;
@@ -58,7 +60,7 @@ const unsigned int BOSS_NBLIFE = 1;
 
 // ======== BULLETS ============
 const int BULLET_DAMAGE[5] = { 50, 100, 100, 150, 500 };
-const int BULLET_SPEED[5] = { 4, 4, 4, 4, 6};
+const int BULLET_SPEED[5] = { 8, 4, 4, 4, 6};
 const int BULLET_PRICE[5] = { 0, 100, 200, 350, 500 };
 const int BULLET_WIDTH[5] = { 56, 56, 56, 56, 56};
 const int BULLET_HEIGHT[5] = { 20, 20, 20, 20, 20};
@@ -92,6 +94,8 @@ const std::string IMAGE_BUTTONS = "./images/buttons.png";
 const std::string IMAGE_PLAYER_SHIP = "./images/ennemy_1.png";
 const std::string IMAGE_ENEMY_SHIP[3] = {"./images/ennemy_0.png" , "./images/ennemy_1.png", "./images/ennemy_2.png" };
 const std::string IMAGE_BULLET_0 = "./images/shot.png";
+const std::string IMAGE_NEXT_LEVEL = "./images/nextLevel.png";
+const std::string IMAGE_YOU_LOOSE = "./images/youloose.jpg";
 
 // ======== BUTTONS ============
 const int BUTTON_WIDTH = 150;
@@ -131,5 +135,40 @@ const int GAMEVIEW_LABEL_LIFE_X = 10;
 const int GAMEVIEW_LABEL_LIFE_Y = 40;
 const int GAMEVIEW_LABEL_BOMB_X = 10;
 const int GAMEVIEW_LABEL_BOMB_Y = 70;
+
+// ======== SETTINGS VIEW ============
+
+const int SETTINGSVIEW_TITLE_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
+const int SETTINGSVIEW_TITLE_Y = 100;
+const int SETTINGSVIEW_LANGUAGE_X = 100;
+const int SETTINGSVIEW_LANGUAGE_Y = 250;
+const int SETTINGSVIEW_NBLIFE_X = SETTINGSVIEW_LANGUAGE_X;
+const int SETTINGSVIEW_NBLIFE_Y = 350;
+const int SETTINGSVIEW_DIFFICULTY_X = SETTINGSVIEW_LANGUAGE_X;
+const int SETTINGSVIEW_DIFFICULTY_Y = 450;
+
+const int SETTINGSVIEW_FRENCH_X = 400;
+const int SETTINGSVIEW_FRENCH_Y = SETTINGSVIEW_LANGUAGE_Y;
+const int SETTINGSVIEW_ENGLISH_X = SETTINGSVIEW_FRENCH_X + BUTTON_WIDTH + 50;
+const int SETTINGSVIEW_ENGLISH_Y = SETTINGSVIEW_LANGUAGE_Y;
+
+const int SETTINGSVIEW_QUIT_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
+const int SETTINGSVIEW_QUIT_Y = SCREEN_HEIGHT - 100 ;
+
+const int SETTINGSVIEW_DIFFICULTY_1_X = 400;
+const int SETTINGSVIEW_DIFFICULTY_1_Y = SETTINGSVIEW_DIFFICULTY_Y;
+const int SETTINGSVIEW_DIFFICULTY_2_X = 550;
+const int SETTINGSVIEW_DIFFICULTY_2_Y = SETTINGSVIEW_DIFFICULTY_Y;
+const int SETTINGSVIEW_DIFFICULTY_3_X = 700;
+const int SETTINGSVIEW_DIFFICULTY_3_Y = SETTINGSVIEW_DIFFICULTY_Y;
+
+
+// ======== GAME VIEW ============
+const float TIME_GAME_TRANSITION = 2.0f ;
+const float TIME_YOU_LOOSE_TRANSITION = 3.0f;
+const float TIME_PLAYER_FIRE_RATE = 0.2f;
+const float TIME_ENEMY_FIRE_RATE = 0.5f;
+const float TIME_SPAWN_RATE =  0.4f;
+
 
 #endif // CONSTANTE_H_INCLUDED

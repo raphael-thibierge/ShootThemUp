@@ -106,6 +106,35 @@ int ViewShop::treatEvent()
 
 int ViewShop::treatEventSFML()
 {
+       int returnvalue = 1;
+
+    sf::Event event;
+
+     while (_window->GetEvent(event))
+    {
+
+        switch (event.Type)
+        {
+        case sf::Event::Closed :
+            returnvalue = 111;
+            break;
+
+        case sf::Event::MouseButtonPressed :
+        {
+
+
+            int mouseX = event.MouseButton.X ;
+            int mouseY = event.MouseButton.Y ;
+
+            // a compléter
+            break;
+        }
+        default :
+            break;
+        }
+    }
+
+    return returnvalue;
 }
 
 void ViewShop::showViewTerminal()

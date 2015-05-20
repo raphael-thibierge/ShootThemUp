@@ -18,6 +18,8 @@ private:
     std::list<Bullet*> _bulletsList;
     int _enemiesCpt;
 
+    sf::Clock _time ;
+
 public:
 
     Level (unsigned int level, Player * player, unsigned int * difficultyPointer);

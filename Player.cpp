@@ -27,7 +27,11 @@ Player::~Player ()
 
 void Player::shoot (list<Bullet*> * bulletList)
 {
-    bulletList->push_back(new Bullet(_bulletType, _direction, _X+_width/2, _Y,  "player"));
+    if (_time.GetElapsedTime() >= TIME_PLAYER_FIRE_RATE )
+    {
+        bulletList->push_back(new Bullet(_bulletType, _direction, _X+_width/2, _Y,  "player"));
+        _time.Reset();
+    }
 }
 
 

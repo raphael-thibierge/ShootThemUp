@@ -41,6 +41,14 @@ ViewGame::ViewGame()
     _imagesList.insert(make_pair("bullet_1", sf::Image()));
     _imagesList["bullet_1"].LoadFromFile(IMAGE_BULLET_0);
 
+    // nextLevel
+    _imagesList.insert(make_pair("nextLevel", sf::Image()));
+    _imagesList["nextLevel"].LoadFromFile(IMAGE_NEXT_LEVEL);
+
+    // youLoose
+    _imagesList.insert(make_pair("youLoose", sf::Image()));
+    _imagesList["youLoose"].LoadFromFile(IMAGE_NEXT_LEVEL);
+
 
     // backgound
     _spritesList.insert(make_pair("background", sf::Sprite()));
@@ -72,6 +80,16 @@ ViewGame::ViewGame()
     _spritesList["bullet_1"].SetImage(_imagesList["bullet_1"]);
     _spritesList["bullet_1"].SetSubRect(sf::IntRect(0,0, BULLET_WIDTH[0], ENEMY_HEIGHT[0]));
 
+    // nextLevel
+    _spritesList.insert(make_pair("nextLevel", sf::Sprite()));
+    _spritesList["nextLevel"].SetImage(_imagesList["nextLevel"]);
+    _spritesList["nextLevel"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+
+
+    // youLoose
+    _spritesList.insert(make_pair("youLoose", sf::Sprite()));
+    _spritesList["youLoose"].SetImage(_imagesList["youLoose"]);
+    _spritesList["youLoose"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
 }
 
 ViewGame::~ViewGame() {}
@@ -176,11 +194,13 @@ int ViewGame::treatEventSFML()
 
                 break;
 
-                        default:
-                            break;
+                case sf::Event::Closed :
+                    returnValue = 111;
+                    break;
 
+                default:
+                    break;
             }
-
         }
 
         const Input & input = _window->GetInput(); // input : const reference
@@ -205,14 +225,13 @@ int ViewGame::treatEventSFML()
 
         // MAIN SHOOT
         if (input.IsKeyDown(Key::Space)){
-            _modele->getLevel()->playerShoot();
+            if (_modele->getLevel() != nullptr)
+                _modele->getLevel()->playerShoot();
         }
     }
 
     return returnValue;
 }
-
-
 
 
 
@@ -395,8 +414,7 @@ void ViewGame::showTransitionConsole()
 
 void ViewGame::showTransitionSFML()
 {
-
-
+    _window->Draw(_spritesList["nextLevel"]);
 }
 
 void ViewGame::showLooseConsole()
@@ -419,7 +437,7 @@ void ViewGame::showLooseConsole()
 
 void ViewGame::showLooseSFML()
 {
-
+    _window->Draw(_spritesList["youLoose"]);
 
 }
 

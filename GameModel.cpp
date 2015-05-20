@@ -13,9 +13,7 @@ GameModel::GameModel()
 
     srand (time(NULL));
 
-    // unused
-   // _height = SCREEN_HEIGHT;
-   // _width = SCREEN_WIDTH;
+    _time.Reset();
 
     // always init
     _gameLevel = 0;
@@ -24,12 +22,11 @@ GameModel::GameModel()
     // not init, because player can choose to load an old game
     _player = nullptr;
     _level = nullptr;
+    _shop = nullptr;
 
 
     // loading best scores
     loadBestScore();
-
-
 
 }
 
@@ -42,9 +39,12 @@ GameModel::~GameModel()
     saveBestScores();
 
     destructLevel();
-    delete _player;
-    delete _shop;
-    delete _level;
+    if (_player != nullptr)
+        delete _player;
+    if (_shop != nullptr)
+        delete _shop;
+    if (_level)
+        delete _level;
     delete _settings;
 }
 
@@ -62,8 +62,9 @@ void GameModel::nextStep()
         // --> there isn't any game loaded
         if(_level==nullptr && _gameLevel>0)
         {
-            // creation of the next level
-            newLevel();
+            // after 3 second creation of the next level
+            if (_time.GetElapsedTime() > TIME_GAME_TRANSITION)
+                newLevel();
         }
 
         // if there is a level
@@ -277,11 +278,11 @@ void GameModel::newLevel ()
 
 
 void GameModel::destructLevel()
-{
-    // return null level
+{ // return null _level
     if (_level != nullptr){
         delete _level;
         _level = nullptr;
+        _time.Reset();
     }
 }
 
@@ -321,3 +322,4 @@ vector<unsigned int> * GameModel::getBestScores()
 {
     return &_bestScores;
 }
+
