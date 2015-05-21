@@ -45,9 +45,9 @@ void Player::initPlayer()
     _bombNumber = 10 ; // provisoire, sinon 0
     _direction = PLAYER_DIRECTION;
     _score = 0;
-    _money = 0;
+    _money = 10000000;
     _speed = PLAYER_SPEED;
-    _shild = SHIELD_LIFE[0];
+    _shild = 0;
     _level = 0;
 
     // standart position of player
@@ -178,7 +178,18 @@ string Player::toString()
     return text;
 }
 
+void Player::move(std::string direction)
+{
+    Ship::move(direction);
 
+    // player can't go up the screen
+    if (_Y < 0)
+        _Y = 0  ;
+    // and down the screen
+    else if (_Y > SCREEN_HEIGHT-_height)
+        _Y = SCREEN_HEIGHT - _height;
+
+}
 
 // Accessor methods
 //

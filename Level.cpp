@@ -78,8 +78,8 @@ void Level::generateEnemy()
                 default:
                     break;
             }
-
-            enemy->setPosition(rand()%(SCREEN_WIDTH), 0);
+            int enemyWidth = enemy->getWidht();
+            enemy->setPosition(rand()%(SCREEN_WIDTH-enemyWidth), 0);
             _enemiesList.push_back(enemy);
             enemy = nullptr;
 
@@ -99,7 +99,7 @@ bool Level::win ()
 
 bool Level::loose ()
 {
-    if (_player->getLifeLevel()==0 and _player->getNbLife()==0 )
+    if (/*_player->getLifeLevel()== 0 and*/ _player->getNbLife()==0 )
     {
         _player->addMoney();
         return true;
@@ -125,7 +125,6 @@ void Level::collisionManager()
         }
     }
 
-
     // collision between player and all enemies
     for (auto enemy : _enemiesList)
     {
@@ -147,21 +146,16 @@ void Level::collisionManager()
     {
         for (auto bullet : _bulletsList)
         {
-            if (enemy->collision(bullet))
-            {
+            if (enemy->collision(bullet)){
                 _player->score(enemy , *_difficulty);
 
                 // if player is the shooter
-                if (bullet->getShooter() == "player")
-                {
+                if (bullet->getShooter() == "player"){
                     _player->score(enemy , *_difficulty);
                 }
 
-                cout << "Enemy and bullet destroyed" << endl;
-
                 enemiesKilled.push_back(enemy);
                 bulletsDestroyed.push_back(bullet);
-                cout << enemiesKilled.size() << " " << bulletsDestroyed.size() << endl ;
             }
         }
     }
@@ -170,10 +164,8 @@ void Level::collisionManager()
     // for all enemies
     for (auto enemy : _enemiesList)
     {
-        if(enemy->getY() >= SCREEN_HEIGHT)
-        {
+        if(enemy->getY() >= SCREEN_HEIGHT){
             enemiesKilled.push_back(enemy);
-            cout << "enemy out of screen" << endl;
         }
     }
 
@@ -183,48 +175,36 @@ void Level::collisionManager()
         if(bullet->getY() < 0){
             bulletsDestroyed.push_back(bullet);
         }
+
         if(bullet->getY() > SCREEN_HEIGHT){
             bulletsDestroyed.push_back(bullet);
-            cout << "bullet out of screen" << endl;
         }
     }
 
     // remove duplicate enemies and bullets
     enemiesKilled.unique();
     bulletsDestroyed.unique();
-
     // destruction of enemies
-    //cout << "a " << endl ;
-    int cpt = 0;
-
     for (auto enemy : enemiesKilled)
     {
+
         _enemiesList.remove(enemy);
-        cpt++;
-      //  cout << cpt << endl;
-        delete enemy;
+        if (enemy != nullptr)
+            delete enemy;
+        enemy = nullptr;
     }
-   // cout << "b" << endl << endl;
 
-    //cout << "c " << endl;
-    cpt = 0;
     // destruction of bullets
-
     for (auto bullet : bulletsDestroyed)
     {
-        cpt++;
-      //  cout << cpt << endl;
         _bulletsList.remove(bullet);
-        delete bullet;
+        if (bullet != nullptr)
+            delete bullet;
+        bullet = nullptr;
     }
 
-
-    //cout << "d" << endl << endl;
-
-    // clear enemyKilled list
+    // clear enemyKilled and bulletDestroy lists
     enemiesKilled.clear();
-
-    // clear bulletDestroy list
     bulletsDestroyed.clear();
 
 }
@@ -239,10 +219,8 @@ void Level::moveAllEnemies(){
         enemy->move();
 }
 
-
-void Level::randomEnemiesShoot(){
-
-    // for each step, there is 1/2 chance that enemies shoot
+void Level::randomEnemiesShoot()
+{// for each step, there is 1/2 chance that enemies shoot
 
         // shuffle shoot for all enemies
         for (auto enemy : _enemiesList)

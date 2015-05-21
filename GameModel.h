@@ -81,6 +81,7 @@ public :
     Shop* getShop();
     Settings* getSettings();
     std::vector<unsigned int>* getBestScores();
+    float getTime() const;
 
 
 

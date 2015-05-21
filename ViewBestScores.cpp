@@ -4,12 +4,21 @@
 //
 //  Created by Raphael Thibierge on 09/05/2015.
 //  Copyright (c) 2015 Raphael Thibierge. All rights reserved.
-//
+
 
 #include "ViewBestScores.h"
 using namespace std;
 
-ViewBestScores::ViewBestScores(){}
+ViewBestScores::ViewBestScores(){
+// background
+    _imagesList.insert(make_pair("background", sf::Image()));
+    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
+
+    _spritesList.insert(make_pair("background", sf::Sprite()));
+    _spritesList["background"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetPosition(0,0);
+}
 
 ViewBestScores::~ViewBestScores(){}
 
@@ -35,7 +44,7 @@ int ViewBestScores::treatEventSFML()
             break;
 
         case sf::Event::MouseButtonPressed :
-
+        {
             int mouseX = event.MouseButton.X ;
             int mouseY = event.MouseButton.Y ;
 
@@ -44,9 +53,9 @@ int ViewBestScores::treatEventSFML()
                 returnvalue = 0;
             }
             break;
-
-       // default :
-         //   break;
+        }
+        default :
+            break;
         }
     }
 
@@ -64,6 +73,7 @@ void ViewBestScores::showViewTerminal(){
 
 void ViewBestScores::showViewSFML()
 {
+    _window->Draw(_spritesList["background"]);
 
     displayText(_language->getText("bestScores"), LABEL_BESTSCORES_TITLE_POSITION_X, LABEL_BESTSCORES_TITLE_POSITION_Y);
 

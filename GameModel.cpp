@@ -41,11 +41,15 @@ GameModel::~GameModel()
     destructLevel();
     if (_player != nullptr)
         delete _player;
+    _player = nullptr;
     if (_shop != nullptr)
         delete _shop;
+    _shop = nullptr;
     if (_level)
         delete _level;
+    _level = nullptr;
     delete _settings;
+    _settings = nullptr;
 }
 
 
@@ -281,9 +285,9 @@ void GameModel::destructLevel()
 { // return null _level
     if (_level != nullptr){
         delete _level;
-        _level = nullptr;
-        _time.Reset();
     }
+    _time.Reset();
+    _level = nullptr;
 }
 
 void GameModel::endCurrentGame(){
@@ -291,6 +295,7 @@ void GameModel::endCurrentGame(){
     _player->setNbLife(0);
     _player->setScore(0);
     _gameLevel = 0;
+    _time.Reset();
 }
 
 
@@ -321,5 +326,10 @@ Settings* GameModel::getSettings()
 vector<unsigned int> * GameModel::getBestScores()
 {
     return &_bestScores;
+}
+
+float GameModel::getTime() const
+{
+    return _time.GetElapsedTime();
 }
 

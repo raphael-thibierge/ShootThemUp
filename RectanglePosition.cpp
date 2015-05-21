@@ -29,6 +29,12 @@ RectanglePosition::~RectanglePosition () {}
 void RectanglePosition::move(const float dx, const float dy){
     _X += dx;
     _Y += dy;
+
+    if (_X < 0)
+        _X = 0;
+    else if (_X > SCREEN_WIDTH-_width)
+        _X = SCREEN_WIDTH - _width;
+
 }
 
 

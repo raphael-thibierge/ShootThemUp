@@ -36,8 +36,11 @@ public:
     void useBomb(std::list<Enemy*> &enemyList, const int difficulty);
 
     void nextLevel();
+
     // shoot a bullet
     void shoot (std::list<Bullet*> * bulletList) override;
+
+    void move(std::string direction);
 
     // update player's score, depend of enemy and difficulty
     void score(Enemy * enemy, const unsigned int difficulty);
