@@ -23,7 +23,7 @@ ViewMainMenu::ViewMainMenu()
     _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
 
     _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["backgroung"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetImage(_imagesList["background"]);
     _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
     _spritesList["background"].SetPosition(0,0);
 
@@ -44,7 +44,7 @@ void ViewMainMenu::initButtons()
 
 void ViewMainMenu::showViewSFML()
 {
-    _window->Draw(_spritesList["backgroung"]);
+    _window->Draw(_spritesList["background"]);
 
     Event event;
     _window->GetEvent(event);
@@ -53,19 +53,19 @@ void ViewMainMenu::showViewSFML()
 
     if (_modele->getPlayer() == nullptr)
     {
-        displayStandartButton(_language->getText("newGame"), BUTTON_NEWGAME_POSITION_X, BUTTON_NEWGAME_POSITION_Y);
-        displayStandartButton(_language->getText("loadGame"), BUTTON_LOADGAME_POSITION_X, BUTTON_LOADGAME_POSITION_Y);
-        displayStandartButton(_language->getText("settings"), BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
-        displayStandartButton(_language->getText("bestScores"), BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
-        displayStandartButton(_language->getText("quit"), BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y);
+        displayStandartButton(_language->getText("newGame"), MENUVIEW_BUTTON_POSITION_X, BUTTON_NEWGAME_POSITION_Y);
+        displayStandartButton(_language->getText("loadGame"), MENUVIEW_BUTTON_POSITION_X, BUTTON_LOADGAME_POSITION_Y);
+        displayStandartButton(_language->getText("settings"), MENUVIEW_BUTTON_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
+        displayStandartButton(_language->getText("bestScores"), MENUVIEW_BUTTON_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
+        displayStandartButton(_language->getText("quit"), MENUVIEW_BUTTON_POSITION_X, BUTTON_QUIT_POSITION_Y);
     }
     else
     {
-        displayStandartButton(_language->getText("play"), BUTTON_PLAY_POSITION_X, BUTTON_PLAY_POSITION_Y);
-        displayStandartButton(_language->getText("shop"), BUTTON_SHOP_POSITION_X, BUTTON_SHOP_POSITION_Y);
-        displayStandartButton(_language->getText("settings"), BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
-        displayStandartButton(_language->getText("bestScores"), BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
-        displayStandartButton(_language->getText("quit"), BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y);
+        displayStandartButton(_language->getText("play"), MENUVIEW_BUTTON_POSITION_X, BUTTON_PLAY_POSITION_Y);
+        displayStandartButton(_language->getText("shop"), MENUVIEW_BUTTON_POSITION_X, BUTTON_SHOP_POSITION_Y);
+        displayStandartButton(_language->getText("settings"), MENUVIEW_BUTTON_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
+        displayStandartButton(_language->getText("bestScores"), MENUVIEW_BUTTON_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
+        displayStandartButton(_language->getText("quit"), MENUVIEW_BUTTON_POSITION_X, BUTTON_QUIT_POSITION_Y);
     }
 
 }
@@ -85,19 +85,20 @@ int ViewMainMenu::treatEventSFML()
                 break;
 
             case Event::MouseButtonPressed :
+            {
                 int mouseX = event.MouseButton.X;
                 int mouseY = event.MouseButton.Y;
 
                 if (_modele->getPlayer() == nullptr)
                 {// if a party isn't load
 
-                    if (mouseOnButton(mouseX, mouseY, BUTTON_NEWGAME_POSITION_X, BUTTON_NEWGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_NEWGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                     {// button new game
                         _modele->newGame();
                         returnValue = 1;
                     }
 
-                    if (mouseOnButton(mouseX, mouseY, BUTTON_LOADGAME_POSITION_X, BUTTON_LOADGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_LOADGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                     {// button load game
                         _modele->loadGame();
                         returnValue = 1;
@@ -106,13 +107,13 @@ int ViewMainMenu::treatEventSFML()
 
                 else
                 {
-                    if (mouseOnButton(mouseX, mouseY, BUTTON_PLAY_POSITION_X, BUTTON_PLAY_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_PLAY_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                     {// button play
                         _modele->play();
                         returnValue = -2;
                     }
 
-                    if (mouseOnButton(mouseX, mouseY, BUTTON_SHOP_POSITION_X, BUTTON_SHOP_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_SHOP_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                     {// button shop
                         returnValue = -3;
                     }
@@ -120,27 +121,27 @@ int ViewMainMenu::treatEventSFML()
 
                 // COMMUN BUTTON
 
-                if (mouseOnButton(mouseX, mouseY, BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_SETTINGS_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 { // button settings
                     returnValue = -4;
                 }
 
-                if (mouseOnButton(mouseX, mouseY, BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_BESTSCORES_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 { // button best scores
                     returnValue = -8;
                 }
 
-                if (mouseOnButton(mouseX, mouseY, BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_QUIT_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 { // button best scores
                     returnValue = 0;
                 }
 
             break;
+        }
 
 
-
-//            default:
-//                break;
+            default:
+                break;
 
         }
     }

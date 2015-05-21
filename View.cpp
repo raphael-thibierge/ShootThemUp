@@ -51,9 +51,9 @@ void View::displayStandartButton(std::string text, float positionX, float positi
         _spritesList["standartButton"].SetPosition(positionX, positionY);
         _window->Draw(_spritesList["standartButton"]);
     }
-    _window->Draw(_spritesList["standartButton"]);
+    //_window->Draw(_spritesList["standartButton"]);
 
-    displayText(text, positionX, positionY);
+    displayText(text, positionX + 40, positionY+(BUTTON_HEIGHT - TEXT_SIZE)/2 - 5);
 
 }
 
@@ -61,8 +61,8 @@ void View::displayText(std::string text, float positionX, float positionY)
 {
     sf::String textDisplayed;
     textDisplayed.SetText(text);
+    textDisplayed.SetSize(TEXT_SIZE);
     textDisplayed.SetPosition(positionX, positionY);
-    textDisplayed.SetColor(sf::Color::Red);
     _window->Draw(textDisplayed);
 
 }
@@ -85,16 +85,18 @@ void View::initButtons()
         //buttons's image
     _imagesList.insert(make_pair("standartButtons", sf::Image()));
     _imagesList["standartButtons"].LoadFromFile(IMAGE_BUTTONS);
+    _imagesList.insert(make_pair("standartButtonsActive", sf::Image()));
+    _imagesList["standartButtonsActive"].LoadFromFile(IMAGE_BUTTONS_ACTIVE);
 
     // standart button
     _spritesList.insert(make_pair("standartButton", sf::Sprite()));
     _spritesList["standartButton"].SetImage(_imagesList["standartButtons"]);
-    _spritesList["standartButton"].SetSubRect(sf::IntRect(BUTTON_SPRITE_X, BUTTON_SPRITE_Y, BUTTON_WIDTH + BUTTON_SPRITE_X , BUTTON_HEIGHT + BUTTON_SPRITE_Y));
+    _spritesList["standartButton"].SetSubRect(sf::IntRect(0, 0, BUTTON_WIDTH + BUTTON_SPRITE_X , BUTTON_HEIGHT + BUTTON_SPRITE_Y));
 
     // standart active button
     _spritesList.insert(make_pair("standartButton_active", sf::Sprite()));
-    _spritesList["standartButton_active"].SetImage(_imagesList["standartButtons"]);
-    _spritesList["standartButton_active"].SetSubRect(sf::IntRect(BUTTON_SPRITE_ACTIVE_X, BUTTON_SPRITE_ACTIVE_Y, BUTTON_WIDTH + BUTTON_SPRITE_ACTIVE_X , BUTTON_HEIGHT + BUTTON_SPRITE_ACTIVE_Y));
+    _spritesList["standartButton_active"].SetImage(_imagesList["standartButtonsActive"]);
+    _spritesList["standartButton_active"].SetSubRect(sf::IntRect(0, 0, BUTTON_WIDTH + BUTTON_SPRITE_ACTIVE_X , BUTTON_HEIGHT + BUTTON_SPRITE_ACTIVE_Y));
 
 
 }

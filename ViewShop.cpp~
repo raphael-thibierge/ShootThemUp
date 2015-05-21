@@ -195,8 +195,12 @@ int ViewShop::treatEventSFML()
                 _modele->getShop()->buyLife();
                 returnvalue = 1;
             }
+<<<<<<< HEAD
+            if (mouseOnButton(mouseX, mouseY, SHOPSVIEW_QUIT_X, SHOPSVIEW_QUIT_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+=======
             // QUIT
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_6, BUTTON_WIDTH, BUTTON_HEIGHT))
+>>>>>>> 8271936aeedb580ef7207a267e1deb5b2d3170ef
             {
                 returnvalue = 0;
             }

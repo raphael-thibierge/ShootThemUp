@@ -17,7 +17,17 @@ using namespace std;
 //
 // CONSTRUCTOR AND DESTRUCTOR
 //
-ViewSettings::ViewSettings(){}
+ViewSettings::ViewSettings(){
+// background
+    _imagesList.insert(make_pair("background", sf::Image()));
+    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
+
+    _spritesList.insert(make_pair("background", sf::Sprite()));
+    _spritesList["background"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetPosition(0,0);
+
+}
 
 ViewSettings::~ViewSettings(){}
 
@@ -163,6 +173,25 @@ int ViewSettings::treatEventSFML()
                     _modele->getSettings()->changeDifficulty(3);
                 }
 
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_NBLIFE_1_X, SETTINGSVIEW_NBLIFE_1_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+                    returnvalue = 1;
+                    _modele->getSettings()->changeNbLife(3);
+                }
+
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_NBLIFE_2_X, SETTINGSVIEW_NBLIFE_2_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+                    returnvalue = 1;
+                    _modele->getSettings()->changeNbLife(5);
+                }
+
+                if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_NBLIFE_3_X, SETTINGSVIEW_NBLIFE_3_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                {
+                    returnvalue = 1;
+                    _modele->getSettings()->changeNbLife(7);
+                }
+
+
                 break;
             }
 
@@ -193,17 +222,23 @@ void ViewSettings::showViewTerminal(){
 
 void ViewSettings::showViewSFML()
 {
+    _window->Draw(_spritesList["background"]);
+
     displayText(_language->getText("settings"), SETTINGSVIEW_TITLE_X, SETTINGSVIEW_TITLE_Y);
 
-    displayText(to_string(*_modele->getSettings()->getDifficulty()), SETTINGSVIEW_TITLE_X, 200);
-
-    displayText(_language->getText("language"), SETTINGSVIEW_LANGUAGE_X, SETTINGSVIEW_LANGUAGE_Y);
-    displayText(_language->getText("nbLifeInit"), SETTINGSVIEW_NBLIFE_X, SETTINGSVIEW_NBLIFE_Y);
-    displayText(_language->getText("difficulty"), SETTINGSVIEW_DIFFICULTY_X, SETTINGSVIEW_DIFFICULTY_Y);
+    displayText(_language->getText("language"), SETTINGSVIEW_TEXT_COLONNE_X, SETTINGSVIEW_LANGUAGE_Y);
 
     displayStandartButton(_language->getText("french"), SETTINGSVIEW_FRENCH_X, SETTINGSVIEW_FRENCH_Y);
     displayStandartButton(_language->getText("english"), SETTINGSVIEW_ENGLISH_X, SETTINGSVIEW_ENGLISH_Y);
 
+    string textNBLife = _language->getText("nbLifeInit") + " : " + to_string(*_modele->getSettings()->getNbLife());
+    displayText(textNBLife, SETTINGSVIEW_TEXT_COLONNE_X, SETTINGSVIEW_NBLIFE_Y);
+    displayStandartButton("3", SETTINGSVIEW_NBLIFE_1_X, SETTINGSVIEW_NBLIFE_1_Y);
+    displayStandartButton("5", SETTINGSVIEW_NBLIFE_2_X, SETTINGSVIEW_NBLIFE_2_Y);
+    displayStandartButton("7", SETTINGSVIEW_NBLIFE_3_X, SETTINGSVIEW_NBLIFE_3_Y);
+
+    string textDifficulty = _language->getText("difficulty") + " : " + to_string(*_modele->getSettings()->getDifficulty());
+    displayText(textDifficulty, SETTINGSVIEW_TEXT_COLONNE_X, SETTINGSVIEW_DIFFICULTY_Y);
     displayStandartButton("1", SETTINGSVIEW_DIFFICULTY_1_X, SETTINGSVIEW_DIFFICULTY_1_Y);
     displayStandartButton("2", SETTINGSVIEW_DIFFICULTY_2_X, SETTINGSVIEW_DIFFICULTY_2_Y);
     displayStandartButton("3", SETTINGSVIEW_DIFFICULTY_3_X, SETTINGSVIEW_DIFFICULTY_3_Y);
