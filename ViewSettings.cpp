@@ -195,6 +195,8 @@ void ViewSettings::showViewSFML()
 {
     displayText(_language->getText("settings"), SETTINGSVIEW_TITLE_X, SETTINGSVIEW_TITLE_Y);
 
+    displayText(to_string(*_modele->getSettings()->getDifficulty()), SETTINGSVIEW_TITLE_X, 200);
+
     displayText(_language->getText("language"), SETTINGSVIEW_LANGUAGE_X, SETTINGSVIEW_LANGUAGE_Y);
     displayText(_language->getText("nbLifeInit"), SETTINGSVIEW_NBLIFE_X, SETTINGSVIEW_NBLIFE_Y);
     displayText(_language->getText("difficulty"), SETTINGSVIEW_DIFFICULTY_X, SETTINGSVIEW_DIFFICULTY_Y);
