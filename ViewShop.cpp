@@ -142,7 +142,7 @@ int ViewShop::treatEventSFML()
             {
                 returnvalue = 1;
             }
-            if (mouseOnButton(mouseX, mouseY, SHOPSVIEW_MAINSHOOT2_X, SHOPSVIEW_MAINSHOOT2_X, BUTTON_WIDTH, BUTTON_HEIGHT))
+            if (mouseOnButton(mouseX, mouseY, SHOPSVIEW_QUIT_X, SHOPSVIEW_QUIT_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 returnvalue = 0;
             }
