@@ -1,4 +1,3 @@
-
 #ifndef ENEMY_H
 #define ENEMY_H
 
@@ -8,7 +7,7 @@
 #include "Ship.h"
 
 
-class Enemy : virtual public Ship
+class Enemy : public Ship
 {
 
 private :
@@ -19,11 +18,8 @@ private :
 // CONSTRUCTORS/DESTRUCTORS
 //
 public:
-    
-   // Enemy (std::string type, float x, float y, unsigned int lifeLevel);
+    Enemy (const unsigned int type, const unsigned int level, const float x, const float y, const float width, const float height, const unsigned int lifeLevel, const float speed, const unsigned int nbLife);
 
-    Enemy (std::string type, unsigned int level, float x, float y, float width, float height, unsigned int lifeLevel, float speed, unsigned int nbLife);
-    
 	virtual ~Enemy ();
 
 // METHODS
@@ -40,16 +36,12 @@ public:
 // STATIC METHODS
 
 public:
-    
-    static Enemy* Standard(unsigned int level);
-    
-    static Enemy* Kamikaze(unsigned int level);
-    
-    static Enemy* Helicopter(unsigned int level);
-    
-private:
 
-        static int randomPositionX();
+    static Enemy* Standard(const unsigned int level);
+
+    static Enemy* Kamikaze(const unsigned int level);
+
+    static Enemy* Helicopter(const unsigned int level);
 
 };
 #endif // ENEMY_H

@@ -1,4 +1,3 @@
-
 #ifndef GAMEMODEL_H
 #define GAMEMODEL_H
 
@@ -14,11 +13,7 @@ class GameModel
 {
 
 private:
-    // screen resolution
-    //int _width;
-    //int _height;
-    //--
-
+    // best scores
     std::vector<unsigned int> _bestScores;
     
     // levelnumber of the current level played

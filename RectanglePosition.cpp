@@ -12,7 +12,7 @@ RectanglePosition::RectanglePosition () {
 
 
 
-RectanglePosition::RectanglePosition(float x, float y, float width, float heigh) : _X(x), _Y(y), _width(width), _height(heigh)
+RectanglePosition::RectanglePosition(const float x, const float y, const float width, const float heigh) : _X(x), _Y(y), _width(width), _height(heigh)
 {
 
 }
@@ -26,14 +26,14 @@ RectanglePosition::~RectanglePosition () {}
 
 
 
-void RectanglePosition::move(float dx, float dy){
+void RectanglePosition::move(const float dx, const float dy){
     _X += dx;
     _Y += dy;
 }
 
 
 
-void RectanglePosition::move(string direction, float speed)
+void RectanglePosition::move(const string direction, const float speed)
 {
     // switch doesn't work with string
     // origin of map is the left top corner
@@ -60,13 +60,13 @@ string RectanglePosition::toString(){
 // ACCESSOR METHODS
 //
 
-void RectanglePosition::setPosition (float x, float y)
+void RectanglePosition::setPosition (const float x, const  float y)
 {
     _X = x ;
     _Y = y ;
 }
 
-void RectanglePosition::setSize (float widht, float height)
+void RectanglePosition::setSize (const float widht, const float height)
 {
     _width = widht;
     _height = height;

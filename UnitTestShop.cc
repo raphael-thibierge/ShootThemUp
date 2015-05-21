@@ -21,134 +21,141 @@ BOOST_AUTO_TEST_CASE(BuyShoot)
     Player p;
     Shop s(&p);
 
-    BOOST_CHECK(p.getBulletType() == "standart");
-    BOOST_CHECK(s.upgradeBullet("level2")==false);
+    BOOST_CHECK(s.upgradeBullet(1)==false);
+    BOOST_CHECK(s.available("bullet", 1)==true);
+    BOOST_CHECK(s.available("bullet", 2)==false);
+    BOOST_CHECK(s.available("bullet", 3)==false);
+    BOOST_CHECK(s.available("bullet", 4)==false);
+    BOOST_CHECK(s.upgradeBullet(1)==false);
+    BOOST_CHECK(p.getBulletType()==0);
 
     p.setMoney(110);
-    BOOST_CHECK(s.upgradeBullet("level3")==false);
-    BOOST_CHECK(s.upgradeBullet("level2")==true);
-    BOOST_CHECK(p.getMoney() == 10);
-    BOOST_CHECK(p.getBulletType() == "level2");
-    BOOST_CHECK(s.upgradeBullet("level3")==false);
-    BOOST_CHECK(s.upgradeBullet("level2")==false);
+    BOOST_CHECK(s.upgradeBullet(1)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getBulletType()==1);
+    BOOST_CHECK(s.available("bullet", 2)==true);
 
     p.setMoney(210);
-    BOOST_CHECK(s.upgradeBullet("level4")==false);
-    BOOST_CHECK(s.upgradeBullet("level3")==true);
-    BOOST_CHECK(p.getMoney() == 10);
-    BOOST_CHECK(p.getBulletType() == "level3");
-    BOOST_CHECK(s.upgradeBullet("level4")==false);
-    BOOST_CHECK(s.upgradeBullet("level3")==false);
+    BOOST_CHECK(s.upgradeBullet(2)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getBulletType()==2);
+    BOOST_CHECK(s.available("bullet", 3)==true);
 
     p.setMoney(360);
-    BOOST_CHECK(s.upgradeBullet("level5")==false);
-    BOOST_CHECK(s.upgradeBullet("level4")==true);
-    BOOST_CHECK(p.getMoney() == 10);
-    BOOST_CHECK(p.getBulletType() == "level4");
-    BOOST_CHECK(s.upgradeBullet("level5")==false);
-    BOOST_CHECK(s.upgradeBullet("level4")==false);
+    BOOST_CHECK(s.upgradeBullet(3)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getBulletType()==3);
+    BOOST_CHECK(s.available("bullet", 4)==true);
 
     p.setMoney(510);
-    BOOST_CHECK(s.upgradeBullet("level5")==true);
-    BOOST_CHECK(p.getMoney() == 10);
-    BOOST_CHECK(p.getBulletType() == "level5");
-    BOOST_CHECK(s.upgradeBullet("level5")==false);
-
+    BOOST_CHECK(s.upgradeBullet(4)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getBulletType()==4);
 
 }
+
+
 
 BOOST_AUTO_TEST_CASE(BuyShip)
 {
     Player p;
     Shop s(&p);
 
-    BOOST_CHECK(s.upgradeShip("ship2")==false);
-    BOOST_CHECK(p.getLevel()==1);
+    BOOST_CHECK(s.available("ship", 1)==true);
+    BOOST_CHECK(s.available("ship", 2)==false);
+    BOOST_CHECK(s.available("ship", 3)==false);
+    BOOST_CHECK(s.upgradeShip(1)==false);
+    BOOST_CHECK(p.getType()==0);
 
-    p.setMoney(220);
-    BOOST_CHECK(s.upgradeShip("ship3")==false);
-    BOOST_CHECK(s.upgradeShip("ship2")==true);
-    BOOST_CHECK(p.getMoney() == 20);
-    BOOST_CHECK(p.getLevel() == 2);
-    BOOST_CHECK(p.getLifeLevel() == 500);
-    BOOST_CHECK(s.upgradeShip("ship3")==false);
-    BOOST_CHECK(s.upgradeShip("ship2")==false);
+    p.setMoney(210);
+    BOOST_CHECK(s.upgradeShip(1)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getType()==1);
+    BOOST_CHECK(s.available("ship", 2)==true);
 
-    p.setMoney(520);
-    BOOST_CHECK(s.upgradeShip("ship4")==false);
-    BOOST_CHECK(s.upgradeShip("ship3")==true);
-    BOOST_CHECK(p.getMoney() == 20);
-    BOOST_CHECK(p.getLevel() == 3);
-    BOOST_CHECK(p.getLifeLevel() == 700);
-    BOOST_CHECK(s.upgradeShip("ship3")==false);
-    BOOST_CHECK(s.upgradeShip("ship2")==false);
+    p.setMoney(510);
+    BOOST_CHECK(s.upgradeShip(2)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getType()==2);
+    BOOST_CHECK(s.available("ship", 3)==true);
 
-    p.setMoney(1020);
-    BOOST_CHECK(s.upgradeShip("ship4")==true);
-    BOOST_CHECK(p.getMoney() == 20);
-    BOOST_CHECK(p.getLevel() == 4);
-    BOOST_CHECK(p.getLifeLevel() == 900);
-    BOOST_CHECK(s.upgradeShip("ship4")==false);
+    p.setMoney(1010);
+    BOOST_CHECK(s.upgradeShip(3)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getType()==3);
 
 }
 
-
-BOOST_AUTO_TEST_CASE(BuyShild)
+BOOST_AUTO_TEST_CASE(BuyShield)
 {
     Player p;
     Shop s(&p);
 
-    BOOST_CHECK(s.upgradeShild("shild1")==false);
-    BOOST_CHECK(s.upgradeShild("shild2")==false);
-    BOOST_CHECK(s.upgradeShild("shild3")==false);
+    BOOST_CHECK(s.available("shield", 1)==true);
+    BOOST_CHECK(s.available("shield", 2)==true);
+    BOOST_CHECK(s.available("shield", 3)==true);
+    BOOST_CHECK(s.upgradeShield(1)==false);
+    BOOST_CHECK(s.upgradeShield(2)==false);
+    BOOST_CHECK(s.upgradeShield(3)==false);
+    BOOST_CHECK(p.getShield()==0);
 
-    p.setMoney(125);
-    BOOST_CHECK(s.upgradeShild("shild2")==false);
-    BOOST_CHECK(s.upgradeShild("shild3")==false);
-    BOOST_CHECK(s.upgradeShild("shild1")==true);
-    BOOST_CHECK(p.getMoney() == 25);
-    BOOST_CHECK(p.getShild() == 100);
-    BOOST_CHECK(s.upgradeShild("shild1")==false);
-    BOOST_CHECK(s.upgradeShild("shild2")==false);
-    BOOST_CHECK(s.upgradeShild("shild3")==false);
-    s.shidlDisponible();
-    p.setShild(0);
+    p.setMoney(110);
+    BOOST_CHECK(s.upgradeShield(1)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getShield()==100);
+    BOOST_CHECK(s.available("shield", 2)==false);
+    BOOST_CHECK(s.available("shield", 3)==false);
 
-    p.setMoney(325);
-    BOOST_CHECK(s.upgradeShild("shild3")==false);
-    BOOST_CHECK(s.upgradeShild("shild2")==true);
-    BOOST_CHECK(s.upgradeShild("shild1")==false);
-    BOOST_CHECK(p.getMoney() == 25);
-    BOOST_CHECK(p.getShild() == 200);
-    BOOST_CHECK(s.upgradeShild("shild1")==false);
-    BOOST_CHECK(s.upgradeShild("shild2")==false);
-    BOOST_CHECK(s.upgradeShild("shild3")==false);
-    s.shidlDisponible();
-    p.setShild(0);
+    p.setShield(0);
+    p.setMoney(310);
+    BOOST_CHECK(s.upgradeShield(2)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getShield()==200);
+    BOOST_CHECK(s.available("shield", 1)==false);
+    BOOST_CHECK(s.available("shield", 3)==false);
 
-
-    p.setMoney(525);
-    BOOST_CHECK(s.upgradeShild("shild3")==true);
-    BOOST_CHECK(s.upgradeShild("shild2")==false);
-    BOOST_CHECK(s.upgradeShild("shild1")==false);
-    BOOST_CHECK(p.getMoney() == 25);
-    BOOST_CHECK(p.getShild() == 300);
-    BOOST_CHECK(s.upgradeShild("shild1")==false);
-    BOOST_CHECK(s.upgradeShild("shild2")==false);
-    BOOST_CHECK(s.upgradeShild("shild3")==false);
-    s.shidlDisponible();
-    p.setShild(0);
-
-
-
-
+    p.setShield(0);
+    p.setMoney(510);
+    BOOST_CHECK(s.upgradeShield(3)==true);
+    BOOST_CHECK(p.getMoney()==10);
+    BOOST_CHECK(p.getShield()==300);
+    BOOST_CHECK(s.available("shield", 1)==false);
+    BOOST_CHECK(s.available("shield", 2)==false);
 
 }
 
 
+BOOST_AUTO_TEST_CASE(BuyBomb)
+{
+    Player p;
+    Shop s(&p);
 
+    BOOST_CHECK(p.getBombNumber()==0);
+    BOOST_CHECK(p.getMoney()==0);
+    BOOST_CHECK(s.buyBomb()==false);
 
+    p.setMoney(220);
+    BOOST_CHECK(s.buyBomb()==true);
+    BOOST_CHECK(p.getBombNumber()==1);
+    BOOST_CHECK(p.getMoney()==120);
+    BOOST_CHECK(s.buyBomb()==true);
+    BOOST_CHECK(p.getBombNumber()==2);
+    BOOST_CHECK(p.getMoney()==20);
 
+}
 
+BOOST_AUTO_TEST_CASE(BuyLife)
+{
+    Player p;
+    Shop s(&p);
 
+    BOOST_CHECK(p.getNbLife()==0);
+    BOOST_CHECK(s.buyLife()==false);
+
+    p.setMoney(260);
+    BOOST_CHECK(s.buyLife()==true);
+    BOOST_CHECK(p.getNbLife()==1);
+    BOOST_CHECK(p.getMoney()==10);
+
+}
 

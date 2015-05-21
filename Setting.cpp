@@ -8,9 +8,8 @@ using namespace std;
 //
 
 Settings::Settings(){
-    _difficulty = DIFFICULTY;
-    _nbLife = NB_LIFE_PLAYER;
-    //_language = new Language;
+    _difficulty = LEVEL_DIFFICULTY;
+    _nbLife = PLAYER_NB_LIFE;
 }
 
 Settings::~Settings(){}
@@ -19,8 +18,7 @@ Settings::~Settings(){}
 //
 // METHODS
 //
-
-bool Settings::changeDifficulty(unsigned int difficulty)
+bool Settings::changeDifficulty(const unsigned int difficulty)
 {// return true if it has been changed
     if (difficulty > 0 && difficulty <= MAX_DIFFICULTY){
         _difficulty = difficulty;
@@ -29,7 +27,7 @@ bool Settings::changeDifficulty(unsigned int difficulty)
     return false;
 }
 
-bool Settings::changeNbLife(unsigned int nbLife)
+bool Settings::changeNbLife(const unsigned int nbLife)
 {// return true if it has been changed
     if (nbLife > 0){
         _nbLife = nbLife;
@@ -38,7 +36,7 @@ bool Settings::changeNbLife(unsigned int nbLife)
     return false;
 }
 
-bool Settings::changeLanguage(string language)
+bool Settings::changeLanguage(const string language)
 {// return true if it has been changed
     return _language.change(language);
 }

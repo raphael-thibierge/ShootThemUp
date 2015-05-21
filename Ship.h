@@ -1,4 +1,3 @@
-
 #ifndef SHIP_H
 #define SHIP_H
 #include "Bullet.h"
@@ -17,11 +16,9 @@ protected:
 
     unsigned int _lifeLevel;
     unsigned int _nbLife;
-    std::string _type;
+    unsigned int _type;
     float _speed;
     std::string _direction;
-
-
 
 public:
 
@@ -29,7 +26,7 @@ public:
 // Constructors/Destructors
 //
 
-    Ship (std::string type);
+    Ship (const unsigned int type);
 
 	virtual ~Ship ();
 //
@@ -39,12 +36,12 @@ public:
     virtual void shoot (std::list<Bullet*> * bulletlist);
     
     // move the ship in a direction (move depend of the speed)
-    void move (std::string direction);
+    void move (const std::string direction);
 
     virtual std::string toString();
     
     // test collision whith a point
-    bool collisionPoint(float x, float y);
+    bool collisionPoint(const float x,const  float y);
     
     // test collision with a bullet
     bool collision(Bullet *bullet);
@@ -60,12 +57,13 @@ public:
 
     unsigned  int getLifeLevel() const;
 
-    void setLifeLevel(unsigned int lifeLevel);
-
     unsigned int getNbLife() const;
 
-    std::string getType() const;
-
+    unsigned int getType() const;
+    
+    void setLifeLevel(const unsigned int lifeLevel);
+    
+    void setType(const unsigned int value);
 
 };
 

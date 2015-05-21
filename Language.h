@@ -23,13 +23,13 @@ public:
 // METHODS
 //
     // change lan
-    bool change(std::string language);
+    bool change(const std::string language);
     
-    void loadFromFile(std::string text);
+    void loadFromFile(const std::string text);
 
 //ACCESSOR METHODS
 //
-    std::string getText(std::string text);
+    std::string getText(const std::string text);
 
     std::string getLanguage();
 

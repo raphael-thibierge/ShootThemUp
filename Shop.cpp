@@ -7,25 +7,20 @@ using namespace std;
 
 Shop::Shop(Player* player) : _player(player){
 
-    //cout << "\n=====================" << endl;
-    //cout << "CONSTRUCTOR SHOP" << endl;
-
-    _store["level2"]=true;
-    _store["level3"]=false;
-    _store["level4"]=false;
-    _store["level5"]=false;
-    _store["ship2"]=true;
-    _store["ship3"]=false;
-    _store["ship4"]=false;
-    _store["shild1"]=true;
-    _store["shild2"]=true;
-    _store["shild3"]=true;
+    // Bullets and ship class are used to display information in view
+    _bullets.push_back(new Bullet(0));
+    _bullets.push_back(new Bullet(1));
+    _bullets.push_back(new Bullet(2));
+    _bullets.push_back(new Bullet(3));
+    _bullets.push_back(new Bullet(4));
+    _ships.push_back(new Ship(0));
+    _ships.push_back(new Ship(1));
+    _ships.push_back(new Ship(2));
+    _ships.push_back(new Ship(3));
 }
 
 Shop::~Shop()
 {
-    //cout << "\n=====================" << endl;
-    //cout << "DESTRUCTOR SHOP" << endl;
     _player = nullptr;
 }
 
@@ -33,160 +28,89 @@ Shop::~Shop()
 //
 // METHODS
 //
-
-bool Shop::upgradeBullet(string type)
-{
-    //lvl5->500
-    //lvl4->350
-    //lvl3->200
-    //lvl2->100
-    if(_player->getMoney()>=100)
-    {
-        if(type == "level2" && _player->getBulletType()== "standart")
-        {
-            _player->setBulletType("level2");
-            _player->setMoney(_player->getMoney()-100);
-            _store["level2"]=false;
-            _store["level3"]=true;
+bool Shop::available(const string product, const int level){
+    // level 0 of an object is alway available
+    // if the player have the previous level of bullet
+    // he can buy this one
+    if ( product == "bullet"){
+        if (_bullets[level-1]->getType() == _player->getBulletType())
             return true;
-        }
-
     }
-
-    if(_player->getMoney()>=200)
-    {
-        if(type == "level3" && _player->getBulletType()== "level2")
-        {
-            _player->setBulletType("level3");
-            _player->setMoney(_player->getMoney()-200);
-            _store["level3"]=false;
-            _store["level4"]=true;
+    // same for shield
+    else if (product == "shield"){
+        if (_player->getShield() == 0)
             return true;
-        }
-
     }
-    if(_player->getMoney()>=350)
-    {
-        if(type == "level4" && _player
-           ->getBulletType()== "level3")
-        {
-            _player->setBulletType("level4");
-            _player->setMoney(_player->getMoney()-350);
-            _store["level4"]=false;
-            _store["level5"]=true;
+    // same for ship
+    else if (product == "ship"){
+        if (_ships[level-1]->getType() == _player->getType())
             return true;
-        }
-
-    }
-    if(_player->getMoney()>=500)
-    {
-        if(type == "level5" && _player->getBulletType()== "level4")
-        {
-            _player->setBulletType("level5");
-            _player->setMoney(_player->getMoney()-500);
-            _store["level5"]=false;
-            return true;
-        }
-
     }
     return false;
 }
 
 
-bool Shop::upgradeShip(string type)
-{
+bool Shop::upgradeBullet(const int level){
 
-    if(_player->getMoney()>=200)
-    {
-        if(type == "ship2" && _player->getLevel()== 1)
-        {
-            _player->setLevel(2);
-            _player->setLifeLevel(500);
-            _player->setMoney(_player->getMoney()-200);
-            _store["ship2"]=false;
-            _store["ship3"]=true;
-            return true;
-        }
-    }
-
-    if(_player->getMoney()>=500)
-    {
-        if(type == "ship3" && _player->getLevel()== 2)
-        {
-            _player->setLevel(3);
-            _player->setLifeLevel(700);
-            _player->setMoney(_player->getMoney()-500);
-            _store["ship3"]=false;
-            _store["ship4"]=true;
-            return true;
-        }
-    }
-    if(_player->getMoney()>=1000)
-    {
-        if(type == "ship4" && _player->getLevel()== 3)
-        {
-            _player->setLevel(4);
-
-            _player->setLifeLevel(900);
-            _player->setMoney(_player->getMoney()-1000);
-            _store["ship4"]=false;
-            return true;
-        }
-    }
-
-    return false;
-
-}
-
-
-bool Shop::upgradeShild(string type)
-{
-
-    if(_player->getMoney()>=100)
-    {
-        if(type == "shild1" && _player->getShild()==0)
-        {
-            _player->setShild(100);
-            _player->setMoney(_player->getMoney()-100);
-            _store["shild1"]=false;
-            _store["shild2"]=false;
-            _store["shild3"]=false;
-            return true;
-        }
-    }
-    if(_player->getMoney()>=300)
-    {
-        if(type == "shild2" && _player->getShild()==0)
-        {
-            _player->setShild(200);
-            _player->setMoney(_player->getMoney()-300);
-            _store["shild1"]=false;
-            _store["shild2"]=false;
-            _store["shild3"]=false;
-            return true;
-        }
-    }
-    if(_player->getMoney()>=500)
-    {
-        if(type == "shild3" && _player->getShild()==0)
-        {
-            _player->setShild(300);
-            _player->setMoney(_player->getMoney()-500);
-            _store["shild1"]=false;
-            _store["shild2"]=false;
-            _store["shild3"]=false;
-            return true;
-        }
+    // if the bullet's level is available and the player has enough money
+    if ( available("bullet", level) && _player->getMoney() >= BULLET_PRICE[level]){
+        // he buys it and he gets it
+        _player->pay(BULLET_PRICE[level]);
+        _player->setBulletType(level);
+        return true;
     }
     return false;
 }
 
+bool Shop::upgradeShip(const int level){
 
-void Shop::shidlDisponible()
-{
-    _store["shild1"]=true;
-    _store["shild2"]=true;
-    _store["shild3"]=true;
+    // if the ship's level is available and the player has enough money
+    if (available("ship", level) && _player->getMoney() >= SHIP_PRICE[level]){
+        // he buys it and he gets it
+        _player->pay(SHIP_PRICE[level]);
+        _player->setType(level);
+        return true;
+    }
+    return false;
+}
+
+bool Shop::upgradeShield(const int level){
+
+    // if the shield's level is available and the player has enough money
+    if (available("shield", level) && _player->getMoney() >= SHIELD_PRICE[level]){
+        // he buys it and he gets it
+        _player->pay(SHIELD_PRICE[level]);
+        _player->setShield(SHIELD_LIFE[level]);
+
+        return true;
+    }
+    return false;
+}
+
+bool Shop::buyBomb(){
+    //return true if player bought a bomb, else return false
+
+    // if player has enough money
+    if (_player->getMoney() >= BOMB_PRICE){
+        // he pays and gets a bomb
+        _player->pay(BOMB_PRICE);
+        _player->addBomb();
+        return true;
+    }
+    return false;
+}
+
+bool Shop::buyLife(){
+    //return true if player bought a life, else return false
+
+    //if player has enough money
+    if (_player->getMoney() >= LIFE_PRICE){
+        // he pays and gets a life
+        _player->pay(LIFE_PRICE);
+        _player->addLife(1);
+        return true;
+    }
+    return false;
 }
 
 

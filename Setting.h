@@ -24,13 +24,13 @@ public:
 // METHODS
 //
     // change game difficulty
-    bool changeDifficulty(unsigned int difficulty);
+    bool changeDifficulty(const unsigned int difficulty);
     
     // change initial life number
-    bool changeNbLife(unsigned int nbLife);
+    bool changeNbLife(const unsigned int nbLife);
 
     // change gameLanguage
-    bool changeLanguage(std::string language);
+    bool changeLanguage(const std::string language);
 
 // ACCESSOR METHODS
 //

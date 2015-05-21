@@ -5,7 +5,7 @@ using namespace std;
 // Constructors/Destructors
 //
 
-Ship::Ship (string type) :_type(type) {
+Ship::Ship (const unsigned int type) :_type(type) {
 }
 
 Ship::~Ship () {
@@ -17,17 +17,17 @@ Ship::~Ship () {
 
 void Ship::shoot (list<Bullet*> * bulletlist){}
 
-void Ship::move (string direction)
+void Ship::move (const string direction)
 {
     RectanglePosition::move(direction, _speed);
 }
 
 string Ship::toString(){
-    return " type="+_type+" = "+RectanglePosition::toString() + " speed=" + to_string(_speed) + " life=" + to_string(_lifeLevel);
+    return " type="+to_string(_type)+" = "+RectanglePosition::toString() + " speed=" + to_string(_speed) + " life=" + to_string(_lifeLevel);
 }
 
 
-bool Ship::collisionPoint(float x, float y)
+bool Ship::collisionPoint(const float x, const float y)
 {// return true if the point is in the ship
 
     if ( x >= _X && x <= _X+_width && y >= _Y && y <= _Y+_height)
@@ -70,16 +70,20 @@ unsigned int Ship::getLifeLevel() const{
     return _lifeLevel;
 }
 
-void Ship::setLifeLevel(unsigned int lifeLevel) {
-    _lifeLevel = lifeLevel;
-}
-
 unsigned int Ship::getNbLife() const{
     return _nbLife;
 }
 
-string Ship::getType() const{
+unsigned int Ship::getType() const{
     return _type;
+}
+
+void Ship::setLifeLevel(unsigned int lifeLevel) {
+    _lifeLevel = lifeLevel;
+}
+
+void Ship::setType(const unsigned int value){
+    _type = value;
 }
 
 

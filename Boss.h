@@ -12,9 +12,8 @@
 #include <stdio.h>
 #include "Enemy.h"
 
-class Boss : Enemy
+class Boss : public Enemy
 {
-    
 
 
 // CONCSTRUCTOR/DESTRUCTOR
@@ -25,11 +24,13 @@ public:
     
     virtual ~Boss();
     
+    
 // METHODS
 //
 public:
     
     void move();
+    
     
 };
 
