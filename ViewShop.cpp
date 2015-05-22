@@ -273,6 +273,9 @@ void ViewShop::showViewSFML()
 
     displayText(_language->getText("money") + " = " + to_string(_modele->getPlayer()->getMoney()) + " $", SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y);
 
+    displayText(_language->getText("shootLevel") + "  " + to_string(_modele->getPlayer()->getBulletType() + 1)  , SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+30);
+
+
     displayText(_language->getText("upgradeMainShoot"), SHOPVIEW_COLUMN_1, SHOPSVIEW_MAINSHOOT_Y);
 
     if (_modele->getPlayer()->getBulletType() >= 1)
@@ -310,17 +313,17 @@ void ViewShop::showViewSFML()
 
     displayText(_language->getText("upgradeShield"), SHOPVIEW_COLUMN_1, SHOPSVIEW_SHIELD_Y);
 
-    if (_modele->getPlayer()->getShield() != SHIELD_LIFE[0])
+    if (_modele->getPlayer()->getShield() == SHIELD_LIFE[1])
         displayStandartButton(_language->getText("upgradeShieldlvl1")+ " = " + to_string(SHIELD_PRICE[1])+"$", SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_3, true);
     else
         displayStandartButton(_language->getText("upgradeShieldlvl1")+ " = " + to_string(SHIELD_PRICE[1])+"$", SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_3);
 
-    if (_modele->getPlayer()->getShield() != SHIELD_LIFE[0])
+    if (_modele->getPlayer()->getShield() == SHIELD_LIFE[2])
         displayStandartButton(_language->getText("upgradeShieldlvl2")+ " = " + to_string(SHIELD_PRICE[2])+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_3, true);
     else
         displayStandartButton(_language->getText("upgradeShieldlvl2")+ " = " + to_string(SHIELD_PRICE[2])+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_3);
 
-    if (_modele->getPlayer()->getShield() != SHIELD_LIFE[0])
+    if (_modele->getPlayer()->getShield() == SHIELD_LIFE[3])
         displayStandartButton(_language->getText("upgradeShieldlvl3")+ " = " + to_string(SHIELD_PRICE[3])+"$", SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_3, true);
     else
         displayStandartButton(_language->getText("upgradeShieldlvl3")+ " = " + to_string(SHIELD_PRICE[3])+"$", SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_3);
