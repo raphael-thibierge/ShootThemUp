@@ -48,7 +48,7 @@ bool Shop::available(const string product, const int level){
     }
     // same for shield
     else if (product == "shield"){
-        //if (_player->getShield() == 0)
+        if (_player->getShield() == 0)
             return true;
     }
     // same for ship
