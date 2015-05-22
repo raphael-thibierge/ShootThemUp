@@ -275,6 +275,21 @@ void ViewShop::showViewSFML()
 
     displayText(_language->getText("shootLevel") + "  " + to_string(_modele->getPlayer()->getBulletType() + 1)  , SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+30);
 
+    displayText(_language->getText("shipLevel") + "  " + to_string(_modele->getPlayer()->getType() + 1)  , SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+60);
+
+    if(_modele->getPlayer()->getShield()!=0)
+    {
+        displayText(_language->getText("alreadyShield"), SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+90);
+    }
+    else
+    {
+        displayText(_language->getText("noShield"), SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+90);
+    }
+
+    displayText(_language->getText("nbBomb") + " : " + to_string(_modele->getPlayer()->getBombNumber()), SHOPVIEW_COLUMN_2, SHOPSVIEW_MONEY_Y+30);
+
+    displayText(_language->getText("nbLifeMore")  + " : " + to_string(_modele->getPlayer()->getNbLife()), SHOPVIEW_COLUMN_2, SHOPSVIEW_MONEY_Y+60);
+
 
     displayText(_language->getText("upgradeMainShoot"), SHOPVIEW_COLUMN_1, SHOPSVIEW_MAINSHOOT_Y);
 
