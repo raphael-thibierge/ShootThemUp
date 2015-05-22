@@ -14,11 +14,11 @@ const int PLAYER_SPEED = 10;
 
 // ======== LEVEL ============
 const unsigned int LEVEL_DIFFICULTY = 2;
-const unsigned int LEVEL_NB_ENEMIES = 1;
+const unsigned int LEVEL_NB_ENEMIES = 20;
 
 // ======== SCREEN ============
-const int SCREEN_HEIGHT=1000;
-const int SCREEN_WIDTH=780;
+const int SCREEN_HEIGHT = 1000;
+const int SCREEN_WIDTH = 780;
 
 // ======== BEST SCORES ============
 const int BEST_SCORE_NB = 5;
@@ -53,7 +53,7 @@ const float BOSS_INITIAL_X = SCREEN_WIDTH / 2;
 const float BOSS_INITIAL_Y = 50;
 const float BOSS_HEIGHT = 50;
 const float BOSS_WIDTH = 50;
-const unsigned int BOSS_LIFELEVEL = 300;
+const unsigned int BOSS_LIFELEVEL = 1000;
 const float BOSS_SPEED = 5;
 const unsigned int BOSS_NBLIFE = 1;
 const unsigned int BOSS_BULLET_TYPE = 3;
@@ -175,11 +175,8 @@ const int SETTINGSVIEW_NBLIFE_3_Y = SETTINGSVIEW_NBLIFE_Y;
 
 // ======== SHOP VIEW ============
 
-
 const int SHOPSVIEW_TITLE_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
 const int SHOPSVIEW_TITLE_Y = 100;
-
-const int SHOPSVIEW_MONEY_Y = 150;
 
 
 const int SHOPVIEW_COLUMN_1 = 10;
@@ -193,11 +190,12 @@ const int SHOPVIEW_LINE_5 = 750;
 const int SHOPVIEW_LINE_6 = SCREEN_HEIGHT - 100 ;
 
 
-const int SHOPSVIEW_MAINSHOOT_Y = SHOPVIEW_LINE_1 - TEXT_SIZE - 5;
+const int SHOPSVIEW_MAINSHOOT_Y = SHOPVIEW_LINE_1 - TEXT_SIZE - 5;;
 const int SHOPSVIEW_SHIP_Y = SHOPVIEW_LINE_2 - TEXT_SIZE - 5;
 const int SHOPSVIEW_SHIELD_Y = SHOPVIEW_LINE_3 - TEXT_SIZE - 5;
 const int SHOPSVIEW_BOMB_Y =  SHOPVIEW_LINE_4 + BUTTON_HEIGHT /2 - 10;
 const int SHOPSVIEW_LIFE_Y =  SHOPVIEW_LINE_5 + BUTTON_HEIGHT /2 - 10;
+const int SHOPSVIEW_MONEY_Y = SHOPVIEW_LINE_1 +  BUTTON_HEIGHT /2 - 10;
 
 
 // ======== GAME VIEW ============

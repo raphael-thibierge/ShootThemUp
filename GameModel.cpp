@@ -16,7 +16,7 @@ GameModel::GameModel()
     _time.Reset();
 
     // always init
-    _gameLevel = 2;
+    _gameLevel = 0;
     _settings = new Settings;
 
     // not init, because player can choose to load an old game

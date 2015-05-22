@@ -8,23 +8,16 @@ using namespace std;
 
 Level::Level (unsigned int level, Player * player, unsigned int * difficultyPointer) : _player(player), _difficulty(difficultyPointer)
 {
-    //cout << "\n=====================" << endl;
-    //cout << "CONSTRUCTOR LEVEL" << endl;
-
     _nbEnnemies = LEVEL_NB_ENEMIES;
     _level = level;
     _time.Reset();
     _enemiesCpt = 0;
     _player->resetLifeLevel();
     _boss = nullptr;
-
 }
 
 Level::~Level ()
 {
-    //cout << "\n=====================" << endl;
-    //cout << "DESTRUCTOR LEVEL" << endl;
-
     for(auto enemy : _enemiesList)
         if (enemy != nullptr)
             delete enemy;
@@ -44,25 +37,22 @@ Level::~Level ()
         delete _boss;
     _boss = nullptr;
 
-
     _player = nullptr;
     _difficulty = nullptr;
-
 }
 
 
 //
 // METHODS
 //
-
 void Level::generateEnemy()
 {// creation of enemies
-
     //every 3 level, enemies are stronger
     int level = _level/3 + 1;
 
     // if we can create one more enemy
-    if (_enemiesCpt < _nbEnnemies && _time.GetElapsedTime() > TIME_SPAWN_RATE ){
+    if (_enemiesCpt < _nbEnnemies && _time.GetElapsedTime() > TIME_SPAWN_RATE )
+        {
         _time.Reset();
         // 1/2 chance to create an enemy
         int random = rand()%(2);
@@ -100,11 +90,8 @@ void Level::generateEnemy()
             _enemiesCpt++;
         }
     }
-    if (_enemiesCpt == _nbEnnemies){
+    if (_enemiesCpt == _nbEnnemies && _level % 3 == 3){
         _boss = new Boss();
-        //boss->difficultyImpact(*_difficulty);
-        //_enemiesList.push_back(boss);
-        //boss = nullptr;
         _enemiesCpt++;
 
     }
@@ -112,7 +99,7 @@ void Level::generateEnemy()
 
 bool Level::win ()
 {// check if player win
-    if (_enemiesList.size() == 0 && _enemiesCpt == _nbEnnemies){
+    if (_enemiesList.size() == 0 && _enemiesCpt >= _nbEnnemies && _boss == nullptr){
         _player->addMoney();
         return true;
     }
@@ -121,7 +108,7 @@ bool Level::win ()
 
 bool Level::loose ()
 {
-    if (/*_player->getLifeLevel()== 0 and*/ _player->getNbLife()==0 )
+    if (_player->getNbLife()==0 )
     {
         _player->addMoney();
         return true;
@@ -187,6 +174,27 @@ void Level::collisionManager()
         }
     }
 
+    // collision between boss and bullets
+    if (_boss != nullptr)
+    {
+        for (auto bullet : _bulletsList)
+        {
+            if (_boss->collision(bullet))
+            {
+                _boss->affectDamage(bullet->getDamage());
+                if (_boss->getLifeLevel() == 0){
+                    enemiesKilled.push_back(_boss);
+                    _player->score(_boss , *_difficulty);
+                }
+                bulletsDestroyed.push_back(bullet);
+            }
+            if (_player->collision(_boss))
+            {
+                _player->affectDamage(_boss->getLifeLevel());
+            }
+        }
+    }
+
 
     //destroy ended blast
     for (auto blast : _blastList)
@@ -229,6 +237,12 @@ void Level::collisionManager()
     // destruction of enemies
     for (auto enemy : enemiesKilled){
         _enemiesList.remove(enemy);
+        if (enemy->getType() == BOSS_TYPE)
+        {
+            enemy = nullptr;
+            delete _boss;
+            _boss = nullptr;
+        }
         if (enemy != nullptr)
             delete enemy;
         enemy = nullptr;
@@ -289,8 +303,6 @@ void Level::randomEnemiesShoot()
         {
             _boss->shoot(_bulletsList);
         }
-
-
 }
 
 void Level::runGame(){

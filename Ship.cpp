@@ -21,6 +21,11 @@ void Ship::shoot (list<Bullet*> * bulletlist){}
 void Ship::move (const string direction)
 {
     RectanglePosition::move(direction, _speed);
+
+    if (_X < 0)
+        _X = 0;
+    else if (_X > SCREEN_WIDTH-_width)
+        _X = SCREEN_WIDTH - _width;
 }
 
 string Ship::toString(){

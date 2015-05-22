@@ -34,13 +34,13 @@ void Boss::move()
 
         }
         if (_direction == "WEST"){
-            if (_X > 0)
+            if (_X > 100)
                 RectanglePosition::move("WEST", _speed);
             else
                 _direction = "EST";
         }
         if (_direction == "EST"){
-            if (_X < SCREEN_WIDTH - _width)
+            if (_X < SCREEN_WIDTH - _width - 100)
                 RectanglePosition::move("EST", _speed);
             else
                 _direction = "WEST";

@@ -273,7 +273,6 @@ void ViewShop::showViewSFML()
 
     displayText(_language->getText("money") + " = " + to_string(_modele->getPlayer()->getMoney()) + " $", SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y);
 
-
     displayText(_language->getText("upgradeMainShoot"), SHOPVIEW_COLUMN_1, SHOPSVIEW_MAINSHOOT_Y);
 
     if (_modele->getPlayer()->getBulletType() >= 1)
