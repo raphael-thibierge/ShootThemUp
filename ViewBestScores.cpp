@@ -9,16 +9,7 @@
 #include "ViewBestScores.h"
 using namespace std;
 
-ViewBestScores::ViewBestScores(){
-// background
-    _imagesList.insert(make_pair("background", sf::Image()));
-    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
-
-    _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["background"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
-    _spritesList["background"].SetPosition(0,0);
-}
+ViewBestScores::ViewBestScores(){}
 
 ViewBestScores::~ViewBestScores(){}
 
@@ -79,9 +70,11 @@ void ViewBestScores::showViewTerminal(){
 
 void ViewBestScores::showViewSFML()
 {
+    // draw background
     _window->Draw(_spritesList["background"]);
 
-    displayText(_language->getText("bestScores"), LABEL_BESTSCORES_TITLE_POSITION_X, LABEL_BESTSCORES_TITLE_POSITION_Y);
+    //
+    displayTitle(_language->getText("bestScores"), LABEL_BESTSCORES_TITLE_POSITION_X, LABEL_BESTSCORES_TITLE_POSITION_Y);
 
     // Y position of each score label
     int positionY = LABEL_BESTSCORES_POSITION_Y ;
@@ -98,7 +91,18 @@ void ViewBestScores::showViewSFML()
 }
 
 
-void ViewBestScores::initButtons()
+bool ViewBestScores::initSFML()
 {
+    // background image
+    _imagesList.insert(make_pair("background", sf::Image()));
+    if (!_imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU))
+        return false;
 
+    // background sprite
+    _spritesList.insert(make_pair("background", sf::Sprite()));
+    _spritesList["background"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetPosition(0,0);
+
+    return true;
 }

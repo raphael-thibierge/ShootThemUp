@@ -49,7 +49,7 @@ public:
     // display the background and loop it to have a infinite scolling
     void displayScrollingBackground();
 
-    void initButtons() override;
+    bool initSFML();
 };
 
 

@@ -16,18 +16,6 @@ using namespace std;
 ViewIntroduction::ViewIntroduction()
 {
     _time.Reset();
-
-
-        // background
-    _imagesList.insert(make_pair("background", sf::Image()));
-    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
-
-    _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["background"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
-    _spritesList["background"].SetPosition(0,0);
-
-
 }
 
 ViewIntroduction::~ViewIntroduction(){}
@@ -126,11 +114,20 @@ cout<<"                           \\$$"   <<endl;
 void ViewIntroduction::showViewSFML()
 {
     _window->Draw(_spritesList["background"]);
-    displayText("FARM THEM UP", INTROVIEW_TITLE_X,INTROVIEW_TITLE_Y);
-
+    displayTitle("FARM THEM UP", INTROVIEW_TITLE_X,INTROVIEW_TITLE_Y);
 }
 
-void ViewIntroduction::initButtons()
+bool ViewIntroduction::initSFML()
 {
+        // background image
+    _imagesList.insert(make_pair("background", sf::Image()));
+    if (!_imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU))
+        return false;
+    // background sprite
+    _spritesList.insert(make_pair("background", sf::Sprite()));
+    _spritesList["background"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetPosition(0,0);
+    return true;
 }
 

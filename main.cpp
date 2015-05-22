@@ -20,11 +20,9 @@ int main(int argc, const char * argv[]) {
     window.UseVerticalSync(true);
 
     ViewsController controller(&window);
-    controller.init(&model);
+    if (!controller.init(&model))
+        return EXIT_FAILURE;
 
-    sf::Music test (44100);
-    test.OpenFromFile(GAME_MUSIC);
-    test.Play();
 
     while (window.IsOpened())
     {

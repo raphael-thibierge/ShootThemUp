@@ -34,7 +34,7 @@ public:
 
     void showViewSFML() override;
 
-    void initButtons() override;
+    bool initSFML() override;
 };
 
 #endif /* defined(__ShmupTerminal__ViewSettings__) */

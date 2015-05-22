@@ -142,18 +142,22 @@ void ViewsController::forceQuit()
 
 }
 
-void ViewsController::init(GameModel *modele){
+bool ViewsController::init(GameModel *modele){
     //initisilisation of the controller and views
     _modele = modele;
     _quit = false;
     for (auto view : _allViews) {
         view.second->init(_modele, _mainWindow);
-
+        if (!view.second->initButtons())
+            return false;
+        if (!view.second->initSFML()){
+            cout << view.first << endl;
+            return false;
+        }
     }
-
     // at beginning of the program, it's the introduction view
     _view = _allViews["Introduction"];
-
+    return true;
 }
 void ViewsController::playMusic(bool loop)
 {

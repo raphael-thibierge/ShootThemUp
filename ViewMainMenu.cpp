@@ -36,10 +36,7 @@ ViewMainMenu::~ViewMainMenu() {}
 // METHODS
 //
 
-void ViewMainMenu::initButtons()
-{
 
-}
 
 
 void ViewMainMenu::showViewSFML()
@@ -154,18 +151,6 @@ int ViewMainMenu::treatEventSFML()
     return returnValue;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 int ViewMainMenu::treatEvent()
 {
@@ -311,4 +296,18 @@ void ViewMainMenu::showQuit()
 
 
 
+}
+
+bool ViewMainMenu::initSFML()
+{
+    // background image
+    _imagesList.insert(make_pair("background", sf::Image()));
+    if (!_imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU))
+        return false;
+    // background sprite
+    _spritesList.insert(make_pair("background", sf::Sprite()));
+    _spritesList["background"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetPosition(0,0);
+    return true;
 }

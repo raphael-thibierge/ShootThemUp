@@ -31,7 +31,7 @@ public:
 
     void showViewSFML() override;
 
-    void initButtons() override;
+    bool initSFML() override;
 };
 
 

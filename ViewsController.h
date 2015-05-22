@@ -66,7 +66,7 @@ public:
     void forceQuit();
 
     // init gamemodel for each views
-    void init(GameModel* modele);
+    bool init(GameModel* modele);
 
     void playMusic(bool loop);
 
