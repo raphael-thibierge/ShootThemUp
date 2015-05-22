@@ -1,6 +1,6 @@
 
 language Langue
-languageValue Français
+languageValue Francais
 choice Choix:
 newGame Nouvelle Partie
 loadGame Charger une partie
@@ -22,18 +22,18 @@ changeDifficulty Changer la difficulté
 changeNBLifeInit Changer le nombre de vie initiales
 changeLanguage Changer la langue
 upgradeMainShoot Amelioration du tir principal
-upgradeMainShootlvl2 Tir niveau 2
-upgradeMainShootlvl3 Tir niveau 3
-upgradeMainShootlvl4 Tir niveau 4
-upgradeMainShootlvl5 Tir niveau 5
+upgradeMainShootlvl2 niveau 2
+upgradeMainShootlvl3 niveau 3
+upgradeMainShootlvl4 niveau 4
+upgradeMainShootlvl5 niveau 5
 upgradeShip Amelioreation du vaisseau
-upgradeShiplvl2 Vaisseau niveau 2
-upgradeShiplvl3 Vaisseau niveau 3
-upgradeShiplvl4 Vaisseau niveau 4
+upgradeShiplvl2 niveau 2
+upgradeShiplvl3 niveau 3
+upgradeShiplvl4 niveau 4
 upgradeShield Amélioration du bouclier
-upgradeShieldlvl1 Bouclier niveau 1
-upgradeShieldlvl2 Bouclier niveau 2
-upgradeShieldlvl3 Bouclier niveau 3
+upgradeShieldlvl1 niveau 1
+upgradeShieldlvl2 niveau 2
+upgradeShieldlvl3 niveau 3
 purchaseRight Achat effectué !
 purchaseWrong Echec de l'achat !
 difficulty Difficulté
