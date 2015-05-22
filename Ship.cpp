@@ -62,7 +62,30 @@ bool Ship::collision(Ship *ship)
     return false;
 }
 
+void Ship::affectDamage(const unsigned int damage){
+    if (damage < _lifeLevel)
+        _lifeLevel -= damage;
+    else {
+        looseLife();
+    }
+}
 
+void Ship::looseLife(){
+    _lifeLevel = 0;
+    if (_nbLife > 0) {
+        _nbLife--;
+        resetLifeLevel();
+
+    }
+    else
+        _nbLife = 0;
+}
+
+void Ship::resetLifeLevel(){
+    // if this is the player's ship
+    if (_type <= 3 )
+        _lifeLevel = PLAYER_LIFE_LEVEL;
+}
 // Accessor methods
 //
 
@@ -79,6 +102,10 @@ unsigned int Ship::getType() const{
     return _type;
 }
 
+float Ship::getSpeed() const{
+    return _speed;
+}
+
 void Ship::setLifeLevel(unsigned int lifeLevel) {
     _lifeLevel = lifeLevel;
 }
@@ -86,6 +113,11 @@ void Ship::setLifeLevel(unsigned int lifeLevel) {
 void Ship::setType(const unsigned int value){
     _type = value;
 }
+
+Blast * Ship::getBlast(){
+    return new Blast(_type, _direction, _speed, _X, _Y);
+}
+
 
 
 // Other methods

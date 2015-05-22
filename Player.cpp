@@ -55,7 +55,7 @@ void Player::initPlayer()
 }
 
 
-void Player::useBomb(list<Enemy*> & enemyList, const int difficulty)
+void Player::useBomb(list<Enemy*> & enemyList, std::list<Blast*> &blastList, const int difficulty)
 { // destruct all enemies on the screen
 
 
@@ -74,6 +74,9 @@ void Player::useBomb(list<Enemy*> & enemyList, const int difficulty)
                 //the enemy is put on the enemiesKilled list
                 enemiesKilled.push_back(enemy);
 
+                // create blast
+                blastList.push_back(enemy->getBlast());
+
                 // update score
                 score(enemy, difficulty);
             }
@@ -85,6 +88,7 @@ void Player::useBomb(list<Enemy*> & enemyList, const int difficulty)
             enemyList.remove(enemy);
             // destruct enemy
             delete enemy;
+            enemy = nullptr;
         }
 
         // clear
@@ -119,35 +123,15 @@ void Player::score(Enemy * enemy, const unsigned int difficultyLevel)
 
 void Player::activateShild()
 {
-    _lifeLevel+=_shild;
-    _shild=0;
+    _lifeLevel += _shild;
+    _shild = 0;
 }
-
-void Player::looseLife(){
-    _lifeLevel = 0;
-    if (_nbLife > 0) {
-        _nbLife--;
-        resetLifeLevel();
-    }
-}
-
-
-void Player::affectDamage(const unsigned int damage){
-    if (damage < _lifeLevel)
-        _lifeLevel -= damage;
-    else {
-        looseLife();
-    }
-}
-
 
 void Player::resetPosition(){
     setPosition((SCREEN_WIDTH-_width)/2, SCREEN_HEIGHT-_height);
 }
 
-void Player::resetLifeLevel(){
-    _lifeLevel = PLAYER_LIFE_LEVEL;
-}
+
 
 void Player::addMoney(){
     _money += float(_score)/10;

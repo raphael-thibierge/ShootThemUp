@@ -3,6 +3,7 @@
 #include "iostream"
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 // ======== PLAYER ============
 const int PLAYER_LIFE_LEVEL = 300;
@@ -13,7 +14,7 @@ const int PLAYER_SPEED = 10;
 
 // ======== LEVEL ============
 const unsigned int LEVEL_DIFFICULTY = 2;
-const unsigned int LEVEL_NB_ENEMIES = 20;
+const unsigned int LEVEL_NB_ENEMIES = 1;
 
 // ======== SCREEN ============
 const int SCREEN_HEIGHT=1000;
@@ -40,13 +41,13 @@ const int MAX_DIFFICULTY = 3;
 // ======== ENEMIES ============
 const int ENEMY_WIDTH[3] = { 155, 77, 89 };
 const int ENEMY_HEIGHT[3] = { 157, 133, 138 };
-const int ENEMY_LIFE_LEVEL[3] = { 100, 100, 200 };
+const int ENEMY_LIFE_LEVEL[3] = { 50, 100, 200 };
 const int ENEMY_SPEED[3] = { 4, 8, 6 };
 const int ENEMY_TYPE[3] = {10, 11, 12};
 const int ENEMY_NB_LIFE = 1 ;
 
 // ======== BOSS ============
-const unsigned int BOSS_TYPE = 20;
+const unsigned int BOSS_TYPE = 25;
 const unsigned int BOSS_LEVEL = 1;
 const float BOSS_INITIAL_X = SCREEN_WIDTH / 2;
 const float BOSS_INITIAL_Y = 50;
@@ -55,7 +56,6 @@ const float BOSS_WIDTH = 50;
 const unsigned int BOSS_LIFELEVEL = 300;
 const float BOSS_SPEED = 5;
 const unsigned int BOSS_NBLIFE = 1;
-
 
 
 // ======== BULLETS ============
@@ -175,10 +175,7 @@ const int SETTINGSVIEW_NBLIFE_3_Y = SETTINGSVIEW_NBLIFE_Y;
 // ======== SHOP VIEW ============
 
 
-
-
-
-const int SHOPSVIEW_TITLE_X = SCREEN_WIDTH/2 - BUTTON_WIDTH/ 2;
+const int SHOPSVIEW_TITLE_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
 const int SHOPSVIEW_TITLE_Y = 100;
 
 const int SHOPSVIEW_MONEY_Y = 150;
@@ -208,7 +205,17 @@ const float TIME_YOU_LOOSE_TRANSITION = 2.0f;
 const float TIME_PLAYER_FIRE_RATE = 0.2f;
 const float TIME_ENEMY_FIRE_RATE = 0.8f;
 const float TIME_SPAWN_RATE =  0.4f;
+const float TIME_INTRODUCTION = 2.0f;
 
-
+//
 
 #endif // CONSTANTE_H_INCLUDED
+const float BLAST_DURATION = 0.2f;
+const std::string IMAGE_BLAST[1] = { "./images/explosion.png" };
+const int BLAST_IMAGE_WIDTH = 200;
+const int BLAST_IMAGE_HEIGHT = 600;
+const int BLAST_SPRITE_WIDTH = 200;
+const int BLAST_SPRITE_HEIGHT = 200;
+const int BLAST_NBSPRITES = 3;
+const int BLAST_SPRITES_X[3] = { 0, 200, 400 };
+const int BLAST_SPRITES_Y[3] = { 0, 0, 0 };

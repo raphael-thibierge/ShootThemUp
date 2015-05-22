@@ -14,10 +14,8 @@ using namespace sf;
 //
 // CONSTRUCTOR AND DESTRUCTOR
 //
-ViewGame::ViewGame()
+ViewGame::ViewGame() : _backgroundY(0), _cptSprite(0)
 {
-    _backgroundY =0;
-
 
     //background
     _imagesList.insert(make_pair("background", sf::Image()));
@@ -57,6 +55,9 @@ ViewGame::ViewGame()
     _imagesList.insert(make_pair("bomb", sf::Image()));
     _imagesList["bomb"].LoadFromFile(IMAGE_BOMB);
 
+    //blast
+    _imagesList.insert(make_pair("blast_1", sf::Image()));
+    _imagesList["blast_1"].LoadFromFile(IMAGE_BLAST[0]);
 
     // backgound
     _spritesList.insert(make_pair("background", sf::Sprite()));
@@ -109,6 +110,11 @@ ViewGame::ViewGame()
     _spritesList.insert(make_pair("bomb", sf::Sprite()));
     _spritesList["bomb"].SetImage(_imagesList["bomb"]);
     _spritesList["bomb"].SetSubRect(sf::IntRect(0,0, GAMEVIEW_BOMB_SIZE, GAMEVIEW_BOMB_SIZE));
+
+    // blast 1
+    _spritesList.insert(make_pair("blast_1", sf::Sprite()));
+    _spritesList["blast_1"].SetImage(_imagesList["blast_1"]);
+
 }
 
 ViewGame::~ViewGame() {}
@@ -202,11 +208,18 @@ int ViewGame::treatEventSFML()
                         case Key::B :
                             _modele->getLevel()->playerUseBomb();
                             break;
+                        case Key::S :
+                            _modele->getPlayer()->activateShild();
+                            break;
+
+                        case Key::Escape :
+                            _modele->endCurrentGame();
+                            returnValue = 0;
+                            break;
 
                         default :
                             break;
                     }
-
                 break;
 
                 case sf::Event::Closed :
@@ -270,7 +283,7 @@ void ViewGame::showViewSFML()
         _spritesList["player"].SetPosition(_modele->getPlayer()->getX(), _modele->getPlayer()->getY());
         _window->Draw(_spritesList["player"]);
 
-
+        int cptSprite;
         //ENEMIES
         for (auto enemy : *_modele->getLevel()->getEnemies())
         {
@@ -294,6 +307,13 @@ void ViewGame::showViewSFML()
                 default:
                     break;
             }
+        }
+
+        Boss * boss = _modele->getLevel()->getBoss();
+        if (boss != nullptr)
+        {
+            _spritesList["player"].SetPosition(boss->getX(), boss->getY());
+            _window->Draw(_spritesList["player"]);
         }
 
         // BULLETS
@@ -347,6 +367,16 @@ void ViewGame::showViewSFML()
             }
         }
 
+        // BLASTS
+        for (auto blast : *_modele->getLevel()->getBlast())
+        {
+             cptSprite = _cptSprite % BLAST_NBSPRITES ;
+            _spritesList["blast_1"].SetSubRect(sf::IntRect(BLAST_SPRITES_X[cptSprite],BLAST_SPRITES_Y[cptSprite], BLAST_SPRITES_X[cptSprite]+BLAST_SPRITE_WIDTH, BLAST_SPRITES_Y[cptSprite]+BLAST_SPRITE_HEIGHT));
+            _spritesList["blast_1"].SetPosition(blast->getX(), blast->getY());
+            _window->Draw(_spritesList["blast_1"]);
+
+        }
+
         // LABEL
         // score
         string score = _language->getText("score") + " : " + to_string( _modele->getPlayer()->getScore() );
@@ -368,6 +398,7 @@ void ViewGame::showViewSFML()
             _spritesList["bomb"].SetPosition(GAMEVIEW_BOMB_X + GAMEVIEW_BOMB_SIZE * i, GAMEVIEW_BOMB_Y);
             _window->Draw(_spritesList["bomb"]);
         }
+        _cptSprite++;
     }
 }
 
@@ -454,7 +485,6 @@ void ViewGame::showLooseConsole()
 void ViewGame::showLooseSFML()
 {
     _window->Draw(_spritesList["youLoose"]);
-
 }
 
 

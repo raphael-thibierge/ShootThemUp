@@ -1,6 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
 #include "Bullet.h"
+#include "Blast.h"
 
 #include <list>
 
@@ -50,6 +51,13 @@ public:
     // test collision with a ship
     bool collision (Ship *ship);
 
+    void affectDamage(const unsigned int damage);
+
+    void looseLife();
+
+    void resetLifeLevel();
+
+
 
 
 
@@ -65,6 +73,10 @@ public:
     void setLifeLevel(const unsigned int lifeLevel);
 
     void setType(const unsigned int value);
+
+    float getSpeed() const;
+
+    Blast * getBlast();
 
 };
 

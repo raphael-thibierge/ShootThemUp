@@ -6,13 +6,16 @@ using namespace std;
 // CONSTRUCTOR AND DESTRUCTOR
 //
 
-Enemy::Enemy (const unsigned int type, const unsigned int level, const float x, const float y, const float width, const float height, const unsigned int lifeLevel, const float speed, const unsigned int nbLife) : Ship(type), _level(level){
-
+Enemy::Enemy (const unsigned int type, const unsigned int level, const float x, const float y, const float width, const float height, const unsigned int lifeLevel, const float speed, const unsigned int nbLife) : Ship(type), _level(level)
+{
+    _time.Reset();
     setPosition(x, y);
     _lifeLevel = lifeLevel;
+    _nbLife = nbLife;
     _speed = speed;
     _direction =  ENEMIES_DIRECTION;
     _width = width;
+    cout << _type << " : " << _width << endl;
     _height = height;
 }
 
@@ -43,12 +46,22 @@ string Enemy::toString(){
     return "ENEMY : " + Ship::toString();
 }
 
+void Enemy::difficultyImpact(const unsigned int difficulty)
+{
+    _lifeLevel *= difficulty;
+
+}
+
 //
 // ACCESSOR METHODS
 //
 
 unsigned int Enemy::getLevel() const{
     return _level;
+}
+
+std::string Enemy::getDirection() const{
+    return _direction;
 }
 
 //
@@ -64,5 +77,5 @@ Enemy* Enemy::Kamikaze(const unsigned int level){
 }
 
 Enemy* Enemy::Helicopter(const unsigned int level){
-     return new Enemy(ENEMY_TYPE[2], level, 0, 0, ENEMY_WIDTH[0], ENEMY_HEIGHT[2], ENEMY_LIFE_LEVEL[2], ENEMY_SPEED[2], ENEMY_NB_LIFE );;
+     return new Enemy(ENEMY_TYPE[2], level, 0, 0, ENEMY_WIDTH[2], ENEMY_HEIGHT[2], ENEMY_LIFE_LEVEL[2], ENEMY_SPEED[2], ENEMY_NB_LIFE );;
 }

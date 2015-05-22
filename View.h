@@ -27,6 +27,7 @@ protected:
     std::map<std::string, sf::Sprite> _spritesList;
     std::map<std::string, sf::Image> _imagesList;
 
+    unsigned int cptBlastSprite;
 
 // CONSTRUCTOR AND DESTRUCTOR
 //
@@ -60,7 +61,6 @@ public :
     void init(GameModel* modele, sf::RenderWindow * window);
 
     virtual void initButtons();
-
 
 };
 
