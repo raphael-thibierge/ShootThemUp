@@ -19,7 +19,7 @@ class ViewGame : virtual public View
 private :
     int _backgroundY;
     sf::Clock _transitionClock;
-
+    unsigned int _cptSprite;
 
 // CONSTRUCTOR AND DESTRUCTOR
 //

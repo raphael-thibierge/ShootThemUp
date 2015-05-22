@@ -13,7 +13,22 @@ using namespace std;
 //
 // CONSTRUCTOR AND DESTRUCTOR
 //
-ViewIntroduction::ViewIntroduction(){}
+ViewIntroduction::ViewIntroduction()
+{
+    _time.Reset();
+
+
+        // background
+    _imagesList.insert(make_pair("background", sf::Image()));
+    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
+
+    _spritesList.insert(make_pair("background", sf::Sprite()));
+    _spritesList["background"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetPosition(0,0);
+
+
+}
 
 ViewIntroduction::~ViewIntroduction(){}
 
@@ -32,7 +47,10 @@ int ViewIntroduction::treatEventSFML()
  {
     showViewSFML();
 
-    int returnvalue = 0;
+    int returnValue = 1;
+
+    if (_time.GetElapsedTime() > TIME_INTRODUCTION)
+        returnValue = 0;
 
     sf::Event event;
 
@@ -42,7 +60,23 @@ int ViewIntroduction::treatEventSFML()
         switch (event.Type)
         {
         case sf::Event::Closed :
-            returnvalue = 111;
+            returnValue = 111;
+            break;
+
+        case sf::Event::KeyPressed :
+            switch (event.Key.Code)
+            {
+
+                case sf::Key::Space:
+                    returnValue = 0;
+                    break;
+
+                case sf::Key::Escape :
+                    returnValue = 0;
+                    break;
+                default :
+                    break;
+        }
             break;
 
         default :
@@ -50,7 +84,7 @@ int ViewIntroduction::treatEventSFML()
         }
     }
 
-    return returnvalue;
+    return returnValue;
  }
 
 void ViewIntroduction::showViewTerminal(){
@@ -91,6 +125,7 @@ cout<<"                           \\$$"   <<endl;
 
 void ViewIntroduction::showViewSFML()
 {
+    _window->Draw(_spritesList["background"]);
 }
 
 void ViewIntroduction::initButtons()

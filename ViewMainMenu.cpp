@@ -139,7 +139,12 @@ int ViewMainMenu::treatEventSFML()
             break;
         }
 
-
+            case sf::Event::KeyPressed :
+                if (event.Key.Code == Key::Escape)
+                {
+                    returnValue = 0;
+                }
+                break;
             default:
                 break;
 

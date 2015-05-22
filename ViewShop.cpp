@@ -116,7 +116,7 @@ int ViewShop::treatEvent()
 
 int ViewShop::treatEventSFML()
 {
-    int returnvalue = 1;
+    int returnValue = 1;
 
     sf::Event event;
 
@@ -126,12 +126,11 @@ int ViewShop::treatEventSFML()
         switch (event.Type)
         {
         case sf::Event::Closed :
-            returnvalue = 111;
+            returnValue = 111;
             break;
 
         case sf::Event::MouseButtonPressed :
         {
-
 
             int mouseX = event.MouseButton.X ;
             int mouseY = event.MouseButton.Y ;
@@ -139,66 +138,66 @@ int ViewShop::treatEventSFML()
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_1, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeBullet(1);
-                returnvalue = 1;
+                returnValue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_1, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeBullet(2);
-                returnvalue = 1;
+                returnValue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_1, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeBullet(3);
-                returnvalue = 1;
+                returnValue = 1;
             }
             // UPGRADE SHIP
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_2, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShip(1);
-                returnvalue = 1;
+                returnValue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_2, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShip(2);
-                returnvalue = 1;
+                returnValue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_2, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShip(3);
-                returnvalue = 1;
+                returnValue = 1;
             }
             // UPGRADE SHIELD
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_3, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShield(1);
-                returnvalue = 1;
+                returnValue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_3, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShield(2);
-                returnvalue = 1;
+                returnValue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_3, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShield(3);
-                returnvalue = 1;
+                returnValue = 1;
             }
             // LIFE
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_4, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->buyBomb();
-                returnvalue = 1;
+                returnValue = 1;
             }
             // BOMB
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_5, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->buyLife();
-                returnvalue = 1;
+                returnValue = 1;
             }
             // QUIT
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_6, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
-                returnvalue = 0;
+                returnValue = 0;
             }
 
 
@@ -207,12 +206,19 @@ int ViewShop::treatEventSFML()
 
             break;
         }
+        case sf::Event::KeyPressed :
+                if (event.Key.Code == sf::Key::Escape)
+                {
+                    returnValue = 0;
+                }
+                break;
+
         default :
             break;
         }
     }
 
-    return returnvalue;
+    return returnValue;
 }
 
 void ViewShop::showViewTerminal()

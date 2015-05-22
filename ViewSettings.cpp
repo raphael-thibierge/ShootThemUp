@@ -121,7 +121,7 @@ int ViewSettings::treatEvent(){
 
 int ViewSettings::treatEventSFML()
 {
-    int returnvalue = 1;
+    int returnValue = 1;
 
     sf::Event event;
 
@@ -131,7 +131,7 @@ int ViewSettings::treatEventSFML()
         switch (event.Type)
         {
             case sf::Event::Closed :
-                returnvalue = 111;
+                returnValue = 111;
                 break;
 
             case sf::Event::MouseButtonPressed :
@@ -151,43 +151,43 @@ int ViewSettings::treatEventSFML()
 
                 if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_QUIT_X, SETTINGSVIEW_QUIT_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 {
-                    returnvalue = 0;
+                    returnValue = 0;
                 }
 
                 if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_DIFFICULTY_1_X, SETTINGSVIEW_DIFFICULTY_1_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 {
 
-                    returnvalue = 1;
+                    returnValue = 1;
                     _modele->getSettings()->changeDifficulty(1);
                 }
 
                 if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_DIFFICULTY_2_X, SETTINGSVIEW_DIFFICULTY_2_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 {
-                    returnvalue = 1;
+                    returnValue = 1;
                     _modele->getSettings()->changeDifficulty(2);
                 }
 
                 if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_DIFFICULTY_3_X, SETTINGSVIEW_DIFFICULTY_3_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 {
-                    returnvalue = 1;
+                    returnValue = 1;
                     _modele->getSettings()->changeDifficulty(3);
                 }
 
                 if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_NBLIFE_1_X, SETTINGSVIEW_NBLIFE_1_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 {
-                    returnvalue = 1;
+                    returnValue = 1;
                     _modele->getSettings()->changeNbLife(3);
                 }
 
                 if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_NBLIFE_2_X, SETTINGSVIEW_NBLIFE_2_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 {
-                    returnvalue = 1;
+                    returnValue = 1;
                     _modele->getSettings()->changeNbLife(5);
                 }
 
                 if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_NBLIFE_3_X, SETTINGSVIEW_NBLIFE_3_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 {
-                    returnvalue = 1;
+                    returnValue = 1;
                     _modele->getSettings()->changeNbLife(7);
                 }
 
@@ -195,12 +195,18 @@ int ViewSettings::treatEventSFML()
                 break;
             }
 
+            case sf::Event::KeyPressed :
+                if (event.Key.Code == sf::Key::Escape)
+                {
+                    returnValue = 0;
+                }
+                break;
         default :
             break;
         }
     }
 
-    return returnvalue;
+    return returnValue;
 }
 
 void ViewSettings::showViewTerminal(){

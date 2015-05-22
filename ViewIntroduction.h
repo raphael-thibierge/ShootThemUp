@@ -14,6 +14,8 @@
 
 class ViewIntroduction : public virtual View
 {
+private:
+    sf::Clock _time;
 
 // CONSTRUCTOR AND DESTRUCTOR
 //

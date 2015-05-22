@@ -30,7 +30,7 @@ int ViewBestScores::treatEvent()
 
 int ViewBestScores::treatEventSFML()
 {
-    int returnvalue = 1;
+    int returnValue  = 1;
 
     sf::Event event;
 
@@ -40,7 +40,7 @@ int ViewBestScores::treatEventSFML()
         switch (event.Type)
         {
         case sf::Event::Closed :
-            returnvalue = 111;
+            returnValue = 111;
             break;
 
         case sf::Event::MouseButtonPressed :
@@ -50,16 +50,22 @@ int ViewBestScores::treatEventSFML()
 
             if (mouseOnButton(mouseX, mouseY, BUTTON_BESTSCORES_QUIT_POSITION_X, BUTTON_BESTSCORES_QUIT_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
-                returnvalue = 0;
+                returnValue = 0;
             }
             break;
         }
+
+        case sf::Event::KeyPressed :
+             if (event.Key.Code == sf::Key::Escape)
+             {
+                 returnValue = 0;
+             }
         default :
             break;
         }
     }
 
-    return returnvalue;
+    return returnValue;
 }
 
 

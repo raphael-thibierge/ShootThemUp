@@ -33,7 +33,7 @@ public:
 //
 
     // player use a bomb if he has one
-    void useBomb(std::list<Enemy*> &enemyList, const int difficulty);
+    void useBomb(std::list<Enemy*> &enemyList, std::list<Blast*> &blastList, const int difficulty);
 
     void nextLevel();
 
@@ -47,15 +47,7 @@ public:
 
     void activateShild();
 
-    // payer loose one life
-    void looseLife();
-
-    // affect damage to player
-    void affectDamage(const unsigned int damage);
-
     void resetPosition();
-
-    void resetLifeLevel();
 
     // add money in function of the current score
     void addMoney();
