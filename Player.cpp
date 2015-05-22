@@ -26,7 +26,7 @@ void Player::initPlayer()
     _bombNumber = 10 ; // provisoire, sinon 0
     _direction = PLAYER_DIRECTION;
     _score = 0;
-    _money = 0;
+    _money = 10000000;
     _speed = PLAYER_SPEED;
     _shield = 0;
     _level = 0;

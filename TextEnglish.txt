@@ -57,3 +57,6 @@ shildLevel Shield Level
 lifeLevel Life level
 nbLife Life's number
 nbBomb Bomb's number
+noShield No Shield
+alreadyShield Shield already buy
+nbLifeMore Additional Number Life

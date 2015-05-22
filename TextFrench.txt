@@ -18,7 +18,7 @@ shoot Tirer
 nothing Rien
 shild Bouclier
 escape Abandonner
-changeDifficulty Changer la difficulté
+changeDifficulty Changer la difficulte
 changeNBLifeInit Changer le nombre de vie initiales
 changeLanguage Changer la langue
 upgradeMainShoot Amelioration du tir principal
@@ -30,21 +30,21 @@ upgradeShip Amelioreation du vaisseau
 upgradeShiplvl2 niveau 2
 upgradeShiplvl3 niveau 3
 upgradeShiplvl4 niveau 4
-upgradeShield Amélioration du bouclier
+upgradeShield Amelioration du bouclier
 upgradeShieldlvl1 niveau 1
 upgradeShieldlvl2 niveau 2
 upgradeShieldlvl3 niveau 3
-purchaseRight Achat effectué !
+purchaseRight Achat effectue !
 purchaseWrong Echec de l'achat !
-difficulty Difficulté
+difficulty Difficulte
 nbLifeInit Nombre de vie initiales
 availableLanguages Langues disponibles
 english Anglais
-french Français
-successfullChange Modification réussie
+french Francais
+successfullChange Modification reussie
 fail Echec !
 newValue Nouvelle valeur
-valueLower La valeur doit être inféieur à
+valueLower La valeur doit être infeieur a
 bomb Utiliser une bombe
 money Argent
 score Score
@@ -57,4 +57,6 @@ shildLevel Niveau du bouclier
 lifeLevel Niveau de vie
 nbLife Nombre de vies
 nbBomb Nombre de bombes
-
+noShield Aucun Bouclier
+alreadyShield Bouclier achete
+nbLifeMore Nombre de vie supplémentaire

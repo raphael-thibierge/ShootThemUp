@@ -126,6 +126,8 @@ cout<<"                           \\$$"   <<endl;
 void ViewIntroduction::showViewSFML()
 {
     _window->Draw(_spritesList["background"]);
+    displayText("FARM THEM UP", INTROVIEW_TITLE_X,INTROVIEW_TITLE_Y);
+
 }
 
 void ViewIntroduction::initButtons()
