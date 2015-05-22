@@ -70,7 +70,7 @@ void View::displayText(const std::string text,const float positionX,const float 
 
 void View::displayTitle( const std::string text, const float positionX, const float positionY)
 {
-
+    displayText(text, positionX, positionY);
 }
 
 
