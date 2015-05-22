@@ -19,19 +19,22 @@ class Boss : public Enemy
 // CONCSTRUCTOR/DESTRUCTOR
 //
 public:
-    
+
     Boss();
-    
+
     virtual ~Boss();
-    
-    
+
+
 // METHODS
 //
 public:
-    
+
     void move();
-    
-    
+
+    void shoot(std::list<Bullet*> &bulletList);
+
+
+
 };
 
 

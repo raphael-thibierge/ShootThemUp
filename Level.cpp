@@ -287,7 +287,7 @@ void Level::randomEnemiesShoot()
 
         if (_boss != nullptr)
         {
-            _boss->Enemy::shoot(&_bulletsList);
+            _boss->shoot(_bulletsList);
         }
 
 

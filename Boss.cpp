@@ -7,7 +7,7 @@
 //
 
 #include "Boss.h"
-
+using namespace std;
 //
 // CONCSTRUCTOR/DESTRUCTOR
 //
@@ -48,3 +48,13 @@ void Boss::move()
     }
 }
 
+void Boss::shoot(list<Bullet*> &bulletList)
+{
+    if (_time.GetElapsedTime() > TIME_BOSS_FIRE_RATE)
+    {
+        bulletList.push_back(new Bullet(BOSS_BULLET_TYPE, "SOUTH", _X+_width/2, _Y+_height , "boss" ));
+        bulletList.push_back(new Bullet(BOSS_BULLET_TYPE, "SOUTH-EST",  _X+_width/2, _Y+_height, "boss" ));
+        bulletList.push_back(new Bullet(BOSS_BULLET_TYPE, "SOUTH-WEST",  _X+_width/2, _Y+_height, "boss" ));
+        _time.Reset();
+    }
+}

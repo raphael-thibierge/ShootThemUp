@@ -56,6 +56,7 @@ const float BOSS_WIDTH = 50;
 const unsigned int BOSS_LIFELEVEL = 300;
 const float BOSS_SPEED = 5;
 const unsigned int BOSS_NBLIFE = 1;
+const unsigned int BOSS_BULLET_TYPE = 3;
 
 
 // ======== BULLETS ============
@@ -203,7 +204,7 @@ const float TIME_PLAYER_FIRE_RATE = 0.2f;
 const float TIME_ENEMY_FIRE_RATE = 0.8f;
 const float TIME_SPAWN_RATE =  0.4f;
 const float TIME_INTRODUCTION = 2.0f;
-
+const float TIME_BOSS_FIRE_RATE = 1.0f;
 //
 
 #endif // CONSTANTE_H_INCLUDED
