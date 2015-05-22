@@ -6,6 +6,10 @@ Blast::Blast(const unsigned int type, const std::string direction, const float s
 {
     _time.Reset();
     setPosition(X, Y);
+
+    _soundBuffer.LoadFromFile(SOUND_BLAST);
+    _sound.SetBuffer(_soundBuffer);
+    playSound();
 }
 
 void Blast::move()
@@ -21,4 +25,9 @@ unsigned int Blast::getType()
 float Blast::getTime()
 {
     return _time.GetElapsedTime();
+}
+
+void Blast::playSound()
+{
+    _sound.Play();
 }

@@ -16,18 +16,14 @@ private:
     unsigned int _score;
     float _money;
     unsigned int _level;
-    unsigned int _shild;
+    unsigned int _shield;
     unsigned int _bombNumber;
 
 public:
 
-// CONSTRUCTOR AND DESTRUCTOR
+// CONSTRUCTOR
 //
-
 	Player ();
-
-    virtual ~Player ();
-
 
 // METHODS
 //
@@ -63,6 +59,8 @@ public:
     std::string toString() override;
 
 
+
+
 private :
 
     void initPlayer();
@@ -93,7 +91,7 @@ public :
 
     void setLevel( const unsigned int level);
 
-    void setShield( const unsigned int shild);
+    void setShield( const unsigned int shield);
 
     void setBulletType( const unsigned int bulletType);
 

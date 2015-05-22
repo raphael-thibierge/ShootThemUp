@@ -74,8 +74,7 @@ void GameModel::nextStep()
         // if there is a level
         // --> the player is playing
         if ( _level != nullptr)
-        {
-            // game constinue
+        {// game constinue
             _level->runGame();
 
             // if the player win, he plays the next level

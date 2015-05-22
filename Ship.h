@@ -21,6 +21,11 @@ protected:
     float _speed;
     std::string _direction;
     sf::Clock _time;
+    bool _loosingLife;
+
+    // shoot sound
+    sf::SoundBuffer _soundBuffer;
+    sf::Sound _sound;
 
 public:
 
@@ -57,8 +62,10 @@ public:
 
     void resetLifeLevel();
 
+    // to know if we are in the transition
+    bool isLosingLife();
 
-
+    void playSound();
 
 
 //  ACCESSOR METHODS
@@ -75,6 +82,8 @@ public:
     void setType(const unsigned int value);
 
     float getSpeed() const;
+
+    float getTime() const;
 
     Blast * getBlast();
 

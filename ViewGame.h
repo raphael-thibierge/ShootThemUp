@@ -42,8 +42,9 @@ public:
     void showTransitionSFML();
 
     // screen when player loose
-    void showLooseConsole();
-    void showLooseSFML();
+    void showLoseConsole();
+    void showLoseSFML();
+    void showLifeTransitionSFML();
 
     // display the background and loop it to have a infinite scolling
     void displayScrollingBackground();

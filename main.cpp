@@ -22,6 +22,10 @@ int main(int argc, const char * argv[]) {
     ViewsController controller(&window);
     controller.init(&model);
 
+    sf::Music test (44100);
+    test.OpenFromFile(GAME_MUSIC);
+    test.Play();
+
     while (window.IsOpened())
     {
         while (controller.treatEvent()) {

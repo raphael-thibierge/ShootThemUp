@@ -11,6 +11,7 @@ Level::Level (unsigned int level, Player * player, unsigned int * difficultyPoin
     _nbEnnemies = LEVEL_NB_ENEMIES;
     _level = level;
     _time.Reset();
+    _lifeTransition.Reset();
     _enemiesCpt = 0;
     _player->resetLifeLevel();
     _boss = nullptr;
@@ -19,20 +20,28 @@ Level::Level (unsigned int level, Player * player, unsigned int * difficultyPoin
 Level::~Level ()
 {
     for(auto enemy : _enemiesList)
+    {
         if (enemy != nullptr)
             delete enemy;
-        else
-            cout << "enemy = nullptr" << endl;
+        enemy = nullptr;
+    }
     _enemiesList.clear();
 
     for(auto bullet : _bulletsList)
+    {
         if (bullet != nullptr)
             delete bullet;
-        else
-            cout << "bullet = nullptr" << endl;
+        bullet = nullptr;
+    }
     _bulletsList.clear();
 
-    // provisoir
+    for (auto blast : _blastList)
+    {
+        if (blast != nullptr)
+            delete blast;
+        blast = nullptr;
+    }
+
     if (_boss != nullptr)
         delete _boss;
     _boss = nullptr;
@@ -52,7 +61,7 @@ void Level::generateEnemy()
 
     // if we can create one more enemy
     if (_enemiesCpt < _nbEnnemies && _time.GetElapsedTime() > TIME_SPAWN_RATE )
-        {
+    {
         _time.Reset();
         // 1/2 chance to create an enemy
         int random = rand()%(2);
@@ -307,27 +316,29 @@ void Level::randomEnemiesShoot()
 
 void Level::runGame(){
 
-    // generate enemies
-    generateEnemy();
+    if (!_player->isLosingLife())
+    {
+        // generate enemies
+        generateEnemy();
 
-    // random shoot of enemies
-    randomEnemiesShoot();
+        // random shoot of enemies
+        randomEnemiesShoot();
 
-    // bullet's move
-    moveAllBullets();
+        // bullet's move
+        moveAllBullets();
 
-    // checking for collision
-    collisionManager();
+        // checking for collision
+        collisionManager();
 
-    // then enemies'move
-    moveAllEnemies();
+        // then enemies'move
+        moveAllEnemies();
 
-    // blasts'move
-    moveAllBlast();
+        // blasts'move
+        moveAllBlast();
 
-    // checking a second time for collision
-    collisionManager();
-
+        // checking a second time for collision
+        collisionManager();
+    }
 }
 
 void Level::playerUseBomb(){

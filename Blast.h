@@ -15,16 +15,23 @@ private:
     float _speed;
     sf::Clock _time;
 
+    // blast sound
+    sf::SoundBuffer _soundBuffer;
+    sf::Sound _sound;
+
 public:
 
     Blast(const unsigned int type, const std::string _direction, const float speed, const float X, const float Y);
 
     void move();
 
-    // GETTERS AND SETTERS
+    void playSound();
+
     unsigned int getType();
 
     float getTime();
+
+
 };
 
 

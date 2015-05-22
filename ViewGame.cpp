@@ -231,30 +231,35 @@ int ViewGame::treatEventSFML()
             }
         }
 
-        const Input & input = _window->GetInput(); // input : const reference
+        if (!_modele->getPlayer()->isLosingLife())
+        {
 
-        // MOVEMENT
-        // UP
-        if (input.IsKeyDown(Key::Up)){
-            _modele->getPlayer()->move("NORTH");
-        }
-        // DOWN
-        if (input.IsKeyDown(Key::Down)){
-            _modele->getPlayer()->move("SOUTH");
-        }
-        //LEFT
-        if (input.IsKeyDown(Key::Left)){
-            _modele->getPlayer()->move("WEST");
-        }
-        //RIGHT
-        if (input.IsKeyDown(Key::Right)){
-            _modele->getPlayer()->move("EST");
-        }
 
-        // MAIN SHOOT
-        if (input.IsKeyDown(Key::Space)){
-            if (_modele->getLevel() != nullptr)
-                _modele->getLevel()->playerShoot();
+            const Input & input = _window->GetInput(); // input : const reference
+
+            // MOVEMENT
+            // UP
+            if (input.IsKeyDown(Key::Up)){
+                _modele->getPlayer()->move("NORTH");
+            }
+            // DOWN
+            if (input.IsKeyDown(Key::Down)){
+                _modele->getPlayer()->move("SOUTH");
+            }
+            //LEFT
+            if (input.IsKeyDown(Key::Left)){
+                _modele->getPlayer()->move("WEST");
+            }
+            //RIGHT
+            if (input.IsKeyDown(Key::Right)){
+                _modele->getPlayer()->move("EST");
+            }
+
+            // MAIN SHOOT
+            if (input.IsKeyDown(Key::Space)){
+                if (_modele->getLevel() != nullptr)
+                    _modele->getLevel()->playerShoot();
+            }
         }
     }
 
@@ -271,10 +276,10 @@ void ViewGame::showViewSFML()
         if (_modele->getPlayer()->getNbLife() > 0)
             showTransitionSFML();
         else
-            showLooseSFML();
+            showLoseSFML();
     }
 
-    else
+    else if (!_modele->getPlayer()->isLosingLife())
     {
         // BAACKGROUND
         displayScrollingBackground();
@@ -392,13 +397,16 @@ void ViewGame::showViewSFML()
             _spritesList["heart"].SetPosition(GAMEVIEW_HEART_X + GAMEVIEW_HEART_SIZE * i, GAMEVIEW_HEART_Y);
             _window->Draw(_spritesList["heart"]);
         }
-
+        // display bomb
         for (unsigned int i = 0 ; i < _modele->getPlayer()->getBombNumber() ; i++ )
         {
             _spritesList["bomb"].SetPosition(GAMEVIEW_BOMB_X + GAMEVIEW_BOMB_SIZE * i, GAMEVIEW_BOMB_Y);
             _window->Draw(_spritesList["bomb"]);
         }
         _cptSprite++;
+    }
+    else {
+        showLifeTransitionSFML();
     }
 }
 
@@ -410,7 +418,7 @@ void ViewGame::showViewTerminal()
         if (_modele->getPlayer()->getNbLife() > 0)
             showTransitionConsole();
         else
-            showLooseConsole();
+            showLoseConsole();
     }
     else
     {
@@ -464,7 +472,7 @@ void ViewGame::showTransitionSFML()
     _window->Draw(_spritesList["nextLevel"]);
 }
 
-void ViewGame::showLooseConsole()
+void ViewGame::showLoseConsole()
 {
 
 
@@ -482,10 +490,17 @@ void ViewGame::showLooseConsole()
 
 }
 
-void ViewGame::showLooseSFML()
+void ViewGame::showLoseSFML()
 {
     _window->Draw(_spritesList["youLoose"]);
 }
+
+void ViewGame::showLifeTransitionSFML()
+{
+    displayText(_language->getText("loseLife"), SCREEN_WIDTH / 3, SCREEN_HEIGHT/2);
+}
+
+
 
 
 void ViewGame::initButtons()

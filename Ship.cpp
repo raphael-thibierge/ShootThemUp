@@ -7,6 +7,10 @@ using namespace std;
 
 Ship::Ship (const unsigned int type) :_type(type) {
     _time.Reset();
+    _loosingLife = false;
+
+    _soundBuffer.LoadFromFile(SOUND_SHOT);
+    _sound.SetBuffer(_soundBuffer);
 }
 
 Ship::~Ship () {
@@ -80,7 +84,8 @@ void Ship::looseLife(){
     if (_nbLife > 0) {
         _nbLife--;
         resetLifeLevel();
-
+        _loosingLife = true;
+        _time.Reset();
     }
     else
         _nbLife = 0;
@@ -91,10 +96,31 @@ void Ship::resetLifeLevel(){
     if (_type <= 3 )
         _lifeLevel = PLAYER_LIFE_LEVEL;
 }
+
+bool Ship::isLosingLife()
+{ // return if the ship is loosing life
+
+    if (_loosingLife)
+    {   // if it's not finish return true
+        if (_time.GetElapsedTime() <= TIME_LIFE_TRANSITION)
+            return true;
+        else // the loosing life time is over
+            _loosingLife = false;
+
+    }
+    return false;
+}
+
+void Ship::playSound()
+{
+    _sound.SetVolume(15);
+    _sound.Play();
+}
+
+
+
 // Accessor methods
 //
-
-
 unsigned int Ship::getLifeLevel() const{
     return _lifeLevel;
 }
@@ -111,6 +137,10 @@ float Ship::getSpeed() const{
     return _speed;
 }
 
+float Ship::getTime() const{
+    return _time.GetElapsedTime();
+}
+
 void Ship::setLifeLevel(unsigned int lifeLevel) {
     _lifeLevel = lifeLevel;
 }
@@ -122,6 +152,7 @@ void Ship::setType(const unsigned int value){
 Blast * Ship::getBlast(){
     return new Blast(_type, _direction, _speed, _X, _Y);
 }
+
 
 
 

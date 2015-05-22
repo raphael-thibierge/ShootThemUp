@@ -206,9 +206,9 @@ const float TIME_ENEMY_FIRE_RATE = 0.8f;
 const float TIME_SPAWN_RATE =  0.4f;
 const float TIME_INTRODUCTION = 2.0f;
 const float TIME_BOSS_FIRE_RATE = 1.0f;
-//
+const float TIME_LIFE_TRANSITION = 2.0f;
 
-#endif // CONSTANTE_H_INCLUDED
+// ======== BLAST ============
 const float BLAST_DURATION = 0.2f;
 const std::string IMAGE_BLAST[1] = { "./images/explosion.png" };
 const int BLAST_IMAGE_WIDTH = 200;
@@ -218,3 +218,9 @@ const int BLAST_SPRITE_HEIGHT = 200;
 const int BLAST_NBSPRITES = 3;
 const int BLAST_SPRITES_X[3] = { 0, 200, 400 };
 const int BLAST_SPRITES_Y[3] = { 0, 0, 0 };
+
+// ======== SOUND ============
+const std::string GAME_MUSIC = "./sounds/vavrek.com_journeys_end_1.0_inst.ogg";
+const std::string SOUND_SHOT =  "./sounds/sf_laser_14.ogg";
+const std::string SOUND_BLAST =  "./sounds/sf_canon_01.ogg";
+#endif // CONSTANTE_H_INCLUDED

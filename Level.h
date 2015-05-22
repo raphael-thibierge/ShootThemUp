@@ -21,7 +21,8 @@ private:
 
     Boss * _boss;
 
-    sf::Clock _time ;
+    sf::Clock _time;
+    sf::Clock _lifeTransition;
 
 public:
 

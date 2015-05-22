@@ -8,32 +8,13 @@ using namespace std;
 
 Player::Player () : Ship::Ship(0)
 {
-    //cout << "\n=====================" << endl;
-    //cout << "CONSTRUCTOR PLAYER" << endl;
     initPlayer();
 }
 
 
-Player::~Player ()
-{
-    //cout << "\n=====================" << endl;
-    //cout << "DESTRUCTOR PLAYER" << endl;
-}
-
 //
 // Methods
 //
-
-
-void Player::shoot (list<Bullet*> * bulletList)
-{
-    if (_time.GetElapsedTime() >= TIME_PLAYER_FIRE_RATE )
-    {
-        bulletList->push_back(new Bullet(_bulletType, _direction, _X+_width/2, _Y,  "player"));
-        _time.Reset();
-    }
-}
-
 
 void Player::initPlayer()
 {
@@ -47,12 +28,25 @@ void Player::initPlayer()
     _score = 0;
     _money = 0;
     _speed = PLAYER_SPEED;
-    _shild = 0;
+    _shield = 0;
     _level = 0;
 
     // standart position of player
     resetPosition();
 }
+
+void Player::shoot (list<Bullet*> * bulletList)
+{
+    if (_time.GetElapsedTime() >= TIME_PLAYER_FIRE_RATE )
+    {
+        bulletList->push_back(new Bullet(_bulletType, _direction, _X+_width/2, _Y,  "player"));
+        _time.Reset();
+        playSound();
+    }
+}
+
+
+
 
 
 void Player::useBomb(list<Enemy*> & enemyList, std::list<Blast*> &blastList, const int difficulty)
@@ -123,8 +117,8 @@ void Player::score(Enemy * enemy, const unsigned int difficultyLevel)
 
 void Player::activateShild()
 {
-    _lifeLevel += _shild;
-    _shild = 0;
+    _lifeLevel += _shield;
+    _shield = 0;
 }
 
 void Player::resetPosition(){
@@ -148,6 +142,8 @@ void Player::addLife(const unsigned int number){
 void Player::pay(float value){
     _money -= value;
 }
+
+
 
 
 string Player::toString()
@@ -185,7 +181,7 @@ unsigned int Player::getLevel() const
 
 unsigned int Player::getShield() const
 {
-    return _shild;
+    return _shield;
 }
 
 float Player::getMoney() const
@@ -220,9 +216,9 @@ void Player::setLevel( const unsigned int level)
     _level=level;
 }
 
-void Player::setShield( const unsigned int shild)
+void Player::setShield( const unsigned int shield)
 {
-    _shild=shild;
+    _shield=shield;
 }
 
 void Player::setBulletType(const unsigned int bulletType)

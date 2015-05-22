@@ -39,6 +39,7 @@ void Enemy::shoot (list<Bullet*> * bulletList)
     {
         bulletList->push_back(new Bullet(_type, _direction, _X+_width/2, _Y+_height, "enemy"));
         _time.Reset();
+        playSound();
     }
 }
 

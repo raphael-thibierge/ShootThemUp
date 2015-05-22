@@ -24,13 +24,15 @@ ViewsController::ViewsController(sf::RenderWindow* window) : _mainWindow(window)
     _allViews.insert(make_pair("BestScores", new ViewBestScores));
     _quit = false;
 
-
+    _music.OpenFromFile(GAME_MUSIC);
+    playMusic(true);
 }
 
 ViewsController::~ViewsController(){
     _modele = nullptr;
     _view = nullptr;
     _mainWindow = nullptr;
+
 
     for (auto view : _allViews) {
         //the gameview is not in the queue
@@ -151,5 +153,12 @@ void ViewsController::init(GameModel *modele){
 
     // at beginning of the program, it's the introduction view
     _view = _allViews["Introduction"];
+
+}
+void ViewsController::playMusic(bool loop)
+{
+    _music.SetLoop(loop);
+    _music.SetVolume(10);
+    _music.Play();
 
 }
