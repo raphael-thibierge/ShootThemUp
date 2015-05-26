@@ -16,7 +16,6 @@ Bullet::Bullet(const unsigned int type) : _type(type)
 }
 
 Bullet::~Bullet () {
-    cout << __FUNCTION__ << endl ;
 }
 
 

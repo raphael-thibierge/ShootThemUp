@@ -105,7 +105,7 @@ bool GameModel::loadGame ()
     // chargement d'une partie depuis un fichier
 
     fstream gameFile;
-    gameFile.open("GameFile.txt", ios::in);
+    gameFile.open("./files/GameFile.txt", ios::in);
     string line;
 
     _player = new Player;
@@ -156,7 +156,7 @@ void GameModel::saveGame ()
     fstream gameFile;
 
     // open or create gamefile
-    gameFile.open("GameFile.txt", ios::out);
+    gameFile.open("./files/GameFile.txt", ios::out);
 
     // SETTINGS
     // _difficulty

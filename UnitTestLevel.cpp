@@ -17,19 +17,6 @@
 #include "Enemy.h"
 #include "Bullet.h"
 
-#include "Player.cpp"
-#include "Ship.cpp"
-#include "RectanglePosition.cpp"
-#include "Level.cpp"
-#include "GameModel.cpp""
-#include "Setting.cpp"
-#include "Language.cpp"
-#include "Shop.cpp"
-#include "Enemy.cpp"
-#include "Bullet.cpp"
-
-
-
 
 
 BOOST_AUTO_TEST_CASE(PlayerAndEnemyShoot)
@@ -111,17 +98,6 @@ BOOST_AUTO_TEST_CASE(CollisionWithEnemy){
     BOOST_CHECK(p.Ship::collision(e) == false );
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 BOOST_AUTO_TEST_CASE(CollisionManagement)
 {

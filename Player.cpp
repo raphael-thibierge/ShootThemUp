@@ -23,10 +23,10 @@ void Player::initPlayer()
     _nbLife = 0;
     _width = PLAYER_WIDTH;
     _height = PLAYER_HEIGHT;
-    _bombNumber = 10 ; // provisoire, sinon 0
+    _bombNumber = 5 ; // provisoire, sinon 0
     _direction = PLAYER_DIRECTION;
     _score = 0;
-    _money = 10000000;
+    _money = 100;
     _speed = PLAYER_SPEED;
     _shield = 0;
     _level = 0;

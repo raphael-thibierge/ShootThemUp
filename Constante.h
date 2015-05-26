@@ -9,7 +9,7 @@
 const int PLAYER_LIFE_LEVEL = 300;
 const int PLAYER_NB_LIFE = 3;
 const int PLAYER_WIDTH = 89;
-const int PLAYER_HEIGHT = 133;
+const int PLAYER_HEIGHT = 168;
 const int PLAYER_SPEED = 10;
 
 // ======== LEVEL ============
@@ -22,7 +22,7 @@ const int SCREEN_WIDTH = 780;
 
 // ======== BEST SCORES ============
 const int BEST_SCORE_NB = 5;
-const std::string BEST_SCORE_FILE = "bestScoreFile.txt";
+const std::string BEST_SCORE_FILE = "./files/bestScoreFile.txt";
 
 const int LABEL_BESTSCORES_POSITION_X = 200;
 const int LABEL_BESTSCORES_POSITION_Y = 200;
@@ -39,8 +39,8 @@ const std::string ENEMIES_DIRECTION = "SOUTH";
 const int MAX_DIFFICULTY = 3;
 
 // ======== ENEMIES ============
-const int ENEMY_WIDTH[3] = { 155, 77, 89 };
-const int ENEMY_HEIGHT[3] = { 157, 133, 138 };
+const int ENEMY_WIDTH[3] = { 155, 76, 87 };
+const int ENEMY_HEIGHT[3] = { 157, 134, 138 };
 const int ENEMY_LIFE_LEVEL[3] = { 50, 100, 200 };
 const int ENEMY_SPEED[3] = { 4, 8, 6 };
 const int ENEMY_TYPE[3] = {10, 11, 12};
@@ -93,7 +93,7 @@ const std::string IMAGE_BACKGROUD_SETTINGS = "./images/Vache.jpg";
 
 const std::string IMAGE_BUTTONS = "./images/button.png";
 const std::string IMAGE_BUTTONS_ACTIVE = "./images/buttonActive.png";
-const std::string IMAGE_PLAYER_SHIP = "./images/tracteur.png";
+const std::string IMAGE_PLAYER_SHIP = "./images/perso_principal.png";
 const std::string IMAGE_ENEMY_SHIP[3] = {"./images/chicken.png" , "./images/mouton.png", "./images/cochon.png" };
 const std::string IMAGE_BULLET_0 = "./images/potato.png";
 const std::string IMAGE_NEXT_LEVEL = "./images/nextLevel.png";
@@ -123,7 +123,6 @@ const int BUTTON_SPRITE_ACTIVE_Y = 0;
 const int TEXT_SIZE = 22;
 
 
-
 // ======== GAME VIEW ============
 const int GAMEVIEW_HEART_SIZE = 48;
 const int GAMEVIEW_HEART_X = 10;
@@ -147,7 +146,7 @@ const int SETTINGSVIEW_TEXT_COLONNE_X = 10;
 const int SETTINGSVIEW_TITLE_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
 const int SETTINGSVIEW_TITLE_Y = 100;
 const int SETTINGSVIEW_LANGUAGE_Y = 250;
-const int SETTINGSVIEW_NBLIFE_Y = 10;
+const int SETTINGSVIEW_NBLIFE_Y = 350;
 const int SETTINGSVIEW_DIFFICULTY_Y = 450;
 
 const int SETTINGSVIEW_FRENCH_X = 250;
@@ -181,7 +180,7 @@ const int SHOPSVIEW_TITLE_Y = 100;
 
 const int SHOPVIEW_COLUMN_1 = 10;
 const int SHOPVIEW_COLUMN_2 = SCREEN_WIDTH / 3 + 3;
-const int SHOPVIEW_COLUMN_3 = 2*SCREEN_WIDTH/3 ;
+const int SHOPVIEW_COLUMN_3 = 2*SCREEN_WIDTH/3 + 100;
 const int SHOPVIEW_LINE_1 = 350;
 const int SHOPVIEW_LINE_2 = 450;
 const int SHOPVIEW_LINE_3 = 550;
@@ -199,7 +198,7 @@ const int SHOPSVIEW_MONEY_Y = SHOPSVIEW_TITLE_Y+80;
 
 
 // ======== INTRODUCTION VIEW ============
-const int INTROVIEW_TITLE_X = SCREEN_WIDTH/2-6;
+const int INTROVIEW_TITLE_X = SCREEN_WIDTH/3;
 const int INTROVIEW_TITLE_Y = SCREEN_HEIGHT/2;
 
 

@@ -99,7 +99,7 @@ void Level::generateEnemy()
             _enemiesCpt++;
         }
     }
-    if (_enemiesCpt == _nbEnnemies && _level % 3 == 3){
+    if (_enemiesCpt == _nbEnnemies && _level % 3 == 2){
         _boss = new Boss();
         _enemiesCpt++;
 
