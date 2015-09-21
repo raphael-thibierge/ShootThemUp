@@ -100,21 +100,21 @@ int ViewGame::treatEventSFML()
     else
     {
         Event event;
-        while (_window->GetEvent(event))
+        while (_window->pollEvent(event))
         {
-            switch (event.Type)
+            switch (event.type)
             {
                 case Event::KeyPressed :
-                    switch (event.Key.Code)
+                    switch (event.key.code)
                     {
-                        case Key::B :
+                        case Keyboard::B :
                             _modele->getLevel()->playerUseBomb();
                             break;
-                        case Key::S :
+                        case Keyboard::S :
                             _modele->getPlayer()->activateShild();
                             break;
 
-                        case Key::Escape :
+                        case Keyboard::Escape :
                             _modele->endCurrentGame();
                             returnValue = 0;
                             break;
@@ -135,33 +135,34 @@ int ViewGame::treatEventSFML()
 
         if (!_modele->getPlayer()->isLosingLife())
         {
+            
 
-
-            const Input & input = _window->GetInput(); // input : const reference
+            //const Input & input = _window->getInput(); // input : const reference
 
             // MOVEMENT
             // UP
-            if (input.IsKeyDown(Key::Up)){
+            if (Keyboard::isKeyPressed(Keyboard::Up)){
                 _modele->getPlayer()->move("NORTH");
             }
             // DOWN
-            if (input.IsKeyDown(Key::Down)){
+            if (Keyboard::isKeyPressed(Keyboard::Down)){
                 _modele->getPlayer()->move("SOUTH");
             }
             //LEFT
-            if (input.IsKeyDown(Key::Left)){
+            if (Keyboard::isKeyPressed(Keyboard::Left)){
                 _modele->getPlayer()->move("WEST");
             }
             //RIGHT
-            if (input.IsKeyDown(Key::Right)){
+            if (Keyboard::isKeyPressed(Keyboard::Right)){
                 _modele->getPlayer()->move("EST");
             }
 
             // MAIN SHOOT
-            if (input.IsKeyDown(Key::Space)){
+            if (Keyboard::isKeyPressed(Keyboard::Space)){
                 if (_modele->getLevel() != nullptr)
                     _modele->getLevel()->playerShoot();
             }
+            
         }
     }
 
@@ -222,8 +223,8 @@ void ViewGame::showViewSFML()
         displayScrollingBackground();
 
         // PLAYER
-        _spritesList["player"].SetPosition(_modele->getPlayer()->getX(), _modele->getPlayer()->getY());
-        _window->Draw(_spritesList["player"]);
+        _spritesList["player"].setPosition(_modele->getPlayer()->getX(), _modele->getPlayer()->getY());
+        _window->draw(_spritesList["player"]);
 
         int cptSprite;
         //ENEMIES
@@ -232,18 +233,18 @@ void ViewGame::showViewSFML()
             switch (enemy->getType())
             {
                 case 10 :
-                    _spritesList["enemy_1"].SetPosition(enemy->getX(), enemy->getY());
-                    _window->Draw(_spritesList["enemy_1"]);
+                    _spritesList["enemy_1"].setPosition(enemy->getX(), enemy->getY());
+                    _window->draw(_spritesList["enemy_1"]);
                     break;
 
                 case 11 :
-                    _spritesList["enemy_2"].SetPosition(enemy->getX(), enemy->getY());
-                    _window->Draw(_spritesList["enemy_2"]);
+                    _spritesList["enemy_2"].setPosition(enemy->getX(), enemy->getY());
+                    _window->draw(_spritesList["enemy_2"]);
                     break;
 
                 case 12 :
-                    _spritesList["enemy_3"].SetPosition(enemy->getX(), enemy->getY());
-                    _window->Draw(_spritesList["enemy_3"]);
+                    _spritesList["enemy_3"].setPosition(enemy->getX(), enemy->getY());
+                    _window->draw(_spritesList["enemy_3"]);
                     break;
 
                 default:
@@ -254,8 +255,8 @@ void ViewGame::showViewSFML()
         Boss * boss = _modele->getLevel()->getBoss();
         if (boss != nullptr)
         {
-            _spritesList["player"].SetPosition(boss->getX(), boss->getY());
-            _window->Draw(_spritesList["player"]);
+            _spritesList["boss"].setPosition(boss->getX(), boss->getY());
+            _window->draw(_spritesList["boss"]);
         }
 
         // BULLETS
@@ -265,43 +266,43 @@ void ViewGame::showViewSFML()
             {
 
                 case 0 :
-                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                    _window->Draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_1"]);
                     break;
 
                 case 1 :
-                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                    _window->Draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_1"]);
                     break;
 
                 case 2 :
-                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                    _window->Draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_1"]);
                     break;
 
                 case 3 :
-                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                    _window->Draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_1"]);
                     break;
 
                 case 4 :
-                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                    _window->Draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_1"]);
                     break;
 
                 case 10 :
-                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                    _window->Draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_1"]);
                     break;
 
                 case 11 :
-                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                    _window->Draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_1"]);
                     break;
 
                 case 12 :
-                    _spritesList["bullet_1"].SetPosition(bullet->getX(), bullet->getY());
-                    _window->Draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_1"]);
                     break;
 
                 default:
@@ -313,9 +314,9 @@ void ViewGame::showViewSFML()
         for (auto blast : *_modele->getLevel()->getBlast())
         {
              cptSprite = _cptSprite % BLAST_NBSPRITES ;
-            _spritesList["blast_1"].SetSubRect(sf::IntRect(BLAST_SPRITES_X[cptSprite],BLAST_SPRITES_Y[cptSprite], BLAST_SPRITES_X[cptSprite]+BLAST_SPRITE_WIDTH, BLAST_SPRITES_Y[cptSprite]+BLAST_SPRITE_HEIGHT));
-            _spritesList["blast_1"].SetPosition(blast->getX(), blast->getY());
-            _window->Draw(_spritesList["blast_1"]);
+            _spritesList["blast_1"].setTextureRect(sf::IntRect(BLAST_SPRITES_X[cptSprite],BLAST_SPRITES_Y[cptSprite], BLAST_SPRITES_X[cptSprite]+BLAST_SPRITE_WIDTH, BLAST_SPRITES_Y[cptSprite]+BLAST_SPRITE_HEIGHT));
+            _spritesList["blast_1"].setPosition(blast->getX(), blast->getY());
+            _window->draw(_spritesList["blast_1"]);
 
         }
 
@@ -331,14 +332,14 @@ void ViewGame::showViewSFML()
         // display lifes
         for (unsigned int i = 0 ; i < _modele->getPlayer()->getNbLife() ; i ++)
         {
-            _spritesList["heart"].SetPosition(GAMEVIEW_HEART_X + GAMEVIEW_HEART_SIZE * i, GAMEVIEW_HEART_Y);
-            _window->Draw(_spritesList["heart"]);
+            _spritesList["heart"].setPosition(GAMEVIEW_HEART_X + GAMEVIEW_HEART_SIZE * i, GAMEVIEW_HEART_Y);
+            _window->draw(_spritesList["heart"]);
         }
         // display bomb
         for (unsigned int i = 0 ; i < _modele->getPlayer()->getBombNumber() ; i++ )
         {
-            _spritesList["bomb"].SetPosition(GAMEVIEW_BOMB_X + GAMEVIEW_BOMB_SIZE * i, GAMEVIEW_BOMB_Y);
-            _window->Draw(_spritesList["bomb"]);
+            _spritesList["bomb"].setPosition(GAMEVIEW_BOMB_X + GAMEVIEW_BOMB_SIZE * i, GAMEVIEW_BOMB_Y);
+            _window->draw(_spritesList["bomb"]);
         }
         _cptSprite++;
     }
@@ -367,7 +368,7 @@ void ViewGame::showTransitionConsole()
 
 void ViewGame::showTransitionSFML()
 {
-    _window->Draw(_spritesList["nextLevel"]);
+    _window->draw(_spritesList["nextLevel"]);
 }
 
 void ViewGame::showLoseConsole()
@@ -390,7 +391,7 @@ void ViewGame::showLoseConsole()
 
 void ViewGame::showLoseSFML()
 {
-    _window->Draw(_spritesList["youLoose"]);
+    _window->draw(_spritesList["youLoose"]);
 }
 
 void ViewGame::showLifeTransitionSFML()
@@ -405,16 +406,16 @@ void ViewGame::displayScrollingBackground()
     _backgroundY += IMAGE_BACKGROUND_SPEED ;
 
     // display first background
-    _spritesList["background"].SetY(_backgroundY);
-    _window->Draw(_spritesList["background"]);
+    _spritesList["background"].setPosition(0, _backgroundY);
+    _window->draw(_spritesList["background"]);
 
     // if the window need a second image to display normal background
     if (_backgroundY > 0 && _backgroundY < SCREEN_HEIGHT)
     {
         // display a second one
         int positionY = _backgroundY - IMAGE_BACKGROUD_GAME_SIZE_Y +2 ;
-        _spritesList["background"].SetY(positionY);
-        _window->Draw(_spritesList["background"]);
+        _spritesList["background"].setPosition(0, positionY);
+        _window->draw(_spritesList["background"]);
     }
 
     // if background image is at the end of the screen
@@ -430,103 +431,115 @@ bool ViewGame::initSFML()
     //                       LOADING IMAGES
     // =======================================================
     //background
-    _imagesList.insert(make_pair("background", sf::Image()));
-    if (!_imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_GAME))
+    _imagesList.insert(make_pair("background", sf::Texture()));
+    if (!_imagesList["background"].loadFromFile(resourcePath() + IMAGE_BACKGROUD_GAME))
         return false;
 
     //player
-    _imagesList.insert(make_pair("player", sf::Image()));
-    if (!_imagesList["player"].LoadFromFile(IMAGE_PLAYER_SHIP))
+    _imagesList.insert(make_pair("player", sf::Texture()));
+    if (!_imagesList["player"].loadFromFile(resourcePath() + IMAGE_PLAYER_SHIP))
+        return false;
+
+        //boss
+    _imagesList.insert(make_pair("boss", sf::Texture()));
+    if (!_imagesList["boss"].loadFromFile(resourcePath() + IMAGE_BOSS_SHIP))
         return false;
 
     //enemies
-    _imagesList.insert(make_pair("enemy_1", sf::Image()));
-    if (!_imagesList["enemy_1"].LoadFromFile(IMAGE_ENEMY_SHIP[0]))
+    _imagesList.insert(make_pair("enemy_1", sf::Texture()));
+    if (!_imagesList["enemy_1"].loadFromFile(resourcePath() + IMAGE_ENEMY_SHIP[0]))
         return false;
 
-    _imagesList.insert(make_pair("enemy_2", sf::Image()));
-    if (!_imagesList["enemy_2"].LoadFromFile(IMAGE_ENEMY_SHIP[1]))
+    _imagesList.insert(make_pair("enemy_2", sf::Texture()));
+    if (!_imagesList["enemy_2"].loadFromFile(resourcePath() + IMAGE_ENEMY_SHIP[1]))
         return false;
 
-    _imagesList.insert(make_pair("enemy_3", sf::Image()));
-    if (!_imagesList["enemy_3"].LoadFromFile(IMAGE_ENEMY_SHIP[2]))
+    _imagesList.insert(make_pair("enemy_3", sf::Texture()));
+    if (!_imagesList["enemy_3"].loadFromFile(resourcePath() + IMAGE_ENEMY_SHIP[2]))
         return false;
 
     //bullets
-    _imagesList.insert(make_pair("bullet_1", sf::Image()));
-    if (!_imagesList["bullet_1"].LoadFromFile(IMAGE_BULLET_0))
+    _imagesList.insert(make_pair("bullet_1", sf::Texture()));
+    if (!_imagesList["bullet_1"].loadFromFile(resourcePath() + IMAGE_BULLET_0))
         return false;
 
     // nextLevel
-    _imagesList.insert(make_pair("nextLevel", sf::Image()));
-    if (!_imagesList["nextLevel"].LoadFromFile(IMAGE_NEXT_LEVEL))
+    _imagesList.insert(make_pair("nextLevel", sf::Texture()));
+    if (!_imagesList["nextLevel"].loadFromFile(resourcePath() + IMAGE_NEXT_LEVEL))
         return false;
 
     // youLoose
-    _imagesList.insert(make_pair("youLoose", sf::Image()));
-    if (!_imagesList["youLoose"].LoadFromFile(IMAGE_YOU_LOOSE))
+    _imagesList.insert(make_pair("youLoose", sf::Texture()));
+    if (!_imagesList["youLoose"].loadFromFile(resourcePath() + IMAGE_YOU_LOOSE))
         return false;
 
     // heart ( life )
-    _imagesList.insert(make_pair("heart", sf::Image()));
-    if (!_imagesList["heart"].LoadFromFile(IMAGE_HEART))
+    _imagesList.insert(make_pair("heart", sf::Texture()));
+    if (!_imagesList["heart"].loadFromFile(resourcePath() + IMAGE_HEART))
         return false;
 
     // bomb
-    _imagesList.insert(make_pair("bomb", sf::Image()));
-    if (!_imagesList["bomb"].LoadFromFile(IMAGE_BOMB))
+    _imagesList.insert(make_pair("bomb", sf::Texture()));
+    if (!_imagesList["bomb"].loadFromFile(resourcePath() + IMAGE_BOMB))
         return false;
 
     //blast
-    _imagesList.insert(make_pair("blast_1", sf::Image()));
-    if (!_imagesList["blast_1"].LoadFromFile(IMAGE_BLAST[0]))
+    _imagesList.insert(make_pair("blast_1", sf::Texture()));
+    if (!_imagesList["blast_1"].loadFromFile(resourcePath() + IMAGE_BLAST[0]))
         return false;
 
 
     // =======================================================
     //                       INIT SPRITE
     // =======================================================
+    
+    
     // backgound
     _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["background"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, IMAGE_BACKGROUD_GAME_SIZE_X, IMAGE_BACKGROUD_GAME_SIZE_Y));
-    _spritesList["background"].SetPosition(0,0);
+    _spritesList["background"].setTexture(_imagesList["background"]);
+    _spritesList["background"].setTextureRect(sf::IntRect(0,0, IMAGE_BACKGROUD_GAME_SIZE_X, IMAGE_BACKGROUD_GAME_SIZE_Y));
+    _spritesList["background"].setPosition(0,0);
     // player
     _spritesList.insert(make_pair("player", sf::Sprite()));
-    _spritesList["player"].SetImage(_imagesList["player"]);
-    _spritesList["player"].SetSubRect(sf::IntRect(0,0, PLAYER_WIDTH, PLAYER_HEIGHT));
+    _spritesList["player"].setTexture(_imagesList["player"]);
+    _spritesList["player"].setTextureRect(sf::IntRect(0,0, PLAYER_WIDTH, PLAYER_HEIGHT));
+    // player
+    _spritesList.insert(make_pair("boss", sf::Sprite()));
+    _spritesList["boss"].setTexture(_imagesList["boss"]);
+    _spritesList["boss"].setTextureRect(sf::IntRect(0,0, BOSS_WIDTH, BOSS_HEIGHT));
     // enemy
     _spritesList.insert(make_pair("enemy_1", sf::Sprite()));
-    _spritesList["enemy_1"].SetImage(_imagesList["enemy_1"]);
-    _spritesList["enemy_1"].SetSubRect(sf::IntRect(0,0, ENEMY_WIDTH[0], ENEMY_HEIGHT[0]));
+    _spritesList["enemy_1"].setTexture(_imagesList["enemy_1"]);
+    _spritesList["enemy_1"].setTextureRect(sf::IntRect(0,0, ENEMY_WIDTH[0], ENEMY_HEIGHT[0]));
     _spritesList.insert(make_pair("enemy_2", sf::Sprite()));
-    _spritesList["enemy_2"].SetImage(_imagesList["enemy_2"]);
-    _spritesList["enemy_2"].SetSubRect(sf::IntRect(0,0, ENEMY_WIDTH[1], ENEMY_HEIGHT[1]));
+    _spritesList["enemy_2"].setTexture(_imagesList["enemy_2"]);
+    _spritesList["enemy_2"].setTextureRect(sf::IntRect(0,0, ENEMY_WIDTH[1], ENEMY_HEIGHT[1]));
     _spritesList.insert(make_pair("enemy_3", sf::Sprite()));
-    _spritesList["enemy_3"].SetImage(_imagesList["enemy_3"]);
-    _spritesList["enemy_3"].SetSubRect(sf::IntRect(0,0, ENEMY_WIDTH[2], ENEMY_HEIGHT[2]));
+    _spritesList["enemy_3"].setTexture(_imagesList["enemy_3"]);
+    _spritesList["enemy_3"].setTextureRect(sf::IntRect(0,0, ENEMY_WIDTH[2], ENEMY_HEIGHT[2]));
     // bullet
     _spritesList.insert(make_pair("bullet_1", sf::Sprite()));
-    _spritesList["bullet_1"].SetImage(_imagesList["bullet_1"]);
-    _spritesList["bullet_1"].SetSubRect(sf::IntRect(0,0, BULLET_WIDTH[0], BULLET_HEIGHT[0]));
+    _spritesList["bullet_1"].setTexture(_imagesList["bullet_1"]);
+    _spritesList["bullet_1"].setTextureRect(sf::IntRect(0,0, BULLET_WIDTH[0], BULLET_HEIGHT[0]));
     // nextLevel
     _spritesList.insert(make_pair("nextLevel", sf::Sprite()));
-    _spritesList["nextLevel"].SetImage(_imagesList["nextLevel"]);
-    _spritesList["nextLevel"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["nextLevel"].setTexture(_imagesList["nextLevel"]);
+    _spritesList["nextLevel"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
     // youLoose
     _spritesList.insert(make_pair("youLoose", sf::Sprite()));
-    _spritesList["youLoose"].SetImage(_imagesList["youLoose"]);
-    _spritesList["youLoose"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["youLoose"].setTexture(_imagesList["youLoose"]);
+    _spritesList["youLoose"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
     // heart
     _spritesList.insert(make_pair("heart", sf::Sprite()));
-    _spritesList["heart"].SetImage(_imagesList["heart"]);
-    _spritesList["heart"].SetSubRect(sf::IntRect(0,0, GAMEVIEW_HEART_SIZE, GAMEVIEW_HEART_SIZE));
+    _spritesList["heart"].setTexture(_imagesList["heart"]);
+    _spritesList["heart"].setTextureRect(sf::IntRect(0,0, GAMEVIEW_HEART_SIZE, GAMEVIEW_HEART_SIZE));
     // bomb
     _spritesList.insert(make_pair("bomb", sf::Sprite()));
-    _spritesList["bomb"].SetImage(_imagesList["bomb"]);
-    _spritesList["bomb"].SetSubRect(sf::IntRect(0,0, GAMEVIEW_BOMB_SIZE, GAMEVIEW_BOMB_SIZE));
+    _spritesList["bomb"].setTexture(_imagesList["bomb"]);
+    _spritesList["bomb"].setTextureRect(sf::IntRect(0,0, GAMEVIEW_BOMB_SIZE, GAMEVIEW_BOMB_SIZE));
     // blast 1
     _spritesList.insert(make_pair("blast_1", sf::Sprite()));
-    _spritesList["blast_1"].SetImage(_imagesList["blast_1"]);
+    _spritesList["blast_1"].setTexture(_imagesList["blast_1"]);
+     
     return true;
 }

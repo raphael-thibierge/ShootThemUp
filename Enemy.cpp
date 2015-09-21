@@ -8,7 +8,7 @@ using namespace std;
 
 Enemy::Enemy (const unsigned int type, const unsigned int level, const float x, const float y, const float width, const float height, const unsigned int lifeLevel, const float speed, const unsigned int nbLife) : Ship(type), _level(level)
 {
-    _time.Reset();
+    _time.restart();
     setPosition(x, y);
     _lifeLevel = lifeLevel;
     _nbLife = nbLife;
@@ -35,10 +35,10 @@ void Enemy::move()
 void Enemy::shoot (list<Bullet*> * bulletList)
 {
     // if enemy isn't a kamikaze
-    if (_time.GetElapsedTime() > TIME_ENEMY_FIRE_RATE && _type != ENEMY_TYPE[1])
+    if (_time.getElapsedTime().asSeconds() > TIME_ENEMY_FIRE_RATE && _type != ENEMY_TYPE[1])
     {
         bulletList->push_back(new Bullet(_type, _direction, _X+_width/2, _Y+_height, "enemy"));
-        _time.Reset();
+        _time.restart();
         playSound();
     }
 }

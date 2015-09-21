@@ -4,11 +4,11 @@ using namespace std;
 
 Blast::Blast(const unsigned int type, const std::string direction, const float speed, const float X, const float Y) : _type(type), _direction(direction), _speed(speed)
 {
-    _time.Reset();
+    _time.restart();
     setPosition(X, Y);
 
-    _soundBuffer.LoadFromFile(SOUND_BLAST);
-    _sound.SetBuffer(_soundBuffer);
+    _soundBuffer.loadFromFile(SOUND_BLAST);
+    _sound.setBuffer(_soundBuffer);
     playSound();
 }
 
@@ -24,10 +24,10 @@ unsigned int Blast::getType()
 
 float Blast::getTime()
 {
-    return _time.GetElapsedTime();
+    return _time.getElapsedTime().asSeconds();
 }
 
 void Blast::playSound()
 {
-    _sound.Play();
+    _sound.play();
 }

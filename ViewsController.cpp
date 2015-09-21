@@ -16,15 +16,17 @@ using namespace std;
 //
 ViewsController::ViewsController(sf::RenderWindow* window) : _mainWindow(window)
 {
+    
     _allViews.insert(make_pair("Introduction", new ViewIntroduction));
     _allViews.insert(make_pair("MainMenu", new ViewMainMenu));
     _allViews.insert(make_pair("Game", &_game));
     _allViews.insert(make_pair("Shop", new ViewShop));
     _allViews.insert(make_pair("Settings", new ViewSettings));
     _allViews.insert(make_pair("BestScores", new ViewBestScores));
+    
     _quit = false;
 
-    _music.OpenFromFile(GAME_MUSIC);
+    _music.openFromFile(GAME_MUSIC);
     playMusic(true);
 }
 
@@ -118,9 +120,9 @@ void ViewsController::showView(){
 
     if (_mainWindow != nullptr)
     {
-        _mainWindow->Clear();
+        _mainWindow->clear();
         _view->showViewSFML();
-        _mainWindow->Display();
+        _mainWindow->display();
     }
 }
 
@@ -161,8 +163,8 @@ bool ViewsController::init(GameModel *modele){
 }
 void ViewsController::playMusic(bool loop)
 {
-    _music.SetLoop(loop);
-    _music.SetVolume(10);
-    _music.Play();
+    _music.setLoop(loop);
+    _music.setVolume(40);
+    _music.play();
 
 }

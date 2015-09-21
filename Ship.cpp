@@ -6,11 +6,11 @@ using namespace std;
 //
 
 Ship::Ship (const unsigned int type) :_type(type) {
-    _time.Reset();
+    _time.restart();
     _loosingLife = false;
 
-    _soundBuffer.LoadFromFile(SOUND_SHOT);
-    _sound.SetBuffer(_soundBuffer);
+    _soundBuffer.loadFromFile(SOUND_SHOT);
+    _sound.setBuffer(_soundBuffer);
 }
 
 Ship::~Ship () {
@@ -85,7 +85,7 @@ void Ship::looseLife(){
         _nbLife--;
         resetLifeLevel();
         _loosingLife = true;
-        _time.Reset();
+        _time.restart();
     }
     else
         _nbLife = 0;
@@ -102,7 +102,7 @@ bool Ship::isLosingLife()
 
     if (_loosingLife)
     {   // if it's not finish return true
-        if (_time.GetElapsedTime() <= TIME_LIFE_TRANSITION)
+        if (_time.getElapsedTime().asSeconds() <= TIME_LIFE_TRANSITION)
             return true;
         else // the loosing life time is over
             _loosingLife = false;
@@ -113,8 +113,8 @@ bool Ship::isLosingLife()
 
 void Ship::playSound()
 {
-    _sound.SetVolume(15);
-    _sound.Play();
+    _sound.setVolume(10);
+    _sound.play();
 }
 
 
@@ -138,7 +138,7 @@ float Ship::getSpeed() const{
 }
 
 float Ship::getTime() const{
-    return _time.GetElapsedTime();
+    return _time.getElapsedTime().asSeconds();
 }
 
 void Ship::setLifeLevel(unsigned int lifeLevel) {

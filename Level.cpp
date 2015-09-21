@@ -10,8 +10,8 @@ Level::Level (unsigned int level, Player * player, unsigned int * difficultyPoin
 {
     _nbEnnemies = LEVEL_NB_ENEMIES;
     _level = level;
-    _time.Reset();
-    _lifeTransition.Reset();
+    _time.restart();
+    _lifeTransition.restart();
     _enemiesCpt = 0;
     _player->resetLifeLevel();
     _boss = nullptr;
@@ -60,9 +60,9 @@ void Level::generateEnemy()
     int level = _level/3 + 1;
 
     // if we can create one more enemy
-    if (_enemiesCpt < _nbEnnemies && _time.GetElapsedTime() > TIME_SPAWN_RATE )
+    if (_enemiesCpt < _nbEnnemies && _time.getElapsedTime().asSeconds() > TIME_SPAWN_RATE )
     {
-        _time.Reset();
+        _time.restart();
         // 1/2 chance to create an enemy
         int random = rand()%(2);
         if(random == 1){

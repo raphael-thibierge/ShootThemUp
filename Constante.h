@@ -4,7 +4,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-
+#include "ResourcePath.hpp"
 // ======== PLAYER ============
 const int PLAYER_LIFE_LEVEL = 300;
 const int PLAYER_NB_LIFE = 3;
@@ -22,7 +22,7 @@ const int SCREEN_WIDTH = 780;
 
 // ======== BEST SCORES ============
 const int BEST_SCORE_NB = 5;
-const std::string BEST_SCORE_FILE = "./files/bestScoreFile.txt";
+const std::string BEST_SCORE_FILE = resourcePath() + "bestScoreFile.txt";
 
 const int LABEL_BESTSCORES_POSITION_X = 200;
 const int LABEL_BESTSCORES_POSITION_Y = 200;
@@ -51,8 +51,8 @@ const unsigned int BOSS_TYPE = 25;
 const unsigned int BOSS_LEVEL = 1;
 const float BOSS_INITIAL_X = SCREEN_WIDTH / 2;
 const float BOSS_INITIAL_Y = 50;
-const float BOSS_HEIGHT = 50;
-const float BOSS_WIDTH = 50;
+const float BOSS_HEIGHT = 135;
+const float BOSS_WIDTH = 90;
 const unsigned int BOSS_LIFELEVEL = 1000;
 const float BOSS_SPEED = 5;
 const unsigned int BOSS_NBLIFE = 1;
@@ -82,24 +82,25 @@ const int BOMB_PRICE = 100;
 const int LIFE_PRICE = 250;
 
 // ======== IMAGES ============
-const std::string IMAGE_BACKGROUD_MAIN_MENU = "./images/Vache.jpg";
-const std::string IMAGE_BACKGROUD_GAME = "./images/paille.png";
+const std::string IMAGE_BACKGROUD_MAIN_MENU = "Vache.jpg";
+const std::string IMAGE_BACKGROUD_GAME = "paille.png";
 const int IMAGE_BACKGROUD_GAME_SIZE_X = 1000;
 const int IMAGE_BACKGROUD_GAME_SIZE_Y = 1000;
 const int IMAGE_BACKGROUND_SPEED = 1;
-const std::string IMAGE_BACKGROUD_BESTSCORES = "./images/Vache.jpg";
-const std::string IMAGE_BACKGROUD_SHOP = "./images/vache.jpg";
-const std::string IMAGE_BACKGROUD_SETTINGS = "./images/Vache.jpg";
+const std::string IMAGE_BACKGROUD_BESTSCORES = "Vache.jpg";
+const std::string IMAGE_BACKGROUD_SHOP = "vache.jpg";
+const std::string IMAGE_BACKGROUD_SETTINGS = "Vache.jpg";
 
-const std::string IMAGE_BUTTONS = "./images/button.png";
-const std::string IMAGE_BUTTONS_ACTIVE = "./images/buttonActive.png";
-const std::string IMAGE_PLAYER_SHIP = "./images/perso_principal.png";
-const std::string IMAGE_ENEMY_SHIP[3] = {"./images/chicken.png" , "./images/mouton.png", "./images/cochon.png" };
-const std::string IMAGE_BULLET_0 = "./images/potato.png";
-const std::string IMAGE_NEXT_LEVEL = "./images/nextLevel.png";
-const std::string IMAGE_YOU_LOOSE = "./images/youloose.png";
-const std::string IMAGE_HEART = "./images/heart.png";
-const std::string IMAGE_BOMB = "./images/bomb.png";
+const std::string IMAGE_BUTTONS = "button.png";
+const std::string IMAGE_BUTTONS_ACTIVE = "buttonActive.png";
+const std::string IMAGE_PLAYER_SHIP = "perso_principal.png";
+const std::string IMAGE_BOSS_SHIP = "tracteur.png";
+const std::string IMAGE_ENEMY_SHIP[3] = {"chicken.png" , "mouton.png", "cochon.png" };
+const std::string IMAGE_BULLET_0 = "potato.png";
+const std::string IMAGE_NEXT_LEVEL = "nextLevel.png";
+const std::string IMAGE_YOU_LOOSE = "youloose.png";
+const std::string IMAGE_HEART = "heart.png";
+const std::string IMAGE_BOMB = "bomb.png";
 
 
 // ======== BUTTONS ============
@@ -180,7 +181,7 @@ const int SHOPSVIEW_TITLE_Y = 100;
 
 const int SHOPVIEW_COLUMN_1 = 10;
 const int SHOPVIEW_COLUMN_2 = SCREEN_WIDTH / 3 + 3;
-const int SHOPVIEW_COLUMN_3 = 2*SCREEN_WIDTH/3 + 100;
+const int SHOPVIEW_COLUMN_3 = 2*SCREEN_WIDTH/3 + 3;
 const int SHOPVIEW_LINE_1 = 350;
 const int SHOPVIEW_LINE_2 = 450;
 const int SHOPVIEW_LINE_3 = 550;
@@ -214,7 +215,7 @@ const float TIME_LIFE_TRANSITION = 2.0f;
 
 // ======== BLAST ============
 const float BLAST_DURATION = 0.2f;
-const std::string IMAGE_BLAST[1] = { "./images/explosion.png" };
+const std::string IMAGE_BLAST[1] = { "explosion.png" };
 const int BLAST_IMAGE_WIDTH = 200;
 const int BLAST_IMAGE_HEIGHT = 600;
 const int BLAST_SPRITE_WIDTH = 200;
@@ -224,7 +225,7 @@ const int BLAST_SPRITES_X[3] = { 0, 200, 400 };
 const int BLAST_SPRITES_Y[3] = { 0, 0, 0 };
 
 // ======== SOUND ============
-const std::string GAME_MUSIC = "./sounds/vavrek.com_journeys_end_1.0_inst.ogg";
-const std::string SOUND_SHOT =  "./sounds/sf_laser_14.ogg";
-const std::string SOUND_BLAST =  "./sounds/sf_canon_01.ogg";
+const std::string GAME_MUSIC = resourcePath() + "vavrek.com_journeys_end_1.0_inst.ogg";
+const std::string SOUND_SHOT =  resourcePath() + "sf_laser_14.ogg";
+const std::string SOUND_BLAST =  resourcePath() + "sf_canon_01.ogg";
 #endif // CONSTANTE_H_INCLUDED

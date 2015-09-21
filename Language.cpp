@@ -11,7 +11,7 @@ using namespace std;
 Language::Language()
 {
     _language = "French" ;
-    loadFromFile("./files/TextFrench.txt");
+    loadFromFile(resourcePath() + "TextFrench.txt");
 }
 
 Language::~Language() {}
@@ -26,12 +26,12 @@ bool Language::change(const string language)
 
     if (language=="French"){
         _language = language;
-        loadFromFile("./files/TextFrench.txt");
+        loadFromFile( resourcePath() + "TextFrench.txt");
         returnValue = true;
     }
     if(language=="English"){
         _language = language;
-        loadFromFile("./files/TextEnglish.txt");
+        loadFromFile(resourcePath() + "TextEnglish.txt");
         returnValue = true;
     }
 

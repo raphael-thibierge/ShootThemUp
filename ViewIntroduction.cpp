@@ -15,7 +15,7 @@ using namespace std;
 //
 ViewIntroduction::ViewIntroduction()
 {
-    _time.Reset();
+    _time.restart();
 }
 
 ViewIntroduction::~ViewIntroduction(){}
@@ -37,29 +37,29 @@ int ViewIntroduction::treatEventSFML()
 
     int returnValue = 1;
 
-    if (_time.GetElapsedTime() > TIME_INTRODUCTION)
+    if (_time.getElapsedTime().asSeconds() > TIME_INTRODUCTION)
         returnValue = 0;
 
     sf::Event event;
 
-     while (_window->GetEvent(event))
+     while (_window->pollEvent(event))
     {
 
-        switch (event.Type)
+        switch (event.type)
         {
         case sf::Event::Closed :
             returnValue = 111;
             break;
 
         case sf::Event::KeyPressed :
-            switch (event.Key.Code)
+            switch (event.key.code)
             {
 
-                case sf::Key::Space:
+                case sf::Keyboard::Space:
                     returnValue = 0;
                     break;
 
-                case sf::Key::Escape :
+                case sf::Keyboard::Escape :
                     returnValue = 0;
                     break;
                 default :
@@ -113,21 +113,22 @@ cout<<"                           \\$$"   <<endl;
 
 void ViewIntroduction::showViewSFML()
 {
-    _window->Draw(_spritesList["background"]);
+    _window->draw(_spritesList["background"]);
     displayTitle("FARM THEM UP", INTROVIEW_TITLE_X,INTROVIEW_TITLE_Y);
 }
 
 bool ViewIntroduction::initSFML()
 {
         // background image
-    _imagesList.insert(make_pair("background", sf::Image()));
-    if (!_imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU))
+    _imagesList.insert(make_pair("background", sf::Texture()));
+    if (!_imagesList["background"].loadFromFile(resourcePath() + IMAGE_BACKGROUD_MAIN_MENU))
         return false;
     // background sprite
     _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["background"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
-    _spritesList["background"].SetPosition(0,0);
-    return true;
+    _spritesList["background"].setTexture(_imagesList["background"]);
+    _spritesList["background"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].setPosition(0,0);
+    
+         return true;
 }
 

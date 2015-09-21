@@ -19,14 +19,15 @@ using namespace sf;
 ViewMainMenu::ViewMainMenu()
 {
     // background
-    _imagesList.insert(make_pair("background", sf::Image()));
-    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
+    /*
+    _imagesList.insert(make_pair("background", sf::Texture()));
+    _imagesList["background"].loadFromFile(resourcePath() + IMAGE_BACKGROUD_MAIN_MENU);
 
     _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["background"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
-    _spritesList["background"].SetPosition(0,0);
-
+    _spritesList["background"].setTexture(_imagesList["background"]);
+    _spritesList["background"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].setPosition(0,0);
+     */
 }
 
 ViewMainMenu::~ViewMainMenu() {}
@@ -41,12 +42,12 @@ ViewMainMenu::~ViewMainMenu() {}
 
 void ViewMainMenu::showViewSFML()
 {
-    _window->Draw(_spritesList["background"]);
+    _window->draw(_spritesList["background"]);
 
     Event event;
-    _window->GetEvent(event);
-    int mouseX = event.MouseMove.X;
-    int mouseY = event.MouseMove.Y;
+    _window->pollEvent(event);
+    int mouseX = event.mouseMove.x;
+    int mouseY = event.mouseMove.y;
 
     if (_modele->getPlayer() == nullptr)
     {
@@ -72,9 +73,9 @@ int ViewMainMenu::treatEventSFML()
     int returnValue = 1; // standart return of Event Treatment
 
     Event event;
-    while (_window->GetEvent(event))
+    while (_window->pollEvent(event))
     {
-        switch (event.Type)
+        switch (event.type)
         {
 
             case sf::Event::Closed :
@@ -83,8 +84,8 @@ int ViewMainMenu::treatEventSFML()
 
             case Event::MouseButtonPressed :
             {
-                int mouseX = event.MouseButton.X;
-                int mouseY = event.MouseButton.Y;
+                int mouseX = event.mouseButton.x;
+                int mouseY = event.mouseButton.y;
 
                 if (_modele->getPlayer() == nullptr)
                 {// if a party isn't load
@@ -137,7 +138,7 @@ int ViewMainMenu::treatEventSFML()
         }
 
             case sf::Event::KeyPressed :
-                if (event.Key.Code == Key::Escape)
+                if (event.key.code == Keyboard::Escape)
                 {
                     returnValue = 0;
                 }
@@ -301,13 +302,14 @@ void ViewMainMenu::showQuit()
 bool ViewMainMenu::initSFML()
 {
     // background image
-    _imagesList.insert(make_pair("background", sf::Image()));
-    if (!_imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU))
+    _imagesList.insert(make_pair("background", sf::Texture()));
+    if (!_imagesList["background"].loadFromFile(resourcePath() + IMAGE_BACKGROUD_MAIN_MENU))
         return false;
     // background sprite
     _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["background"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
-    _spritesList["background"].SetPosition(0,0);
+    _spritesList["background"].setTexture(_imagesList["background"]);
+    _spritesList["background"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].setPosition(0,0);
+    
     return true;
 }

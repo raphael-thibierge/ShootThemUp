@@ -13,7 +13,7 @@ GameModel::GameModel()
 
     srand (time(NULL));
 
-    _time.Reset();
+    _time.restart();
 
     // always init
     _gameLevel = 0;
@@ -67,7 +67,7 @@ void GameModel::nextStep()
         if(_level==nullptr && _gameLevel>0)
         {
             // after 3 second creation of the next level
-            if (_time.GetElapsedTime() > TIME_GAME_TRANSITION)
+            if (_time.getElapsedTime().asSeconds() > TIME_GAME_TRANSITION)
                 newLevel();
         }
 
@@ -285,7 +285,7 @@ void GameModel::destructLevel()
     if (_level != nullptr){
         delete _level;
     }
-    _time.Reset();
+    _time.restart();
     _level = nullptr;
 }
 
@@ -294,7 +294,7 @@ void GameModel::endCurrentGame(){
     _player->setNbLife(0);
     _player->setScore(0);
     _gameLevel = 0;
-    _time.Reset();
+    _time.restart();
 }
 
 
@@ -329,6 +329,6 @@ vector<unsigned int> * GameModel::getBestScores()
 
 float GameModel::getTime() const
 {
-    return _time.GetElapsedTime();
+    return _time.getElapsedTime().asSeconds();
 }
 

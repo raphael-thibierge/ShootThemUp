@@ -30,7 +30,7 @@ public:
 
 
 
-    std::string toString();
+    std::string toString() override;
 
     void difficultyImpact(const unsigned int difficulty);
 

@@ -110,10 +110,10 @@ int ViewShop::treatEventSFML()
 
     sf::Event event;
 
-    while (_window->GetEvent(event))
+    while (_window->pollEvent(event))
     {
 
-        switch (event.Type)
+        switch (event.type)
         {
         case sf::Event::Closed :
             returnValue = 111;
@@ -122,8 +122,8 @@ int ViewShop::treatEventSFML()
         case sf::Event::MouseButtonPressed :
         {
 
-            int mouseX = event.MouseButton.X ;
-            int mouseY = event.MouseButton.Y ;
+            int mouseX = event.mouseButton.x ;
+            int mouseY = event.mouseButton.y ;
             // UPGRADE SHOOT
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_1, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
@@ -197,7 +197,7 @@ int ViewShop::treatEventSFML()
             break;
         }
         case sf::Event::KeyPressed :
-                if (event.Key.Code == sf::Key::Escape)
+                if (event.key.code == sf::Keyboard::Escape)
                 {
                     returnValue = 0;
                 }
@@ -256,7 +256,7 @@ void ViewShop::showViewTerminal()
 void ViewShop::showViewSFML()
 {
 
-    _window->Draw(_spritesList["background"]);
+    _window->draw(_spritesList["background"]);
 
 
     displayText(_language->getText("shop"), SHOPVIEW_COLUMN_2, SHOPSVIEW_TITLE_Y);
@@ -345,14 +345,16 @@ void ViewShop::showViewSFML()
 
 bool ViewShop::initSFML()
 {
+    
     // background image
-    _imagesList.insert(make_pair("background", sf::Image()));
-    if (!_imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU))
+    _imagesList.insert(make_pair("background", sf::Texture()));
+    if (!_imagesList["background"].loadFromFile(resourcePath() + IMAGE_BACKGROUD_MAIN_MENU))
         return false;
     // background sprite
     _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["background"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
-    _spritesList["background"].SetPosition(0,0);
+    _spritesList["background"].setTexture(_imagesList["background"]);
+    _spritesList["background"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].setPosition(0,0);
+    
     return true;
 }
