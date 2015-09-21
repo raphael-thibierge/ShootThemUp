@@ -6,6 +6,11 @@ using namespace std;
 //
 
 Ship::Ship (const unsigned int type) :_type(type) {
+    _time.restart();
+    _loosingLife = false;
+
+    _soundBuffer.loadFromFile(SOUND_SHOT);
+    _sound.setBuffer(_soundBuffer);
 }
 
 Ship::~Ship () {
@@ -20,6 +25,11 @@ void Ship::shoot (list<Bullet*> * bulletlist){}
 void Ship::move (const string direction)
 {
     RectanglePosition::move(direction, _speed);
+
+    if (_X < 0)
+        _X = 0;
+    else if (_X > SCREEN_WIDTH-_width)
+        _X = SCREEN_WIDTH - _width;
 }
 
 string Ship::toString(){
@@ -38,7 +48,7 @@ bool Ship::collisionPoint(const float x, const float y)
 
 bool Ship::collision(Bullet *bullet)
 {// return true if there is a collision
-    
+
     // test collisision with every bullet'corners
     if (collisionPoint(bullet->getX(), bullet->getY()) // up left
         || collisionPoint(bullet->getX(), bullet->getY()+bullet->getHeight()) // down left
@@ -51,7 +61,7 @@ bool Ship::collision(Bullet *bullet)
 
 bool Ship::collision(Ship *ship)
 {// return true if there is a collision
-    
+
     // test collisision with every ship'corners
     if (collisionPoint(ship->getX(), ship->getY()) // up left
         || collisionPoint(ship->getX(), ship->getY()+ship->getHeight()) // down left
@@ -61,11 +71,56 @@ bool Ship::collision(Ship *ship)
     return false;
 }
 
+void Ship::affectDamage(const unsigned int damage){
+    if (damage < _lifeLevel)
+        _lifeLevel -= damage;
+    else {
+        looseLife();
+    }
+}
+
+void Ship::looseLife(){
+    _lifeLevel = 0;
+    if (_nbLife > 0) {
+        _nbLife--;
+        resetLifeLevel();
+        _loosingLife = true;
+        _time.restart();
+    }
+    else
+        _nbLife = 0;
+}
+
+void Ship::resetLifeLevel(){
+    // if this is the player's ship
+    if (_type <= 3 )
+        _lifeLevel = PLAYER_LIFE_LEVEL;
+}
+
+bool Ship::isLosingLife()
+{ // return if the ship is loosing life
+
+    if (_loosingLife)
+    {   // if it's not finish return true
+        if (_time.getElapsedTime().asSeconds() <= TIME_LIFE_TRANSITION)
+            return true;
+        else // the loosing life time is over
+            _loosingLife = false;
+
+    }
+    return false;
+}
+
+void Ship::playSound()
+{
+    _sound.setVolume(10);
+    _sound.play();
+}
+
+
 
 // Accessor methods
 //
-
-
 unsigned int Ship::getLifeLevel() const{
     return _lifeLevel;
 }
@@ -78,6 +133,14 @@ unsigned int Ship::getType() const{
     return _type;
 }
 
+float Ship::getSpeed() const{
+    return _speed;
+}
+
+float Ship::getTime() const{
+    return _time.getElapsedTime().asSeconds();
+}
+
 void Ship::setLifeLevel(unsigned int lifeLevel) {
     _lifeLevel = lifeLevel;
 }
@@ -85,6 +148,12 @@ void Ship::setLifeLevel(unsigned int lifeLevel) {
 void Ship::setType(const unsigned int value){
     _type = value;
 }
+
+Blast * Ship::getBlast(){
+    return new Blast(_type, _direction, _speed, _X, _Y);
+}
+
+
 
 
 // Other methods

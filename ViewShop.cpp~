@@ -13,7 +13,17 @@ using namespace std;
 //
 // CONSTRUCTOR AND DESTRUCTOR
 //
-ViewShop::ViewShop() {}
+ViewShop::ViewShop() {
+// background
+    _imagesList.insert(make_pair("background", sf::Image()));
+    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
+
+    _spritesList.insert(make_pair("background", sf::Sprite()));
+    _spritesList["background"].SetImage(_imagesList["background"]);
+    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].SetPosition(0,0);
+
+}
 
 ViewShop::~ViewShop() {}
 
@@ -106,88 +116,93 @@ int ViewShop::treatEvent()
 
 int ViewShop::treatEventSFML()
 {
-    int returnValue = 1;
+    int returnvalue = 1;
 
     sf::Event event;
 
-    while (_window->pollEvent(event))
+    while (_window->GetEvent(event))
     {
 
-        switch (event.type)
+        switch (event.Type)
         {
         case sf::Event::Closed :
-            returnValue = 111;
+            returnvalue = 111;
             break;
 
         case sf::Event::MouseButtonPressed :
         {
 
-            int mouseX = event.mouseButton.x ;
-            int mouseY = event.mouseButton.y ;
+
+            int mouseX = event.MouseButton.X ;
+            int mouseY = event.MouseButton.Y ;
             // UPGRADE SHOOT
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_1, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeBullet(1);
-                returnValue = 1;
+                returnvalue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_1, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeBullet(2);
-                returnValue = 1;
+                returnvalue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_1, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeBullet(3);
-                returnValue = 1;
+                returnvalue = 1;
             }
             // UPGRADE SHIP
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_2, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShip(1);
-                returnValue = 1;
+                returnvalue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_2, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShip(2);
-                returnValue = 1;
+                returnvalue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_2, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShip(3);
-                returnValue = 1;
+                returnvalue = 1;
             }
             // UPGRADE SHIELD
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_3, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShield(1);
-                returnValue = 1;
+                returnvalue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_3, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShield(2);
-                returnValue = 1;
+                returnvalue = 1;
             }
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_3, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->upgradeShield(3);
-                returnValue = 1;
+                returnvalue = 1;
             }
             // LIFE
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_4, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->buyBomb();
-                returnValue = 1;
+                returnvalue = 1;
             }
             // BOMB
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_5, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
                 _modele->getShop()->buyLife();
-                returnValue = 1;
+                returnvalue = 1;
             }
+<<<<<<< HEAD
+            if (mouseOnButton(mouseX, mouseY, SHOPSVIEW_QUIT_X, SHOPSVIEW_QUIT_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+=======
             // QUIT
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_6, BUTTON_WIDTH, BUTTON_HEIGHT))
+>>>>>>> 8271936aeedb580ef7207a267e1deb5b2d3170ef
             {
-                returnValue = 0;
+                returnvalue = 0;
             }
 
 
@@ -196,19 +211,12 @@ int ViewShop::treatEventSFML()
 
             break;
         }
-        case sf::Event::KeyPressed :
-                if (event.key.code == sf::Keyboard::Escape)
-                {
-                    returnValue = 0;
-                }
-                break;
-
         default :
             break;
         }
     }
 
-    return returnValue;
+    return returnvalue;
 }
 
 void ViewShop::showViewTerminal()
@@ -256,105 +264,73 @@ void ViewShop::showViewTerminal()
 void ViewShop::showViewSFML()
 {
 
-    _window->draw(_spritesList["background"]);
+    _window->Draw(_spritesList["background"]);
 
 
     displayText(_language->getText("shop"), SHOPVIEW_COLUMN_2, SHOPSVIEW_TITLE_Y);
 
-    displayText(_language->getText("money") + " = " + to_string(_modele->getPlayer()->getMoney()) + " $", SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y);
-
-    displayText(_language->getText("shootLevel") + "  " + to_string(_modele->getPlayer()->getBulletType() + 1)  , SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+30);
-
-    displayText(_language->getText("shipLevel") + "  " + to_string(_modele->getPlayer()->getType() + 1)  , SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+60);
-
-    if(_modele->getPlayer()->getShield()!=0)
-    {
-        displayText(_language->getText("alreadyShield"), SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+90);
-    }
-    else
-    {
-        displayText(_language->getText("noShield"), SHOPVIEW_COLUMN_1, SHOPSVIEW_MONEY_Y+90);
-    }
-
-    displayText(_language->getText("nbBomb") + " : " + to_string(_modele->getPlayer()->getBombNumber()), SHOPVIEW_COLUMN_2, SHOPSVIEW_MONEY_Y+30);
-
-    displayText(_language->getText("nbLifeMore")  + " : " + to_string(_modele->getPlayer()->getNbLife()), SHOPVIEW_COLUMN_2, SHOPSVIEW_MONEY_Y+60);
-
-
     displayText(_language->getText("upgradeMainShoot"), SHOPVIEW_COLUMN_1, SHOPSVIEW_MAINSHOOT_Y);
 
-    if (_modele->getPlayer()->getBulletType() >= 1)
-        displayStandartButton(_language->getText("upgradeMainShootlvl2")+ " = " + to_string(BULLET_PRICE[1])+"$", SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_1, true);
+    if (_modele->getPlayer()->getBulletType() == 1)
+        displayStandartButton(_language->getText("upgradeMainShootlvl2"), SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_1, true);
     else
-        displayStandartButton(_language->getText("upgradeMainShootlvl2")+ " = " + to_string(BULLET_PRICE[1])+"$", SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_1);
+        displayStandartButton(_language->getText("upgradeMainShootlvl2"), SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_1);
 
-    if (_modele->getPlayer()->getBulletType() >= 2)
-        displayStandartButton(_language->getText("upgradeMainShootlvl3")+ " = " + to_string(BULLET_PRICE[2])+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_1, true);
+    if (_modele->getPlayer()->getBulletType() == 2)
+        displayStandartButton(_language->getText("upgradeMainShootlvl3"), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_1, true);
     else
-        displayStandartButton(_language->getText("upgradeMainShootlvl3")+ " = " + to_string(BULLET_PRICE[2])+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_1);
+        displayStandartButton(_language->getText("upgradeMainShootlvl3"), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_1);
 
-    if (_modele->getPlayer()->getBulletType() >= 3)
-        displayStandartButton(_language->getText("upgradeMainShootlvl4")+ " = " + to_string(BULLET_PRICE[3])+"$", SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_1, true);
+    if (_modele->getPlayer()->getBulletType() == 3)
+        displayStandartButton(_language->getText("upgradeMainShootlvl4"), SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_1, true);
     else
-        displayStandartButton(_language->getText("upgradeMainShootlvl4")+ " = " + to_string(BULLET_PRICE[3])+"$", SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_1);
+        displayStandartButton(_language->getText("upgradeMainShootlvl4"), SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_1);
 //    displayStandartButton(_language->getText("upgradeMainShootlvl5"), SHOPSVIEW_MAINSHOOT5_X, SHOPSVIEW_MAINSHOOT5_Y);
 
     displayText(_language->getText("upgradeShip"), SHOPVIEW_COLUMN_1, SHOPSVIEW_SHIP_Y);
 
-    if (_modele->getPlayer()->getType() >= 1 )
-        displayStandartButton(_language->getText("upgradeShiplvl2")+ " = " + to_string(SHIP_PRICE[1])+"$", SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_2, true);
+    if (_modele->getPlayer()->getType() == 1 )
+        displayStandartButton(_language->getText("upgradeShiplvl2"), SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_2, true);
     else
-        displayStandartButton(_language->getText("upgradeShiplvl2")+ " = " + to_string(SHIP_PRICE[1])+"$", SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_2);
+        displayStandartButton(_language->getText("upgradeShiplvl2"), SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_2);
 
-    if (_modele->getPlayer()->getType() >= 2 )
-        displayStandartButton(_language->getText("upgradeShiplvl3")+ " = " + to_string(SHIP_PRICE[2])+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_2, true);
+    if (_modele->getPlayer()->getType() == 2 )
+        displayStandartButton(_language->getText("upgradeShiplvl3"), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_2, true);
     else
-        displayStandartButton(_language->getText("upgradeShiplvl3")+ " = " + to_string(SHIP_PRICE[2])+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_2);
+        displayStandartButton(_language->getText("upgradeShiplvl3"), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_2);
 
-    if (_modele->getPlayer()->getType() >= 3 )
-        displayStandartButton(_language->getText("upgradeShiplvl4")+ " = " + to_string(SHIP_PRICE[3])+"$", SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_2, true);
+    if (_modele->getPlayer()->getType() == 3 )
+        displayStandartButton(_language->getText("upgradeShiplvl4"), SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_2, true);
     else
-        displayStandartButton(_language->getText("upgradeShiplvl4")+ " = " + to_string(SHIP_PRICE[3])+"$", SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_2);
+        displayStandartButton(_language->getText("upgradeShiplvl4"), SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_2);
 
     displayText(_language->getText("upgradeShield"), SHOPVIEW_COLUMN_1, SHOPSVIEW_SHIELD_Y);
 
     if (_modele->getPlayer()->getShield() == SHIELD_LIFE[1])
-        displayStandartButton(_language->getText("upgradeShieldlvl1")+ " = " + to_string(SHIELD_PRICE[1])+"$", SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_3, true);
+        displayStandartButton(_language->getText("upgradeShieldlvl1"), SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_3, true);
     else
-        displayStandartButton(_language->getText("upgradeShieldlvl1")+ " = " + to_string(SHIELD_PRICE[1])+"$", SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_3);
+        displayStandartButton(_language->getText("upgradeShieldlvl1"), SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_3);
 
     if (_modele->getPlayer()->getShield() == SHIELD_LIFE[2])
-        displayStandartButton(_language->getText("upgradeShieldlvl2")+ " = " + to_string(SHIELD_PRICE[2])+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_3, true);
+        displayStandartButton(_language->getText("upgradeShieldlvl2"), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_3, true);
     else
-        displayStandartButton(_language->getText("upgradeShieldlvl2")+ " = " + to_string(SHIELD_PRICE[2])+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_3);
+        displayStandartButton(_language->getText("upgradeShieldlvl2"), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_3);
 
     if (_modele->getPlayer()->getShield() == SHIELD_LIFE[3])
-        displayStandartButton(_language->getText("upgradeShieldlvl3")+ " = " + to_string(SHIELD_PRICE[3])+"$", SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_3, true);
+        displayStandartButton(_language->getText("upgradeShieldlvl3"), SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_3, true);
     else
-        displayStandartButton(_language->getText("upgradeShieldlvl3")+ " = " + to_string(SHIELD_PRICE[3])+"$", SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_3);
+        displayStandartButton(_language->getText("upgradeShieldlvl3"), SHOPVIEW_COLUMN_3, SHOPVIEW_LINE_3);
 
     displayText(_language->getText("buyBomb"), SHOPVIEW_COLUMN_1, SHOPSVIEW_BOMB_Y);
-    displayStandartButton(to_string(BOMB_PRICE)+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_4);
+    displayStandartButton(to_string(BOMB_PRICE), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_4);
 
     displayText(_language->getText("buyLife"), SHOPVIEW_COLUMN_1, SHOPSVIEW_LIFE_Y);
-    displayStandartButton(to_string(LIFE_PRICE)+"$", SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_5);
+    displayStandartButton(to_string(LIFE_PRICE), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_5);
 
     displayStandartButton(_language->getText("quit"), SHOPVIEW_COLUMN_2, SHOPVIEW_LINE_6);
 }
 
 
-bool ViewShop::initSFML()
+void ViewShop::initButtons()
 {
-    
-    // background image
-    _imagesList.insert(make_pair("background", sf::Texture()));
-    if (!_imagesList["background"].loadFromFile(resourcePath() + IMAGE_BACKGROUD_MAIN_MENU))
-        return false;
-    // background sprite
-    _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["background"].setTexture(_imagesList["background"]);
-    _spritesList["background"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
-    _spritesList["background"].setPosition(0,0);
-    
-    return true;
 }

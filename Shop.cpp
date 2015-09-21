@@ -22,6 +22,16 @@ Shop::Shop(Player* player) : _player(player){
 Shop::~Shop()
 {
     _player = nullptr;
+
+    for (auto bullet : _bullets)
+    {
+        delete bullet;
+    }
+
+    for (auto ship : _ships)
+    {
+        delete ship;
+    }
 }
 
 

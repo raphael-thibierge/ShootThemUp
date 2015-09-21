@@ -4,6 +4,7 @@
 #include<string>
 #include <iostream>
 #include <fstream>
+#include "ResourcePath.hpp"
 
 class Language
 {

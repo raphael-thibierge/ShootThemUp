@@ -8,28 +8,13 @@ using namespace std;
 
 Player::Player () : Ship::Ship(0)
 {
-    //cout << "\n=====================" << endl;
-    //cout << "CONSTRUCTOR PLAYER" << endl;
     initPlayer();
 }
 
 
-Player::~Player ()
-{
-    //cout << "\n=====================" << endl;
-    //cout << "DESTRUCTOR PLAYER" << endl;
-}
-
 //
 // Methods
 //
-
-
-void Player::shoot (list<Bullet*> * bulletList)
-{
-    bulletList->push_back(new Bullet(_bulletType, _direction, _X+_width/2, _Y,  "player"));
-}
-
 
 void Player::initPlayer()
 {
@@ -38,20 +23,33 @@ void Player::initPlayer()
     _nbLife = 0;
     _width = PLAYER_WIDTH;
     _height = PLAYER_HEIGHT;
-    _bombNumber = 10 ; // provisoire, sinon 0
+    _bombNumber = 5 ; // provisoire, sinon 0
     _direction = PLAYER_DIRECTION;
     _score = 0;
-    _money = 0;
+    _money = 100;
     _speed = PLAYER_SPEED;
-    _shild = SHIELD_LIFE[0];
+    _shield = 0;
     _level = 0;
 
     // standart position of player
     resetPosition();
 }
 
+void Player::shoot (list<Bullet*> * bulletList)
+{
+    if (_time.getElapsedTime().asSeconds() >= TIME_PLAYER_FIRE_RATE )
+    {
+        bulletList->push_back(new Bullet(_bulletType, _direction, _X+_width/2, _Y,  "player"));
+        _time.restart();
+        playSound();
+    }
+}
 
-void Player::useBomb(list<Enemy*> & enemyList, const int difficulty)
+
+
+
+
+void Player::useBomb(list<Enemy*> & enemyList, std::list<Blast*> &blastList, const int difficulty)
 { // destruct all enemies on the screen
 
 
@@ -70,6 +68,9 @@ void Player::useBomb(list<Enemy*> & enemyList, const int difficulty)
                 //the enemy is put on the enemiesKilled list
                 enemiesKilled.push_back(enemy);
 
+                // create blast
+                blastList.push_back(enemy->getBlast());
+
                 // update score
                 score(enemy, difficulty);
             }
@@ -81,6 +82,7 @@ void Player::useBomb(list<Enemy*> & enemyList, const int difficulty)
             enemyList.remove(enemy);
             // destruct enemy
             delete enemy;
+            enemy = nullptr;
         }
 
         // clear
@@ -115,35 +117,15 @@ void Player::score(Enemy * enemy, const unsigned int difficultyLevel)
 
 void Player::activateShild()
 {
-    _lifeLevel+=_shild;
-    _shild=0;
+    _lifeLevel += _shield;
+    _shield = 0;
 }
-
-void Player::looseLife(){
-    _lifeLevel = 0;
-    if (_nbLife > 0) {
-        _nbLife--;
-        resetLifeLevel();
-    }
-}
-
-
-void Player::affectDamage(const unsigned int damage){
-    if (damage < _lifeLevel)
-        _lifeLevel -= damage;
-    else {
-        looseLife();
-    }
-}
-
 
 void Player::resetPosition(){
     setPosition((SCREEN_WIDTH-_width)/2, SCREEN_HEIGHT-_height);
 }
 
-void Player::resetLifeLevel(){
-    _lifeLevel = PLAYER_LIFE_LEVEL;
-}
+
 
 void Player::addMoney(){
     _money += float(_score)/10;
@@ -162,6 +144,8 @@ void Player::pay(float value){
 }
 
 
+
+
 string Player::toString()
 {
     string text;
@@ -174,7 +158,18 @@ string Player::toString()
     return text;
 }
 
+void Player::move(std::string direction)
+{
+    Ship::move(direction);
 
+    // player can't go up the screen
+    if (_Y < 0)
+        _Y = 0  ;
+    // and down the screen
+    else if (_Y > SCREEN_HEIGHT-_height)
+        _Y = SCREEN_HEIGHT - _height;
+
+}
 
 // Accessor methods
 //
@@ -186,7 +181,7 @@ unsigned int Player::getLevel() const
 
 unsigned int Player::getShield() const
 {
-    return _shild;
+    return _shield;
 }
 
 float Player::getMoney() const
@@ -221,9 +216,9 @@ void Player::setLevel( const unsigned int level)
     _level=level;
 }
 
-void Player::setShield( const unsigned int shild)
+void Player::setShield( const unsigned int shield)
 {
-    _shild=shild;
+    _shield=shield;
 }
 
 void Player::setBulletType(const unsigned int bulletType)

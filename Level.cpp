@@ -8,51 +8,63 @@ using namespace std;
 
 Level::Level (unsigned int level, Player * player, unsigned int * difficultyPointer) : _player(player), _difficulty(difficultyPointer)
 {
-    //cout << "\n=====================" << endl;
-    //cout << "CONSTRUCTOR LEVEL" << endl;
-
     _nbEnnemies = LEVEL_NB_ENEMIES;
     _level = level;
-
+    _time.restart();
+    _lifeTransition.restart();
     _enemiesCpt = 0;
-
+    _player->resetLifeLevel();
+    _boss = nullptr;
 }
 
 Level::~Level ()
 {
-    //cout << "\n=====================" << endl;
-    //cout << "DESTRUCTOR LEVEL" << endl;
-
     for(auto enemy : _enemiesList)
-        delete enemy;
+    {
+        if (enemy != nullptr)
+            delete enemy;
+        enemy = nullptr;
+    }
     _enemiesList.clear();
 
     for(auto bullet : _bulletsList)
-        delete bullet;
+    {
+        if (bullet != nullptr)
+            delete bullet;
+        bullet = nullptr;
+    }
     _bulletsList.clear();
+
+    for (auto blast : _blastList)
+    {
+        if (blast != nullptr)
+            delete blast;
+        blast = nullptr;
+    }
+
+    if (_boss != nullptr)
+        delete _boss;
+    _boss = nullptr;
 
     _player = nullptr;
     _difficulty = nullptr;
-
 }
 
 
 //
 // METHODS
 //
-
 void Level::generateEnemy()
-{
-    // creation of enemies
-
+{// creation of enemies
     //every 3 level, enemies are stronger
     int level = _level/3 + 1;
 
     // if we can create one more enemy
-    if (_enemiesCpt < _nbEnnemies){
-
+    if (_enemiesCpt < _nbEnnemies && _time.getElapsedTime().asSeconds() > TIME_SPAWN_RATE )
+    {
+        _time.restart();
         // 1/2 chance to create an enemy
-        int random = rand()%(4);
+        int random = rand()%(2);
         if(random == 1){
             // random choise of an enemy's type
             int randomType = rand()%((_level%3)+1);
@@ -73,19 +85,30 @@ void Level::generateEnemy()
                 default:
                     break;
             }
+            // place the enemy on the screen
+            int enemyWidth = enemy->getWidht();
 
-            enemy->setPosition(rand()%(SCREEN_WIDTH), 0);
+            // difficulty impact on enemy
+            enemy->difficultyImpact(*_difficulty);
+
+
+            enemy->setPosition(rand()%(SCREEN_WIDTH-enemyWidth), 0);
             _enemiesList.push_back(enemy);
             enemy = nullptr;
 
             _enemiesCpt++;
         }
     }
+    if (_enemiesCpt == _nbEnnemies && _level % 3 == 2){
+        _boss = new Boss();
+        _enemiesCpt++;
+
+    }
 }
 
 bool Level::win ()
 {// check if player win
-    if (_enemiesList.size() == 0 && _enemiesCpt == _nbEnnemies){
+    if (_enemiesList.size() == 0 && _enemiesCpt >= _nbEnnemies && _boss == nullptr){
         _player->addMoney();
         return true;
     }
@@ -94,7 +117,7 @@ bool Level::win ()
 
 bool Level::loose ()
 {
-    if (_player->getLifeLevel()==0 and _player->getNbLife()==0 )
+    if (_player->getNbLife()==0 )
     {
         _player->addMoney();
         return true;
@@ -108,7 +131,7 @@ void Level::collisionManager()
     // list to destruct enemies and bullets
     list<Enemy*> enemiesKilled ;
     list<Bullet*> bulletsDestroyed ;
-
+    list<Blast*> blastDestroyed;
 
     // collision between player and all bullets
     for (auto bullet : _bulletsList)
@@ -117,10 +140,8 @@ void Level::collisionManager()
         {
             _player->affectDamage(bullet->getDamage());
             bulletsDestroyed.push_back(bullet);
-            cout << "player loose life" << _player->getLifeLevel() << endl;
         }
     }
-
 
     // collision between player and all enemies
     for (auto enemy : _enemiesList)
@@ -128,8 +149,8 @@ void Level::collisionManager()
         if (_player->collision(enemy))
         {
             enemiesKilled.push_back(enemy);
-            cout << "player loose a life" << _player->getNbLife()  << endl;
-            _player->looseLife();
+            _blastList.push_back(enemy->getBlast());
+            _player->affectDamage(enemy->getLifeLevel());
         }
     }
 
@@ -143,33 +164,63 @@ void Level::collisionManager()
     {
         for (auto bullet : _bulletsList)
         {
-            if (enemy->collision(bullet))
-            {
+            if (enemy->collision(bullet)){
                 _player->score(enemy , *_difficulty);
 
                 // if player is the shooter
-                if (bullet->getShooter() == "player")
-                {
+                if (bullet->getShooter() == "player"){
                     _player->score(enemy , *_difficulty);
                 }
 
-                cout << "Enemy and bullet destroyed" << endl;
-
-                enemiesKilled.push_back(enemy);
+                enemy->affectDamage(bullet->getDamage());
+                if (enemy->getNbLife() == 0 )
+                {
+                    enemiesKilled.push_back(enemy);
+                    _blastList.push_back(enemy->getBlast());
+                }
                 bulletsDestroyed.push_back(bullet);
-                cout << enemiesKilled.size() << " " << bulletsDestroyed.size() << endl ;
             }
         }
     }
+
+    // collision between boss and bullets
+    if (_boss != nullptr)
+    {
+        for (auto bullet : _bulletsList)
+        {
+            if (_boss->collision(bullet))
+            {
+                _boss->affectDamage(bullet->getDamage());
+                if (_boss->getLifeLevel() == 0){
+                    enemiesKilled.push_back(_boss);
+                    _player->score(_boss , *_difficulty);
+                }
+                bulletsDestroyed.push_back(bullet);
+            }
+            if (_player->collision(_boss))
+            {
+                _player->affectDamage(_boss->getLifeLevel());
+            }
+        }
+    }
+
+
+    //destroy ended blast
+    for (auto blast : _blastList)
+    {
+        if (blast->getTime() >= BLAST_DURATION)
+        {
+            blastDestroyed.push_back(blast);
+        }
+    }
+
 
     //collision with the border
     // for all enemies
     for (auto enemy : _enemiesList)
     {
-        if(enemy->getY() >= SCREEN_HEIGHT)
-        {
+        if(enemy->getY() >= SCREEN_HEIGHT){
             enemiesKilled.push_back(enemy);
-            cout << "enemy out of screen" << endl;
         }
     }
 
@@ -179,49 +230,51 @@ void Level::collisionManager()
         if(bullet->getY() < 0){
             bulletsDestroyed.push_back(bullet);
         }
+
         if(bullet->getY() > SCREEN_HEIGHT){
             bulletsDestroyed.push_back(bullet);
-            cout << "bullet out of screen" << endl;
         }
     }
+
+
 
     // remove duplicate enemies and bullets
     enemiesKilled.unique();
     bulletsDestroyed.unique();
+    blastDestroyed.unique();
 
     // destruction of enemies
-    //cout << "a " << endl ;
-    int cpt = 0;
-
-    for (auto enemy : enemiesKilled)
-    {
+    for (auto enemy : enemiesKilled){
         _enemiesList.remove(enemy);
-        cpt++;
-      //  cout << cpt << endl;
-        //delete enemy;
+        if (enemy->getType() == BOSS_TYPE)
+        {
+            enemy = nullptr;
+            delete _boss;
+            _boss = nullptr;
+        }
+        if (enemy != nullptr)
+            delete enemy;
+        enemy = nullptr;
     }
-   // cout << "b" << endl << endl;
 
-    //cout << "c " << endl;
-    cpt = 0;
     // destruction of bullets
-
-    for (auto bullet : bulletsDestroyed)
-    {
-        cpt++;
-      //  cout << cpt << endl;
+    for (auto bullet : bulletsDestroyed){
         _bulletsList.remove(bullet);
-        //delete bullet;
+       // if (bullet != nullptr)
+         //   delete bullet;
+        bullet = nullptr;
     }
 
-
-    //cout << "d" << endl << endl;
-
-    // clear enemyKilled list
+    for (auto blast : blastDestroyed){
+        _blastList.remove(blast);
+        if (blast != nullptr)
+            delete blast;
+        blast = nullptr;
+    }
+    // clear enemyKilled and bulletDestroy lists
     enemiesKilled.clear();
-
-    // clear bulletDestroy list
     bulletsDestroyed.clear();
+    blastDestroyed.clear();
 
 }
 
@@ -233,62 +286,70 @@ void Level::moveAllBullets(){
 void Level::moveAllEnemies(){
     for (auto enemy : _enemiesList)
         enemy->move();
+
+    if (_boss != nullptr)
+        _boss->move();
 }
 
+void Level::moveAllBlast(){
+    for (auto blast : _blastList)
+        blast->move();
+}
 
-void Level::randomEnemiesShoot(){
+void Level::randomEnemiesShoot()
+{// for each step, there is 1/2 chance that enemies shoot
 
-    // for each step, there is 1/2 chance that enemies shoot
-    int random= rand()%(10);
-    if (random==1)
-    {
         // shuffle shoot for all enemies
         for (auto enemy : _enemiesList)
         {
             // each enemy has 1/3 chance to shoot
-            random = rand()%(10);
+            int random = rand()%(10);
             if (random == 1)
                 enemy->shoot(&_bulletsList);
         }
-    }
 
+        if (_boss != nullptr)
+        {
+            _boss->shoot(_bulletsList);
+        }
 }
 
 void Level::runGame(){
 
-    // generate enemies
-    generateEnemy();
+    if (!_player->isLosingLife())
+    {
+        // generate enemies
+        generateEnemy();
 
-    // random shoot of enemies
-    randomEnemiesShoot();
+        // random shoot of enemies
+        randomEnemiesShoot();
 
-    // bullet's move
-    moveAllBullets();
+        // bullet's move
+        moveAllBullets();
 
-    // checking for collision
-    collisionManager();
+        // checking for collision
+        collisionManager();
 
-    // then enemies'move
-    moveAllEnemies();
+        // then enemies'move
+        moveAllEnemies();
 
-    // checking a second time for collision
-    collisionManager();
+        // blasts'move
+        moveAllBlast();
 
+        // checking a second time for collision
+        collisionManager();
+    }
 }
 
 void Level::playerUseBomb(){
     // this method try to activate the player bomb
-    _player->useBomb(_enemiesList, *_difficulty);
+        _player->useBomb(_enemiesList, _blastList, *_difficulty);
 }
 
 void Level::playerShoot(){
     //this method make the player shoot
-    _player->shoot(&_bulletsList);
+     _player->shoot(&_bulletsList);
 }
-
-
-
-
 
 //
 // ACCESSOR METHODS
@@ -304,7 +365,17 @@ list<Bullet*> * Level::getBullet()
     return &_bulletsList;
 }
 
+list<Blast*> * Level::getBlast()
+{
+    return &_blastList;
+}
+
 Player * Level::getPlayer()const
 {
     return _player;
+}
+
+Boss * Level::getBoss()
+{
+    return _boss;
 }

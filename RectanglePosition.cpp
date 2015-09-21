@@ -45,6 +45,10 @@ void RectanglePosition::move(const string direction, const float speed)
         move(-speed, 0);
     else if (direction == "EST")
         move(speed, 0);
+    else if (direction == "SOUTH-WEST")
+        move(-speed, speed);
+    else if (direction == "SOUTH-EST")
+        move(speed, speed);
 }
 
 string RectanglePosition::toString(){

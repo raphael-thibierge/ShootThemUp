@@ -22,18 +22,18 @@ changeDifficulty Change difficulty
 changeNBLifeInit Change Initial life number
 changeLanguage Change Language
 upgradeMainShoot Upgrade the main shoot
-upgradeMainShootlvl2 Shoot level 2
-upgradeMainShootlvl3 Shoot level 3
-upgradeMainShootlvl4 Shoot level 4
-upgradeMainShootlvl5 Shoot level 5
+upgradeMainShootlvl2 level 2
+upgradeMainShootlvl3 level 3
+upgradeMainShootlvl4 level 4
+upgradeMainShootlvl5 level 5
 upgradeShip Upgrade ship
-upgradeShiplvl2 Ship level 2
-upgradeShiplvl3 Ship level 3
-upgradeShiplvl4 Ship level 4
+upgradeShiplvl2 level 2
+upgradeShiplvl3 level 3
+upgradeShiplvl4 level 4
 upgradeShield Upgrade shield
-upgradeShieldlvl1 Shield level 1
-upgradeShieldlvl2 Shield level 2
-upgradeShieldlvl3 Shield level 3
+upgradeShieldlvl1 level 1
+upgradeShieldlvl2 level 2
+upgradeShieldlvl3 level 3
 purchaseRight Purchase don !
 purchaseWrong Purchase fail !
 difficulty Difficulty
@@ -57,3 +57,6 @@ shildLevel Shield Level
 lifeLevel Life level
 nbLife Life's number
 nbBomb Bomb's number
+noShield No Shield
+alreadyShield Shield already buy
+nbLifeMore Additional Number Life

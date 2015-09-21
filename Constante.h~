@@ -4,25 +4,25 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "ResourcePath.hpp"
+
 // ======== PLAYER ============
 const int PLAYER_LIFE_LEVEL = 300;
 const int PLAYER_NB_LIFE = 3;
 const int PLAYER_WIDTH = 89;
-const int PLAYER_HEIGHT = 168;
+const int PLAYER_HEIGHT = 133;
 const int PLAYER_SPEED = 10;
 
 // ======== LEVEL ============
 const unsigned int LEVEL_DIFFICULTY = 2;
-const unsigned int LEVEL_NB_ENEMIES = 20;
+const unsigned int LEVEL_NB_ENEMIES = 1;
 
 // ======== SCREEN ============
-const int SCREEN_HEIGHT = 1000;
-const int SCREEN_WIDTH = 780;
+const int SCREEN_HEIGHT=1000;
+const int SCREEN_WIDTH=780;
 
 // ======== BEST SCORES ============
 const int BEST_SCORE_NB = 5;
-const std::string BEST_SCORE_FILE = resourcePath() + "bestScoreFile.txt";
+const std::string BEST_SCORE_FILE = "bestScoreFile.txt";
 
 const int LABEL_BESTSCORES_POSITION_X = 200;
 const int LABEL_BESTSCORES_POSITION_Y = 200;
@@ -39,8 +39,8 @@ const std::string ENEMIES_DIRECTION = "SOUTH";
 const int MAX_DIFFICULTY = 3;
 
 // ======== ENEMIES ============
-const int ENEMY_WIDTH[3] = { 155, 76, 87 };
-const int ENEMY_HEIGHT[3] = { 157, 134, 138 };
+const int ENEMY_WIDTH[3] = { 155, 77, 89 };
+const int ENEMY_HEIGHT[3] = { 157, 133, 138 };
 const int ENEMY_LIFE_LEVEL[3] = { 50, 100, 200 };
 const int ENEMY_SPEED[3] = { 4, 8, 6 };
 const int ENEMY_TYPE[3] = {10, 11, 12};
@@ -51,12 +51,11 @@ const unsigned int BOSS_TYPE = 25;
 const unsigned int BOSS_LEVEL = 1;
 const float BOSS_INITIAL_X = SCREEN_WIDTH / 2;
 const float BOSS_INITIAL_Y = 50;
-const float BOSS_HEIGHT = 135;
-const float BOSS_WIDTH = 90;
-const unsigned int BOSS_LIFELEVEL = 1000;
+const float BOSS_HEIGHT = 50;
+const float BOSS_WIDTH = 50;
+const unsigned int BOSS_LIFELEVEL = 300;
 const float BOSS_SPEED = 5;
 const unsigned int BOSS_NBLIFE = 1;
-const unsigned int BOSS_BULLET_TYPE = 3;
 
 
 // ======== BULLETS ============
@@ -82,25 +81,24 @@ const int BOMB_PRICE = 100;
 const int LIFE_PRICE = 250;
 
 // ======== IMAGES ============
-const std::string IMAGE_BACKGROUD_MAIN_MENU = "Vache.jpg";
-const std::string IMAGE_BACKGROUD_GAME = "paille.png";
+const std::string IMAGE_BACKGROUD_MAIN_MENU = "./images/Vache.jpg";
+const std::string IMAGE_BACKGROUD_GAME = "./images/paille.png";
 const int IMAGE_BACKGROUD_GAME_SIZE_X = 1000;
 const int IMAGE_BACKGROUD_GAME_SIZE_Y = 1000;
 const int IMAGE_BACKGROUND_SPEED = 1;
-const std::string IMAGE_BACKGROUD_BESTSCORES = "Vache.jpg";
-const std::string IMAGE_BACKGROUD_SHOP = "vache.jpg";
-const std::string IMAGE_BACKGROUD_SETTINGS = "Vache.jpg";
+const std::string IMAGE_BACKGROUD_BESTSCORES = "./images/Vache.jpg";
+const std::string IMAGE_BACKGROUD_SHOP = "./images/vache.jpg";
+const std::string IMAGE_BACKGROUD_SETTINGS = "./images/Vache.jpg";
 
-const std::string IMAGE_BUTTONS = "button.png";
-const std::string IMAGE_BUTTONS_ACTIVE = "buttonActive.png";
-const std::string IMAGE_PLAYER_SHIP = "perso_principal.png";
-const std::string IMAGE_BOSS_SHIP = "tracteur.png";
-const std::string IMAGE_ENEMY_SHIP[3] = {"chicken.png" , "mouton.png", "cochon.png" };
-const std::string IMAGE_BULLET_0 = "potato.png";
-const std::string IMAGE_NEXT_LEVEL = "nextLevel.png";
-const std::string IMAGE_YOU_LOOSE = "youloose.png";
-const std::string IMAGE_HEART = "heart.png";
-const std::string IMAGE_BOMB = "bomb.png";
+const std::string IMAGE_BUTTONS = "./images/button.png";
+const std::string IMAGE_BUTTONS_ACTIVE = "./images/buttonActive.png";
+const std::string IMAGE_PLAYER_SHIP = "./images/tracteur.png";
+const std::string IMAGE_ENEMY_SHIP[3] = {"./images/chicken.png" , "./images/mouton.png", "./images/cochon.png" };
+const std::string IMAGE_BULLET_0 = "./images/potato.png";
+const std::string IMAGE_NEXT_LEVEL = "./images/nextLevel.png";
+const std::string IMAGE_YOU_LOOSE = "./images/youloose.png";
+const std::string IMAGE_HEART = "./images/heart.png";
+const std::string IMAGE_BOMB = "./images/bomb.png";
 
 
 // ======== BUTTONS ============
@@ -124,6 +122,7 @@ const int BUTTON_SPRITE_ACTIVE_Y = 0;
 const int TEXT_SIZE = 22;
 
 
+
 // ======== GAME VIEW ============
 const int GAMEVIEW_HEART_SIZE = 48;
 const int GAMEVIEW_HEART_X = 10;
@@ -136,7 +135,7 @@ const int GAMEVIEW_BOMB_Y = 70;
 const int GAMEVIEW_LABEL_SCORE_X = SCREEN_WIDTH - 200;
 const int GAMEVIEW_LABEL_SCORE_Y = 10;
 const int GAMEVIEW_LABEL_LIFE_X = 10;
-const int GAMEVIEW_LABEL_LIFE_Y = GAMEVIEW_HEART_Y + GAMEVIEW_HEART_SIZE + 60 ;
+const int GAMEVIEW_LABEL_LIFE_Y = GAMEVIEW_HEART_Y + GAMEVIEW_HEART_SIZE + 50 ;
 const int GAMEVIEW_LABEL_BOMB_X = 10;
 const int GAMEVIEW_LABEL_BOMB_Y = 70;
 
@@ -147,7 +146,7 @@ const int SETTINGSVIEW_TEXT_COLONNE_X = 10;
 const int SETTINGSVIEW_TITLE_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
 const int SETTINGSVIEW_TITLE_Y = 100;
 const int SETTINGSVIEW_LANGUAGE_Y = 250;
-const int SETTINGSVIEW_NBLIFE_Y = 350;
+const int SETTINGSVIEW_NBLIFE_Y = 10;
 const int SETTINGSVIEW_DIFFICULTY_Y = 450;
 
 const int SETTINGSVIEW_FRENCH_X = 250;
@@ -175,13 +174,23 @@ const int SETTINGSVIEW_NBLIFE_3_Y = SETTINGSVIEW_NBLIFE_Y;
 
 // ======== SHOP VIEW ============
 
+<<<<<<< HEAD
+
+
+
+
+const int SHOPSVIEW_TITLE_X = SCREEN_WIDTH/2 - BUTTON_WIDTH/ 2;
+=======
 const int SHOPSVIEW_TITLE_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
+>>>>>>> 5aa218d810d0953ef5a4db748bac4789384ac8e0
 const int SHOPSVIEW_TITLE_Y = 100;
+
+const int SHOPSVIEW_MONEY_Y = 150;
 
 
 const int SHOPVIEW_COLUMN_1 = 10;
 const int SHOPVIEW_COLUMN_2 = SCREEN_WIDTH / 3 + 3;
-const int SHOPVIEW_COLUMN_3 = 2*SCREEN_WIDTH/3 + 3;
+const int SHOPVIEW_COLUMN_3 = 2*SCREEN_WIDTH/3 ;
 const int SHOPVIEW_LINE_1 = 350;
 const int SHOPVIEW_LINE_2 = 450;
 const int SHOPVIEW_LINE_3 = 550;
@@ -195,12 +204,6 @@ const int SHOPSVIEW_SHIP_Y = SHOPVIEW_LINE_2 - TEXT_SIZE - 5;
 const int SHOPSVIEW_SHIELD_Y = SHOPVIEW_LINE_3 - TEXT_SIZE - 5;
 const int SHOPSVIEW_BOMB_Y =  SHOPVIEW_LINE_4 + BUTTON_HEIGHT /2 - 10;
 const int SHOPSVIEW_LIFE_Y =  SHOPVIEW_LINE_5 + BUTTON_HEIGHT /2 - 10;
-const int SHOPSVIEW_MONEY_Y = SHOPSVIEW_TITLE_Y+80;
-
-
-// ======== INTRODUCTION VIEW ============
-const int INTROVIEW_TITLE_X = SCREEN_WIDTH/3;
-const int INTROVIEW_TITLE_Y = SCREEN_HEIGHT/2;
 
 
 // ======== GAME VIEW ============
@@ -210,12 +213,12 @@ const float TIME_PLAYER_FIRE_RATE = 0.2f;
 const float TIME_ENEMY_FIRE_RATE = 0.8f;
 const float TIME_SPAWN_RATE =  0.4f;
 const float TIME_INTRODUCTION = 2.0f;
-const float TIME_BOSS_FIRE_RATE = 1.0f;
-const float TIME_LIFE_TRANSITION = 2.0f;
 
-// ======== BLAST ============
+//
+
+#endif // CONSTANTE_H_INCLUDED
 const float BLAST_DURATION = 0.2f;
-const std::string IMAGE_BLAST[1] = { "explosion.png" };
+const std::string IMAGE_BLAST[1] = { "./images/explosion.png" };
 const int BLAST_IMAGE_WIDTH = 200;
 const int BLAST_IMAGE_HEIGHT = 600;
 const int BLAST_SPRITE_WIDTH = 200;
@@ -223,9 +226,3 @@ const int BLAST_SPRITE_HEIGHT = 200;
 const int BLAST_NBSPRITES = 3;
 const int BLAST_SPRITES_X[3] = { 0, 200, 400 };
 const int BLAST_SPRITES_Y[3] = { 0, 0, 0 };
-
-// ======== SOUND ============
-const std::string GAME_MUSIC = resourcePath() + "vavrek.com_journeys_end_1.0_inst.ogg";
-const std::string SOUND_SHOT =  resourcePath() + "sf_laser_14.ogg";
-const std::string SOUND_BLAST =  resourcePath() + "sf_canon_01.ogg";
-#endif // CONSTANTE_H_INCLUDED

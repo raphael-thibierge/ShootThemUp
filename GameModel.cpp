@@ -13,9 +13,7 @@ GameModel::GameModel()
 
     srand (time(NULL));
 
-    // unused
-   // _height = SCREEN_HEIGHT;
-   // _width = SCREEN_WIDTH;
+    _time.restart();
 
     // always init
     _gameLevel = 0;
@@ -24,12 +22,11 @@ GameModel::GameModel()
     // not init, because player can choose to load an old game
     _player = nullptr;
     _level = nullptr;
+    _shop = nullptr;
 
 
     // loading best scores
     loadBestScore();
-
-
 
 }
 
@@ -42,10 +39,17 @@ GameModel::~GameModel()
     saveBestScores();
 
     destructLevel();
-    delete _player;
-    delete _shop;
-    delete _level;
+    if (_player != nullptr)
+        delete _player;
+    _player = nullptr;
+    if (_shop != nullptr)
+        delete _shop;
+    _shop = nullptr;
+    if (_level)
+        delete _level;
+    _level = nullptr;
     delete _settings;
+    _settings = nullptr;
 }
 
 
@@ -62,15 +66,15 @@ void GameModel::nextStep()
         // --> there isn't any game loaded
         if(_level==nullptr && _gameLevel>0)
         {
-            // creation of the next level
-            newLevel();
+            // after 3 second creation of the next level
+            if (_time.getElapsedTime().asSeconds() > TIME_GAME_TRANSITION)
+                newLevel();
         }
 
         // if there is a level
         // --> the player is playing
         if ( _level != nullptr)
-        {
-            // game constinue
+        {// game constinue
             _level->runGame();
 
             // if the player win, he plays the next level
@@ -101,7 +105,7 @@ bool GameModel::loadGame ()
     // chargement d'une partie depuis un fichier
 
     fstream gameFile;
-    gameFile.open("GameFile.txt", ios::in);
+    gameFile.open("./files/GameFile.txt", ios::in);
     string line;
 
     _player = new Player;
@@ -152,7 +156,7 @@ void GameModel::saveGame ()
     fstream gameFile;
 
     // open or create gamefile
-    gameFile.open("GameFile.txt", ios::out);
+    gameFile.open("./files/GameFile.txt", ios::out);
 
     // SETTINGS
     // _difficulty
@@ -277,12 +281,12 @@ void GameModel::newLevel ()
 
 
 void GameModel::destructLevel()
-{
-    // return null level
+{ // return null _level
     if (_level != nullptr){
         delete _level;
-        _level = nullptr;
     }
+    _time.restart();
+    _level = nullptr;
 }
 
 void GameModel::endCurrentGame(){
@@ -290,6 +294,7 @@ void GameModel::endCurrentGame(){
     _player->setNbLife(0);
     _player->setScore(0);
     _gameLevel = 0;
+    _time.restart();
 }
 
 
@@ -321,3 +326,9 @@ vector<unsigned int> * GameModel::getBestScores()
 {
     return &_bestScores;
 }
+
+float GameModel::getTime() const
+{
+    return _time.getElapsedTime().asSeconds();
+}
+

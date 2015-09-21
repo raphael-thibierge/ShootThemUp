@@ -14,6 +14,8 @@
 
 class ViewIntroduction : public virtual View
 {
+private:
+    sf::Clock _time;
 
 // CONSTRUCTOR AND DESTRUCTOR
 //
@@ -34,7 +36,7 @@ public:
 
     void showViewSFML() override;
 
-    void initButtons() override;
+    bool initSFML() override;
 
 };
 

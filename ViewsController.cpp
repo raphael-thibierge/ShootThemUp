@@ -16,21 +16,26 @@ using namespace std;
 //
 ViewsController::ViewsController(sf::RenderWindow* window) : _mainWindow(window)
 {
+    
     _allViews.insert(make_pair("Introduction", new ViewIntroduction));
     _allViews.insert(make_pair("MainMenu", new ViewMainMenu));
     _allViews.insert(make_pair("Game", &_game));
     _allViews.insert(make_pair("Shop", new ViewShop));
     _allViews.insert(make_pair("Settings", new ViewSettings));
     _allViews.insert(make_pair("BestScores", new ViewBestScores));
+    
     _quit = false;
 
-
+    _music.openFromFile(GAME_MUSIC);
+    playMusic(true);
 }
 
 ViewsController::~ViewsController(){
+    _modele = nullptr;
     _view = nullptr;
+    _mainWindow = nullptr;
 
-    _view = nullptr;
+
     for (auto view : _allViews) {
         //the gameview is not in the queue
         if (view.first != "Game")
@@ -97,6 +102,10 @@ bool ViewsController::treatEvent(){
             _view = _allViews["BestScores"];
             break;
 
+        case 111:
+            forceQuit();
+            break;
+
         default:
             break;
     }
@@ -108,9 +117,13 @@ void ViewsController::showView(){
     //show active view
 
     //_view->showViewTerminal();
-    _mainWindow->Clear();
-    _view->showViewSFML();
-    _mainWindow->Display();
+
+    if (_mainWindow != nullptr)
+    {
+        _mainWindow->clear();
+        _view->showViewSFML();
+        _mainWindow->display();
+    }
 }
 
 void ViewsController::changeView(string view){
@@ -125,16 +138,33 @@ void ViewsController::quit(){
     _quit = true;
 }
 
-void ViewsController::init(GameModel *modele){
+void ViewsController::forceQuit()
+{
+    _quit = true;
+
+}
+
+bool ViewsController::init(GameModel *modele){
     //initisilisation of the controller and views
     _modele = modele;
     _quit = false;
     for (auto view : _allViews) {
         view.second->init(_modele, _mainWindow);
-
+        if (!view.second->initButtons())
+            return false;
+        if (!view.second->initSFML()){
+            cout << view.first << endl;
+            return false;
+        }
     }
-
     // at beginning of the program, it's the introduction view
     _view = _allViews["Introduction"];
+    return true;
+}
+void ViewsController::playMusic(bool loop)
+{
+    _music.setLoop(loop);
+    _music.setVolume(40);
+    _music.play();
 
 }

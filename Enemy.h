@@ -28,13 +28,19 @@ public:
 
     void shoot (std::list<Bullet*> * bulletList) override;
 
+
+
+    std::string toString() override;
+
+    void difficultyImpact(const unsigned int difficulty);
+
     unsigned int getLevel() const;
 
-    std::string toString();
+    std::string getDirection() const;
+
 
 
 // STATIC METHODS
-
 public:
 
     static Enemy* Standard(const unsigned int level);

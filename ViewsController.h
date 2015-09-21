@@ -10,9 +10,7 @@
 #define __ShmupTerminal__ViewsController__
 
 #include <stdio.h>
-
-
-
+#include <map>
 
 #include "GameModel.h"
 #include "ViewGame.h"
@@ -21,7 +19,7 @@
 #include "ViewMainMenu.h"
 #include "ViewSettings.h"
 #include "ViewBestScores.h"
-#include <map>
+
 
 
 class ViewsController {
@@ -42,6 +40,9 @@ protected:
     // game view in the queue
     ViewGame _game;
 
+    sf::Music _music;
+
+
 // CONSTRUCTOR AND DESTRUCTOR
 //
 public:
@@ -61,8 +62,13 @@ public:
     // quit the program
     void quit();
 
+    // force quit
+    void forceQuit();
+
     // init gamemodel for each views
-    void init(GameModel* modele);
+    bool init(GameModel* modele);
+
+    void playMusic(bool loop);
 
 
 private:

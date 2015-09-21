@@ -16,43 +16,34 @@ private:
     unsigned int _score;
     float _money;
     unsigned int _level;
-    unsigned int _shild;
+    unsigned int _shield;
     unsigned int _bombNumber;
 
 public:
 
-// CONSTRUCTOR AND DESTRUCTOR
+// CONSTRUCTOR
 //
-
 	Player ();
-
-    virtual ~Player ();
-
 
 // METHODS
 //
 
     // player use a bomb if he has one
-    void useBomb(std::list<Enemy*> &enemyList, const int difficulty);
+    void useBomb(std::list<Enemy*> &enemyList, std::list<Blast*> &blastList, const int difficulty);
 
     void nextLevel();
+
     // shoot a bullet
     void shoot (std::list<Bullet*> * bulletList) override;
+
+    void move(std::string direction);
 
     // update player's score, depend of enemy and difficulty
     void score(Enemy * enemy, const unsigned int difficulty);
 
     void activateShild();
 
-    // payer loose one life
-    void looseLife();
-
-    // affect damage to player
-    void affectDamage(const unsigned int damage);
-
     void resetPosition();
-
-    void resetLifeLevel();
 
     // add money in function of the current score
     void addMoney();
@@ -66,6 +57,8 @@ public:
     void pay(const float value);
 
     std::string toString() override;
+
+
 
 
 private :
@@ -98,7 +91,7 @@ public :
 
     void setLevel( const unsigned int level);
 
-    void setShield( const unsigned int shild);
+    void setShield( const unsigned int shield);
 
     void setBulletType( const unsigned int bulletType);
 

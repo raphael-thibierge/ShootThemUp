@@ -19,14 +19,15 @@ using namespace sf;
 ViewMainMenu::ViewMainMenu()
 {
     // background
-    _imagesList.insert(make_pair("background", sf::Image()));
-    _imagesList["background"].LoadFromFile(IMAGE_BACKGROUD_MAIN_MENU);
+    /*
+    _imagesList.insert(make_pair("background", sf::Texture()));
+    _imagesList["background"].loadFromFile(resourcePath() + IMAGE_BACKGROUD_MAIN_MENU);
 
     _spritesList.insert(make_pair("background", sf::Sprite()));
-    _spritesList["backgroung"].SetImage(_imagesList["background"]);
-    _spritesList["background"].SetSubRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
-    _spritesList["background"].SetPosition(0,0);
-
+    _spritesList["background"].setTexture(_imagesList["background"]);
+    _spritesList["background"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].setPosition(0,0);
+     */
 }
 
 ViewMainMenu::~ViewMainMenu() {}
@@ -36,36 +37,33 @@ ViewMainMenu::~ViewMainMenu() {}
 // METHODS
 //
 
-void ViewMainMenu::initButtons()
-{
 
-}
 
 
 void ViewMainMenu::showViewSFML()
 {
-    _window->Draw(_spritesList["backgroung"]);
+    _window->draw(_spritesList["background"]);
 
     Event event;
-    _window->GetEvent(event);
-    int mouseX = event.MouseMove.X;
-    int mouseY = event.MouseMove.Y;
+    _window->pollEvent(event);
+    int mouseX = event.mouseMove.x;
+    int mouseY = event.mouseMove.y;
 
     if (_modele->getPlayer() == nullptr)
     {
-        displayStandartButton(_language->getText("newGame"), BUTTON_NEWGAME_POSITION_X, BUTTON_NEWGAME_POSITION_Y);
-        displayStandartButton(_language->getText("loadGame"), BUTTON_LOADGAME_POSITION_X, BUTTON_LOADGAME_POSITION_Y);
-        displayStandartButton(_language->getText("settings"), BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
-        displayStandartButton(_language->getText("bestScores"), BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
-        displayStandartButton(_language->getText("quit"), BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y);
+        displayStandartButton(_language->getText("newGame"), MENUVIEW_BUTTON_POSITION_X, BUTTON_NEWGAME_POSITION_Y);
+        displayStandartButton(_language->getText("loadGame"), MENUVIEW_BUTTON_POSITION_X, BUTTON_LOADGAME_POSITION_Y);
+        displayStandartButton(_language->getText("settings"), MENUVIEW_BUTTON_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
+        displayStandartButton(_language->getText("bestScores"), MENUVIEW_BUTTON_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
+        displayStandartButton(_language->getText("quit"), MENUVIEW_BUTTON_POSITION_X, BUTTON_QUIT_POSITION_Y);
     }
     else
     {
-        displayStandartButton(_language->getText("play"), BUTTON_PLAY_POSITION_X, BUTTON_PLAY_POSITION_Y);
-        displayStandartButton(_language->getText("shop"), BUTTON_SHOP_POSITION_X, BUTTON_SHOP_POSITION_Y);
-        displayStandartButton(_language->getText("settings"), BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
-        displayStandartButton(_language->getText("bestScores"), BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
-        displayStandartButton(_language->getText("quit"), BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y);
+        displayStandartButton(_language->getText("play"), MENUVIEW_BUTTON_POSITION_X, BUTTON_PLAY_POSITION_Y);
+        displayStandartButton(_language->getText("shop"), MENUVIEW_BUTTON_POSITION_X, BUTTON_SHOP_POSITION_Y);
+        displayStandartButton(_language->getText("settings"), MENUVIEW_BUTTON_POSITION_X, BUTTON_SETTINGS_POSITION_Y);
+        displayStandartButton(_language->getText("bestScores"), MENUVIEW_BUTTON_POSITION_X, BUTTON_BESTSCORES_POSITION_Y);
+        displayStandartButton(_language->getText("quit"), MENUVIEW_BUTTON_POSITION_X, BUTTON_QUIT_POSITION_Y);
     }
 
 }
@@ -75,25 +73,30 @@ int ViewMainMenu::treatEventSFML()
     int returnValue = 1; // standart return of Event Treatment
 
     Event event;
-    while (_window->GetEvent(event))
+    while (_window->pollEvent(event))
     {
-        switch (event.Type)
+        switch (event.type)
         {
 
+            case sf::Event::Closed :
+                returnValue = 111;
+                break;
+
             case Event::MouseButtonPressed :
-                int mouseX = event.MouseButton.X;
-                int mouseY = event.MouseButton.Y;
+            {
+                int mouseX = event.mouseButton.x;
+                int mouseY = event.mouseButton.y;
 
                 if (_modele->getPlayer() == nullptr)
                 {// if a party isn't load
 
-                    if (mouseOnButton(mouseX, mouseY, BUTTON_NEWGAME_POSITION_X, BUTTON_NEWGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_NEWGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                     {// button new game
                         _modele->newGame();
                         returnValue = 1;
                     }
 
-                    if (mouseOnButton(mouseX, mouseY, BUTTON_LOADGAME_POSITION_X, BUTTON_LOADGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_LOADGAME_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                     {// button load game
                         _modele->loadGame();
                         returnValue = 1;
@@ -102,13 +105,13 @@ int ViewMainMenu::treatEventSFML()
 
                 else
                 {
-                    if (mouseOnButton(mouseX, mouseY, BUTTON_PLAY_POSITION_X, BUTTON_PLAY_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_PLAY_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                     {// button play
                         _modele->play();
                         returnValue = -2;
                     }
 
-                    if (mouseOnButton(mouseX, mouseY, BUTTON_SHOP_POSITION_X, BUTTON_SHOP_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                    if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_SHOP_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                     {// button shop
                         returnValue = -3;
                     }
@@ -116,24 +119,32 @@ int ViewMainMenu::treatEventSFML()
 
                 // COMMUN BUTTON
 
-                if (mouseOnButton(mouseX, mouseY, BUTTON_SETTINGS_POSITION_X, BUTTON_SETTINGS_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_SETTINGS_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 { // button settings
                     returnValue = -4;
                 }
 
-                if (mouseOnButton(mouseX, mouseY, BUTTON_BESTSCORES_POSITION_X, BUTTON_BESTSCORES_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_BESTSCORES_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 { // button best scores
                     returnValue = -8;
                 }
 
-                if (mouseOnButton(mouseX, mouseY, BUTTON_QUIT_POSITION_X, BUTTON_QUIT_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
+                if (mouseOnButton(mouseX, mouseY, MENUVIEW_BUTTON_POSITION_X, BUTTON_QUIT_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 { // button best scores
                     returnValue = 0;
                 }
 
             break;
+        }
 
-
+            case sf::Event::KeyPressed :
+                if (event.key.code == Keyboard::Escape)
+                {
+                    returnValue = 0;
+                }
+                break;
+            default:
+                break;
 
         }
     }
@@ -141,18 +152,6 @@ int ViewMainMenu::treatEventSFML()
     return returnValue;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 int ViewMainMenu::treatEvent()
 {
@@ -298,4 +297,19 @@ void ViewMainMenu::showQuit()
 
 
 
+}
+
+bool ViewMainMenu::initSFML()
+{
+    // background image
+    _imagesList.insert(make_pair("background", sf::Texture()));
+    if (!_imagesList["background"].loadFromFile(resourcePath() + IMAGE_BACKGROUD_MAIN_MENU))
+        return false;
+    // background sprite
+    _spritesList.insert(make_pair("background", sf::Sprite()));
+    _spritesList["background"].setTexture(_imagesList["background"]);
+    _spritesList["background"].setTextureRect(sf::IntRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT));
+    _spritesList["background"].setPosition(0,0);
+    
+    return true;
 }

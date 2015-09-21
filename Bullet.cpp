@@ -16,7 +16,6 @@ Bullet::Bullet(const unsigned int type) : _type(type)
 }
 
 Bullet::~Bullet () {
-    cout << __FUNCTION__ << endl ;
 }
 
 
@@ -37,11 +36,9 @@ void Bullet::initBullet(){
     _width = BULLET_WIDTH[_type%10];
     _height = BULLET_HEIGHT[_type%10];
 
-
     if (_direction == "NORTH")
         _Y -= _height;
-    if (_direction == "SOUTH")
-        _Y += _height;
+    _X -= _width / 2;
 }
 
 string Bullet::toString()

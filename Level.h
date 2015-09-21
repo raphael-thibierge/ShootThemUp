@@ -2,7 +2,7 @@
 #define LEVEL_H
 
 #include <string>
-#include "Enemy.h"
+#include "Boss.h"
 #include "Player.h"
 
 class Level
@@ -16,7 +16,13 @@ private:
     Player * _player;
     std::list<Enemy*> _enemiesList ;
     std::list<Bullet*> _bulletsList;
+    std::list<Blast*> _blastList;
     int _enemiesCpt;
+
+    Boss * _boss;
+
+    sf::Clock _time;
+    sf::Clock _lifeTransition;
 
 public:
 
@@ -44,6 +50,8 @@ public:
 
     void moveAllEnemies();
 
+    void moveAllBlast();
+
     void randomEnemiesShoot();
 
     void runGame();
@@ -61,7 +69,11 @@ public:
 
     std::list<Bullet*> * getBullet();
 
+    std::list<Blast*> * getBlast();
+
     Player * getPlayer()const;
+
+    Boss * getBoss();
 
 
 };

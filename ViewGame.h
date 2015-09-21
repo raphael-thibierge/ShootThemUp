@@ -18,8 +18,8 @@ class ViewGame : virtual public View
 {
 private :
     int _backgroundY;
-
-
+    sf::Clock _transitionClock;
+    unsigned int _cptSprite;
 
 // CONSTRUCTOR AND DESTRUCTOR
 //
@@ -42,13 +42,14 @@ public:
     void showTransitionSFML();
 
     // screen when player loose
-    void showLooseConsole();
-    void showLooseSFML();
+    void showLoseConsole();
+    void showLoseSFML();
+    void showLifeTransitionSFML();
 
     // display the background and loop it to have a infinite scolling
     void displayScrollingBackground();
 
-    void initButtons() override;
+    bool initSFML();
 };
 
 

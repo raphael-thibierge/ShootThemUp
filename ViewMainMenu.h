@@ -36,7 +36,7 @@ public:
     // screen at end of the program
     void showQuit();
 
-    void initButtons() override;
+    bool initSFML() override;
 
 };
 
