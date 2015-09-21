@@ -136,9 +136,11 @@ int ViewSettings::treatEventSFML()
 
             case sf::Event::MouseButtonPressed :
             {
-                int mouseX = event.mouseButton.x ;
-                int mouseY = event.mouseButton.y ;
-
+                unsigned int mouseX = event.mouseButton.x ;
+                unsigned int mouseY = event.mouseButton.y ;
+                
+                transformMousePosition(mouseX, mouseY);
+                
                 if (mouseOnButton(mouseX, mouseY, SETTINGSVIEW_FRENCH_X, SETTINGSVIEW_FRENCH_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
                 {
                     _modele->getSettings()->changeLanguage("French");

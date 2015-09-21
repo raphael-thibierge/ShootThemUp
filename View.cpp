@@ -139,5 +139,15 @@ const bool View::initSprite(std:: string name, const std::string image, const un
     return true;
 }
 
-
+const void View::transformMousePosition(unsigned int &mouseX, unsigned int &mouseY)
+{
+    sf::Vector2u windowSize = _window->getSize();
+    // if windows has been resized, we adapte mouse position
+    if (windowSize.x != SCREEN_WIDTH || windowSize.y != SCREEN_HEIGHT)
+    {
+        mouseX = ( mouseX * SCREEN_WIDTH ) / windowSize.x;
+        mouseY = ( mouseY * SCREEN_HEIGHT ) / windowSize.y ;
+    }
+    
+}
 

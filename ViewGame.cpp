@@ -271,13 +271,13 @@ void ViewGame::showViewSFML()
                     break;
 
                 case 1 :
-                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
-                    _window->draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_2"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_2"]);
                     break;
 
                 case 2 :
-                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
-                    _window->draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_3"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_3"]);
                     break;
 
                 case 3 :
@@ -296,13 +296,13 @@ void ViewGame::showViewSFML()
                     break;
 
                 case 11 :
-                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
-                    _window->draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_2"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_2"]);
                     break;
 
                 case 12 :
-                    _spritesList["bullet_1"].setPosition(bullet->getX(), bullet->getY());
-                    _window->draw(_spritesList["bullet_1"]);
+                    _spritesList["bullet_3"].setPosition(bullet->getX(), bullet->getY());
+                    _window->draw(_spritesList["bullet_3"]);
                     break;
 
                 default:
@@ -460,8 +460,18 @@ bool ViewGame::initSFML()
 
     //bullets
     _imagesList.insert(make_pair("bullet_1", sf::Texture()));
-    if (!_imagesList["bullet_1"].loadFromFile(resourcePath() + IMAGE_BULLET_0))
+    if (!_imagesList["bullet_1"].loadFromFile(resourcePath() + IMAGE_BULLET[0]))
         return false;
+    
+    //bullets
+    _imagesList.insert(make_pair("bullet_2", sf::Texture()));
+    if (!_imagesList["bullet_2"].loadFromFile(resourcePath() + IMAGE_BULLET[1]))
+        return false;
+    
+    _imagesList.insert(make_pair("bullet_3", sf::Texture()));
+    if (!_imagesList["bullet_3"].loadFromFile(resourcePath() + IMAGE_BULLET[3]))
+        return false;
+    
 
     // nextLevel
     _imagesList.insert(make_pair("nextLevel", sf::Texture()));
@@ -521,6 +531,15 @@ bool ViewGame::initSFML()
     _spritesList.insert(make_pair("bullet_1", sf::Sprite()));
     _spritesList["bullet_1"].setTexture(_imagesList["bullet_1"]);
     _spritesList["bullet_1"].setTextureRect(sf::IntRect(0,0, BULLET_WIDTH[0], BULLET_HEIGHT[0]));
+    // bullet
+    _spritesList.insert(make_pair("bullet_2", sf::Sprite()));
+    _spritesList["bullet_2"].setTexture(_imagesList["bullet_2"]);
+    _spritesList["bullet_2"].setTextureRect(sf::IntRect(0,0, BULLET_WIDTH[0], BULLET_HEIGHT[0]));
+    // bullet
+    _spritesList.insert(make_pair("bullet_3", sf::Sprite()));
+    _spritesList["bullet_3"].setTexture(_imagesList["bullet_3"]);
+    _spritesList["bullet_3"].setTextureRect(sf::IntRect(0,0, BULLET_WIDTH[0], BULLET_HEIGHT[0]));
+    
     // nextLevel
     _spritesList.insert(make_pair("nextLevel", sf::Sprite()));
     _spritesList["nextLevel"].setTexture(_imagesList["nextLevel"]);

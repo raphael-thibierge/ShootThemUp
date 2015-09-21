@@ -84,8 +84,10 @@ int ViewMainMenu::treatEventSFML()
 
             case Event::MouseButtonPressed :
             {
-                int mouseX = event.mouseButton.x;
-                int mouseY = event.mouseButton.y;
+                unsigned int mouseX = event.mouseButton.x;
+                unsigned int mouseY = event.mouseButton.y;
+                
+                transformMousePosition(mouseX, mouseY);
 
                 if (_modele->getPlayer() == nullptr)
                 {// if a party isn't load

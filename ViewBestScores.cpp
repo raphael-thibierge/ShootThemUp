@@ -36,8 +36,10 @@ int ViewBestScores::treatEventSFML()
 
         case sf::Event::MouseButtonPressed :
         {
-            int mouseX = event.mouseButton.x ;
-            int mouseY = event.mouseButton.y ;
+            unsigned int mouseX = event.mouseButton.x ;
+            unsigned int mouseY = event.mouseButton.y ;
+            
+            transformMousePosition(mouseX, mouseY);
 
             if (mouseOnButton(mouseX, mouseY, BUTTON_BESTSCORES_QUIT_POSITION_X, BUTTON_BESTSCORES_QUIT_POSITION_Y, BUTTON_WIDTH, BUTTON_HEIGHT))
             {

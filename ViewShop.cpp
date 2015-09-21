@@ -122,8 +122,10 @@ int ViewShop::treatEventSFML()
         case sf::Event::MouseButtonPressed :
         {
 
-            int mouseX = event.mouseButton.x ;
-            int mouseY = event.mouseButton.y ;
+            unsigned int mouseX = event.mouseButton.x ;
+            unsigned int mouseY = event.mouseButton.y ;
+            
+            transformMousePosition(mouseX, mouseY);
             // UPGRADE SHOOT
             if (mouseOnButton(mouseX, mouseY, SHOPVIEW_COLUMN_1, SHOPVIEW_LINE_1, BUTTON_WIDTH, BUTTON_HEIGHT))
             {
